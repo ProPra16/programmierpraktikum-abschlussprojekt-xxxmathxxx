@@ -1,0 +1,4 @@
+*.project
+*.classpath
+*.bin
+tddt/.gradle/2.6/taskArtifacts/*
