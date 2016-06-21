@@ -2,6 +2,7 @@
 *.classpath
 *.bin
 *.class
-tddt/.gradle/2.6/taskArtifacts/*
+tddt/.gradle/2.6/taskArtifacts
 tddt/.gradle
-tddt/build
+tddt/tddt/build/reports
+tddt/tddt/build/test-results
