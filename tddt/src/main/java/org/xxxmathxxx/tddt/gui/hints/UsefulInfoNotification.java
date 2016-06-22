@@ -9,7 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -89,6 +88,9 @@ public class UsefulInfoNotification extends Stage {
 
 	}
 	
+	/**
+	 * Static reference to all the mathematicians glorious faces
+	 */
 	private static String[] faceImagePaths = new String[]{
 			"file:graphics/faces/fou.jpeg",
 			"file:graphics/faces/tsc.jpeg",
