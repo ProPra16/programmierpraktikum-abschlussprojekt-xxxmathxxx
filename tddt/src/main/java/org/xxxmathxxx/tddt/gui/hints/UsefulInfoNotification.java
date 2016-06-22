@@ -1,9 +1,12 @@
 package org.xxxmathxxx.tddt.gui.hints;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -22,7 +25,6 @@ public class UsefulInfoNotification extends Stage {
 	
 	private Scene dialogScene;
 	
-	private Label startupCheckLabel;
 	private Label infoText;
 	private ImageView mathFace;
 	private CheckBox startupCheck;
@@ -58,22 +60,21 @@ public class UsefulInfoNotification extends Stage {
 		infoText.setBackground(new Background(new BackgroundFill(new Color(1,1,1,0.7), null, null)));
 		pane.getChildren().add(infoText);
 		
-		startupCheck = new CheckBox();
+		startupCheck = new CheckBox("Always show hints on startup!");
 		startupCheck.setSelected(true);
-		startupCheck.setDisable(true);
-		startupCheck.setPrefSize(32, 32);
-		startupCheck.relocate(xSize/2-100, borderSize+faceSize+spacingTopBottom);
+		startupCheck.setAllowIndeterminate(false);
+		startupCheck.setTooltip(new Tooltip("You won't be able to disable this, sorry!"));
+		startupCheck.setPrefSize(240, 32);
+		startupCheck.setTextAlignment(TextAlignment.CENTER);
+		startupCheck.relocate(xSize/2-120, borderSize+faceSize+spacingTopBottom);
+		startupCheck.setBackground(new Background(new BackgroundFill(new Color(1,1,1,0.7), null, null)));
+		startupCheck.setOnAction(new CheckBoxTrollBot());
 		pane.getChildren().add(startupCheck);
 		
-		startupCheckLabel = new Label("Show hints on startup");
-		startupCheckLabel.setFont(new Font("Times New Roman", 18));
-		startupCheckLabel.setPrefSize(168,32 );
-		startupCheckLabel.relocate(xSize/2-100+32,borderSize+faceSize+spacingTopBottom);
-		pane.getChildren().add(startupCheckLabel);
 		
 		confirmationButton = new Button("Wow, thanks!");
-		confirmationButton.setPrefSize(200, 64);
-		confirmationButton.relocate(xSize/2-100,borderSize+faceSize+spacingTopBottom+64 );
+		confirmationButton.setPrefSize(128, 32);
+		confirmationButton.relocate(xSize/2-64,borderSize+faceSize+spacingTopBottom+64 );
 		pane.getChildren().add(confirmationButton);
 
 		if (selectedHint.imagePath != null){
@@ -82,8 +83,11 @@ public class UsefulInfoNotification extends Stage {
 		
 		dialogScene = new Scene(pane);
 		
+		dialogScene.getStylesheets().add("org/xxxmathxxx/tddt/gui/NotificationStyle.css");
+		
 		this.setScene(dialogScene);
 		this.initStyle(StageStyle.UNDECORATED);
+	
 		this.setResizable(false);
 
 	}
@@ -101,6 +105,15 @@ public class UsefulInfoNotification extends Stage {
 	private static Image generateRandomMathFace(){
 		int randomIndex = ((int)(Math.random()*(faceImagePaths.length-1)));
 		return new Image(faceImagePaths[randomIndex]);
+	}
+	
+	private class CheckBoxTrollBot implements EventHandler<ActionEvent>{
+
+		@Override
+		public void handle(ActionEvent event) {
+			((CheckBox)event.getSource()).setSelected(true);
+		}
+		
 	}
 
 }
