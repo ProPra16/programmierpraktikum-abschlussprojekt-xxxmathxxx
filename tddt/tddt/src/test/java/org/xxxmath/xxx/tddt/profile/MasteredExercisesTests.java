@@ -1,4 +1,4 @@
-package profile;
+package org.xxxmath.xxx.tddt.profile;
 
 import static org.junit.Assert.*;
 
