@@ -1,2 +1,2 @@
-before_script: cd tddt
+before_install: cd tddt
 language: java
