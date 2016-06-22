@@ -2,6 +2,10 @@
 *.classpath
 *.bin
 *.class
+*.aux
+*.log
+*.gz
+*.toc
 tddt/.gradle/2.6/taskArtifacts
 tddt/.gradle
 tddt/tddt/build/reports
