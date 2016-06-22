@@ -22,7 +22,7 @@ public class UsefulInfoNotification extends Stage {
 	private CheckBox startupCheck;
 	private Label startupCheckLabel;
 	private Label infoText;
-	private Button confirmation;
+	private Button confirmationButton;
 	
 	public UsefulInfoNotification(Hint selectedHint) {
 		pane = new Pane();

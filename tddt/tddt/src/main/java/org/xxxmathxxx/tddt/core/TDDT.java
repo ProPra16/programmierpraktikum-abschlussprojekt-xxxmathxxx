@@ -15,7 +15,7 @@ public class TDDT extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		//HintCollection.createStartupInfo().show();
+		HintCollection.createStartupInfo().show();
 	}
 
 }

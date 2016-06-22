@@ -3,10 +3,10 @@ package org.xxxmathxxx.tddt.gui.hints;
 
 public class HintCollection {
 	private static Hint[] hints = new Hint[]{
-			new Hint("file:graphics/davinci.jpg","Did you know that Test-Driven-Development was invented by famous artist Leonardo DiCaprio as early as 1500? (Sadly his notes were lost and only recently rediscovered)"),
+			new Hint("file:graphics/infobackgrounds/davinci.jpg","Did you know that Test-Driven-Development was invented by famous artist Leonardo DiCaprio as early as 1500? (Sadly his notes were lost and only recently rediscovered)"),
 			new Hint(null,"Did you know that the client of a popular MOBA is not written using TDD?"),
-			new Hint(null,"Did you know that, according to Bio20%KappaStats almost 20.000.000 people die every year due to a lack of TDD?")
-
+			new Hint(null,"Did you know that, according to Bio20%KappaStats almost 20.000.000 people die every year due to a lack of TDD?"),
+			new Hint(null,"Did you know that a program which can be written in one day using TDD takes one lightyear to be written without?")
 	};
 	
 	public static UsefulInfoNotification createStartupInfo(){
