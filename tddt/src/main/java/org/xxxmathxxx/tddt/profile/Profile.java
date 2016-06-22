@@ -1,5 +1,7 @@
 package org.xxxmathxxx.tddt.profile;
 
+import org.xxxmathxxx.tddt.tracking.StageGreenTracker;
+
 /* 
  * @author : Tschebyscheff, 21.06.16
  * A class providing informations about users
@@ -23,7 +25,6 @@ public class Profile extends ProfileStats{
 	/*
 	 * A method about displaying stats
 	 */
-	
 	public void showStats(){
 		
 	}
