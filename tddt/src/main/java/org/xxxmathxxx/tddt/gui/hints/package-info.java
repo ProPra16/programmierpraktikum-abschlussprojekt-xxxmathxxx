@@ -1,7 +1,4 @@
 /**
- * 
- */
-/**
  * @author Philipp Spohr, Jun 22, 2016
  *
  */
