@@ -103,7 +103,7 @@ public class UsefulInfoNotification extends Stage {
 	};
 	
 	private static Image generateRandomMathFace(){
-		int randomIndex = ((int)(Math.random()*(faceImagePaths.length-1)));
+		int randomIndex = ((int)Math.round((Math.random()*(faceImagePaths.length-1))));
 		return new Image(faceImagePaths[randomIndex]);
 	}
 	

@@ -10,7 +10,7 @@ public class HintCollection {
 	};
 	
 	public static UsefulInfoNotification createStartupInfo(){
-		int randomIndex = ((int)(Math.random()*(hints.length-1)));
+		int randomIndex = ((int)(Math.round(Math.random()*(hints.length-1))));
 		Hint selectedHint = hints[randomIndex];
 		return new UsefulInfoNotification(selectedHint);
 	}
