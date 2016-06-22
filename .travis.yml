@@ -1,2 +1,3 @@
 before_install: cd tddt
 language: java
+jdk: oraclejdk8
