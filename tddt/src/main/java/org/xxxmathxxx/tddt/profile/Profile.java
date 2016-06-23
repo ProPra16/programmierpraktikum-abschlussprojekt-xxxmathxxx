@@ -1,13 +1,10 @@
 package org.xxxmathxxx.tddt.profile;
 
-import org.xxxmathxxx.tddt.tracking.StageGreenTracker;
-
 /* 
  * @author : Tschebyscheff, 21.06.16
  * A class providing informations about users
- * provided informations are: Name, statistics, mastered exercises
+ * provided informations are: Name, tracking-data, mastered exercises
  * 
- * TODO: showStats has to be managed
  */
 
 public class Profile extends ProfileStats{
@@ -21,16 +18,4 @@ public class Profile extends ProfileStats{
 	public String getProfileName(){
 		return name;
 	}
-	
-	/*
-	 * A method about displaying stats
-	 */
-	public void showStats(){
-		
-	}
-	
-
-	
-	
-	
 }

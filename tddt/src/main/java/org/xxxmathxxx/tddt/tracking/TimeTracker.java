@@ -13,7 +13,6 @@ import org.xxxmathxxx.tddt.timer.BasicTimer;
 public abstract class TimeTracker extends ActivityTracker {
 
 	private BasicTimer timer;
-	//private boolean enableTracking = false;
 	
 	public TimeTracker(){
 		timer = new BasicTimer();
@@ -24,7 +23,6 @@ public abstract class TimeTracker extends ActivityTracker {
 	 */
 	public void  startTracking(){
 		timer.toggleActive();
-		this.enableTracking();
 	}
 	
 	/*
@@ -32,13 +30,12 @@ public abstract class TimeTracker extends ActivityTracker {
 	 */
 	public void stopTracking(){
 		timer.toggleActive();
-		this.disableTracking();
 	}
 	
 	/*
 	 * returns the time that elapsed since starting the timer
 	 */
-	public String geTime(){
+	public String getTime(){
 		return timer.getTimeInSecondsAsString();
 	}
 }

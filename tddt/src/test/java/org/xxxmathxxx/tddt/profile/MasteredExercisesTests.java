@@ -9,13 +9,13 @@ public class MasteredExercisesTests {
 
 	@Test
 	public void addExerciseTest(){
-		MasteredExercise m = new MasteredExercise();
+		Profile m = new Profile("Sascha");
 		m.addExercise("test");
 		assertEquals(m.getExerciseName(0), "test");
 	}
 	@Test
 	public void isExerciseMasteredTest(){
-		MasteredExercise m = new MasteredExercise();
+		Profile m = new Profile("Sascha");
 		m.addExercise("test");
 		m.addExercise("test2");
 		m.setMasteredExercise(1, true);
@@ -25,7 +25,7 @@ public class MasteredExercisesTests {
 	
 	@Test
 	public void isExerciseMasteredTest2(){
-		MasteredExercise m = new MasteredExercise();
+		Profile m = new Profile("Sascha");
 		m.addExercise("test");
 		m.addExercise("test2");
 		m.setMasteredExercise(1, false);
@@ -35,7 +35,7 @@ public class MasteredExercisesTests {
 	
 	@Test
 	public void isExerciseDeletedTest(){
-		MasteredExercise m = new MasteredExercise();
+		Profile m = new Profile("Sascha");
 		m.addExercise("test");
 		m.addExercise("test2");
 		m.setMasteredExercise(1, true);
@@ -46,7 +46,7 @@ public class MasteredExercisesTests {
 	
 	@Test
 	public void giveAllExerciseNamesTest(){
-		MasteredExercise m = new MasteredExercise();
+		Profile m = new Profile("Sascha");
 		m.addExercise("test");
 		m.addExercise("test2");
 		m.addExercise("test3");
@@ -61,7 +61,7 @@ public class MasteredExercisesTests {
 	
 	@Test
 	public void masteredExercisesTest(){
-		MasteredExercise m = new MasteredExercise();
+		Profile m = new Profile("Sascha");
 		m.addExercise("test", false);
 		m.addExercise("test2", true);
 		m.addExercise("test3", true);

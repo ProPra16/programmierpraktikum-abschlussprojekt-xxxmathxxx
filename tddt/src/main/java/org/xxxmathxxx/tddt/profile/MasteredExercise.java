@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @Author: Tschebyscheff, 21.06.16
  * A class that allows to see which exercises are mastered
  */
-public  class MasteredExercise {
+public abstract class MasteredExercise {
 
 	private ArrayList<String> nameList;		// list of all exercise-names
 	private ArrayList<Boolean> masteredList;// list of all mastered exercises 

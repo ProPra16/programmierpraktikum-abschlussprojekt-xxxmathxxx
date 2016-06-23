@@ -12,27 +12,11 @@ package org.xxxmathxxx.tddt.tracking;
 public abstract class ActivityTracker {
 
 	private int keystrokes = 0;
-	private boolean enableTracking = false;
-	
-	
-	/*
-	 * enables tracking
-	 */
-	public void enableTracking(){
-		enableTracking = true;
-	}
-	/*
-	 * disables tracking
-	 */
-	public void disableTracking(){
-		enableTracking = false;
-	}
 	
 	/*
 	 * adding one keystroke
 	 */
 	public void addKeystroke(){
-		if(enableTracking == true)
 			keystrokes++;
 	}
 	
