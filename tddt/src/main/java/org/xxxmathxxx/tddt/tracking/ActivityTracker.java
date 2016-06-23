@@ -9,10 +9,10 @@ package org.xxxmathxxx.tddt.tracking;
  * TODO : add more activities
  *
  */
-public class ActivitiesDuringTracking {
+public abstract class ActivityTracker {
 
-	int keystrokes = 0;
-	boolean enableTracking = false;
+	private int keystrokes = 0;
+	private boolean enableTracking = false;
 	
 	
 	/*
@@ -32,7 +32,8 @@ public class ActivitiesDuringTracking {
 	 * adding one keystroke
 	 */
 	public void addKeystroke(){
-		keystrokes++;
+		if(enableTracking == true)
+			keystrokes++;
 	}
 	
 	/*
@@ -41,14 +42,5 @@ public class ActivitiesDuringTracking {
 	public int getKeystrokes(){
 		return keystrokes;
 	}
-	
-	/*
-	 * 
-	 */
-	
-	
-	
-	
-	
 	
 }
