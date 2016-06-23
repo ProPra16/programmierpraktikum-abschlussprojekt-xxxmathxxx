@@ -1,15 +1,16 @@
-package org.xxxmathxxx.tddt.tracking;
-
+/**
+ * An abstract class providing a simple timer
+ * @author xxxMathxxx, Jun 23, 2016
+ * 
+ */
+package org.xxxmathxxx.tddt.timer;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-/** An abstract class providing a simple timer, useful for tracking time in the tracking context
- * @author xxxMathxxx, Jun 21, 2016
- *
- */
-public class TrackingTimer {
+
+public class BasicTimer {
 	
 	/**
 	 * The internal timer object
@@ -29,7 +30,7 @@ public class TrackingTimer {
 	 * Default constructor, creates a new abstract timer object that counts seconds.
 	 * Note, that the clock doesn't start by itself and instead needs to be activated with toggleActive()
 	 */
-	public TrackingTimer(){
+	public BasicTimer(){
 		timer = new Timer();
 		isRunning = false;
 		timer.scheduleAtFixedRate(new TimeUpdateTask(),0 , 1000);

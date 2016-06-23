@@ -3,6 +3,8 @@
  */
 package org.xxxmathxxx.tddt.tracking;
 
+import org.xxxmathxxx.tddt.timer.BasicTimer;
+
 /**
  * @author Tschebyscheff, 22.06.16
  * class for gathering all kinds of information during tracking process in stage green
@@ -12,12 +14,12 @@ package org.xxxmathxxx.tddt.tracking;
  */
 public class StageGreenTracker extends ActivitiesDuringTracking {
 
-	TrackingTimer timer;
+	BasicTimer timer;
 	Error error = new Error();
 	boolean enableTracking = false;
 	
 	public StageGreenTracker(){
-		timer = new TrackingTimer();
+		timer = new BasicTimer();
 	}
 	
 	/*
