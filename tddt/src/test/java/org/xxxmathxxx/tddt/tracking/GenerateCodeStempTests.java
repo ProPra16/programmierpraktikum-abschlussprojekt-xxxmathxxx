@@ -15,7 +15,7 @@ import vk.core.api.JavaStringCompiler;
  */
 public class GenerateCodeStempTests {
 
-	
+	/*
 	@Test
 	public void addProfileTest(){
 		CompilationUnit compUnit = new CompilationUnit("Test", "ich bin code", false);
@@ -23,5 +23,5 @@ public class GenerateCodeStempTests {
 		
 		CodeStemp codeStemp = GenerateCodeStemp.generate(compiler);
 		
-	}
+	}*/
 }
