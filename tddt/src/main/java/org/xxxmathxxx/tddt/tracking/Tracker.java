@@ -9,13 +9,13 @@ package org.xxxmathxxx.tddt.tracking;
  */
 public class Tracker {
 
-	StageRedTracker stageRedTracker;
-	StageGreenTracker stageGreenTracker;
-	StageRefactorTracker stageRefactorTracker;
+	StageRed stageRedTracker;
+	StageGreen stageGreenTracker;
+	StageRefactor stageRefactorTracker;
 	
 	public Tracker(){
-		stageRedTracker = new StageRedTracker();
-		stageGreenTracker = new StageGreenTracker();
-		stageRefactorTracker = new StageRefactorTracker();
+		stageRedTracker = new StageRed();
+		stageGreenTracker = new StageGreen();
+		stageRefactorTracker = new StageRefactor();
 	}
 }

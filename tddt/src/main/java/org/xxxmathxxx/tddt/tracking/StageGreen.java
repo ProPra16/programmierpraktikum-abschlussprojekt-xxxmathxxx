@@ -8,11 +8,10 @@ package org.xxxmathxxx.tddt.tracking;
  * class for gathering all kinds of information during tracking process in stage green
  * informations are kinds of: Errors, Activities(writing) and time-references
  *
- *TODO: add more informations
+ *TODO: add CodeStempCollection
  */
-public class StageGreenTracker extends TimeTracker {
+public class StageGreen extends TimeTracker {
 
-	Error error = new Error();
-	
+	CodeStempCollection codeStempCollection = new CodeStempCollection();
 	
 }

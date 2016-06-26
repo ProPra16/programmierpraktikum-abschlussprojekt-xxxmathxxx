@@ -8,16 +8,11 @@ package org.xxxmathxxx.tddt.tracking;
  * class for gathering all kinds of information during tracking process in stage refactor
  * informations are kinds of: Errors, Activities(writing) and time-references
  *
- * TODO: add more informations
+ * TODO: add CodeStempCollection
  *
  */
-public class StageRefactorTracker extends TimeTracker {
+public class StageRefactor extends TimeTracker {
 
-
-	Error error = new Error();
-	
-	public StageRefactorTracker(){
-		
-	}
+	CodeStempCollection codeStempCollection = new CodeStempCollection();
 
 }

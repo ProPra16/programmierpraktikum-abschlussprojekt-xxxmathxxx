@@ -5,7 +5,8 @@ import org.xxxmathxxx.tddt.tracking.Tracker;
 /*Author: Tschebyscheff, 21.06.16
  * A class about statistics of a specific profile
  * should contain informations about our tracking-system, MasteredExerciseTests and..
- */
+ * TODO: create a class that combines masteredExercises and Tracker
+ * */
 
 public abstract class ProfileStats extends MasteredExercise {
 
