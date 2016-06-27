@@ -1,6 +1,4 @@
 #TDDT#
-##by xxxMathxxx##
-##ProPra project SS 2016, hhu duesseldorf##
 
 [![Build Status](https://travis-ci.org/ProPra16/programmierpraktikum-abschlussprojekt-xxxmathxxx.png)](https://travis-ci.org/ProPra16/programmierpraktikum-abschlussprojekt-xxxmathxxx)
 
@@ -17,11 +15,11 @@ The compiled .jar will be found in tddt/build/libs.
 
 We do not provide a static documentation here, instead you can create your own up-to-date documentation from our source with simple tools we provided.
 
-###Generate javadoc###
+###How to generate javadoc###
 
 Navigate to docs, then run "sh generateJavaDoc.sh"
 
-###Generate class-diagram as .pdf###
+###How to generate a class-diagram as .pdf###
 
 Navigate to docs, then run "sh generateClassDiagram.sh"
 
@@ -29,7 +27,7 @@ Navigate to docs, then run "sh generateClassDiagram.sh"
 
 To get started, refer to our manual, located in the manual folder.
 
-##Where to find our logfiles##
+##How to find our logfiles##
 
 Our logfiles, documenting our weekly meeting, can be found in the logs folder.
 
