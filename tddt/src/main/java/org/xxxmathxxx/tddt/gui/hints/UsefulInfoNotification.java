@@ -75,6 +75,7 @@ public class UsefulInfoNotification extends Stage {
 		confirmationButton = new Button("Wow, thanks!");
 		confirmationButton.setPrefSize(128, 32);
 		confirmationButton.relocate(xSize/2-64,borderSize+faceSize+spacingTopBottom+64 );
+		confirmationButton.addEventHandler(ActionEvent.ANY, new confButtonHandler());
 		pane.getChildren().add(confirmationButton);
 
 		if (selectedHint.imagePath != null){
@@ -119,6 +120,14 @@ public class UsefulInfoNotification extends Stage {
 			((CheckBox)event.getSource()).setSelected(true);
 		}
 		
+	}
+	
+	private final class confButtonHandler implements EventHandler<ActionEvent>{
+
+		@Override
+		public void handle(ActionEvent event) {
+			close();
+		}
 	}
 
 }
