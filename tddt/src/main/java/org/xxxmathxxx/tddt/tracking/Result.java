@@ -8,10 +8,10 @@ import vk.core.api.TestResult;
 
 /**
  * @author Tschebyscheff, 24.06.16
- * class for classifing and gathering ErrorTypes
+ * class saves Compile and Test Results
  * 
  */
-public class Error {
+public class Result {
 
 	private TestResult testResult;
 	private CompilerResult compilerResult;
@@ -46,20 +46,11 @@ public class Error {
 	
 	
 	/*
-	 * resett Errors and set them to null
+	 * resett Results and set them to null
 	 */
-	public void resettErrors(){
+	public void resettResults(){
 		compilerResult = null;
 		testResult = null;
 		
 	}	
-	/*
-	 * returns true if CompilerResult or TestResult are given
-	 */
-	public boolean hasErrors(){
-		
-		if((compilerResult == null) && (testResult == null))
-				return false;
-		return true;
-	}
 }

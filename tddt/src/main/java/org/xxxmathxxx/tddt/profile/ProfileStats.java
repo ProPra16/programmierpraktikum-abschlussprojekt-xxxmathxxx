@@ -1,29 +1,143 @@
 package org.xxxmathxxx.tddt.profile;
 
+import java.util.ArrayList;
+
 import org.xxxmathxxx.tddt.tracking.Tracker;
 
-/*Author: Tschebyscheff, 21.06.16
+/*
+ * @Author: Tschebyscheff, 21.06.16
+ * A class that allows to see which exercises are mastered
  * A class about statistics of a specific profile
- * should contain informations about our tracking-system, MasteredExerciseTests and..
- * TODO: create a class that combines masteredExercises and Tracker
- * */
+ */
+public abstract class ProfileStats {
 
-public abstract class ProfileStats extends MasteredExercise {
-
-	private Tracker tracker;
+	private ArrayList<String> nameList;		// list of all exercise-names
+	private ArrayList<Boolean> masteredList;// list of all mastered exercises 
+	private ArrayList<Tracker> trackerList; // list of all trackers
+	
+	public ProfileStats(){
+		nameList = new ArrayList<String>();
+		masteredList = new ArrayList<Boolean>();
+		trackerList = new ArrayList<Tracker>();
+	}
 	
 	
 	/*
-	 * Tracking-Results are saved here
+	 * a method about adding exercise names, if name is equal to an excisting object, the excisting Object  will be removed
+	 * if b == true, Exercise will be set on mastered
+	 * 
 	 */
-	public void setTracker(Tracker tracker){
-		this.tracker = tracker;
+	public void addExercise(Tracker tracker, String name, boolean b){
+		try{
+			if(nameList.contains(name)){
+				int i = nameList.indexOf(name);
+				nameList.remove(i);
+				masteredList.remove(i);
+				trackerList.remove(i);
+			}
+		}	
+		catch(NullPointerException e){}
+		nameList.add(name);
+		masteredList.add(b);
+		trackerList.add(tracker);
 	}
 	
 	/*
-	 * getting Tracking results back
+	 * a method about deleting an existing object
 	 */
-	public Tracker getTracker(){
-		return tracker;
+	public void deleteExercise(int i){
+		nameList.remove(i);
+		masteredList.remove(i);
+		trackerList.remove(i);
 	}
+	
+	/*
+	 * a method about checking if specific element was mastered
+	 */
+	public boolean isExerciseMastered(String name){
+		if(nameList.contains(name)){
+			int i = nameList.indexOf(name);
+			return masteredList.get(i);
+		}
+		return false;
+	}
+	
+	/*
+	 * a method that will set a boolean in masteredList at index i, true means exercise was mastered
+	 */
+	public void setMasteredExercise(int i, boolean b){
+		masteredList.set(i, b);
+	}
+	
+	
+	/*
+	 * a method about returning all exercise-names
+	 */
+	public String[] giveAllExerciseNames(){
+		
+		String[] ret = new String[nameList.size()];
+		for(int i = 0; i < nameList.size(); i++){
+			String tmp = nameList.get(i);
+			ret[i] = tmp;
+		}
+		return ret;
+	}
+	
+	/*
+	 * a method that returns the name of a exercise at the position i
+	 * if i is not a valid index, method will return null
+	 */
+	public String getExerciseName(int i){
+		String ret = "";
+		try{
+			ret = nameList.get(i);}
+		catch(IndexOutOfBoundsException e){
+			ret = null;
+		}
+		System.out.println(ret);
+		return ret;
+	}
+		
+	
+	/*
+	 * a method about giving the number of all masteredExercises
+	 */
+	public int masteredExercises(){
+		int ret = 0;
+		
+		for(int i = 0; i < nameList.size(); i++){
+			if((masteredList.get(i) == true))
+				ret++;
+		}
+		return ret;
+	}
+	
+	/*
+	 * a method about the size of all added exercise-names
+	 */
+	public int ExerciseSize(){
+		return nameList.size();
+	}
+	
+	public Tracker getTracker(int i){
+		return trackerList.get(i);
+	}
+	
+	public Tracker getTracker(String tmp){
+		int i = this.indexOf(tmp);
+		return trackerList.get(i);
+	}
+	
+	public boolean isExerciseAdded(String tmp){
+		
+		int i = this.indexOf(tmp);
+		if(i != -1)
+			return true;
+		return false;
+	}
+	
+	public int indexOf(String tmp){
+		int i = nameList.indexOf(tmp);
+		return i;
+	}	
 }

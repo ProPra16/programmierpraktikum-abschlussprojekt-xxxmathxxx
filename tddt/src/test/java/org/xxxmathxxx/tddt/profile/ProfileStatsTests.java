@@ -1,23 +1,26 @@
 package org.xxxmathxxx.tddt.profile;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import org.xxxmathxxx.tddt.profile.MasteredExercise;
+import org.xxxmathxxx.tddt.tracking.Tracker;
 
-public class MasteredExercisesTests {
+public class ProfileStatsTests {
 
 	@Test
 	public void addExerciseTest(){
 		Profile m = new Profile("Sascha");
-		m.addExercise("test");
+		Tracker tracker = new Tracker();
+		m.addExercise(tracker,"test", false);
 		assertEquals(m.getExerciseName(0), "test");
 	}
 	@Test
 	public void isExerciseMasteredTest(){
 		Profile m = new Profile("Sascha");
-		m.addExercise("test");
-		m.addExercise("test2");
+		Tracker tracker = new Tracker();
+		m.addExercise(tracker,"test", false);
+		m.addExercise(tracker,"test2",false);
 		m.setMasteredExercise(1, true);
 		
 		assertEquals(m.isExerciseMastered("test2"), true);
@@ -26,8 +29,9 @@ public class MasteredExercisesTests {
 	@Test
 	public void isExerciseMasteredTest2(){
 		Profile m = new Profile("Sascha");
-		m.addExercise("test");
-		m.addExercise("test2");
+		Tracker tracker = new Tracker();
+		m.addExercise(tracker,"test", false);
+		m.addExercise(tracker,"test2", false);
 		m.setMasteredExercise(1, false);
 		
 		assertEquals(m.isExerciseMastered("test2"), false);
@@ -36,8 +40,9 @@ public class MasteredExercisesTests {
 	@Test
 	public void isExerciseDeletedTest(){
 		Profile m = new Profile("Sascha");
-		m.addExercise("test");
-		m.addExercise("test2");
+		Tracker tracker = new Tracker();
+		m.addExercise(tracker,"test", false);
+		m.addExercise(tracker,"test2",false);
 		m.setMasteredExercise(1, true);
 		m.deleteExercise(0);
 		
@@ -47,9 +52,10 @@ public class MasteredExercisesTests {
 	@Test
 	public void giveAllExerciseNamesTest(){
 		Profile m = new Profile("Sascha");
-		m.addExercise("test");
-		m.addExercise("test2");
-		m.addExercise("test3");
+		Tracker tracker = new Tracker();
+		m.addExercise(tracker,"test", false);
+		m.addExercise(tracker,"test2", false);
+		m.addExercise(tracker,"test3",false);
 		
 		String[] s = new String[3];
 		s[0] = "test";
@@ -62,9 +68,10 @@ public class MasteredExercisesTests {
 	@Test
 	public void masteredExercisesTest(){
 		Profile m = new Profile("Sascha");
-		m.addExercise("test", false);
-		m.addExercise("test2", true);
-		m.addExercise("test3", true);
+		Tracker tracker = new Tracker();
+		m.addExercise(tracker,"test", false);
+		m.addExercise(tracker,"test2", true);
+		m.addExercise(tracker,"test3", true);
 		
 		m.setMasteredExercise(0, true);
 		m.setMasteredExercise(2, false);

@@ -31,5 +31,17 @@ public class CodeStempCollection {
 		return list.size();
 	}
 	
+	public void removeCodeStemp(int i){
+		list.remove(i);
+	}
+	
+	public void setCodeStemp(int i, CodeStemp codeStemp){
+		list.set(i, codeStemp);
+	}
+	
+	public int indexOf(CodeStemp codeStemp){
+		return list.indexOf(codeStemp);
+	}
+	
 	
 }

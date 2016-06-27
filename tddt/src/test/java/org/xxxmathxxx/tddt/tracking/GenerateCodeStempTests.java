@@ -3,6 +3,10 @@
  */
 package org.xxxmathxxx.tddt.tracking;
 
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import vk.core.api.CompilationUnit;
@@ -15,13 +19,18 @@ import vk.core.api.JavaStringCompiler;
  */
 public class GenerateCodeStempTests {
 
-	/*
+	
 	@Test
-	public void addProfileTest(){
-		CompilationUnit compUnit = new CompilationUnit("Test", "ich bin code", false);
-		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit);
+	public void GenerateCodeStempTest(){
+		CompilationUnit compUnit1 = new CompilationUnit("Test1", "ich bin code1", false);
+		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1);
 		
 		CodeStemp codeStemp = GenerateCodeStemp.generate(compiler);
+		ArrayList<Object> list = codeStemp.getCompilationUnits();
 		
-	}*/
+		CompilationUnit compUnitTest = (CompilationUnit) list.get(0);
+		assertEquals(compUnit1, compUnitTest);
+		
+	}
 }
+
