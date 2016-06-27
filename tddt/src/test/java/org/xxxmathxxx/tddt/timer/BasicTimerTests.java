@@ -21,7 +21,7 @@ public class BasicTimerTests {
 	@Test public void clockNotRunningTest() {
 		BasicTimer testTimer = new BasicTimer();
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(1000);
 			assertEquals(testTimer.getTimeInSecondsAsString(), "0");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -32,7 +32,7 @@ public class BasicTimerTests {
 		BasicTimer testTimer = new BasicTimer();
 		testTimer.toggleActive();
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(1000);
 			assertNotEquals(testTimer.getTimeInSecondsAsString(), "0");
 		}
 		catch (InterruptedException e) {
