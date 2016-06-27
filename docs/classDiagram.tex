@@ -1,12 +1,20 @@
-\documentclass[class=minimal,border=0pt]{standalone}\usepackage[utf8]{inputenc}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{tikz-qtree,tikz-qtree-compat}
-\begin{document}
-
+%This .tex file was written with Heretikz!
+%Remember to include \usepackage{tikz-qtree,tikz-qtree-compat}
+%java.lang.object
 \begin{tikzpicture}
 \Tree[.java.lang.object
+		[.Tracker
+	]
+		[.ActivityTracker
+				[.TimeTracker
+						[.StageGreenTracker
+			]
+						[.StageRefactorTracker
+			]
+						[.StageRedTracker
+			]
+		]
+	]
 		[.Hint
 	]
 		[.MasteredExercise
@@ -17,9 +25,7 @@
 	]
 		[.Exercise
 	]
-		[.ActivitiesDuringTracking
-				[.StageGreenTracker
-		]
+		[.BasicTimer
 	]
 		[.ExerciseTests
 	]
@@ -29,9 +35,9 @@
 	]
 		[.MasteredExercisesTests
 	]
-		[.TrackingTimer
-	]
 		[.ProfileCollectionTests
+	]
+		[.BasicTimerTests
 	]
 		[.TaskTimer
 	]
@@ -51,13 +57,11 @@
 %Application
 \begin{tikzpicture}
 \Tree[.Application
-		[.UsefulInfoNotificationTests
-	]
 		[.TDDT
 	]
 ]
 \end{tikzpicture}
-%EventHandler<ActionEvent>
+%EventHandler$\langle$ActionEvent$\rangle$
 \begin{tikzpicture}
 \Tree[.EventHandler$\langle$ActionEvent$\rangle$
 		[.CheckBoxTrollBot
@@ -71,7 +75,3 @@
 	]
 ]
 \end{tikzpicture}
-
-\end{document}%This .tex file was written with Heretikz!
-%Remember to include 
-%java.lang.object
