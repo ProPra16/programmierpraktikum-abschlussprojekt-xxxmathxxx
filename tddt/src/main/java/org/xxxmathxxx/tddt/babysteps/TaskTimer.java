@@ -34,6 +34,10 @@ public class TaskTimer {
 		timer.scheduleAtFixedRate(new TimeUpdateTask(),0 , 1000);
 	}
 	
+	/** Simple UpdateTask that handles increasing the internal second counter
+	 * @author Philipp Spohr, Jun 27, 2016
+	 *
+	 */
 	private class TimeUpdateTask extends TimerTask{
 		@Override
 		public void run() {
@@ -43,6 +47,9 @@ public class TaskTimer {
 		}
 	}
 	
+	/**
+	 * Setter function that toggles the clocks state between active and inactive.
+	 */
 	public void toggleActive(){
 		isRunning =! isRunning;
 	}
