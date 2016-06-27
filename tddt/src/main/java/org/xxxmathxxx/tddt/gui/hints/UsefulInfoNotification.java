@@ -1,5 +1,7 @@
 package org.xxxmathxxx.tddt.gui.hints;
 
+import org.xxxmathxxx.tddt.gui.*;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -126,7 +128,7 @@ public class UsefulInfoNotification extends Stage {
 
 		@Override
 		public void handle(ActionEvent event) {
-			close();
+			WindowManager.createStartupMenu().show();
 		}
 	}
 
