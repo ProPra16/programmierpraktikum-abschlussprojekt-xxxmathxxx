@@ -8,7 +8,11 @@ this project uses: java 1.8, VirtualKataLib (by Jens Bendisposto), javafx, gradl
 
 ##How to compile from source##
 
-This project uses gradle as a build-system. To compile simply run "gradle build" in the tddt directory.
+This project uses gradle as a build-system.
+To compile from source, first navigate to the tddt subfolder:
+`cd tddt`
+Then start the build-processs with the following command:
+`gradle build`
 The compiled .jar will be found in tddt/build/libs.
 
 ##How to generate documentation##
@@ -17,11 +21,12 @@ We do not provide a static documentation here, instead you can create your own u
 
 ###How to generate javadoc###
 
-Navigate to docs, then run "sh generateJavaDoc.sh"
-
+Navigate to the docs folder with `cd docs`.
+Then execute the following command: `sh generateJavaDoc.sh`
 ###How to generate a class-diagram as .pdf###
 
-Navigate to docs, then run "sh generateClassDiagram.sh"
+Navigate to the docs folder with `cd docs`.
+Then execute the following command: `sh generateClassDiagram.sh`
 
 ##How to use our software##
 
