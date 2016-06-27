@@ -8,7 +8,7 @@ public class ExerciseClass extends ClassData{
 
 
 	
-	public ExerciseClass(String name, String code)
+	public ExerciseClass(String name, JavaCode code)
 	{
 		super(name, code);
 	}

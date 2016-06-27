@@ -1,6 +1,5 @@
 package org.xxxmathxxx.tddt.profile;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -47,22 +46,6 @@ public class ProfileStatsTests {
 		m.deleteExercise(0);
 		
 		assertEquals(m.isExerciseMastered("test2"), true);
-	}
-	
-	@Test
-	public void giveAllExerciseNamesTest(){
-		Profile m = new Profile("Sascha");
-		Tracker tracker = new Tracker();
-		m.addExercise(tracker,"test", false);
-		m.addExercise(tracker,"test2", false);
-		m.addExercise(tracker,"test3",false);
-		
-		String[] s = new String[3];
-		s[0] = "test";
-		s[1] = "test2";
-		s[2] = "test3";
-		
-		assertArrayEquals(m.giveAllExerciseNames(), s);
 	}
 	
 	@Test

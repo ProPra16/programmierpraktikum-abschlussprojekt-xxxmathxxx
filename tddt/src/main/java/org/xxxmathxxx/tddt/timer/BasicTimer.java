@@ -1,15 +1,13 @@
-/**
- * An abstract class providing a simple timer
- * @author xxxMathxxx, Jun 23, 2016
- * 
- */
 package org.xxxmathxxx.tddt.timer;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-
+/**
+ * An abstract class providing a simple timer
+ * @author xxxMathxxx, Jun 23, 2016
+ */
 public class BasicTimer {
 	
 	/**

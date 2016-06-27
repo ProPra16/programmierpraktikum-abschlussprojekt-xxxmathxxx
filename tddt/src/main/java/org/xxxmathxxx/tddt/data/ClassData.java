@@ -3,9 +3,9 @@ package org.xxxmathxxx.tddt.data;
 public abstract class ClassData 
 {
 	String name;
-	String code;
+	JavaCode code;
 	
-	public ClassData(String name, String code)
+	public ClassData(String name, JavaCode code)
 	{
 		this.name=name;
 		this.code=code;

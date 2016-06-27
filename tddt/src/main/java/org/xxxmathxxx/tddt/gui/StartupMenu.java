@@ -60,7 +60,7 @@ public class StartupMenu extends Stage {
 		dialogScene = new Scene(pane);
 		
 		this.setScene(dialogScene);
-		this.initStyle(StageStyle.UNDECORATED);
+		//this.initStyle(StageStyle.UNDECORATED);
 		
 		this.setMaxWidth(xSize);
 		this.setMaxHeight(ySize);

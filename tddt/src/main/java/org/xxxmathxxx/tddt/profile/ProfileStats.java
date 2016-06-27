@@ -69,20 +69,6 @@ public abstract class ProfileStats {
 		masteredList.set(i, b);
 	}
 	
-	
-	/*
-	 * a method about returning all exercise-names
-	 */
-	public String[] giveAllExerciseNames(){
-		
-		String[] ret = new String[nameList.size()];
-		for(int i = 0; i < nameList.size(); i++){
-			String tmp = nameList.get(i);
-			ret[i] = tmp;
-		}
-		return ret;
-	}
-	
 	/*
 	 * a method that returns the name of a exercise at the position i
 	 * if i is not a valid index, method will return null

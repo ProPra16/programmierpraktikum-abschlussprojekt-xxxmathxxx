@@ -2,14 +2,14 @@ package org.xxxmathxxx.tddt.data;
 
 /**
  * @author Fabian
- *	Dependency of Exercise
+ *	Dependency of Exercise -> MOVE IN TEST FOLDERS??? WHAT IS THIS MADNESS???
  */
 public class ExerciseTest extends ClassData{
 
 	String name;
-	String code;
+	JavaCode code;
 	
-	public ExerciseTest(String name, String code)
+	public ExerciseTest(String name, JavaCode code)
 	{
 		super(name, code);
 	}
