@@ -87,7 +87,12 @@ public class UsefulInfoNotification extends Stage {
 		
 		this.setScene(dialogScene);
 		this.initStyle(StageStyle.UNDECORATED);
-	
+		//this part seems dumb but as javafx still has some bugs it is needed to really prevent resizing on unix-based systems
+		this.setMaxWidth(xSize);
+		this.setMaxHeight(ySize);
+		this.setMinWidth(xSize);
+		this.setMinHeight(ySize);
+		
 		this.setResizable(false);
 
 	}
