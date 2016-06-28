@@ -1,5 +1,14 @@
 package org.xxxmathxxx.tddt.io;
 
-public class ExerciseReader {
+import javax.xml.parsers.DocumentBuilderFactory;
 
+public class ExerciseReader 
+{
+	
+	
+	
+	public ExerciseReader()
+	{
+		
+	}
 }
