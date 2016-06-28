@@ -11,7 +11,7 @@ public class ExerciseReaderTest {
 		ExerciseReader er = new ExerciseReader();
 		Exercise test = er.readExercise("RomanNumbers.xml");
 
-		test.print();
+		//test.print();
 		
 	//	assertEquals(test.name, "RomanNumbers");
 		
