@@ -3,10 +3,9 @@ package org.xxxmathxxx.tddt.profile;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.Reader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,17 +62,20 @@ public class Profile extends ProfileStats{
 		
 		File input = new File(filePath);
 		Profile ret;
-		
-		
+		TDDTLogManager.getInstance().logMessage("Trying to open profile @: "+filePath);
+
+
+		BufferedReader in;
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(input));
-			
-			if (in.lines().count() < 2){
-				throw new TDDTIOError("The target file is not a valid savegame!");
-			}
-			
+			in = new BufferedReader(new FileReader(input));
 			String tmpName = in.readLine();
+			System.out.println(tmpName);
 			String tmpImg = in.readLine();
+			
+			if (tmpName == null || tmpImg == null){
+				in.close();
+				throw new TDDTIOError("The file you are trying to open is not a valid savegame!");
+			}
 			
 			ret = new Profile(tmpName,tmpImg);
 			
@@ -82,19 +84,25 @@ public class Profile extends ProfileStats{
 			String curLine = in.readLine();
 			
 			while (curLine != null){
-				//TODO: parse back achievements
+				String[] split = curLine.split(":");
+				ret.achievements.put(Long.parseLong(split[0]),MedalState.valueOf(split[1]));
 			}
+
+			in.close();
 			
-		} catch (Exception e) {
-			throw new TDDTIOError("The target file doesn't exist or can't be read / is corrupted!");
+			return ret;
+			
+		} catch (IOException e) {
+			throw new TDDTIOError("Could not open the specified file:");
 		}
-		return null;
 	}
 	
 	public void saveProfileToFile(String filePath) throws TDDTIOError{
-		
-		File output = new File(filePath);
+
 		try {
+			File output = new File(filePath);
+			output.createNewFile();
+			
 			BufferedWriter out = new BufferedWriter(new FileWriter(output));
 			
 			out.write(name+"\n");
@@ -102,12 +110,19 @@ public class Profile extends ProfileStats{
 			
 			//write achievements
 			for (Map.Entry<Long, MedalState> entry : achievements.entrySet()) {
-				out.write(entry.getKey()+" : "+entry.getValue().toString());
+				out.write(entry.getKey()+":"+entry.getValue().toString()+"\n");
 			}
+			
+			out.close();
 			
 		} catch (Exception e) {
 			throw new TDDTIOError("The target file doesn't exist or can't be read / is corrupted!");
 		}
+	}
+	
+	@Override
+	public String toString(){
+		return name+":"+profilePicPath;
 	}
 	
 

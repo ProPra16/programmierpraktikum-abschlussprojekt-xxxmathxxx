@@ -14,6 +14,6 @@ public class TDDTIOError extends Exception{
 	
 	@Override
 	public String getMessage(){
-		return message+"\n"+getStackTrace();
+		return message+"\n"+getStackTrace().toString();
 	}
 }
