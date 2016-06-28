@@ -34,7 +34,9 @@
 	</tests>
 		
 	<finishtest>
+		<finishtest name="FinalTestRomanNumbers">
 		
+		</finishtest>
 	</finishtest>
 		
 	<config>
