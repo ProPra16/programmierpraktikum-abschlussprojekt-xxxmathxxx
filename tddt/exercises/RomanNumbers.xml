@@ -33,11 +33,11 @@
 		</test>
 	</tests>
 		
-	<finishtest>
+	<finishtests>
 		<finishtest name="FinalTestRomanNumbers">
 		
 		</finishtest>
-	</finishtest>
+	</finishtests>
 		
 	<config>
 		<babysteps value="True" time="2:00" />
