@@ -1,18 +1,13 @@
 package org.xxxmathxxx.tddt.io;
 
 import java.io.File;
-import java.io.IOException;
-
 import javax.xml.parsers.*;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.data.ExerciseClass;
 import org.xxxmathxxx.tddt.data.ExerciseTest;
-import org.xxxmathxxx.tddt.data.ExerciseTests;
 import org.xxxmathxxx.tddt.data.JavaCode;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 
@@ -57,8 +52,8 @@ public class ExerciseReader {
 		ExerciseClass[] referencedClasses;
 		ExerciseTest[] referencedTests;
 
-		Boolean babysteps;
-		Boolean timetracking;
+		//Boolean babysteps;
+		//Boolean timetracking;
 		
 		//TODO: Import Medal timings
 		
