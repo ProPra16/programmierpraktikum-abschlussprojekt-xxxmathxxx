@@ -4,32 +4,46 @@ import java.util.ArrayList;
 
 import org.xxxmathxxx.tddt.tracking.Tracker;
 
+
 /*
  * @Author: Tschebyscheff, 21.06.16
  * A class that allows to see which exercises are mastered
  * A class about statistics of a specific profile
  */
 
-//TODO: Shouldn't this be a static class and not the superclass of Profile???
-//TODO: The problem here is that EVERY profile stores ALL exercises
 
+/**
+ * The Class ProfileStats.
+ */
 public abstract class ProfileStats {
 
-	private ArrayList<String> nameList;		// list of all exercise-names
-	private ArrayList<Boolean> masteredList;// list of all mastered exercises 
-	private ArrayList<Tracker> trackerList; // list of all trackers
+	/** The name list. */
+	private ArrayList<String> nameList;		
 	
+	/** The mastered list. */
+	private ArrayList<Boolean> masteredList;
+	
+	/** The tracker list. */
+	private ArrayList<Tracker> trackerList; 
+	
+	/**
+	 * Instantiates a new profile stats.
+	 */
 	public ProfileStats(){
 		nameList = new ArrayList<String>();
 		masteredList = new ArrayList<Boolean>();
 		trackerList = new ArrayList<Tracker>();
+		
 	}
 	
 	
-	/*
+	/**
 	 * a method about adding exercise names, if name is equal to an excisting object, the excisting Object  will be removed
-	 * if b == true, Exercise will be set on mastered
-	 * 
+	 * if b == true, Exercise will be set on mastered.
+	 *
+	 * @param tracker the tracker
+	 * @param name the name
+	 * @return -
 	 */
 	public void addExercise(Tracker tracker, String name, boolean b){
 		try{
@@ -46,8 +60,10 @@ public abstract class ProfileStats {
 		trackerList.add(tracker);
 	}
 	
-	/*
-	 * a method about deleting an existing object
+	/**
+	 * Delete exercise.
+	 *
+	 * @param i the index
 	 */
 	public void deleteExercise(int i){
 		nameList.remove(i);
@@ -55,8 +71,11 @@ public abstract class ProfileStats {
 		trackerList.remove(i);
 	}
 	
-	/*
-	 * a method about checking if specific element was mastered
+	/**
+	 * Checks if is exercise mastered.
+	 *
+	 * @param name the name
+	 * @return true, if is exercise mastered
 	 */
 	public boolean isExerciseMastered(String name){
 		if(nameList.contains(name)){
@@ -66,16 +85,20 @@ public abstract class ProfileStats {
 		return false;
 	}
 	
-	/*
-	 * a method that will set a boolean in masteredList at index i, true means exercise was mastered
+	/**
+	 * Sets the mastered exercise, true means exercise was mastered
+	 *
+	 * @param i the i ndex
 	 */
 	public void setMasteredExercise(int i, boolean b){
 		masteredList.set(i, b);
 	}
 	
-	/*
-	 * a method that returns the name of a exercise at the position i
-	 * if i is not a valid index, method will return null
+	/**
+	 * Gets the exercise name.
+	 *
+	 * @param i the index
+	 * @return the exercise name
 	 */
 	public String getExerciseName(int i){
 		String ret = "";
@@ -89,8 +112,10 @@ public abstract class ProfileStats {
 	}
 		
 	
-	/*
-	 * a method about giving the number of all masteredExercises
+	/**
+	 * Mastered exercises.
+	 *
+	 * @return the amount of masteredExercises
 	 */
 	public int masteredExercises(){
 		int ret = 0;
@@ -102,32 +127,58 @@ public abstract class ProfileStats {
 		return ret;
 	}
 	
-	/*
-	 * a method about the size of all added exercise-names
+	/**
+	 * Exercise size.
+	 *
+	 * @return the size of different exercises
 	 */
 	public int ExerciseSize(){
 		return nameList.size();
 	}
 	
+	/**
+	 * Gets the tracker.
+	 *
+	 * @param i the index
+	 * @return the tracker
+	 */
 	public Tracker getTracker(int i){
 		return trackerList.get(i);
 	}
 	
-	public Tracker getTracker(String tmp){
-		int i = this.indexOf(tmp);
+	/**
+	 * Gets the tracker.
+	 *
+	 * @param exerciseName, the exerciseName
+	 * @return the tracker
+	 */
+	public Tracker getTracker(String exerciseName){
+		int i = this.indexOf(exerciseName);
 		return trackerList.get(i);
 	}
 	
-	public boolean isExerciseAdded(String tmp){
+	/**
+	 * Checks if is exercise added.
+	 *
+	 * @param exerciseName the exerciseName
+	 * @return true, if is exercise added
+	 */
+	public boolean isExerciseAdded(String exerciseName){
 		
-		int i = this.indexOf(tmp);
+		int i = this.indexOf(exerciseName);
 		if(i != -1)
 			return true;
 		return false;
 	}
 	
-	public int indexOf(String tmp){
-		int i = nameList.indexOf(tmp);
+	/**
+	 * Index of.
+	 *
+	 * @param tmp the tmp
+	 * @return the index of exercise exerciseName
+	 */
+	public int indexOf(String exerciseName){
+		int i = nameList.indexOf(exerciseName);
 		return i;
 	}	
 }

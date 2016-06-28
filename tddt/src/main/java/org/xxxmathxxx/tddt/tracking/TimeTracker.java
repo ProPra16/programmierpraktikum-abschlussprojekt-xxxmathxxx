@@ -6,34 +6,41 @@ package org.xxxmathxxx.tddt.tracking;
 import org.xxxmathxxx.tddt.timer.BasicTimer;
 
 /**
+ * The Class TimeTracker.
+ *
  * @author Tschebyscheff, 23.06.16
  * rudimentary tracking class, defined for time tracking
- *
  */
 public abstract class TimeTracker extends ActivityTracker {
 
+	/** The timer. */
 	private BasicTimer timer;
 	
+	/**
+	 * Instantiates a new time tracker.
+	 */
 	public TimeTracker(){
 		timer = new BasicTimer();
 	}
 	
-	/*
-	 * starts to track all activities including timer start
+	/**
+	 * Starts timeTracking.
 	 */
-	public void  startTracking(){
+	public void  startTimeTracking(){
 		timer.toggleActive();
 	}
 	
-	/*
-	 * tracking will stopp including timer stop
+	/**
+	 * Stop tracking.
 	 */
-	public void stopTracking(){
+	public void stopTimeTracking(){
 		timer.toggleActive();
 	}
 	
-	/*
-	 * returns the time that elapsed since starting the timer
+	/**
+	 * Gets the time that elapsed since starting the timer
+	 *
+	 * @return the time
 	 */
 	public String getTime(){
 		return timer.getTimeInSecondsAsString();

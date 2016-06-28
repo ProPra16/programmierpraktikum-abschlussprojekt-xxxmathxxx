@@ -1,3 +1,4 @@
+
 package org.xxxmathxxx.tddt.profile;
 
 import java.util.ArrayList;
@@ -7,38 +8,47 @@ import java.util.ArrayList;
  */
 
 
+/**
+ * The Class ProfileCollection.
+ */
 public class ProfileCollection {
 
 
+	/** The list of Profiles */
 	private ArrayList<Object> list = new ArrayList<Object>();
-	public ProfileCollection(){
 	
-	}
-	
-	/*
-	 * method add a profile to the collection
+
+	/**
+	 * Adds the profile.
+	 *
+	 * @param profile the profile
 	 */
 	public void addProfile(Profile profile){
 		list.add(profile);
 	}
 	
-	/*
-	 * method gets Profile at the Position i
+	/**
+	 * Gets the profile.
+	 *
+	 * @param i the index
+	 * @return the profile
 	 */
 	public Profile getProfile(int i){
 		Profile profile = (Profile) list.get(i);
 		return profile;
 	}
 	
-	/*
-	 * method deletes profile at position i
+	/**
+	 * Delete profile.
+	 *
+	 * @param i the index
 	 */
 	public void deleteProfile(int i){
 		list.remove(i);
 	}
 	
-	/*
-	 * method give information about stats in relation to other profiles in collection
+	/**
+	 * Show stats.
 	 */
 	public void showStats(){
 		

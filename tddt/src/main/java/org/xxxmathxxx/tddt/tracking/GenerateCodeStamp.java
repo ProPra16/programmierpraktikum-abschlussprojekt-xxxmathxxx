@@ -16,16 +16,23 @@ import vk.core.api.TestResult;
 
 
 /**
+ * The Class GenerateCodeStemp.
+ *
  * @author Tschebyscheff, 24.06.16
  * responsible for generating CodeStemp
  * method generate gets JavaStringCompiler and compiles the code
  * Result Object is responsible for Compile and Test Results
- * 
  */
-public class GenerateCodeStemp {
+public class GenerateCodeStamp {
 	
 	
-	public static CodeStemp generate(JavaStringCompiler compiler){	
+	/**
+	 * Generates a CodeStamp.
+	 *
+	 * @param compiler the compiler
+	 * @return the code stamp
+	 */
+	public static CodeStamp generate(JavaStringCompiler compiler){	
 		compiler.compileAndRunTests();
 		
 		ArrayList<Object> list = new ArrayList<Object>();
@@ -48,7 +55,7 @@ public class GenerateCodeStemp {
 		result.add(compilerResult);
 		result.add(testResult);
 		
-		CodeStemp codeStemp = new CodeStemp(result, list, date);
+		CodeStamp codeStemp = new CodeStamp(result, list, date);
 		return codeStemp;
 	}
 
