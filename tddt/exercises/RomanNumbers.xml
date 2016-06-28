@@ -9,6 +9,13 @@
 			
 			}
 		</class>
+		
+		<class name="TestClass">
+			public class TestClass 
+			{
+			
+			}
+		</class>
 	</classes>
 		
 	<tests>

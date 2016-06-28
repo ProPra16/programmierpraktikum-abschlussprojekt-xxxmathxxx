@@ -8,19 +8,17 @@ public class Exercise
 {
 	public String name;
 	public String description;
+	public String id;
 	public ExerciseClass[] referencedClasses;   //TODO: Wrap it
 	public ExerciseTest[] referencedTests;		//TODO: This one too
 
 	public Boolean babysteps;
 	public Boolean timetracking;
 	
-	public Exercise(String name, String description, ExerciseClass[] referencedClasses, ExerciseTest[] referencedTests)
-	{
+	public Exercise(String name, String id, String description, ExerciseClass[] referencedClasses, ExerciseTest[] referencedTests) {
 		this.name=name;
 		this.description=description;
 		this.referencedClasses=referencedClasses;
 		this.referencedTests=referencedTests;
-		
-		//WIP
 	}
 }

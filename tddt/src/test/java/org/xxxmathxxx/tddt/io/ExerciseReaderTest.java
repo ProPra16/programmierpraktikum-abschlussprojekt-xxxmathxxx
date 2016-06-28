@@ -9,9 +9,10 @@ public class ExerciseReaderTest {
 	@Test
 	public void constructorTest() {
 		ExerciseReader er = new ExerciseReader();
-
 		Exercise test = er.readExercise("RomanNumbers.xml");
 
 		assertEquals(test.name, "RomanNumbers");
+		
+		assertEquals(true, false);
 	}
 }

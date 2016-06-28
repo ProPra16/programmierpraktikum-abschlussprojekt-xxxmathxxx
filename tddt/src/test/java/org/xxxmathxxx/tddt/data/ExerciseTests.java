@@ -6,7 +6,11 @@ import static org.junit.Assert.*;
 
 public class ExerciseTests {
     @Test public void constructorTest() {
-        new Exercise(null, null, null, null);
-        assertEquals(true, true);
+    	Exercise temp=new Exercise("thisIsAName", "thisIsAnID", "thisIsADescription", null, null);
+        
+        assertEquals(temp.name, "thisIsAName");
+        assertEquals(temp.id, "thisIsAnID");
+        assertEquals(temp.description, "thisIsADescription");
+        
     }
 }

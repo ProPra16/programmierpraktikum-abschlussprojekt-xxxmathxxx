@@ -6,11 +6,14 @@ import java.io.IOException;
 import javax.xml.parsers.*;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.data.ExerciseClass;
 import org.xxxmathxxx.tddt.data.ExerciseTest;
+import org.xxxmathxxx.tddt.data.ExerciseTests;
+import org.xxxmathxxx.tddt.data.JavaCode;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 
 public class ExerciseReader {
@@ -76,10 +79,34 @@ public class ExerciseReader {
 		//Fetches description
 		pointer= exercise.getElementsByTagName("description");
 		
-		id=pointer.item(0).getTextContent();
+		description=pointer.item(0).getTextContent();
+		
+		//Fetches Classes
+		pointer= exercise.getElementsByTagName("class");
+		referencedClasses= new ExerciseClass[pointer.getLength()];
+		
+		for(int i=0; i<pointer.getLength();i++)
+		{
+			String className=pointer.item(i).getAttributes().getNamedItem("name").getTextContent();
+			String classCode= pointer.item(i).getTextContent();
+			
+			referencedClasses[i]= new ExerciseClass(className, new JavaCode(classCode));
+		}
+		
+		//Fetches Tests
+		pointer= exercise.getElementsByTagName("test");
+		referencedTests= new ExerciseTest[pointer.getLength()];
+		
+		for(int i=0; i<pointer.getLength();i++)
+		{
+			String testName=pointer.item(i).getAttributes().getNamedItem("name").getTextContent();
+			String testCode= pointer.item(i).getTextContent();
+			
+			referencedTests[i]= new ExerciseTest(testName, new JavaCode(testCode));
+		}
 		
 		
-		return new Exercise(name, null, null, null); //Test
+		return new Exercise(name, id, description, referencedClasses, referencedTests); //Test
 	}
 	
 	

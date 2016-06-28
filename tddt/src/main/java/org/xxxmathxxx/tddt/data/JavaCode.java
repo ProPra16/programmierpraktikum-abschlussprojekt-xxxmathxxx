@@ -1,5 +1,11 @@
 package org.xxxmathxxx.tddt.data;
 
 public class JavaCode {
-	String rawText;
+	public String rawText;
+	
+	
+	public JavaCode(String codeString)
+	{
+		this.rawText=codeString;
+	}
 }
