@@ -46,7 +46,7 @@ public class ExerciseReader {
 			exercise = builder.parse(input);
 		} catch (Exception e) 
 		{
-			logger.logMessage("You've screwed up m8. Likely the file you're searching for doesn't exist or is not in xml form.");
+			TDDTLogManager.getInstance().logMessage("You've screwed up m8. Likely the file you're searching for doesn't exist or is not in xml form.");
 			return null;
 		}
 		
@@ -59,6 +59,8 @@ public class ExerciseReader {
 
 		Boolean babysteps;
 		Boolean timetracking;
+		
+		//TODO: Import Medal timings
 		
 //->Some missing
 		
