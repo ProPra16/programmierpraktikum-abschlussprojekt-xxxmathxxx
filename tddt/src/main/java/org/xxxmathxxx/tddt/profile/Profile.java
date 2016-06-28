@@ -35,6 +35,9 @@ public class Profile extends ProfileStats{
 		this.achievements = new HashMap<Long,MedalState>();
 	}
 	
+	/**Sets this user profiles name as a labels text, maybe a useful interface for Chris
+	 * @param label
+	 */
 	public void showNameInJavaFXLabel(Label label){
 		label.setText(name);
 	}
@@ -69,7 +72,6 @@ public class Profile extends ProfileStats{
 		try {
 			in = new BufferedReader(new FileReader(input));
 			String tmpName = in.readLine();
-			System.out.println(tmpName);
 			String tmpImg = in.readLine();
 			
 			if (tmpName == null || tmpImg == null){
