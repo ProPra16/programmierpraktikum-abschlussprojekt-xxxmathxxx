@@ -9,14 +9,14 @@ public class ProfileStatsTests {
 
 	@Test
 	public void addExerciseTest(){
-		Profile m = new Profile("Sascha");
+		Profile m = new Profile("Sascha","graphics/faces/fou.png");
 		Tracker tracker = new Tracker();
 		m.addExercise(tracker,"test", false);
 		assertEquals(m.getExerciseName(0), "test");
 	}
 	@Test
 	public void isExerciseMasteredTest(){
-		Profile m = new Profile("Sascha");
+		Profile m = new Profile("Sascha","graphics/faces/fou.png");
 		Tracker tracker = new Tracker();
 		m.addExercise(tracker,"test", false);
 		m.addExercise(tracker,"test2",false);
@@ -27,7 +27,7 @@ public class ProfileStatsTests {
 	
 	@Test
 	public void isExerciseMasteredTest2(){
-		Profile m = new Profile("Sascha");
+		Profile m = new Profile("Sascha","graphics/faces/fou.png");
 		Tracker tracker = new Tracker();
 		m.addExercise(tracker,"test", false);
 		m.addExercise(tracker,"test2", false);
@@ -38,7 +38,7 @@ public class ProfileStatsTests {
 	
 	@Test
 	public void isExerciseDeletedTest(){
-		Profile m = new Profile("Sascha");
+		Profile m = new Profile("Sascha","graphics/faces/fou.png");
 		Tracker tracker = new Tracker();
 		m.addExercise(tracker,"test", false);
 		m.addExercise(tracker,"test2",false);
@@ -50,7 +50,7 @@ public class ProfileStatsTests {
 	
 	@Test
 	public void masteredExercisesTest(){
-		Profile m = new Profile("Sascha");
+		Profile m = new Profile("Sascha","graphics/faces/fou.png");
 		Tracker tracker = new Tracker();
 		m.addExercise(tracker,"test", false);
 		m.addExercise(tracker,"test2", true);

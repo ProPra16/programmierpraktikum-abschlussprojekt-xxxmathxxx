@@ -9,6 +9,10 @@ import org.xxxmathxxx.tddt.tracking.Tracker;
  * A class that allows to see which exercises are mastered
  * A class about statistics of a specific profile
  */
+
+//TODO: Shouldn't this be a static class and not the superclass of Profile???
+//TODO: The problem here is that EVERY profile stores ALL exercises
+
 public abstract class ProfileStats {
 
 	private ArrayList<String> nameList;		// list of all exercise-names

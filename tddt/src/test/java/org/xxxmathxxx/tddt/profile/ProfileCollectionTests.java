@@ -14,9 +14,9 @@ public class ProfileCollectionTests {
 
 	@Test
 	public void addProfileTest(){
-		Profile profile = new Profile("Fabian");
-		Profile profile2 = new Profile("Phillip");
-		Profile profile3 = new Profile("Chris");
+		Profile profile = new Profile("Fabian","graphics/faces/fou.png");
+		Profile profile2 = new Profile("Phillip","graphics/faces/fou.png");
+		Profile profile3 = new Profile("Chris","graphics/faces/fou.png");
 		ProfileCollection profCollection = new ProfileCollection();
 		
 		profCollection.addProfile(profile);
@@ -27,9 +27,9 @@ public class ProfileCollectionTests {
 	}
 	@Test
 	public void deleteProfileTest(){
-		Profile profile = new Profile("Fabian");
-		Profile profile2 = new Profile("Phillip");
-		Profile profile3 = new Profile("Chris");
+		Profile profile = new Profile("Fabian","graphics/faces/fou.png");
+		Profile profile2 = new Profile("Phillip","graphics/faces/fou.png");
+		Profile profile3 = new Profile("Chris","graphics/faces/fou.png");
 		ProfileCollection profCollection = new ProfileCollection();
 		
 		profCollection.addProfile(profile);
