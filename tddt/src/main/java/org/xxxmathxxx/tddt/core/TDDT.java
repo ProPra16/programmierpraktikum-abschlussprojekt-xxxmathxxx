@@ -10,6 +10,8 @@ public class TDDT extends Application{
 
 	public static void main(String[] args) {
 		launch(args);
+		
+		
 	}
 
 	@Override

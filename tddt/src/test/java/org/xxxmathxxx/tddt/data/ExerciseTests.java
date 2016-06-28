@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class ExerciseTests {
     @Test public void constructorTest() {
-        new Exercise();
+        new Exercise(null, null, null, null);
         assertEquals(true, true);
     }
 }

@@ -6,16 +6,21 @@ package org.xxxmathxxx.tddt.data;
  */
 public class Exercise 
 {
-	String name;
-	String description;
-	ExerciseClass[] referencedClasses;
-	ExerciseTest[] referencedTests;
+	public String name;
+	public String description;
+	public ExerciseClass[] referencedClasses;   //TODO: Wrap it
+	public ExerciseTest[] referencedTests;		//TODO: This one too
 
-	Boolean babysteps;
-	Boolean timetracking;
+	public Boolean babysteps;
+	public Boolean timetracking;
 	
-	public Exercise()
+	public Exercise(String name, String description, ExerciseClass[] referencedClasses, ExerciseTest[] referencedTests)
 	{
+		this.name=name;
+		this.description=description;
+		this.referencedClasses=referencedClasses;
+		this.referencedTests=referencedTests;
+		
 		//WIP
 	}
 }
