@@ -14,7 +14,7 @@ public class TaskTimerTests {
     @Test public void clockNotRunningTest() {
         TaskTimer testTimer = new TaskTimer();
         try {
-			Thread.sleep(5000);
+			Thread.sleep(1000);
 			assertEquals(testTimer.getTimeInSecondsAsString(), "0");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -25,7 +25,7 @@ public class TaskTimerTests {
         TaskTimer testTimer = new TaskTimer();
         testTimer.toggleActive();
         try {
-			Thread.sleep(5000);
+			Thread.sleep(1000);
 			assertNotEquals(testTimer.getTimeInSecondsAsString(), "0");
 		} catch (InterruptedException e) {
 			e.printStackTrace();

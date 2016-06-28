@@ -62,11 +62,10 @@ public class Profile extends ProfileStats{
 	
 	
 	public static Profile loadProfileFromFile(String filePath) throws TDDTIOError{
-		
+
 		File input = new File(filePath);
 		Profile ret;
 		TDDTLogManager.getInstance().logMessage("Trying to open profile @: "+filePath);
-
 
 		BufferedReader in;
 		try {
@@ -88,6 +87,7 @@ public class Profile extends ProfileStats{
 			while (curLine != null){
 				String[] split = curLine.split(":");
 				ret.achievements.put(Long.parseLong(split[0]),MedalState.valueOf(split[1]));
+				curLine = in.readLine();
 			}
 
 			in.close();

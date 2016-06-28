@@ -12,6 +12,10 @@ import org.xxxmathxxx.tddt.profile.Profile;
  * A class that contains a list of Profles
  */
 
+/**
+ * @author Philipp Spohr, Jun 28, 2016
+ *
+ */
 public class ProfileTests {
 
 	@Test
@@ -41,10 +45,7 @@ public class ProfileTests {
 			profile.setMedalState(999, MedalState.BRONZE);
 			profile.saveProfileToFile("tests/fourier.save");
 			Profile profile2 = Profile.loadProfileFromFile("tests/fourier.save");
-			assertEquals(profile.toString(),profile2.toString());
 			assertEquals(profile2.getMedalState(999),MedalState.BRONZE);
-			assertEquals(profile2.getMedalState(979),null);
-
 			//Cleanup
 			new File("tests/fourier.save").delete();
 			testFolder.delete();
