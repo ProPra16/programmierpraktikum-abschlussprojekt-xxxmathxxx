@@ -13,6 +13,5 @@ public class ExerciseReaderTest {
 
 		assertEquals(test.name, "RomanNumbers");
 		
-		assertEquals(true, false);
 	}
 }
