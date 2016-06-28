@@ -16,17 +16,30 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-/** 
- * TODO: Add streamlined header
- * A class providing informations about users
- * provided informations are: Name, tracking-data, mastered exercises
+/**
+ * @author xxxMathxxx 2016
+ * Class that describes a user profile
  */
-
 public class Profile extends ProfileStats{
 	
+	/**
+	 * Internal String that contains the profile name
+	 */
 	private String name;
+	
+	/**
+	 * Internal String that points to the profile picture if one exists
+	 */
 	private String profilePicPath;
+	
+	/**
+	 * Internal Image object of the profile picture, is created when required
+	 */
 	private Image profilePic;
+	
+	/**
+	 * Hash-Map that encodes the MedalState the user has for Exercises with a given Long ID
+	 */
 	private HashMap<Long,MedalState> achievements;
 	
 	public Profile(String name, String profilePicPath){
@@ -35,13 +48,16 @@ public class Profile extends ProfileStats{
 		this.achievements = new HashMap<Long,MedalState>();
 	}
 	
-	/**Sets this user profiles name as a labels text, maybe a useful interface for Chris
-	 * @param label
+	/**Sets this user profiles name as a labels text, can be called by GUI-components
+	 * @param label The label that should be filled
 	 */
 	public void showNameInJavaFXLabel(Label label){
 		label.setText(name);
 	}
 	
+	/**Sets this user profiles picture as an ImageViews Image, can be called by GUI-components. Creates the Image if required.
+	 * @param iv The ImageView that should be filled
+	 */
 	public void showImageInJavaFXImageView(ImageView iv){
 		//initialize/load picture if necessary
 		if (this.profilePic == null){
@@ -56,11 +72,19 @@ public class Profile extends ProfileStats{
 		iv.setImage(profilePic);
 	}
 	
+	/**Setter that stores a given MedalState for an exercise with a given ID
+	 * @param exerciseID The exercise ID as Long
+	 * @param newState The MedalState as MedalState
+	 */
 	public void setMedalState(long exerciseID, MedalState newState){
 		achievements.put(exerciseID, newState);
 	}
 	
-	
+	/**Static function that attempts to load a profile from a file stored at the given path
+	 * @param filePath The filepath as String
+	 * @return Returns the Profile that is stored in the file
+	 * @throws TDDTIOError
+	 */
 	public static Profile loadProfileFromFile(String filePath) throws TDDTIOError{
 
 		File input = new File(filePath);
@@ -99,6 +123,10 @@ public class Profile extends ProfileStats{
 		}
 	}
 	
+	/**Saves the Profile instance to a file at the given path, the file is created if it doesn't exist yet.
+	 * @param filePath The filepath as String
+	 * @throws TDDTIOError
+	 */
 	public void saveProfileToFile(String filePath) throws TDDTIOError{
 
 		try {
@@ -122,11 +150,18 @@ public class Profile extends ProfileStats{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString(){
 		return name+":"+profilePicPath;
 	}
 	
+	/**Getter for the MedalState, accesses the internal achievements map
+	 * @param exerciseID The exercise ID as Long
+	 * @return The MedalState for the given exercise if it exists, null otherwise (meaning the exercise was not yet worked on)
+	 */
 	public MedalState getMedalState(long exerciseID){
 		if(achievements.containsKey(exerciseID)){
 			return achievements.get(exerciseID);
