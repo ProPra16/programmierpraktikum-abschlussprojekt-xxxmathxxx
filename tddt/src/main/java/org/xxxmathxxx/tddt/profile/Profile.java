@@ -127,5 +127,12 @@ public class Profile extends ProfileStats{
 		return name+":"+profilePicPath;
 	}
 	
+	public MedalState getMedalState(long exerciseID){
+		if(achievements.containsKey(exerciseID)){
+			return achievements.get(exerciseID);
+		}
+		return null;
+	}
+	
 
 }

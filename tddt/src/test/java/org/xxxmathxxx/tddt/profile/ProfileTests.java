@@ -32,4 +32,24 @@ public class ProfileTests {
 		}
 	}
 	
+	@Test
+	public void advancedIOTest(){
+		try {
+			File testFolder = new File("tests");
+			testFolder.mkdirs();
+			Profile profile = new Profile("Fourier","graphics/faces/fou.png");
+			profile.setMedalState(999, MedalState.BRONZE);
+			profile.saveProfileToFile("tests/fourier.save");
+			Profile profile2 = Profile.loadProfileFromFile("tests/fourier.save");
+			assertEquals(profile.toString(),profile2.toString());
+			assertEquals(profile2.getMedalState(999),MedalState.BRONZE);
+			assertEquals(profile2.getMedalState(979),null);
+
+			//Cleanup
+			new File("tests/fourier.save").delete();
+			testFolder.delete();
+		} catch (TDDTIOError e) {
+			e.printStackTrace();
+		}
+	}	
 }
