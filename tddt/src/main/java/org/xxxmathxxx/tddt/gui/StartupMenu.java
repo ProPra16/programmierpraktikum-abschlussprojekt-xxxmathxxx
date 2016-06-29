@@ -82,7 +82,7 @@ public class StartupMenu extends Stage {
 		@Override
 		public void handle(ActionEvent event) {
 			if (event.getSource() == existingProfile){
-				new AchievementPopup(null,self).show();
+				new AchievementPopup(null).show(self);
 			}
 		}
 	}

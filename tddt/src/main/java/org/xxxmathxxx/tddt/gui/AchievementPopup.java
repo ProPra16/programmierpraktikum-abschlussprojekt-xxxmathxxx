@@ -6,11 +6,13 @@ import org.xxxmathxxx.tddt.profile.MedalState;
 import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.stage.Popup;
+import javafx.stage.Screen;
 import javafx.stage.Window;
 import javafx.util.Duration;
 
@@ -20,30 +22,32 @@ public class AchievementPopup extends Popup {
 	
 	private static int duration = 5;
 		
-	private double stageHeight;
+	private double screenWidth;
+	private double screenHeight;
 	
-	private static int width = 100;
-	private static int height = 50;
+	private static int width = 256;
+	private static int height = 128;
 	
 	private PopupAnimation animation;
-	
-	private Window currentWindow;
-	
-	public AchievementPopup(MedalState medal, Window currentWindow){
 		
-		this.currentWindow = currentWindow;
+	public AchievementPopup(MedalState medal){
+						
+		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 		
-		TDDTLogManager.getInstance().logMessage("Creating new achievement popup on window: "+currentWindow.toString());
-		stageHeight = this.getOwnerWindow().getHeight();
+		screenWidth = primaryScreenBounds.getWidth();
+		screenHeight = primaryScreenBounds.getHeight();
 
 		this.setWidth(width);
 		this.setHeight(height);
 		
-		this.setAnchorLocation(AnchorLocation.CONTENT_BOTTOM_RIGHT);
+		this.setX(screenWidth-width);
+		this.setY(screenHeight);
+		
 		this.setOpacity(0.8);
+		this.setAutoFix(false);
 		
 		text = new Label("Congratulations, you just won a medal on this exercise!");
-		text.setPrefSize(100, 50);
+		text.setPrefSize(width, height);
 		text.setBackground(new Background(new BackgroundFill(Color.DARKBLUE, null, null)));
 		text.setTextFill(Color.WHITE);
 		
@@ -52,11 +56,7 @@ public class AchievementPopup extends Popup {
 		
 		this.getContent().add(text);
 		
-	}
-	
-	@Override
-	public void show(){
-		super.show(currentWindow);
+		
 	}
 	
 	private class PopupAnimation extends Transition{
@@ -64,8 +64,8 @@ public class AchievementPopup extends Popup {
 		 * 1/5 of the time move up, 3/5 show, 1/5 move down
 		 */
 		
-		private double marker1 = 1/5;
-		private double marker2 = 4/5;
+		private double marker1 = 1d/5d;
+		private double marker2 = 4d/5d;
 		
 		private PopupAnimation(){
 			this.setCycleDuration(Duration.seconds(duration));
@@ -75,10 +75,10 @@ public class AchievementPopup extends Popup {
 		@Override
 		protected void interpolate(double frac) {
 			if (frac < marker1){
-				setY(stageHeight-frac*height*5);
+				setY(screenHeight-frac*height*5);
 			}
 			else if (frac > marker2){
-				setY(stageHeight-marker1*height);
+				setY(screenHeight-height+(frac-4d/5d)*height*5);
 			}
 		}
 		
