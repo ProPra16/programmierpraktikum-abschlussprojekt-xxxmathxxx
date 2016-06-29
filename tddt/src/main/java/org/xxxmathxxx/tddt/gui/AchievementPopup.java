@@ -1,6 +1,5 @@
 package org.xxxmathxxx.tddt.gui;
 
-import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.MedalState;
 
 import javafx.animation.Transition;
@@ -8,31 +7,35 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.stage.Popup;
 import javafx.stage.Screen;
-import javafx.stage.Window;
 import javafx.util.Duration;
 
 public class AchievementPopup extends Popup {
 	
 	private Label text;
+	private Label background;
+	private ImageView image;
 	
 	private static int duration = 5;
 		
 	private double screenWidth;
 	private double screenHeight;
 	
-	private static int width = 256;
-	private static int height = 128;
+	private static double width = 256+128;
+	private static double height = 128;
+	
+	private static double border = 4;
 	
 	private PopupAnimation animation;
 		
 	public AchievementPopup(MedalState medal){
 						
-		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+		Rectangle2D primaryScreenBounds = Screen.getPrimary().getBounds();
 		
 		screenWidth = primaryScreenBounds.getWidth();
 		screenHeight = primaryScreenBounds.getHeight();
@@ -46,16 +49,26 @@ public class AchievementPopup extends Popup {
 		this.setOpacity(0.8);
 		this.setAutoFix(false);
 		
+		background = new Label();
+		background.setPrefSize(width, height);
+		background.setBackground(new Background(new BackgroundFill(Color.DARKBLUE, null, null)));
+		this.getContent().add(background);
+		
 		text = new Label("Congratulations, you just won a medal on this exercise!");
-		text.setPrefSize(width, height);
-		text.setBackground(new Background(new BackgroundFill(Color.DARKBLUE, null, null)));
+		text.setPrefSize(width-128-2*border, height-2*border);
 		text.setTextFill(Color.WHITE);
+		text.setWrapText(true);
+		text.relocate(128+border, border);
+		this.getContent().add(text);
+		
+		if (medal != null){
+			image = new ImageView(GraphicsHelper.medalIconScaled(medal, height-border*2));
+			image.relocate(border, border);
+			this.getContent().add(image);
+		}
 		
 		animation = new PopupAnimation();
 		animation.play();
-		
-		this.getContent().add(text);
-		
 		
 	}
 	
