@@ -107,8 +107,8 @@ public class UsefulInfoNotification extends Stage {
 			"file:graphics/faces/fou.jpeg",
 			"file:graphics/faces/tsc.jpeg",
 			"file:graphics/faces/cau.jpeg",
-			"file:graphics/faces/eul.png",
-			"file:graphics/faces/kant.jpeg"
+			"file:graphics/faces/eul.png"//,
+			//"file:graphics/faces/kant.jpeg" //mr kant needs scaling
 	};
 	
 	private static Image generateRandomMathFace(){
