@@ -56,7 +56,7 @@ public class UsefulInfoNotification extends Stage {
 		infoText = new Label(selectedHint.infoText);
 		infoText.setPrefSize(xSize-faceSize-2*borderSize-spacingFaceText, faceSize);
 		infoText.relocate(borderSize+faceSize+spacingFaceText,borderSize);
-		infoText.setFont(new Font("Times New Roman", 18));
+		infoText.setFont(new Font("Times New Roman", 17));
 		infoText.setWrapText(true);
 		infoText.setTextAlignment(TextAlignment.LEFT);
 		infoText.setBackground(new Background(new BackgroundFill(new Color(1,1,1,0.7), null, null)));
@@ -108,6 +108,7 @@ public class UsefulInfoNotification extends Stage {
 			"file:graphics/faces/tsc.jpeg",
 			"file:graphics/faces/cau.jpeg",
 			"file:graphics/faces/eul.png",
+			"file:graphics/faces/kant.jpeg"
 	};
 	
 	private static Image generateRandomMathFace(){
