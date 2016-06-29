@@ -33,6 +33,9 @@ public class AchievementPopup extends Popup {
 	
 	private PopupAnimation animation;
 		
+	/**Default constructor, creates a new achievement notification
+	 * @param medal The medal that was awarded
+	 */
 	public AchievementPopup(MedalState medal){
 						
 		Rectangle2D primaryScreenBounds = Screen.getPrimary().getBounds();
