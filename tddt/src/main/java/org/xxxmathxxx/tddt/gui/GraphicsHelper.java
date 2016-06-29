@@ -4,7 +4,9 @@ import org.xxxmathxxx.tddt.profile.MedalState;
 
 import javafx.scene.image.Image;
 
-public class GraphicsHelper {
+public final class GraphicsHelper {
+	
+	private GraphicsHelper(){};
 	
 	public static Image medalIconScaled(MedalState medal, double pixelSize){
 		if (medal == MedalState.BRONZE){
