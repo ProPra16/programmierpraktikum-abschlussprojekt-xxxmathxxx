@@ -8,8 +8,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
+
 import javafx.scene.paint.Color;
 import javafx.stage.Popup;
 import javafx.stage.Screen;
@@ -29,7 +28,7 @@ public class AchievementPopup extends Popup {
 	private static double width = 256+128;
 	private static double height = 128;
 	
-	private static double border = 4;
+	private static double border = 8;
 	
 	private PopupAnimation animation;
 		
@@ -54,13 +53,16 @@ public class AchievementPopup extends Popup {
 		
 		background = new Label();
 		background.setPrefSize(width, height);
-		background.setBackground(new Background(new BackgroundFill(Color.DARKBLUE, null, null)));
+		background.setId("achievement_bg");
+		background.getStylesheets().add(this.getClass().getResource("NotificationStyle.css").toExternalForm());
 		this.getContent().add(background);
 		
 		text = new Label("Congratulations, you just won a medal on this exercise!");
 		text.setPrefSize(width-128-2*border, height-2*border);
 		text.setTextFill(Color.WHITE);
 		text.setWrapText(true);
+		text.getStylesheets().add(this.getClass().getResource("NotificationStyle.css").toExternalForm());
+		text.setId("achievement_text");
 		text.relocate(128+border, border);
 		this.getContent().add(text);
 		
