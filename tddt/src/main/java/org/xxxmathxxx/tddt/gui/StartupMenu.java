@@ -1,5 +1,9 @@
 package org.xxxmathxxx.tddt.gui;
 
+import org.xxxmathxxx.tddt.profile.MedalState;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,13 +14,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class StartupMenu extends Stage {
 
 	private Pane pane;
 	
 	private Scene dialogScene;
+	
+	private StartupMenu self;
 	
 	private Label welcome;
 	private Label chooseProfile;
@@ -30,6 +35,8 @@ public class StartupMenu extends Stage {
 		
 		pane = new Pane();
 		pane.setPrefSize(xSize, ySize);
+		
+		self = this;
 		
 		welcome = new Label("Welcome to TDDT!");
 		welcome.setPrefSize(165, 32);
@@ -55,6 +62,7 @@ public class StartupMenu extends Stage {
 		existingProfile = new Button("Use existing One");
 		existingProfile.setPrefSize(128, 32);
 		existingProfile.relocate(xSize/2-64,ySize - 80);
+		existingProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(existingProfile);
 		
 		dialogScene = new Scene(pane);
@@ -68,5 +76,16 @@ public class StartupMenu extends Stage {
 		this.setMinHeight(ySize);
 	
 		this.setResizable(false);
+	}
+	
+	
+	private final class menuButtonHandler implements EventHandler<ActionEvent>{
+
+		@Override
+		public void handle(ActionEvent event) {
+			if (event.getSource() == existingProfile){
+				new AchievementPopup(MedalState.BRONZE).show(self);
+			}
+		}
 	}
 }
