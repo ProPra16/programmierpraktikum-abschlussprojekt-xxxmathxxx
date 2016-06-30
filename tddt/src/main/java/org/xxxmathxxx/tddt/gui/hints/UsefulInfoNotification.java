@@ -130,7 +130,6 @@ public class UsefulInfoNotification extends Stage {
 		@Override
 		public void handle(ActionEvent event) {
 			close();
-			WindowManager.createStartupMenu().show();
 		}
 	}
 

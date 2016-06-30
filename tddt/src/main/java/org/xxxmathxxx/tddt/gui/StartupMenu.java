@@ -28,8 +28,8 @@ public class StartupMenu extends Stage {
 	private Button newProfile;
 	private Button existingProfile;
 	
-	private static int xSize = 512;
-	private static int ySize = 256;
+	private static int xSize = 768;
+	private static int ySize = 384;
 	
 	public StartupMenu() {
 		
@@ -40,7 +40,7 @@ public class StartupMenu extends Stage {
 		
 		welcome = new Label("Welcome to TDDT!");
 		welcome.setPrefSize(165, 32);
-		welcome.relocate((xSize/2)-75,20);
+		welcome.relocate((xSize/2)-75,40);
 		welcome.setFont(new Font("Times New Roman", 20));
 		welcome.setTextAlignment(TextAlignment.LEFT);
 		welcome.setBackground(new Background(new BackgroundFill(new Color(1,1,1,0.7), null, null)));
@@ -48,7 +48,7 @@ public class StartupMenu extends Stage {
 		
 		chooseProfile = new Label("Select a Profile to begin your journey.");
 		chooseProfile.setPrefSize(280, 32);
-		chooseProfile.relocate((xSize/2)-140,80);
+		chooseProfile.relocate((xSize/2)-140,100);
 		chooseProfile.setFont(new Font("Times New Roman", 18));
 		chooseProfile.setTextAlignment(TextAlignment.LEFT);
 		chooseProfile.setBackground(new Background(new BackgroundFill(new Color(1,1,1,0.7), null, null)));
@@ -56,12 +56,12 @@ public class StartupMenu extends Stage {
 		
 		newProfile = new Button("New Profile");
 		newProfile.setPrefSize(128, 32);
-		newProfile.relocate(xSize/2-64,ySize - 120);
+		newProfile.relocate(xSize/2-64,ySize - 200);
 		pane.getChildren().add(newProfile);
 		
 		existingProfile = new Button("Use existing One");
 		existingProfile.setPrefSize(128, 32);
-		existingProfile.relocate(xSize/2-64,ySize - 80);
+		existingProfile.relocate(xSize/2-64,ySize - 160);
 		existingProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(existingProfile);
 		
