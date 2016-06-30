@@ -22,6 +22,7 @@ public class NewProfileMenu extends Stage {
 	private Label newProfile;
 	private Label name;
 	private Button create;
+	private Button picture;
 	
 	private static int xSize = 512;
 	private static int ySize = 256;
@@ -32,7 +33,7 @@ public class NewProfileMenu extends Stage {
 		
 		newProfile = new Label("Create a new Profile!");
 		newProfile.setPrefSize(175, 32);
-		newProfile.relocate((xSize/2)-75,40);
+		newProfile.relocate((xSize/2)-75,20);
 		newProfile.setFont(new Font("Times New Roman", 20));
 		newProfile.setTextAlignment(TextAlignment.LEFT);
 		newProfile.setBackground(new Background(new BackgroundFill(new Color(1,1,1,0.7), null, null)));
@@ -40,7 +41,7 @@ public class NewProfileMenu extends Stage {
 		
 		name = new Label("Name:");
 		name.setPrefSize(280, 32);
-		name.relocate((xSize/2)-140,100);
+		name.relocate((xSize/2)-140,70);
 		name.setFont(new Font("Times New Roman", 18));
 		name.setTextAlignment(TextAlignment.LEFT);
 		name.setBackground(new Background(new BackgroundFill(new Color(1,1,1,0.7), null, null)));
@@ -52,10 +53,15 @@ public class NewProfileMenu extends Stage {
 		create.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(create);
 		
+		picture = new Button("Upload a Picture");
+		picture.setPrefSize(128, 32);
+		picture.relocate(xSize/2-64,ySize - 140);
+		picture.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
+		pane.getChildren().add(picture);
+		
 		dialogScene = new Scene(pane);
 		
 		this.setScene(dialogScene);
-		//this.initStyle(StageStyle.UNDECORATED);
 		
 		this.setMaxWidth(xSize);
 		this.setMaxHeight(ySize);
@@ -63,6 +69,7 @@ public class NewProfileMenu extends Stage {
 		this.setMinHeight(ySize);
 	
 		this.setResizable(false);
+		this.setAlwaysOnTop(true);
 	}
 	
 	private final class menuButtonHandler implements EventHandler<ActionEvent>{
@@ -71,6 +78,7 @@ public class NewProfileMenu extends Stage {
 		public void handle(ActionEvent event) {
 			if (event.getSource() == create){
 				System.out.println("New Profile has been created!");
+				close();
 			}
 		}
 	}
