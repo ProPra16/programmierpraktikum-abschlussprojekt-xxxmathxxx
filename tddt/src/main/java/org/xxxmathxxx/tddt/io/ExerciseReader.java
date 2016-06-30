@@ -10,6 +10,10 @@ import org.w3c.dom.NodeList;
 import org.xxxmathxxx.tddt.data.*;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 
+/**
+ * @author Fabian
+ * Reads XML-Exercises from disc
+ */
 public class ExerciseReader {
 
 	DocumentBuilderFactory factory;

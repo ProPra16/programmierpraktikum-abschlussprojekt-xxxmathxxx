@@ -1,0 +1,47 @@
+<exercise>
+	<name>Mechgame</name>
+	<id>0000000000000001</id>
+	<description>Implement a mechgame!</description>
+	<classes>
+		<class name="Mechgame">
+			public class Mechgame 
+			{
+			
+			}
+		</class>
+		
+		<class name="TestClass">
+			public class MechgameEntity 
+			{
+			
+			}
+		</class>
+	</classes>
+		
+	<tests>
+		<test name="RomanNumberConverterTest">
+			import static org.junit.Assert.*;
+			import org.junit.Test;
+			public class MechgameTest
+			{
+				@Test
+				public void testSomething() 
+				{
+				
+				}
+			}
+		</test>
+	</tests>
+		
+	<finishtests>
+		<finishtest name="FinalTestMechgame">
+		
+		</finishtest>
+	</finishtests>
+		
+	<config>
+		<babysteps value="True" time="2.00" />
+		<timetracking value="True" />
+		<medals bronze="2.00" silver="1.50" gold="1.00" />
+	</config>
+</exercise>

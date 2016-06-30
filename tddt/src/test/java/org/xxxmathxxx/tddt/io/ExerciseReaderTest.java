@@ -5,6 +5,10 @@ import org.xxxmathxxx.tddt.data.Exercise;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Fabian
+ * Test for ExerciseReader
+ */
 public class ExerciseReaderTest {
 	@Test
 	public void constructorTest() {

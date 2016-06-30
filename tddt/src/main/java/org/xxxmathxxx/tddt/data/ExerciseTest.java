@@ -7,6 +7,11 @@ package org.xxxmathxxx.tddt.data;
 public class ExerciseTest extends ClassData{
 
 	
+	/**
+	 * ->ClassData
+	 * @param name
+	 * @param code
+	 */
 	public ExerciseTest(String name, JavaCode code)
 	{
 		super(name, code);

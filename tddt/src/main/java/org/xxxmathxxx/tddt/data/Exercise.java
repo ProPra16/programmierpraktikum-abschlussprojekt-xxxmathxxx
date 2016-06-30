@@ -14,6 +14,16 @@ public class Exercise {
 													// right. WRAP IT UP BOY
 	ExerciseConfig config;
 
+	/**
+	 * Constructor
+	 * @param name
+	 * @param id
+	 * @param description
+	 * @param referencedClasses
+	 * @param referencedTests
+	 * @param referencedFinishTests
+	 * @param config
+	 */
 	public Exercise(String name, String id, String description, ExerciseClass[] referencedClasses,
 			ExerciseTest[] referencedTests, ExerciseTest[] referencedFinishTests, ExerciseConfig config) {
 		this.name = name;

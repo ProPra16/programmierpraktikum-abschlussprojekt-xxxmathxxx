@@ -15,6 +15,14 @@ public class ExerciseConfig
 	public double silverTime;
 	public double goldTime;
 	
+	/**
+	 * @param babystepsEnabled Boolean
+	 * @param babystepstime Double
+	 * @param timetrackingEnabled Boolean
+	 * @param bronzeTime Double
+	 * @param silverTime Double
+	 * @param goldTime Double
+	 */
 	public ExerciseConfig(Boolean babystepsEnabled, double babystepstime, Boolean timetrackingEnabled, double bronzeTime, double silverTime, double goldTime)
 	{
 		this.babystepsEnabeled=babystepsEnabled;
