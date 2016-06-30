@@ -102,7 +102,7 @@ public class ImageCropperTool extends Stage {
 		
 		ivContainer.addEventHandler(MouseEvent.MOUSE_PRESSED, MousePressedHandler);
 		ivContainer.addEventHandler(MouseEvent.MOUSE_DRAGGED, MouseDraggedHandler);
-		ivContainer.addEventHandler(MouseEvent.MOUSE_RELEASED, MouseDraggedHandler);
+		ivContainer.addEventHandler(MouseEvent.MOUSE_RELEASED, MouseReleasedHandler);
 		ivContainer.addEventHandler(MouseEvent.MOUSE_MOVED, MouseMovedHandler);
 		
 		this.initOwner(owner);
@@ -119,7 +119,8 @@ public class ImageCropperTool extends Stage {
 	}
 	
 	private void cropAndExport() {
-
+		//TODO: Feel free to replace the fileChooser with a predefined save location for all user profiles,
+		//maybe encoded by UserID/ProfileID
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new ExtensionFilter("Image files", ".png"));
 
@@ -133,14 +134,16 @@ public class ImageCropperTool extends Stage {
         SnapshotParameters parameters = new SnapshotParameters();
         parameters.setViewport(new Rectangle2D( selection.getX(), selection.getY(), width, height));
 
-        WritableImage wi = new WritableImage( profilePicSizeX, profilePicSizeY);
+        WritableImage wi = new WritableImage( width, height);
         iv.snapshot(parameters, wi);
 
         BufferedImage bufImageARGB = SwingFXUtils.fromFXImage(wi, null);
-        BufferedImage bufImageRGB = new BufferedImage(bufImageARGB.getWidth(), bufImageARGB.getHeight(), BufferedImage.OPAQUE);
+        BufferedImage bufImageRGB = new BufferedImage(profilePicSizeX, profilePicSizeY, BufferedImage.OPAQUE);
 
         Graphics2D graphics = bufImageRGB.createGraphics();
-        graphics.drawImage(bufImageARGB, 0, 0, null);
+        graphics.drawImage(bufImageARGB,
+        		0, 0, profilePicSizeX, profilePicSizeY,
+        		0, 0, width, height, null);
 
         try {
             ImageIO.write(bufImageRGB, "png", file); 
@@ -208,6 +211,7 @@ public class ImageCropperTool extends Stage {
             	mouseClickX = (int) event.getX();
             	mouseClickY = (int) event.getY();	 
             	mode = OperationMode.SCALING_SELECTION;
+            	TDDTLogManager.getInstance().logMessage("Rescaling selection ...");
         	 }
         	 else if(isOnSelection(event)){
         		 mode = OperationMode.MOVING_SELECTION;
@@ -223,40 +227,48 @@ public class ImageCropperTool extends Stage {
 
          @Override
          public void handle(MouseEvent event) {
-        	 if (mode == OperationMode.MOVING_SELECTION){
-            	 double newX = event.getX()-0.5*selection.getWidth();
-            	 double newY = event.getY()-0.5*selection.getHeight();
-            	 if (newX > 0 && newX < originalImage.getWidth()+selection.getWidth() ){
-                	 selection.setX(newX);
-            	 }
-            	 if (newY > 0&& newY < originalImage.getHeight()+selection.getHeight()  ){
-                	 selection.setY(newY);
-            	 }
-        	 }
+
          }
      };
 
 
      EventHandler<MouseEvent> MouseReleasedHandler = new EventHandler<MouseEvent>() {
 
-         @Override
-         public void handle(MouseEvent event) {
-        	if (mode == OperationMode.SCALING_SELECTION){
-        		mode = OperationMode.NONE;
-        		//detect "bigger" change
-        		double change;
-        		double diffX = Math.abs((event.getX()-mouseClickX));
-        		double diffY = Math.abs((event.getY()-mouseClickY));
-        		if (diffX > diffY){
-        			change = diffX;
-        		}
-        		else{
-        			change = diffY;
-        		}
-        		selection.setWidth(selection.getWidth()+change);
-        		selection.setHeight(selection.getHeight()+change);
-        	}
-         }
+		@Override
+		public void handle(MouseEvent event) {
+			if (mode == OperationMode.SCALING_SELECTION) {
+				mode = OperationMode.NONE;
+				// detect "bigger" change
+				double change;
+				double diffX = (event.getX() - mouseClickX);
+				double diffY = (event.getY() - mouseClickY);
+				if (diffX > diffY) {
+					change = diffX;
+				} else {
+					change = diffY;
+				}
+				TDDTLogManager.getInstance().logMessage("Changing selection size by value: " + change);
+				if (selection.getWidth() + change > 0 
+						//TODO: Add other "out of bounds" conditions
+						
+						)
+					
+					
+				selection.setWidth(selection.getWidth() + change);
+				selection.setHeight(selection.getHeight() + change);
+			} 
+			else if (mode == OperationMode.MOVING_SELECTION) {
+				double newX = event.getX() - 0.5 * selection.getWidth();
+				double newY = event.getY() - 0.5 * selection.getHeight();
+				if (newX > 0 && newX < originalImage.getWidth() + selection.getWidth()) {
+					selection.setX(newX);
+				}
+				if (newY > 0 && newY < originalImage.getHeight() + selection.getHeight()) {
+					selection.setY(newY);
+				}
+			}
+		}
+
      };
      
  	EventHandler<ActionEvent> confButtonHandler = new EventHandler<ActionEvent>(){
