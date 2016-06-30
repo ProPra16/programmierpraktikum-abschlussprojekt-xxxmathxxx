@@ -5,4 +5,8 @@ public class WindowManager {
 	public static StartupMenu createStartupMenu(){
 		return new StartupMenu();
 	}
+	
+	public static NewProfileMenu createNewProfileMenu(){
+		return new NewProfileMenu();
+	}
 }

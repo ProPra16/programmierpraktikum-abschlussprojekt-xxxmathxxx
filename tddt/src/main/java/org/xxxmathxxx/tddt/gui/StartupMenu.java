@@ -57,6 +57,7 @@ public class StartupMenu extends Stage {
 		newProfile = new Button("New Profile");
 		newProfile.setPrefSize(128, 32);
 		newProfile.relocate(xSize/2-64,ySize - 200);
+		newProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(newProfile);
 		
 		existingProfile = new Button("Use existing One");
@@ -83,9 +84,13 @@ public class StartupMenu extends Stage {
 
 		@Override
 		public void handle(ActionEvent event) {
+			if (event.getSource() == newProfile){
+				WindowManager.createNewProfileMenu().show();
+			}
 			if (event.getSource() == existingProfile){
 				new AchievementPopup(MedalState.BRONZE).show(self);
 			}
 		}
 	}
+	
 }
