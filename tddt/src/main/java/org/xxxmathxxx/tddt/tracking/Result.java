@@ -3,6 +3,10 @@
  */
 package org.xxxmathxxx.tddt.tracking;
 
+import java.util.Collection;
+
+import vk.core.api.CompilationUnit;
+import vk.core.api.CompileError;
 import vk.core.api.CompilerResult;
 import vk.core.api.TestResult;
 
@@ -15,10 +19,10 @@ import vk.core.api.TestResult;
 public class Result {
 
 	/** The test result. */
-	private TestResult testResult;
+	TestResult testResult;
 	
 	/** The compiler result. */
-	private CompilerResult compilerResult;
+	CompilerResult compilerResult;
 	
 	/**
 	 * Adds the CompilerResult compilerResult
@@ -29,13 +33,21 @@ public class Result {
 		this.compilerResult = compilerResult;
 	}
 	
+	public boolean compilerError(){
+		if(compilerResult.hasCompileErrors())
+			return false;
+		return true;
+	}
+	
+	public Collection<CompileError> getCompilerErrors(CompilationUnit compUnit){
+		return compilerResult.getCompilerErrorsForCompilationUnit(compUnit);
+	}
+	
+	
 	/**
 	 * Adds the testResult
 	 *
 	 * @param testResult the testResult
-	 */
-	/*
-	 * adds TestResult
 	 */
 	public void add(TestResult testResult){
 		this.testResult = testResult;

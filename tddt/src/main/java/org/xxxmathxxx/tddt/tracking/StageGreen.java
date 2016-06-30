@@ -13,6 +13,6 @@ package org.xxxmathxxx.tddt.tracking;
 public class StageGreen extends TimeTracker {
 
 	/** The code stemp collection. */
-	CodeStampCollection codeStempCollection = new CodeStampCollection();
+	public CodeStampCollection codeStampCollection = new CodeStampCollection();
 	
 }

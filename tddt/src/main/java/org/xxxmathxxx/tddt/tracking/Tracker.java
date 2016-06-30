@@ -12,13 +12,13 @@ package org.xxxmathxxx.tddt.tracking;
 public class Tracker {
 
 	/** The stage red. */
-	StageRed stageRed;
+	public StageRed stageRed;
 	
 	/** The stage green. */
-	StageGreen stageGreen;
+	public StageGreen stageGreen;
 	
 	/** The stage refactor. */
-	StageRefactor stageRefactor;
+	public StageRefactor stageRefactor;
 	
 	/**
 	 * Instantiates a new tracker.
