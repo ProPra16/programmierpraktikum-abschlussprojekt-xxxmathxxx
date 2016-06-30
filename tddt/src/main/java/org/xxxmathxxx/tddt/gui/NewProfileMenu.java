@@ -52,6 +52,7 @@ public class NewProfileMenu extends Stage {
 		create.setPrefSize(128, 32);
 		create.relocate(xSize/2-64,ySize - 100);
 		create.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
+		create.setDisable(true);
 		pane.getChildren().add(create);
 		
 		picture = new Button("Upload a Picture");
@@ -80,6 +81,10 @@ public class NewProfileMenu extends Stage {
 
 		@Override
 		public void handle(ActionEvent event) {
+			if (event.getSource() == picture){
+				System.out.println("Picture has been uploaded!");
+				create.setDisable(false);
+			}
 			if (event.getSource() == create){
 				System.out.println("New Profile has been created!");
 				close();
