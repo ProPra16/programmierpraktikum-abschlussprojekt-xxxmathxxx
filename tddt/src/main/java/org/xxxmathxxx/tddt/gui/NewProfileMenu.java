@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class NewProfileMenu extends Stage {
@@ -27,7 +28,7 @@ public class NewProfileMenu extends Stage {
 	private static int xSize = 512;
 	private static int ySize = 256;
 	
-	public NewProfileMenu (){
+	public NewProfileMenu (Stage owner){
 		pane = new Pane();
 		pane.setPrefSize(xSize, ySize);
 		
@@ -67,6 +68,9 @@ public class NewProfileMenu extends Stage {
 		this.setMaxHeight(ySize);
 		this.setMinWidth(xSize);
 		this.setMinHeight(ySize);
+		
+		this.initOwner(owner);
+		this.initModality(Modality.WINDOW_MODAL);
 	
 		this.setResizable(false);
 		this.setAlwaysOnTop(true);

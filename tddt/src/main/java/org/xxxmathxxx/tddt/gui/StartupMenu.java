@@ -85,7 +85,7 @@ public class StartupMenu extends Stage {
 		@Override
 		public void handle(ActionEvent event) {
 			if (event.getSource() == newProfile){
-				WindowManager.createNewProfileMenu().show();
+				WindowManager.createNewProfileMenu(self).show();
 			}
 			if (event.getSource() == existingProfile){
 				new AchievementPopup(MedalState.BRONZE).show(self);
