@@ -1,17 +1,13 @@
 package org.xxxmathxxx.tddt.io;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.xml.parsers.*;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
-import org.xxxmathxxx.tddt.data.ClassData;
-import org.xxxmathxxx.tddt.data.Exercise;
-import org.xxxmathxxx.tddt.data.ExerciseClass;
-import org.xxxmathxxx.tddt.data.ExerciseConfig;
-import org.xxxmathxxx.tddt.data.ExerciseTest;
-import org.xxxmathxxx.tddt.data.JavaCode;
+import org.xxxmathxxx.tddt.data.*;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 
 public class ExerciseReader {
@@ -37,14 +33,48 @@ public class ExerciseReader {
 	}
 
 	/**
-	 * Reads Exercise from Disc
+	 * Reads all exercises from disk and return them as Collection.
+	 * Use this Method.
+	 * @return List filled with all saved exercises. Null if no exercises could be found.
+	 */
+	public ExerciseCollection readAllExercises()
+	{
+		File file = new File("exercises");
+		File[] files = file.listFiles();
+		
+		ArrayList<Exercise> exercises= new ArrayList<Exercise>();
+		
+		for(int i=0; i<files.length;i++)
+		{
+			try
+			{
+				exercises.add(readExercise(files[i].getPath()));
+			}
+			catch(Exception e)
+			{
+				//Phillip das ist korrekt ggrrr.. 
+				logger.logMessage("Failed to read Exercise "+files[i].getPath()+". Maybe its not in the right format?");
+			}
+		}
+		
+		if(!exercises.isEmpty())
+		{
+			return new ExerciseCollection(exercises);
+		}
+		
+		return null;
+	}
+	
+	
+	/**
+	 * Reads specified Exercise from Disc
 	 * 
 	 * @param filename
-	 *            Filename with fileextension e.g.: "RomanNumbers.xml"
+	 *            Filename with fileextension e.g.: "exercises\RomanNumbers.xml"
 	 * @return returns Exercise as Exercise Class
 	 */
-	public Exercise readExercise(String filename) {
-		File input = new File("exercises/" + filename);
+	public Exercise readExercise(String filename) throws Exception {
+		File input = new File(filename);
 		Document exercise;
 		NodeList pointer;
 

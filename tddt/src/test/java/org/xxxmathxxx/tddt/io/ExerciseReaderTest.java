@@ -9,7 +9,9 @@ public class ExerciseReaderTest {
 	@Test
 	public void constructorTest() {
 		ExerciseReader er = new ExerciseReader();
-		Exercise test = er.readExercise("RomanNumbers.xml");
+		er.readAllExercises();
+		
+	//	Exercise test = er.readExercise("RomanNumbers.xml");
 
 		//test.print();
 		
