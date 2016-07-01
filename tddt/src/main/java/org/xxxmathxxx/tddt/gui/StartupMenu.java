@@ -82,6 +82,7 @@ public class StartupMenu extends Stage {
 				WindowManager.createNewProfileMenu(self).show();
 			}
 			if (event.getSource() == existingProfile){
+				close();
 				WindowManager.createExistingProfileMenu().show();
 			}
 		}
