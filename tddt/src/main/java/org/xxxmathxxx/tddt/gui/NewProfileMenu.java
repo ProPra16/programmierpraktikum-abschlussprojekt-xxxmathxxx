@@ -20,6 +20,8 @@ public class NewProfileMenu extends Stage {
 	
 	private Scene dialogScene;
 	
+	private NewProfileMenu self;
+	
 	private Label newProfile;
 	private Label name;
 	private Button create;
@@ -31,6 +33,8 @@ public class NewProfileMenu extends Stage {
 	public NewProfileMenu (Stage owner){
 		pane = new Pane();
 		pane.setPrefSize(xSize, ySize);
+		
+		self = this;
 		
 		newProfile = new Label("Create a new Profile!");
 		newProfile.setPrefSize(175, 32);
@@ -82,7 +86,7 @@ public class NewProfileMenu extends Stage {
 		@Override
 		public void handle(ActionEvent event) {
 			if (event.getSource() == picture){
-				System.out.println("Picture has been uploaded!");
+				new ImageCropperTool("graphics/test.jpg",self).show(); //for testing purpose
 				create.setDisable(false);
 			}
 			if (event.getSource() == create){

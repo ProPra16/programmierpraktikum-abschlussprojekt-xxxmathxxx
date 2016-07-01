@@ -49,6 +49,7 @@ public class ImageCropperTool extends Stage {
 	private Scene scene;
 	
 	private Button confirmButton;
+	private Button otherPicture;
 
 	private Image originalImage;
 	
@@ -91,8 +92,13 @@ public class ImageCropperTool extends Stage {
 		
 		confirmButton = new Button("Confirm profile picture!");
 		confirmButton.setPrefSize(200, 50);
-		confirmButton.relocate(0, originalImage.getHeight());
+		confirmButton.relocate(150, originalImage.getHeight());
 		confirmButton.addEventHandler(ActionEvent.ANY,confButtonHandler);
+		
+		otherPicture = new Button("Upload another picture!");
+		otherPicture.setPrefSize(200, 50);
+		otherPicture.relocate(600, originalImage.getHeight());
+		otherPicture.addEventHandler(ActionEvent.ANY,confButtonHandler);
 		
 		ivContainer = new ScrollPane();
 		ivContainer.setVmax(originalImage.getWidth());
@@ -112,6 +118,7 @@ public class ImageCropperTool extends Stage {
 		pane.setPrefSize(originalImage.getWidth(), originalImage.getHeight()+50);
 		pane.getChildren().add(ivContainer);
 		pane.getChildren().add(confirmButton);
+		pane.getChildren().add(otherPicture);
 		
 		scene = new Scene(pane);		
 
