@@ -55,7 +55,7 @@ public class StartupMenu extends Stage {
 		
 		existingProfile = new Button("Use existing One");
 		existingProfile.setPrefSize(128, 32);
-		existingProfile.relocate(xSize/2-64,ySize - 160);
+		existingProfile.relocate(xSize/2-64,ySize - 150);
 		existingProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(existingProfile);
 		

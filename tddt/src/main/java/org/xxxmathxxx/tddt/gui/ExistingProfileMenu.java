@@ -19,9 +19,9 @@ public class ExistingProfileMenu extends Stage {
 	private ExistingProfileMenu self;
 	
 	private Label infoText;
-	private Label chooseProfile;
-	private Button newProfile;
-	private Button existingProfile;
+	private Label loggedInAs;
+	private Button newTask;
+	private Button statistics;
 	
 	private static int xSize = 768;
 	private static int ySize = 384;
@@ -33,31 +33,31 @@ public class ExistingProfileMenu extends Stage {
 		
 		self = this;
 		
-		infoText = new Label("Welcome to TDDT!");
+		infoText = new Label("You are almost ready to go.");
 		infoText.setPrefSize(165, 32);
 		infoText.relocate((xSize/2)-75,40);
 		infoText.setFont(new Font("Times New Roman", 20));
 		infoText.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(infoText);
 		
-		chooseProfile = new Label("Select a Profile to begin your journey.");
-		chooseProfile.setPrefSize(280, 32);
-		chooseProfile.relocate((xSize/2)-140,100);
-		chooseProfile.setFont(new Font("Times New Roman", 18));
-		chooseProfile.setTextAlignment(TextAlignment.LEFT);
-		pane.getChildren().add(chooseProfile);
+		loggedInAs = new Label("Logged in as:");
+		loggedInAs.setPrefSize(280, 32);
+		loggedInAs.relocate((xSize/2)-140,100);
+		loggedInAs.setFont(new Font("Times New Roman", 18));
+		loggedInAs.setTextAlignment(TextAlignment.LEFT);
+		pane.getChildren().add(loggedInAs);
 		
-		newProfile = new Button("New Profile");
-		newProfile.setPrefSize(128, 32);
-		newProfile.relocate(xSize/2-64,ySize - 200);
-		newProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
-		pane.getChildren().add(newProfile);
+		newTask = new Button("Start a new Exercise!");
+		newTask.setPrefSize(128, 32);
+		newTask.relocate(xSize/2-64,ySize - 200);
+		newTask.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
+		pane.getChildren().add(newTask);
 		
-		existingProfile = new Button("Use existing One");
-		existingProfile.setPrefSize(128, 32);
-		existingProfile.relocate(xSize/2-64,ySize - 160);
-		existingProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
-		pane.getChildren().add(existingProfile);
+		statistics = new Button("Statistics");
+		statistics.setPrefSize(128, 32);
+		statistics.relocate(xSize/2-64,ySize - 160);
+		statistics.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
+		pane.getChildren().add(statistics);
 		
 		dialogScene = new Scene(pane);
 		
@@ -76,10 +76,10 @@ public class ExistingProfileMenu extends Stage {
 
 		@Override
 		public void handle(ActionEvent event) {
-			if (event.getSource() == newProfile){
+			if (event.getSource() == newTask){
 				WindowManager.createNewProfileMenu(self).show();
 			}
-			if (event.getSource() == existingProfile){
+			if (event.getSource() == statistics){
 				
 			}
 		}
