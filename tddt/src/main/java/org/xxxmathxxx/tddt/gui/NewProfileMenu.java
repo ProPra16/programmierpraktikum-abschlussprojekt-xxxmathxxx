@@ -5,10 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
@@ -41,7 +38,6 @@ public class NewProfileMenu extends Stage {
 		newProfile.relocate((xSize/2)-75,20);
 		newProfile.setFont(new Font("Times New Roman", 20));
 		newProfile.setTextAlignment(TextAlignment.LEFT);
-		newProfile.setBackground(new Background(new BackgroundFill(new Color(1,1,1,0.7), null, null)));
 		pane.getChildren().add(newProfile);
 		
 		name = new Label("Name:");
@@ -49,7 +45,6 @@ public class NewProfileMenu extends Stage {
 		name.relocate((xSize/2)-140,70);
 		name.setFont(new Font("Times New Roman", 18));
 		name.setTextAlignment(TextAlignment.LEFT);
-		name.setBackground(new Background(new BackgroundFill(new Color(1,1,1,0.7), null, null)));
 		pane.getChildren().add(name);
 		
 		create = new Button("Confirm");
@@ -91,6 +86,7 @@ public class NewProfileMenu extends Stage {
 			}
 			if (event.getSource() == create){
 				System.out.println("New Profile has been created!");
+				WindowManager.createExistingProfileMenu().show();
 				close();
 			}
 		}

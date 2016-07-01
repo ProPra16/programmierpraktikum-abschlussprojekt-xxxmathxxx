@@ -11,4 +11,8 @@ public class WindowManager {
 	public static NewProfileMenu createNewProfileMenu(Stage owner){
 		return new NewProfileMenu(owner);
 	}
+	
+	public static ExistingProfileMenu createExistingProfileMenu(){
+		return new ExistingProfileMenu();
+	}
 }
