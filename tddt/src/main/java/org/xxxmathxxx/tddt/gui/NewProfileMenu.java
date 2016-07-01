@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
@@ -20,9 +21,9 @@ public class NewProfileMenu extends Stage {
 	private NewProfileMenu self;
 	
 	private Label newProfile;
-	private Label name;
 	private Button create;
 	private Button picture;
+	private TextField textField;
 	
 	private static int xSize = 512;
 	private static int ySize = 256;
@@ -32,20 +33,14 @@ public class NewProfileMenu extends Stage {
 		pane.setPrefSize(xSize, ySize);
 		
 		self = this;
+		self.setTitle("TDDT - New Profile");
 		
 		newProfile = new Label("Create a new Profile!");
 		newProfile.setPrefSize(175, 32);
-		newProfile.relocate((xSize/2)-75,20);
+		newProfile.relocate((xSize/2)-83,20);
 		newProfile.setFont(new Font("Times New Roman", 20));
 		newProfile.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(newProfile);
-		
-		name = new Label("Name:");
-		name.setPrefSize(280, 32);
-		name.relocate((xSize/2)-140,70);
-		name.setFont(new Font("Times New Roman", 18));
-		name.setTextAlignment(TextAlignment.LEFT);
-		pane.getChildren().add(name);
 		
 		create = new Button("Confirm");
 		create.setPrefSize(128, 32);
@@ -59,6 +54,11 @@ public class NewProfileMenu extends Stage {
 		picture.relocate(xSize/2-64,ySize - 140);
 		picture.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(picture);
+		
+		textField = new TextField();
+		textField.relocate((xSize/2)-73,70);
+		textField.setPromptText("Enter a name");
+		pane.getChildren().add(textField);
 		
 		dialogScene = new Scene(pane);
 		
@@ -85,9 +85,14 @@ public class NewProfileMenu extends Stage {
 				create.setDisable(false);
 			}
 			if (event.getSource() == create){
-				System.out.println("New Profile has been created!");
-				WindowManager.createExistingProfileMenu().show();
-				close();
+				if ((textField.getText().isEmpty() || textField.getText() == null)) {
+					textField.setPromptText("Please enter a name!");
+		        } else {
+		            System.out.println("Willkommen " + textField.getText() + "!");
+		            System.out.println("New Profile has been created!");
+					WindowManager.createExistingProfileMenu().show();
+					close();
+		        }
 			}
 		}
 	}

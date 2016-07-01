@@ -32,6 +32,7 @@ public class StartupMenu extends Stage {
 		pane.setPrefSize(xSize, ySize);
 		
 		self = this;
+		self.setTitle("TDDT - Main Menu");
 		
 		welcome = new Label("Welcome to TDDT!");
 		welcome.setPrefSize(165, 32);
