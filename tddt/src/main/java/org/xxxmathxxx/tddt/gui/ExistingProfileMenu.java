@@ -16,7 +16,7 @@ public class ExistingProfileMenu extends Stage {
 	
 	private Scene dialogScene;
 	
-	//private ExistingProfileMenu self;
+	private ExistingProfileMenu self;
 	
 	private Label infoText;
 	private Label profile;
@@ -33,7 +33,8 @@ public class ExistingProfileMenu extends Stage {
 		pane = new Pane();
 		pane.setPrefSize(xSize, ySize);
 		
-		//self = this;
+		self = this;
+		self.setTitle("TDDT - Main Menu");
 		
 		infoText = new Label("You are almost ready to go!");
 		infoText.setPrefSize(240, 32);
@@ -94,7 +95,7 @@ public class ExistingProfileMenu extends Stage {
 				
 			}
 			if (event.getSource() == statistics){
-				
+				WindowManager.createStatistics(self).show();
 			}
 			if (event.getSource() == notYou){
 				close();

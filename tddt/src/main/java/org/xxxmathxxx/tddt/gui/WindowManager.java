@@ -15,4 +15,8 @@ public class WindowManager {
 	public static ExistingProfileMenu createExistingProfileMenu(){
 		return new ExistingProfileMenu();
 	}
+	
+	public static Statistics createStatistics(Stage owner){
+		return new Statistics(owner);
+	}
 }
