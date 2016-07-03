@@ -10,12 +10,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-public class StartupMenu extends Stage {
+public class StartupMenu extends Scene {
 
-	private Pane pane;
-	
-	private Scene dialogScene;
-	
 	private StartupMenu self;
 	
 	private Label welcome;
@@ -26,13 +22,11 @@ public class StartupMenu extends Stage {
 	private static int xSize = 768;
 	private static int ySize = 384;
 	
-	public StartupMenu() {
+	public StartupMenu(Pane pane) {
+		super(pane);
 		
-		pane = new Pane();
-		pane.setPrefSize(xSize, ySize);
+
 		
-		self = this;
-		self.setTitle("TDDT - Main Menu");
 		
 		welcome = new Label("Welcome to TDDT!");
 		welcome.setPrefSize(165, 32);
@@ -60,17 +54,10 @@ public class StartupMenu extends Stage {
 		existingProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(existingProfile);
 		
-		dialogScene = new Scene(pane);
 		
-		this.setScene(dialogScene);
 		//this.initStyle(StageStyle.UNDECORATED);
 		
-		this.setMaxWidth(xSize);
-		this.setMaxHeight(ySize);
-		this.setMinWidth(xSize);
-		this.setMinHeight(ySize);
-	
-		this.setResizable(false);
+
 	}
 	
 	
