@@ -1,5 +1,9 @@
 package org.xxxmathxxx.tddt.gui;
 
+import java.util.ArrayList;
+
+import org.xxxmathxxx.tddt.profile.Profile;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -43,6 +47,8 @@ public class ExistingProfileMenu extends Stage {
 		infoText.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(infoText);
 		
+
+		
 		loggedInAs = new Label("Logged in as:");
 		loggedInAs.setPrefSize(280, 32);
 		loggedInAs.relocate((xSize/2)-280,100);
@@ -51,20 +57,20 @@ public class ExistingProfileMenu extends Stage {
 		
 		profile = new Label("Aranior");
 		profile.setPrefSize(280, 32);
-		profile.relocate((xSize/2)-265,140);
+		profile.relocate((xSize/2)-265,ySize-140);
 		profile.setFont(new Font("Times New Roman", 20));
 		profile.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(profile);
 		
 		newTask = new Button("Start a new Exercise!");
 		newTask.setPrefSize(150, 50);
-		newTask.relocate(xSize/2-20,ySize - 240);
+		newTask.relocate(xSize/2-20,ySize - 180);
 		newTask.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(newTask);
 		
 		notYou = new Button("Not you?");
 		notYou.setPrefSize(100, 30);
-		notYou.relocate(xSize/2-282,ySize - 195);
+		notYou.relocate(xSize/2-282,ySize - 105);
 		notYou.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(notYou);
 		
@@ -73,6 +79,25 @@ public class ExistingProfileMenu extends Stage {
 		statistics.relocate(xSize/2-20,ySize - 170);
 		statistics.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(statistics);
+		
+		//DEBUG STUFF
+		Profile dino1 = new Profile("dino1","file:profiles/graphics/test1.png");
+		Profile dino2 = new Profile("dino2","file:profiles/graphics/test2.png");
+		Profile dino3 = new Profile("dino3","file:profiles/graphics/test3.png");
+		Profile dino4 = new Profile("dino4","file:profiles/graphics/test4.png");
+		Profile dino5 = new Profile("dino5","file:profiles/graphics/test1.png");
+
+		ArrayList<Profile> profileListTest = new ArrayList<Profile>();
+		profileListTest.add(dino1);
+		profileListTest.add(dino2);
+		profileListTest.add(dino3);
+		profileListTest.add(dino4);
+		profileListTest.add(dino5);
+
+		pane.getChildren().add(new ProfilePicker(profileListTest));
+		
+		
+		//DEBUG STUFF END
 		
 		dialogScene = new Scene(pane);
 		
