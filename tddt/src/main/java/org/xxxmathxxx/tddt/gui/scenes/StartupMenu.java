@@ -1,4 +1,7 @@
-package org.xxxmathxxx.tddt.gui;
+package org.xxxmathxxx.tddt.gui.scenes;
+
+import org.xxxmathxxx.tddt.gui.WindowManager;
+import org.xxxmathxxx.tddt.gui.WindowManager.MenuType;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,11 +11,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 
 public class StartupMenu extends Scene {
 
-	private StartupMenu self;
 	
 	private Label welcome;
 	private Label chooseProfile;
@@ -66,11 +67,10 @@ public class StartupMenu extends Scene {
 		@Override
 		public void handle(ActionEvent event) {
 			if (event.getSource() == newProfile){
-				WindowManager.createNewProfileMenu(self).show();
+				WindowManager.getInstance().showMenu(WindowManager.MenuType.NEW_PROFILE);
 			}
-			if (event.getSource() == existingProfile){
-				close();
-				WindowManager.createExistingProfileMenu().show();
+			else if (event.getSource() == existingProfile){
+				WindowManager.getInstance().showMenu(WindowManager.MenuType.EXISTING_PROFILE);
 			}
 		}
 	}

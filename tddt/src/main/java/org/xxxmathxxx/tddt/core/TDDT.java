@@ -1,6 +1,5 @@
 package org.xxxmathxxx.tddt.core;
 
-import org.xxxmathxxx.tddt.gui.StartupMenu;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.gui.hints.HintCollection;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
@@ -20,7 +19,7 @@ public class TDDT extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		Runtime.getRuntime().addShutdownHook(new ShutdownThread());
 		TDDTLogManager.getInstance().logMessage("Starting application!");
-		WindowManager.getInstance().setScene(new StartupMenu(WindowManager.getInstance().getMainPane()));
+		WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
 		HintCollection.createStartupInfo().show();
 	}
 

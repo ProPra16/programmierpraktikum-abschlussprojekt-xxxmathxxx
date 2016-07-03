@@ -130,11 +130,8 @@ public class ProfilePicker extends Pane {
 	EventHandler<MouseEvent> mouseControl = new EventHandler<MouseEvent>(){
 		@Override
 		public void handle(MouseEvent event) {
-			System.out.println("CLICK");
 			if (event.getSource() == left){
 				shiftSelection(-1);
-				System.out.println("LEFT");
-
 			}
 			else if (event.getSource() == right){
 				shiftSelection(1);

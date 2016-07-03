@@ -120,11 +120,10 @@ public class ExistingProfileMenu extends Stage {
 				
 			}
 			if (event.getSource() == statistics){
-				WindowManager.createStatistics(self).show();
+				WindowManager.getInstance().showMenu(WindowManager.MenuType.STATISTICS);
 			}
 			if (event.getSource() == notYou){
-				close();
-				WindowManager.createStartupMenu().show();
+				WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
 			}
 		}
 	}
