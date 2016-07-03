@@ -90,7 +90,7 @@ public class NewProfileMenu extends Stage {
 		        } else {
 		            System.out.println("Willkommen " + textField.getText() + "!");
 		            System.out.println("New Profile has been created!");
-					WindowManager.createExistingProfileMenu().show();
+					WindowManager.getInstance().showMenu(WindowManager.MenuType.EXISTING_PROFILE);
 					close();
 		        }
 			}

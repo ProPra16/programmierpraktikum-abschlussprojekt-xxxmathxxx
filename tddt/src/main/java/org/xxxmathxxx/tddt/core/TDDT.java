@@ -19,7 +19,7 @@ public class TDDT extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		Runtime.getRuntime().addShutdownHook(new ShutdownThread());
 		TDDTLogManager.getInstance().logMessage("Starting application!");
-		WindowManager.createStartupMenu().show();
+		WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
 		HintCollection.createStartupInfo().show();
 	}
 
