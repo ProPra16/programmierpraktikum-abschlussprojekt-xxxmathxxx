@@ -20,7 +20,11 @@ import javafx.scene.image.ImageView;
  * @author xxxMathxxx 2016
  * Class that describes a user profile
  */
-public class Profile extends ProfileStats{
+public class Profile {
+	
+	
+	public ProfileStats profileStats = new ProfileStats();
+	
 	
 	/**
 	 * Internal String that contains the profile name

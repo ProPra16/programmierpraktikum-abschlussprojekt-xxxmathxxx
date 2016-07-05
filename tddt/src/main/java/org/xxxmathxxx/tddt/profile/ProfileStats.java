@@ -15,7 +15,7 @@ import org.xxxmathxxx.tddt.tracking.Tracker;
 /**
  * The Class ProfileStats.
  */
-public abstract class ProfileStats {
+public class ProfileStats {
 
 	/** The name list. */
 	private ArrayList<String> nameList;		

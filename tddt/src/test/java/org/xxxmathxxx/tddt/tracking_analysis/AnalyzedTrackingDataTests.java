@@ -93,20 +93,4 @@ public class AnalyzedTrackingDataTests {
 		assertEquals(data.analyzedStageRefactor.error.semanticError, 1);
 	}
 	
-	@Test
-	public void analyzeTrackingDataTests5(){
-		
-		Tracker tracker = new Tracker();
-		tracker.stageRefactor.startTimeTracking();
-		
-		try {
-			Thread.sleep(1000);
-			tracker.stageRefactor.stopTimeTracking();
-			AnalyzedTrackingData data = new AnalyzedTrackingData(tracker, "exercise", "profilName");
-			assertEquals(data.analyzedStageRefactor.time, "1");
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-	
 }
