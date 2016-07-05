@@ -17,8 +17,7 @@ public class HintCollection {
 			new Hint("file:graphics/infobackgrounds/stoneage.jpg","Did you know that during the Stone Age no software was written at all? Experts believe that this is due to the lack of TDD in this era."),
 			new Hint("file:graphics/infobackgrounds/stoneage.jpg","Did you know that infamous SkyNet was developed using TDD?"),
 			new Hint("file:graphics/infobackgrounds/pkmnred.jpg","Did you know that these hints barely rely on facts? ...But TDD does?"),
-			//new Hint("file:graphics/infobackgrounds/kantbackground.jpeg", "Did you know that in any particular theory of nature only so much real science can be encountered, as there is TDD therein?")
-			//TODO: Kant needs scaling and source information
+			new Hint("file:graphics/infobackgrounds/kantbackground.jpeg", "Did you know that in any particular theory of nature only so much real science can be encountered, as there is TDD therein?")
 	};
 	
 	/**Getter function returning a JavaFX Notification containing a random hint
