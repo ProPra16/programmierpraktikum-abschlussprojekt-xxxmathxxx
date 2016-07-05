@@ -2,7 +2,10 @@ package org.xxxmathxxx.tddt.gui.scenes;
 
 import java.util.ArrayList;
 
+import org.xxxmathxxx.tddt.gui.AchievementPopup;
 import org.xxxmathxxx.tddt.gui.ProfilePicker;
+import org.xxxmathxxx.tddt.gui.WindowManager;
+import org.xxxmathxxx.tddt.profile.MedalState;
 import org.xxxmathxxx.tddt.profile.Profile;
 
 import javafx.event.ActionEvent;
@@ -96,10 +99,10 @@ public class ExistingProfileMenu extends Scene {
 		@Override
 		public void handle(ActionEvent event) {
 			if (event.getSource() == newTask){
-				
 			}
 			if (event.getSource() == statistics){
-				
+				//for testing
+				WindowManager.getInstance().createAchievementPopup(MedalState.GOLD);
 			}
 			if (event.getSource() == notYou){
 				

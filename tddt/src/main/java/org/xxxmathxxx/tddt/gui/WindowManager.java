@@ -1,6 +1,7 @@
 package org.xxxmathxxx.tddt.gui;
 
 import org.xxxmathxxx.tddt.gui.scenes.StartupMenu;
+import org.xxxmathxxx.tddt.profile.MedalState;
 import org.xxxmathxxx.tddt.gui.hints.HintCollection;
 import org.xxxmathxxx.tddt.gui.scenes.ExistingProfileMenu;
 import org.xxxmathxxx.tddt.gui.scenes.NewProfileMenu;
@@ -81,6 +82,10 @@ public class WindowManager {
 
 	public void showStartupInfo() {
 		HintCollection.createStartupInfo(mainStage).show();
+	}
+	
+	public void createAchievementPopup(MedalState medal){
+		new AchievementPopup(medal).show(mainStage);
 	}
 	
 }
