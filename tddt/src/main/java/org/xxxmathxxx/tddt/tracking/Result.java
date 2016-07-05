@@ -35,8 +35,8 @@ public class Result {
 	
 	public boolean compilerError(){
 		if(compilerResult.hasCompileErrors())
-			return false;
-		return true;
+			return true;
+		return false;
 	}
 	
 	public Collection<CompileError> getCompilerErrors(CompilationUnit compUnit){

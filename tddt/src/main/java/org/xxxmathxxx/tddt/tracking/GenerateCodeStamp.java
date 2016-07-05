@@ -41,22 +41,24 @@ public class GenerateCodeStamp {
 		Iterator<String> iterator = set.iterator();
 		Result result = new Result();
 		Date date = new Date();
-		CompilationUnit compilationUnit;
-		
+		CompilationUnit compilationUnit = null;
 		int i = 0;
-		while(iterator.hasNext()){
-			s[i] = (String) iterator.next();
-			compilationUnit = compiler.getCompilationUnitByName(s[i++]);
-			list.add(compilationUnit);
-		}
+		
 		CompilerResult compilerResult = compiler.getCompilerResult();
 		TestResult testResult = compiler.getTestResult();
-		
 		result.add(compilerResult);
 		result.add(testResult);
 		
-		CodeStamp codeStemp = new CodeStamp(result, list, date);
-		return codeStemp;
+		
+		while(iterator.hasNext()){
+			s[i] = (String) iterator.next();
+			compilationUnit = compiler.getCompilationUnitByName(s[i++]);	
+			list.add(compilationUnit);
+		}
+		
+		
+		CodeStamp codeStamp = new CodeStamp(result, list, date);
+		return codeStamp;
 	}
 
 }
