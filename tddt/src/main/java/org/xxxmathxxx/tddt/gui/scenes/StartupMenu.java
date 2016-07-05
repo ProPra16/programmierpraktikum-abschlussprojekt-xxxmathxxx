@@ -24,10 +24,8 @@ public class StartupMenu extends Scene {
 	private static int ySize = 384;
 	
 	public StartupMenu(Pane pane) {
+		
 		super(pane);
-		
-
-		
 		
 		welcome = new Label("Welcome to TDDT!");
 		welcome.setPrefSize(165, 32);
@@ -52,11 +50,10 @@ public class StartupMenu extends Scene {
 		existingProfile = new Button("Use existing One");
 		existingProfile.setPrefSize(128, 32);
 		existingProfile.relocate(xSize/2-64,ySize - 150);
+		existingProfile.setDisable(true);
 		existingProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(existingProfile);
 		
-		
-		//this.initStyle(StageStyle.UNDECORATED);
 		
 
 	}

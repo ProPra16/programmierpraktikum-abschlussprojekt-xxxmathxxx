@@ -1,5 +1,6 @@
-package org.xxxmathxxx.tddt.gui;
+package org.xxxmathxxx.tddt.gui.scenes;
 
+import org.xxxmathxxx.tddt.gui.WindowManager;
 import java.util.ArrayList;
 
 import org.xxxmathxxx.tddt.profile.Profile;
@@ -12,15 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 
-public class ExistingProfileMenu extends Stage {
-
-	private Pane pane;
-	
-	private Scene dialogScene;
-	
-	private ExistingProfileMenu self;
+public class ExistingProfileMenu extends Scene {
 	
 	private Label infoText;
 	private Label profile;
@@ -32,13 +26,9 @@ public class ExistingProfileMenu extends Stage {
 	private static int xSize = 768;
 	private static int ySize = 384;
 	
-	public ExistingProfileMenu() {
+	public ExistingProfileMenu(Pane pane) {
 		
-		pane = new Pane();
-		pane.setPrefSize(xSize, ySize);
-		
-		self = this;
-		self.setTitle("TDDT - Main Menu");
+		super(pane);
 		
 		infoText = new Label("You are almost ready to go!");
 		infoText.setPrefSize(240, 32);
@@ -46,8 +36,6 @@ public class ExistingProfileMenu extends Stage {
 		infoText.setFont(new Font("Times New Roman", 20));
 		infoText.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(infoText);
-		
-
 		
 		loggedInAs = new Label("Logged in as:");
 		loggedInAs.setPrefSize(280, 32);
@@ -93,23 +81,9 @@ public class ExistingProfileMenu extends Stage {
 		profileListTest.add(dino3);
 		profileListTest.add(dino4);
 		profileListTest.add(dino5);
-
-		pane.getChildren().add(new ProfilePicker(profileListTest));
 		
 		
 		//DEBUG STUFF END
-		
-		dialogScene = new Scene(pane);
-		
-		this.setScene(dialogScene);
-		//this.initStyle(StageStyle.UNDECORATED);
-		
-		this.setMaxWidth(xSize);
-		this.setMaxHeight(ySize);
-		this.setMinWidth(xSize);
-		this.setMinHeight(ySize);
-	
-		this.setResizable(false);
 	}
 	
 	private final class menuButtonHandler implements EventHandler<ActionEvent>{
@@ -120,10 +94,10 @@ public class ExistingProfileMenu extends Stage {
 				
 			}
 			if (event.getSource() == statistics){
-				WindowManager.getInstance().showMenu(WindowManager.MenuType.STATISTICS);
+				
 			}
 			if (event.getSource() == notYou){
-				WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
+				
 			}
 		}
 	}

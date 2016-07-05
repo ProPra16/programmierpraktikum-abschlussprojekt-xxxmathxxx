@@ -1,6 +1,7 @@
 package org.xxxmathxxx.tddt.gui;
 
 import org.xxxmathxxx.tddt.gui.scenes.StartupMenu;
+import org.xxxmathxxx.tddt.gui.scenes.ExistingProfileMenu;
 
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -59,7 +60,7 @@ public class WindowManager {
 			mainStage.setScene(new StartupMenu(mainPane));
 		}
 		if (scene == MenuType.EXISTING_PROFILE){
-			new ExistingProfileMenu().show();
+			mainStage.setScene(new ExistingProfileMenu(mainPane));
 		}
 		if (scene == MenuType.NEW_PROFILE){
 			new NewProfileMenu(mainStage).show();

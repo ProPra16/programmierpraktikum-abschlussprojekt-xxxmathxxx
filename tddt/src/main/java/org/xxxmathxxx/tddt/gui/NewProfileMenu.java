@@ -46,7 +46,6 @@ public class NewProfileMenu extends Stage {
 		create.setPrefSize(128, 32);
 		create.relocate(xSize/2-64,ySize - 100);
 		create.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
-		create.setDisable(true);
 		pane.getChildren().add(create);
 		
 		picture = new Button("Upload a Picture");
@@ -88,9 +87,8 @@ public class NewProfileMenu extends Stage {
 				if ((textField.getText().isEmpty() || textField.getText() == null)) {
 					textField.setPromptText("Please enter a name!");
 		        } else {
-		            System.out.println("Willkommen " + textField.getText() + "!");
+		            System.out.println("Welcome " + textField.getText() + "!");
 		            System.out.println("New Profile has been created!");
-					WindowManager.getInstance().showMenu(WindowManager.MenuType.EXISTING_PROFILE);
 					close();
 		        }
 			}
