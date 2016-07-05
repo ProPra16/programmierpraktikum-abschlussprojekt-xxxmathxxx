@@ -1,15 +1,17 @@
 package org.xxxmathxxx.tddt.gui;
 
 import org.xxxmathxxx.tddt.gui.scenes.StartupMenu;
+import org.xxxmathxxx.tddt.gui.hints.HintCollection;
 import org.xxxmathxxx.tddt.gui.scenes.ExistingProfileMenu;
+import org.xxxmathxxx.tddt.gui.scenes.NewProfileMenu;
 
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class WindowManager {
 	
-	static int width = 800;
-	static int height = 600;
+	private static int width = 800;
+	private static int height = 600;
 	
 	private Stage mainStage;
 	private Pane mainPane;
@@ -18,20 +20,17 @@ public class WindowManager {
 		STARTUP_MENU,
 		NEW_PROFILE,
 		EXISTING_PROFILE,
-		STATISTICS
+		STATISTICS, 
+		IMAGE_CROPPER
 	}
 	
 	private WindowManager(){
 		
-		mainPane = new Pane();
-		mainPane.setPrefSize(width, height);
-		
+
+				
 		mainStage = new Stage();
 		mainStage.setTitle("TDDT - Main Menu");
-		
-		
 
-		
 		mainStage.setMaxWidth(width);
 		mainStage.setMaxHeight(height);
 		mainStage.setMinWidth(width);
@@ -41,12 +40,14 @@ public class WindowManager {
 		
 		mainStage.show();
 		mainStage.centerOnScreen();
-
+		
 	};
 	
-	public Pane getMainPane(){
-		return mainPane;
+	private void generateNewMainPane(){
+		mainPane = new Pane();
+		mainPane.setPrefSize(width, height);
 	}
+	
 	private static WindowManager instance;
 	
 	public static WindowManager getInstance(){
@@ -58,6 +59,9 @@ public class WindowManager {
 	
 
 	public void showMenu(MenuType scene){
+		
+		generateNewMainPane();
+		
 		if (scene == MenuType.STARTUP_MENU){
 			mainStage.setScene(new StartupMenu(mainPane));
 		}
@@ -65,11 +69,18 @@ public class WindowManager {
 			mainStage.setScene(new ExistingProfileMenu(mainPane));
 		}
 		if (scene == MenuType.NEW_PROFILE){
-			new NewProfileMenu(mainStage).show();
+			mainStage.setScene(new NewProfileMenu(mainPane));
+		}
+		if (scene == MenuType.IMAGE_CROPPER){
+			new ImageCropperTool("graphics/test.jpg",mainStage).show(); //for testing purpose
 		}
 		if (scene == MenuType.STATISTICS){
 			//WHATEVER
 		}
+	}
+
+	public void showStartupInfo() {
+		HintCollection.createStartupInfo(mainStage).show();
 	}
 	
 }

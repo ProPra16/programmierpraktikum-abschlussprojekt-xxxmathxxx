@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -39,7 +40,7 @@ public class UsefulInfoNotification extends Stage {
 	private static int spacingTopBottom = 16;
 	
 	
-	public UsefulInfoNotification(Hint selectedHint) {
+	public UsefulInfoNotification(Hint selectedHint, Stage mainStage) {
 		
 		pane = new Pane();
 		pane.setPrefSize(xSize, ySize);
@@ -95,6 +96,9 @@ public class UsefulInfoNotification extends Stage {
 		this.setMinHeight(ySize);
 		
 		this.setResizable(false);
+		
+		this.initOwner(mainStage);
+		this.initModality(Modality.APPLICATION_MODAL);
 
 	}
 	

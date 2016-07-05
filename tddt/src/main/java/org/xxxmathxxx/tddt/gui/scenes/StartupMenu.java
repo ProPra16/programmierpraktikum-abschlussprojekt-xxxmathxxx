@@ -19,12 +19,13 @@ public class StartupMenu extends Scene {
 	private Button newProfile;
 	private Button existingProfile;
 	
-	private static int xSize = 768;
-	private static int ySize = 384;
-	
 	public StartupMenu(Pane pane) {
 		
 		super(pane);
+		
+		double xSize = pane.getPrefWidth();
+		double ySize = pane.getPrefHeight();
+		
 		
 		welcome = new Label("Welcome to TDDT!");
 		welcome.setPrefSize(165, 32);
@@ -49,11 +50,8 @@ public class StartupMenu extends Scene {
 		existingProfile = new Button("Use existing One");
 		existingProfile.setPrefSize(128, 32);
 		existingProfile.relocate(xSize/2-64,ySize - 110);
-		existingProfile.setDisable(true);
 		existingProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(existingProfile);
-		
-		
 
 	}
 	

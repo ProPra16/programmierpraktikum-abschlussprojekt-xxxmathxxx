@@ -2,6 +2,7 @@ package org.xxxmathxxx.tddt.gui.scenes;
 
 import java.util.ArrayList;
 
+import org.xxxmathxxx.tddt.gui.ProfilePicker;
 import org.xxxmathxxx.tddt.profile.Profile;
 
 import javafx.event.ActionEvent;
@@ -22,12 +23,12 @@ public class ExistingProfileMenu extends Scene {
 	private Button statistics;
 	private Button notYou;
 	
-	private static int xSize = 768;
-	private static int ySize = 384;
-	
 	public ExistingProfileMenu(Pane pane) {
 		
 		super(pane);
+		
+		double xSize = pane.getPrefWidth();
+		double ySize = pane.getPrefHeight();
 		
 		infoText = new Label("You are almost ready to go!");
 		infoText.setPrefSize(240, 32);
@@ -81,6 +82,11 @@ public class ExistingProfileMenu extends Scene {
 		profileListTest.add(dino4);
 		profileListTest.add(dino5);
 		
+		ProfilePicker pp = new ProfilePicker(profileListTest);
+		pp.setPrefSize(150, 50);
+		pp.relocate(xSize/2-20,ySize - 470);
+		pp.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
+		pane.getChildren().add(pp);
 		
 		//DEBUG STUFF END
 	}

@@ -1,5 +1,6 @@
 package org.xxxmathxxx.tddt.gui.hints;
 
+import javafx.stage.Stage;
 
 /** Basic class that contains useful hints, shown at startup
  * @author TODO: Fill in generic xxxMathxxx header with license in all files
@@ -21,12 +22,13 @@ public class HintCollection {
 	};
 	
 	/**Getter function returning a JavaFX Notification containing a random hint
+	 * @param mainStage 
 	 * @return
 	 */
-	public static UsefulInfoNotification createStartupInfo(){
+	public static UsefulInfoNotification createStartupInfo(Stage mainStage){
 		int randomIndex = ((int)(Math.round(Math.random()*(hints.length-1))));
 		Hint selectedHint = hints[randomIndex];
-		return new UsefulInfoNotification(selectedHint);
+		return new UsefulInfoNotification(selectedHint, mainStage);
 	}
 }
 	

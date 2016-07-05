@@ -1,4 +1,7 @@
-package org.xxxmathxxx.tddt.gui;
+package org.xxxmathxxx.tddt.gui.scenes;
+
+import org.xxxmathxxx.tddt.gui.WindowManager;
+import org.xxxmathxxx.tddt.gui.WindowManager.MenuType;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,31 +12,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-public class NewProfileMenu extends Stage {
-	
-	private Pane pane;
-	
-	private Scene dialogScene;
-	
-	private NewProfileMenu self;
+public class NewProfileMenu extends Scene {	
 	
 	private Label newProfile;
 	private Button create;
 	private Button picture;
 	private TextField textField;
 	
-	private static int xSize = 512;
-	private static int ySize = 256;
-	
-	public NewProfileMenu (Stage owner){
-		pane = new Pane();
-		pane.setPrefSize(xSize, ySize);
-		
-		self = this;
-		self.setTitle("TDDT - New Profile");
+	public NewProfileMenu (Pane pane){
+		super(pane);
+		//get width and height from main pane
+		double xSize = pane.getPrefWidth();
+		double ySize = pane.getPrefHeight();
 		
 		newProfile = new Label("Create a new Profile!");
 		newProfile.setPrefSize(175, 32);
@@ -58,21 +49,6 @@ public class NewProfileMenu extends Stage {
 		textField.relocate((xSize/2)-73,70);
 		textField.setPromptText("Enter a name");
 		pane.getChildren().add(textField);
-		
-		dialogScene = new Scene(pane);
-		
-		this.setScene(dialogScene);
-		
-		this.setMaxWidth(xSize);
-		this.setMaxHeight(ySize);
-		this.setMinWidth(xSize);
-		this.setMinHeight(ySize);
-		
-		this.initOwner(owner);
-		this.initModality(Modality.WINDOW_MODAL);
-	
-		this.setResizable(false);
-		this.setAlwaysOnTop(true);
 	}
 	
 	private final class menuButtonHandler implements EventHandler<ActionEvent>{
@@ -80,8 +56,8 @@ public class NewProfileMenu extends Stage {
 		@Override
 		public void handle(ActionEvent event) {
 			if (event.getSource() == picture){
-				new ImageCropperTool("graphics/test.jpg",self).show(); //for testing purpose
-				create.setDisable(false);
+				WindowManager.getInstance().showMenu(MenuType.IMAGE_CROPPER);
+				create.setDisable(false); //?
 			}
 			if (event.getSource() == create){
 				if ((textField.getText().isEmpty() || textField.getText() == null)) {
@@ -89,7 +65,7 @@ public class NewProfileMenu extends Stage {
 		        } else {
 		            System.out.println("Welcome " + textField.getText() + "!");
 		            System.out.println("New Profile has been created!");
-					close();
+		            //TODO: Switch back to other menu
 		        }
 			}
 		}
