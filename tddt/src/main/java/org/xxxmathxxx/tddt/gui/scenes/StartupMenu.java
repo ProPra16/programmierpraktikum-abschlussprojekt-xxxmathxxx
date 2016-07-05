@@ -1,7 +1,6 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
 import org.xxxmathxxx.tddt.gui.WindowManager;
-import org.xxxmathxxx.tddt.gui.WindowManager.MenuType;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -29,27 +28,27 @@ public class StartupMenu extends Scene {
 		
 		welcome = new Label("Welcome to TDDT!");
 		welcome.setPrefSize(165, 32);
-		welcome.relocate((xSize/2)-75,40);
+		welcome.relocate((xSize/2)-75,80);
 		welcome.setFont(new Font("Times New Roman", 20));
 		welcome.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(welcome);
 		
 		chooseProfile = new Label("Select a Profile to begin your journey.");
 		chooseProfile.setPrefSize(280, 32);
-		chooseProfile.relocate((xSize/2)-140,100);
+		chooseProfile.relocate((xSize/2)-140,140);
 		chooseProfile.setFont(new Font("Times New Roman", 18));
 		chooseProfile.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(chooseProfile);
 		
 		newProfile = new Button("New Profile");
 		newProfile.setPrefSize(128, 32);
-		newProfile.relocate(xSize/2-64,ySize - 200);
+		newProfile.relocate(xSize/2-64,ySize - 160);
 		newProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(newProfile);
 		
 		existingProfile = new Button("Use existing One");
 		existingProfile.setPrefSize(128, 32);
-		existingProfile.relocate(xSize/2-64,ySize - 150);
+		existingProfile.relocate(xSize/2-64,ySize - 110);
 		existingProfile.setDisable(true);
 		existingProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(existingProfile);

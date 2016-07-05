@@ -28,6 +28,8 @@ public class WindowManager {
 		
 		mainStage = new Stage();
 		mainStage.setTitle("TDDT - Main Menu");
+		
+		
 
 		
 		mainStage.setMaxWidth(width);
@@ -38,7 +40,7 @@ public class WindowManager {
 		mainStage.setResizable(false);
 		
 		mainStage.show();
-
+		mainStage.centerOnScreen();
 
 	};
 	

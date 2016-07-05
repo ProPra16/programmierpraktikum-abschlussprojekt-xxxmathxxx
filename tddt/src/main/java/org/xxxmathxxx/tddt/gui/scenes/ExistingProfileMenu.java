@@ -1,6 +1,5 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
-import org.xxxmathxxx.tddt.gui.WindowManager;
 import java.util.ArrayList;
 
 import org.xxxmathxxx.tddt.profile.Profile;
