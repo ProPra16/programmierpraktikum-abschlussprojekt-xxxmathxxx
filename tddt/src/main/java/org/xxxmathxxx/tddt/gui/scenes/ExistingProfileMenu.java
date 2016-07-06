@@ -68,7 +68,8 @@ public class ExistingProfileMenu extends Scene {
 		@Override
 		public void handle(ActionEvent event) {
 			if (event.getSource() == newTask){
-				System.out.println("Exercises not yet implemented!");
+				System.out.println("Test");
+				WindowManager.getInstance().showMenu(WindowManager.MenuType.EXERCISEPICKER);
 			}
 			if (event.getSource() == statistics){
 				//for testing

@@ -1,7 +1,6 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
-import org.xxxmathxxx.tddt.gui.WindowManager;
-import org.xxxmathxxx.tddt.profile.MedalState;
+import org.xxxmathxxx.tddt.editorpanes.TestEditPane;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,6 +9,9 @@ import javafx.scene.layout.Pane;
 
 public class Editor extends Scene {
 
+	TestEditPane tep;
+	
+	
 	public Editor(Pane pane) {
 
 		super(pane);

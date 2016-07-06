@@ -3,6 +3,8 @@ package org.xxxmathxxx.tddt.gui;
 import org.xxxmathxxx.tddt.gui.scenes.StartupMenu;
 import org.xxxmathxxx.tddt.profile.MedalState;
 import org.xxxmathxxx.tddt.gui.hints.HintCollection;
+import org.xxxmathxxx.tddt.gui.scenes.Editor;
+import org.xxxmathxxx.tddt.gui.scenes.ExercisePicker;
 import org.xxxmathxxx.tddt.gui.scenes.ExistingProfileMenu;
 import org.xxxmathxxx.tddt.gui.scenes.NewProfileMenu;
 
@@ -78,10 +80,10 @@ public class WindowManager {
 			//WHATEVER
 		}
 		if (scene == MenuType.EXERCISEPICKER){
-			//WHATEVER
+			mainStage.setScene(new ExercisePicker(mainPane));
 		}
 		if (scene == MenuType.EDITOR){
-			mainStage.setScene(new NewProfileMenu(mainPane));
+			mainStage.setScene(new Editor(mainPane));
 		}
 	}
 
