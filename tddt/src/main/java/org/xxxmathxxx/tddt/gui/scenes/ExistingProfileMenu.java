@@ -62,27 +62,7 @@ public class ExistingProfileMenu extends Scene {
 		statistics.relocate(xSize/2+45,ySize - 360);
 		statistics.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(statistics);
-		
-		//DEBUG STUFF
-		Profile dino1 = new Profile("dino1","file:profiles/graphics/test1.png");
-		Profile dino2 = new Profile("dino2","file:profiles/graphics/test2.png");
-		Profile dino3 = new Profile("dino3","file:profiles/graphics/test3.png");
-		Profile dino4 = new Profile("dino4","file:profiles/graphics/test4.png");
-		Profile dino5 = new Profile("dino5","file:profiles/graphics/test1.png");
-
-		ArrayList<Profile> profileListTest = new ArrayList<Profile>();
-		profileListTest.add(dino1);
-		profileListTest.add(dino2);
-		profileListTest.add(dino3);
-		profileListTest.add(dino4);
-		profileListTest.add(dino5);
-		
-		ProfilePicker pp = new ProfilePicker(profileListTest);
-		pp.setPrefSize(150, 50);
-		pp.relocate(xSize/2-380,ySize - 470);
-		pp.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
-		pane.getChildren().add(pp);
-		
+				
 		//DEBUG STUFF END
 	}
 	

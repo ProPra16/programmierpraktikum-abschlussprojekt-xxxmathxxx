@@ -2,12 +2,16 @@ package org.xxxmathxxx.tddt.gui;
 
 import java.util.ArrayList;
 
+import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.Profile;
 
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -15,6 +19,7 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 
 public class ProfilePicker extends Pane {
 	
@@ -23,56 +28,73 @@ public class ProfilePicker extends Pane {
 	private ImageView center;
 	private ImageView left;
 	private ImageView right;
+	
 	private Label caption;
 	
 	private int index = 0;
-	
-	//statics
-	
-	private static int sizeX = 300;
-	private static int sizeY = 200;
-
 	
 	public ProfilePicker(ArrayList<Profile> profiles){
 		//TODO: Stylize / make more pretty
 		this.profiles = profiles;
 		
-		this.setPrefSize(sizeX, sizeY);
-		
+		//init images
 		center = new ImageView();
 		left = new ImageView();
 		right = new ImageView();
 		
-		center.relocate(sizeX/3, 10);
-		left.relocate(0, 0);
-		right.relocate(sizeX/3*2, 10);
-		
+		//make non-selected entries transparent
+		left.setOpacity(0.8);
+		right.setOpacity(0.8);
 		
 		caption = new Label();
-		caption.setPrefSize(sizeX/2, 20);
-		caption.relocate(sizeX/3, sizeY-20);
-		
-		left.setScaleX(0.5);
-		left.setScaleY(0.5);
 
-		right.setScaleX(0.5);
-		right.setScaleY(0.5);
 
 		if (profiles != null){
 			setImages();
 		}
 		
-		this.setBorder(
-				new Border(
-					new BorderStroke(Color.BLACK, BorderStrokeStyle.DOTTED, CornerRadii.EMPTY, BorderWidths.DEFAULT)
-						)
-				);
-		
-		
 		getChildren().addAll(center,left,right,caption);
-
+	
 		left.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseControl);
 		right.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseControl);
+		
+		left.addEventHandler(MouseEvent.ANY, selectionHighlighter);
+		right.addEventHandler(MouseEvent.ANY, selectionHighlighter);
+	}
+	
+	@Override
+	public void resize(double width, double height){
+				
+		double sizeX = width;
+		double sizeY = height;
+		
+		//calculate layout parameters
+		
+		double borderX = sizeX/16;
+		double borderY = sizeY/16;
+		
+		double textSize = (sizeY-(borderY*2))/8;
+		
+		double mainFaceSize = sizeY-borderY-textSize;
+		
+		caption.setPrefSize(sizeX-(2*borderX),textSize);
+		caption.relocate(borderX, sizeY-borderY-textSize);
+		caption.setTextAlignment(TextAlignment.CENTER);
+		
+		center.setFitHeight(mainFaceSize);
+		center.setFitWidth(mainFaceSize);
+
+		
+		left.setFitWidth((mainFaceSize)/2);
+		left.setFitHeight((mainFaceSize)/2);
+
+		right.setFitWidth((mainFaceSize)/2);
+		right.setFitHeight((mainFaceSize)/2);
+		
+		//relocate
+		left.relocate(borderX, borderY+mainFaceSize/4);
+		center.relocate((sizeX-(2*borderX)-mainFaceSize-mainFaceSize)/2+borderX+mainFaceSize/2, 0);
+		right.relocate(sizeX-borderX-mainFaceSize/2, borderY+mainFaceSize/4);
 	}
 	
 	private void shiftSelection(int dir){
@@ -135,6 +157,19 @@ public class ProfilePicker extends Pane {
 			}
 			else if (event.getSource() == right){
 				shiftSelection(1);
+			}
+		}
+		
+	};
+	
+	EventHandler<MouseEvent> selectionHighlighter = new EventHandler<MouseEvent>(){
+		@Override
+		public void handle(MouseEvent event) {
+			if (event.getEventType() == MouseEvent.MOUSE_ENTERED){
+				((ImageView)event.getSource()).setOpacity(1);
+			}
+			else if (event.getEventType() == MouseEvent.MOUSE_EXITED){
+				((ImageView)event.getSource()).setOpacity(0.8);
 			}
 		}
 		

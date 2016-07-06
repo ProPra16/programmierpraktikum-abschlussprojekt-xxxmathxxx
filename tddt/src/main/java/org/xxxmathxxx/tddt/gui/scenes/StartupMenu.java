@@ -1,13 +1,20 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
+import java.util.ArrayList;
+
+import org.xxxmathxxx.tddt.gui.ProfilePicker;
 import org.xxxmathxxx.tddt.gui.WindowManager;
+import org.xxxmathxxx.tddt.profile.Profile;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
@@ -47,11 +54,30 @@ public class StartupMenu extends Scene {
 		newProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(newProfile);
 		
-		existingProfile = new Button("Use existing One");
+		existingProfile = new Button("Begin training");
 		existingProfile.setPrefSize(128, 32);
 		existingProfile.relocate(xSize/2-64,ySize - 200);
 		existingProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(existingProfile);
+		
+		//DEBUG STUFF
+		Profile dino1 = new Profile("dino1","file:profiles/graphics/test1.png");
+		Profile dino2 = new Profile("dino2","file:profiles/graphics/test2.png");
+		Profile dino3 = new Profile("dino3","file:profiles/graphics/test3.png");
+		Profile dino4 = new Profile("dino4","file:profiles/graphics/test4.png");
+		Profile dino5 = new Profile("dino5","file:profiles/graphics/test1.png");
+
+		ArrayList<Profile> profileListTest = new ArrayList<Profile>();
+		profileListTest.add(dino1);
+		profileListTest.add(dino2);
+		profileListTest.add(dino3);
+		profileListTest.add(dino4);
+		profileListTest.add(dino5);
+		
+		ProfilePicker pp = new ProfilePicker(profileListTest);
+		pp.relocate(xSize/2-300,ySize - 390);
+		pp.setPrefSize(300, 100);
+		pane.getChildren().add(pp);
 
 	}
 	

@@ -69,8 +69,7 @@ public class AnalyzeError {
 		CompileError compileError;
 		CompilationUnit compUnit;
 		Collection<CompileError> collection;
-		Iterator<CompileError> iterator;
-		
+		Iterator<CompileError> iterator;		
 		
 		for(int i2 = 0; i2 < list.size(); i2++){
 			compUnit = (CompilationUnit) list.get(i2);
