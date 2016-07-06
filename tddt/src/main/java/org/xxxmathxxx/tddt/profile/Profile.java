@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,6 +47,10 @@ public class Profile {
 	 */
 	private HashMap<Long,MedalState> achievements;
 	
+	/** Default constructor for Profile
+	 * @param name The name of the profile
+	 * @param profilePicPath The path to the profile pic
+	 */
 	public Profile(String name, String profilePicPath){
 		this.name = name;
 		this.profilePicPath = profilePicPath;
@@ -66,7 +71,7 @@ public class Profile {
 		//initialize/load picture if necessary
 		if (this.profilePic == null){
 			try{
-				this.profilePic = new Image(profilePicPath);
+				this.profilePic = new Image("file:"+profilePicPath);
 			}
 			catch(NullPointerException | IllegalArgumentException e){
 				TDDTLogManager.getInstance().logMessage("Error loading the profile picture:");
@@ -131,10 +136,10 @@ public class Profile {
 	 * @param filePath The filepath as String
 	 * @throws TDDTIOError
 	 */
-	public void saveProfileToFile(String filePath) throws TDDTIOError{
+	public void saveProfileToFile() throws TDDTIOError{
 
 		try {
-			File output = new File(filePath);
+			File output = new File("profiles/"+name);
 			output.createNewFile();
 			
 			BufferedWriter out = new BufferedWriter(new FileWriter(output));
@@ -171,6 +176,23 @@ public class Profile {
 			return achievements.get(exerciseID);
 		}
 		return null;
+	}
+	
+	public static ArrayList<Profile> getAllProfiles(){
+		TDDTLogManager.getInstance().logMessage("Loading profiles form disk ...");
+		File profileDir = new File("profiles");
+		ArrayList<Profile> ret = new ArrayList<Profile>();
+		for (File f: profileDir.listFiles()){
+			if (!f.isDirectory()){
+				try {
+					ret.add(Profile.loadProfileFromFile(f.getAbsolutePath()));
+					TDDTLogManager.getInstance().logMessage("Found profile: "+f.getName());
+				} catch (TDDTIOError e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return ret;
 	}
 	
 
