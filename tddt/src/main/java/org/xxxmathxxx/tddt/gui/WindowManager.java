@@ -22,7 +22,9 @@ public class WindowManager {
 		STARTUP_MENU,
 		NEW_PROFILE,
 		EXISTING_PROFILE,
-		STATISTICS
+		STATISTICS,
+		EDITOR,
+		EXERCISEPICKER
 	}
 	
 	private WindowManager(){
@@ -74,6 +76,12 @@ public class WindowManager {
 		}
 		if (scene == MenuType.STATISTICS){
 			//WHATEVER
+		}
+		if (scene == MenuType.EXERCISEPICKER){
+			//WHATEVER
+		}
+		if (scene == MenuType.EDITOR){
+			mainStage.setScene(new NewProfileMenu(mainPane));
 		}
 	}
 
