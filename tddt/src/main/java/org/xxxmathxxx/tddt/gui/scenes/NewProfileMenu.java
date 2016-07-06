@@ -5,6 +5,7 @@ import java.io.File;
 import org.xxxmathxxx.tddt.errors.TDDTIOError;
 import org.xxxmathxxx.tddt.gui.GraphicsHelper;
 import org.xxxmathxxx.tddt.gui.WindowManager;
+import org.xxxmathxxx.tddt.gui.WindowManager.MenuType;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.Profile;
 
@@ -25,12 +26,17 @@ import javafx.scene.text.TextAlignment;
 
 public class NewProfileMenu extends Scene {	
 	
+	//TODO: DO THE TODO STUFF and clean this mess up
+	
+	//jfx elements
 	private Label newProfile;
 	private Button create;
 	private Button picture;
 	private TextField textField;
 	private ImageView profilePic;
+	private Button back;
 	
+	//stuff
 	private String customImagePath = null;
 	
 	public NewProfileMenu (Pane pane){
@@ -45,6 +51,14 @@ public class NewProfileMenu extends Scene {
 		newProfile.setFont(new Font("Times New Roman", 20));
 		newProfile.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(newProfile);
+		
+		back = new Button("back tomainmenu");
+		back.setPrefSize(175, 32);
+		back.relocate((xSize/2)-83,ySize-40);
+		back.setFont(new Font("Times New Roman", 20));
+		back.setTextAlignment(TextAlignment.LEFT);
+		back.addEventHandler(ActionEvent.ACTION,new menuButtonHandler());
+		pane.getChildren().add(back);
 		
 		create = new Button("Confirm");
 		create.setPrefSize(128, 32);
@@ -84,7 +98,11 @@ public class NewProfileMenu extends Scene {
 					profilePic.setImage(new Image("file:"+customImagePath));
 				}
 			}
-			if (event.getSource() == create){
+			else if (event.getSource() == back){
+				WindowManager.getInstance().showMenu(MenuType.STARTUP_MENU);
+			}
+			else if (event.getSource() == create){
+				//TODO: MOVE SHITTY LOGIC OUT TO SEPERATE CLASSES, GUI SHOULD BE KEPT LIGHTWEIGHT!!!
 				if ((textField.getText().isEmpty() || textField.getText() == null)) {
 					Alert noTextDialog = new Alert(AlertType.ERROR);
 					noTextDialog.setTitle("Info");
