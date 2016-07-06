@@ -7,6 +7,7 @@ import org.xxxmathxxx.tddt.gui.EditPaneToggleButton;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -21,7 +22,7 @@ import javafx.scene.layout.Pane;
  */
 public abstract class EditPane extends Pane {
 
-	TextField te;
+	TextArea te;
 	Boolean isActive;
 
 	String currentCode;
@@ -39,7 +40,7 @@ public abstract class EditPane extends Pane {
 	public EditPane(ClassData[] classdata) {
 		isActive = false;
 
-		te = new TextField();
+		te = new TextArea();
 		te.relocate(10, 50);
 		te.setPrefSize(500, 450);
 
