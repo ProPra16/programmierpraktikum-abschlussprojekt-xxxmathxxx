@@ -45,10 +45,8 @@ public class ImageCropperTool extends Stage {
 	
 	//javafx elements
 	
-	private Group imageGroup;
-	private Rectangle selection;
+	private Rectangle selectionMarker;
 	private ImageView iv;
-	private ScrollPane ivContainer;
 	private Pane pane;
 	private Scene scene;
 	
@@ -56,8 +54,13 @@ public class ImageCropperTool extends Stage {
 
 	private Image originalImage;
 	
-	private int mouseClickX = 0;
-	private int mouseClickY = 0;
+	private double mouseClickX = 0;
+	private double mouseClickY = 0;
+	
+	private double oldX;
+	private double oldY;
+	private double oldWidth;
+	private double oldHeight;
 	
 	//statics
 	private static int profilePicSizeX = 128; //adjust as required
@@ -132,40 +135,39 @@ public class ImageCropperTool extends Stage {
 		originalImage = new Image("file:"+filePath);
 		iv = new ImageView(originalImage);
 		
-		selection = new Rectangle(0,0,profilePicSizeX,profilePicSizeY);
+		selectionMarker = new Rectangle(0,0,profilePicSizeX,profilePicSizeY);
 		
-        selection.setStroke(Color.BLUE);
-        selection.setStrokeWidth(1);
-        selection.setStrokeLineCap(StrokeLineCap.ROUND);
-        selection.setFill(Color.LIGHTBLUE.deriveColor(0, 1, 1, 0.4));
-                
-		imageGroup = new Group();
-		imageGroup.getChildren().add(iv);
-		imageGroup.getChildren().add(selection);
-		
+        selectionMarker.setStroke(Color.BLUE);
+        selectionMarker.setStrokeWidth(1);
+        selectionMarker.setStrokeLineCap(StrokeLineCap.ROUND);
+        selectionMarker.setFill(Color.LIGHTBLUE.deriveColor(0, 1, 1, 0.4));
+        
 		confirmButton = new Button("Confirm profile picture!");
 		confirmButton.setPrefSize(200, 50);
 		confirmButton.relocate(150, originalImage.getHeight());
 		confirmButton.addEventHandler(ActionEvent.ANY,confButtonHandler);
 		
-		ivContainer = new ScrollPane();
-		ivContainer.setVmax(originalImage.getWidth());
-		ivContainer.setHmax(originalImage.getHeight());
+		selectionMarker.addEventHandler(MouseEvent.MOUSE_PRESSED, MousePressedHandler);
+		selectionMarker.addEventHandler(MouseEvent.MOUSE_DRAGGED, MouseDraggedHandler);
+		selectionMarker.addEventHandler(MouseEvent.MOUSE_EXITED, MouseExitHandler);
+		selectionMarker.addEventHandler(MouseEvent.MOUSE_MOVED, MouseMovedHandler);
+		selectionMarker.addEventHandler(MouseEvent.MOUSE_RELEASED, MouseReleasedHandler);
 
-		ivContainer.setContent(imageGroup);
-		
-		ivContainer.addEventHandler(MouseEvent.MOUSE_PRESSED, MousePressedHandler);
-		ivContainer.addEventHandler(MouseEvent.MOUSE_DRAGGED, MouseDraggedHandler);
-		ivContainer.addEventHandler(MouseEvent.MOUSE_RELEASED, MouseReleasedHandler);
-		ivContainer.addEventHandler(MouseEvent.MOUSE_MOVED, MouseMovedHandler);
-		
 		this.initOwner(owner);
 		this.initModality(Modality.WINDOW_MODAL);
 		
+		
+		//javafx is intuitive and ... makes a lot of sense ... all the time
 		pane = new Pane();
 		pane.setPrefSize(originalImage.getWidth(), originalImage.getHeight()+50);
-		pane.getChildren().add(ivContainer);
+		
+		Group imageLayer = new Group();
+		imageLayer.getChildren().add(iv);
+		imageLayer.getChildren().add(selectionMarker);
+		
 		pane.getChildren().add(confirmButton);
+		pane.getChildren().add(imageLayer);
+		
 		
 		scene = new Scene(pane);	
 		
@@ -194,11 +196,11 @@ public class ImageCropperTool extends Stage {
         	namingCounter ++;
         }
 
-        int width = (int) selection.getWidth();
-        int height = (int) selection.getHeight();
+        int width = (int) selectionMarker.getWidth();
+        int height = (int) selectionMarker.getHeight();
 
         SnapshotParameters parameters = new SnapshotParameters();
-        parameters.setViewport(new Rectangle2D( selection.getX(), selection.getY(), width, height));
+        parameters.setViewport(new Rectangle2D( selectionMarker.getX(), selectionMarker.getY(), width, height));
 
         WritableImage wi = new WritableImage( width, height);
         iv.snapshot(parameters, wi);
@@ -228,11 +230,12 @@ public class ImageCropperTool extends Stage {
 
 	
 	private boolean isOnBottomRightCorner(MouseEvent event) {
-		if ( // 2 pix offset to enable easier selection
-				event.getX() > selection.getX() + selection.getWidth() - 2
-				&& event.getX() < selection.getX() + selection.getWidth() + 2
-				&& event.getY() > selection.getY() + selection.getHeight() - 2
-				&& event.getY() < selection.getY() + selection.getHeight() + 2
+		int tolerance = 3;
+		if (
+				event.getX() > selectionMarker.getX() + selectionMarker.getWidth() - tolerance
+				&& event.getX() < selectionMarker.getX() + selectionMarker.getWidth() + tolerance
+				&& event.getY() > selectionMarker.getY() + selectionMarker.getHeight() - tolerance
+				&& event.getY() < selectionMarker.getY() + selectionMarker.getHeight() + tolerance
 			) 
 		{
 			return true;
@@ -242,10 +245,10 @@ public class ImageCropperTool extends Stage {
 	
 	private boolean isOnSelection(MouseEvent event) {
 		if (
-				event.getX() > selection.getX()
-				&& event.getX() < selection.getX() + selection.getWidth()
-				&& event.getY() > selection.getY()
-				&& event.getY() < selection.getY() + selection.getHeight()
+				event.getX() > selectionMarker.getX()
+				&& event.getX() < selectionMarker.getX() + selectionMarker.getWidth()
+				&& event.getY() > selectionMarker.getY()
+				&& event.getY() < selectionMarker.getY() + selectionMarker.getHeight()
 			) 
 		{
 			return true;
@@ -263,9 +266,34 @@ public class ImageCropperTool extends Stage {
         	 else if (isOnSelection(event)){
         		 scene.setCursor(Cursor.MOVE);
         	 }
-             else{ //mouse click to some other location
-        		 scene.setCursor(Cursor.DEFAULT);
-             }
+         }
+
+     };
+     
+	 EventHandler<MouseEvent> MouseExitHandler = new EventHandler<MouseEvent>() {
+
+         @Override
+         public void handle(MouseEvent event) {
+        	scene.setCursor(Cursor.DEFAULT);
+         }
+
+     };
+     
+	 EventHandler<MouseEvent> MouseReleasedHandler = new EventHandler<MouseEvent>() {
+
+         @Override
+         public void handle(MouseEvent event) {
+        	 if (
+        			 selectionMarker.getLayoutX() < 0
+        			 || selectionMarker.getLayoutY() < 0
+        			 || selectionMarker.getLayoutX() + selectionMarker.getWidth() > originalImage.getWidth()
+        			 || selectionMarker.getLayoutY() + selectionMarker.getHeight() > originalImage.getHeight()
+
+        			 ){
+        		 selectionMarker.relocate(oldX, oldY);
+        		 selectionMarker.setWidth(oldWidth);
+        		 selectionMarker.setHeight(oldHeight);
+        	 }
          }
 
      };
@@ -275,19 +303,30 @@ public class ImageCropperTool extends Stage {
 
          @Override
          public void handle(MouseEvent event) {
-        	 if (isOnBottomRightCorner(event)&& event.getButton() == MouseButton.PRIMARY){
-            	 //note the click location for later
-            	mouseClickX = (int) event.getX();
-            	mouseClickY = (int) event.getY();	 
-            	mode = OperationMode.SCALING_SELECTION;
-            	TDDTLogManager.getInstance().logMessage("Rescaling selection ...");
+        	 if (event.getButton() == MouseButton.PRIMARY){
+        		 
+        		 oldX = selectionMarker.getLayoutX();
+        		 oldY = selectionMarker.getLayoutY();
+        		 oldWidth = selectionMarker.getWidth();
+        		 oldHeight = selectionMarker.getHeight();
+
+        		 
+             	mouseClickX = event.getSceneX()-selectionMarker.getLayoutX();
+             	mouseClickY = event.getSceneY()-selectionMarker.getLayoutY();	
+             	
+             	//System.out.println("MOUSECLICK:"+mouseClickX+"/"+mouseClickY);
+             	
+            	 if (isOnBottomRightCorner(event)&& event.getButton() == MouseButton.PRIMARY){
+                	 //note the click location for later 
+                	mode = OperationMode.SCALING_SELECTION;
+            	 }
+            	 else if(isOnSelection(event)){
+            		 mode = OperationMode.MOVING_SELECTION;
+            	 }
+                 else{ //mouse click to some other location
+                	 mode = OperationMode.NONE;
+                 }
         	 }
-        	 else if(isOnSelection(event)){
-        		 mode = OperationMode.MOVING_SELECTION;
-        	 }
-             else{ //mouse click to some other location
-            	 mode = OperationMode.NONE;
-             }
          }
 
      };
@@ -296,48 +335,29 @@ public class ImageCropperTool extends Stage {
 
          @Override
          public void handle(MouseEvent event) {
-
+        					
+				if (mode == OperationMode.SCALING_SELECTION){
+					
+					double diffX = (event.getSceneX() - (selectionMarker.getLayoutX()+selectionMarker.getWidth()));
+					double diffY = (event.getSceneY() - (selectionMarker.getLayoutY()+selectionMarker.getHeight()));
+					double change;
+					
+					if (Math.abs(diffX) > Math.abs(diffY)) {
+						change = diffX;
+					} else {
+						change = diffY;
+					}
+					
+					selectionMarker.setWidth(selectionMarker.getWidth() + change);
+					selectionMarker.setHeight(selectionMarker.getHeight() + change);
+				}
+				else if (mode == OperationMode.MOVING_SELECTION){
+					double diffX = (event.getSceneX() - (selectionMarker.getLayoutX()+mouseClickX));
+					double diffY = (event.getSceneY() - (selectionMarker.getLayoutY()+mouseClickY));
+					System.out.println(diffX+"/"+diffY);
+		        	selectionMarker.relocate(selectionMarker.getLayoutX()+diffX, selectionMarker.getLayoutY()+diffY);
+				}
          }
-     };
-
-
-     EventHandler<MouseEvent> MouseReleasedHandler = new EventHandler<MouseEvent>() {
-
-		@Override
-		public void handle(MouseEvent event) {
-			if (mode == OperationMode.SCALING_SELECTION) {
-				mode = OperationMode.NONE;
-				// detect "bigger" change
-				double change;
-				double diffX = (event.getX() - mouseClickX);
-				double diffY = (event.getY() - mouseClickY);
-				if (diffX > diffY) {
-					change = diffX;
-				} else {
-					change = diffY;
-				}
-				TDDTLogManager.getInstance().logMessage("Changing selection size by value: " + change);
-				if (selection.getWidth() + change > 0 
-						//TODO: Add other "out of bounds" conditions
-						
-						)
-					
-					
-				selection.setWidth(selection.getWidth() + change);
-				selection.setHeight(selection.getHeight() + change);
-			} 
-			else if (mode == OperationMode.MOVING_SELECTION) {
-				double newX = event.getX() - 0.5 * selection.getWidth();
-				double newY = event.getY() - 0.5 * selection.getHeight();
-				if (newX > 0 && newX < originalImage.getWidth() + selection.getWidth()) {
-					selection.setX(newX);
-				}
-				if (newY > 0 && newY < originalImage.getHeight() + selection.getHeight()) {
-					selection.setY(newY);
-				}
-			}
-		}
-
      };
      
  	EventHandler<ActionEvent> confButtonHandler = new EventHandler<ActionEvent>(){
