@@ -19,14 +19,18 @@ import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeLineCap;
@@ -49,7 +53,6 @@ public class ImageCropperTool extends Stage {
 	private Scene scene;
 	
 	private Button confirmButton;
-	private Button otherPicture;
 
 	private Image originalImage;
 	
@@ -67,6 +70,53 @@ public class ImageCropperTool extends Stage {
 	private OperationMode mode;
 	
 	private String imagePath;
+	
+	public static String showImageCropper(Stage owner){
+		
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new ExtensionFilter("Image files","*.png","*.jpg","*.jpeg"));
+
+        File file = fileChooser.showOpenDialog(owner);
+        
+        if (file == null){
+        	TDDTLogManager.getInstance().logMessage("No valid file opened!");
+        	return null;
+        }
+        else{
+        	TDDTLogManager.getInstance().logMessage("Starting Image Cropper for file: "+file.getAbsolutePath());
+        }
+        //Sanity checks
+        if (file.length()/ (1024 * 1024) > 50){ //50 MB limit
+        	TDDTLogManager.getInstance().logMessage("You tried to open an insane and sick image file, pls don't!");
+			Alert noTextDialog = new Alert(AlertType.ERROR);
+			noTextDialog.setTitle("Error");
+			noTextDialog.setHeaderText("Image too large!");
+			String s ="You can only use images < 50 MB for your profile picture!";
+			noTextDialog.setContentText(s);
+			//the following line is pure BS but javafx is still buggy
+			noTextDialog.getDialogPane().getChildren().stream().filter(node -> node instanceof Label).forEach(node -> ((Label)node).setMinHeight(Region.USE_PREF_SIZE));
+			noTextDialog.showAndWait();
+        	return null;
+        }
+        
+        String filePath = file.getAbsolutePath();
+		Image testImage = new Image("file:"+filePath);
+		if (testImage.getWidth() < 128 || testImage.getHeight() < 128){
+        	TDDTLogManager.getInstance().logMessage("You tried to open a tiny image file, pls don't!");
+			Alert noTextDialog = new Alert(AlertType.ERROR);
+			noTextDialog.setTitle("Error");
+			noTextDialog.setHeaderText("Image too small!");
+			String s ="Your profile picture needs to have at least 128x128 pixels!";
+			noTextDialog.setContentText(s);
+			//the following line is pure BS but javafx is still buggy
+			noTextDialog.getDialogPane().getChildren().stream().filter(node -> node instanceof Label).forEach(node -> ((Label)node).setMinHeight(Region.USE_PREF_SIZE));
+			noTextDialog.showAndWait();
+        	return null;
+		}
+		ImageCropperTool instance = new ImageCropperTool(filePath,owner);
+		instance.showAndWait();
+		return instance.imagePath;
+	}
 
 	/**This creates a new stage, that allows you to select a square region of an image
 	 * Only call this constructor if you are 100% sure that the filePath points to a valid Image
@@ -77,6 +127,7 @@ public class ImageCropperTool extends Stage {
 		
 		this.setTitle("Image Cropping Tool");
 		
+
 		
 		originalImage = new Image("file:"+filePath);
 		iv = new ImageView(originalImage);
@@ -97,11 +148,6 @@ public class ImageCropperTool extends Stage {
 		confirmButton.relocate(150, originalImage.getHeight());
 		confirmButton.addEventHandler(ActionEvent.ANY,confButtonHandler);
 		
-		otherPicture = new Button("Upload another picture!");
-		otherPicture.setPrefSize(200, 50);
-		otherPicture.relocate(600, originalImage.getHeight());
-		otherPicture.addEventHandler(ActionEvent.ANY,confButtonHandler);
-		
 		ivContainer = new ScrollPane();
 		ivContainer.setVmax(originalImage.getWidth());
 		ivContainer.setHmax(originalImage.getHeight());
@@ -120,7 +166,6 @@ public class ImageCropperTool extends Stage {
 		pane.setPrefSize(originalImage.getWidth(), originalImage.getHeight()+50);
 		pane.getChildren().add(ivContainer);
 		pane.getChildren().add(confirmButton);
-		pane.getChildren().add(otherPicture);
 		
 		scene = new Scene(pane);	
 		
@@ -131,13 +176,24 @@ public class ImageCropperTool extends Stage {
 	private void cropAndExport() {
 		//TODO: Feel free to replace the fileChooser with a predefined save location for all user profiles,
 		//maybe encoded by UserID/ProfileID
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new ExtensionFilter("Image files", ".png"));
 
-        File file = fileChooser.showSaveDialog(this);
-        if (file == null){
-            return;
+        File profileImagesDir = new File("profiles/pics");
+        
+        //create if necessary
+        profileImagesDir.mkdirs();
+        
+        int namingCounter = 0;
+        boolean foundName = false;
+        File file = null;
+        
+        while (foundName != true){
+        	file = new File("profiles/pics/"+namingCounter+".png");
+        	if (!file.exists()){
+        		foundName = true;
+        	}
+        	namingCounter ++;
         }
+
         int width = (int) selection.getWidth();
         int height = (int) selection.getHeight();
 
@@ -169,10 +225,7 @@ public class ImageCropperTool extends Stage {
 
     }
 	
-	public String getImagePath(){
-		this.showAndWait();
-		return imagePath;
-	}
+
 	
 	private boolean isOnBottomRightCorner(MouseEvent event) {
 		if ( // 2 pix offset to enable easier selection

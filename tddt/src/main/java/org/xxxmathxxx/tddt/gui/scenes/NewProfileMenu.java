@@ -1,8 +1,9 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
+import java.io.File;
+
 import org.xxxmathxxx.tddt.gui.GraphicsHelper;
 import org.xxxmathxxx.tddt.gui.WindowManager;
-import org.xxxmathxxx.tddt.gui.WindowManager.MenuType;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 
 import javafx.event.ActionEvent;
@@ -27,6 +28,8 @@ public class NewProfileMenu extends Scene {
 	private Button picture;
 	private TextField textField;
 	private ImageView profilePic;
+	
+	private String customImagePath = null;
 	
 	public NewProfileMenu (Pane pane){
 		super(pane);
@@ -70,8 +73,14 @@ public class NewProfileMenu extends Scene {
 		@Override
 		public void handle(ActionEvent event) {
 			if (event.getSource() == picture){
-				String newImage = WindowManager.getInstance().startImageCropper();
-				profilePic.setImage(new Image("file:"+newImage));
+				String newPath = WindowManager.getInstance().startImageCropper();
+				if (newPath != null){
+					if (customImagePath != null){ //prevent storing of unused dumb images
+						new File(customImagePath).delete();
+					}
+					customImagePath = newPath;
+					profilePic.setImage(new Image("file:"+customImagePath));
+				}
 			}
 			if (event.getSource() == create){
 				if ((textField.getText().isEmpty() || textField.getText() == null)) {

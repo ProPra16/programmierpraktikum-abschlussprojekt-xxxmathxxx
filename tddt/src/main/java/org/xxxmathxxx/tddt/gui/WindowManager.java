@@ -86,7 +86,7 @@ public class WindowManager {
 	}
 
 	public String startImageCropper() {
-		String ret = new ImageCropperTool("graphics/test.jpg",mainStage).getImagePath();
+		String ret = ImageCropperTool.showImageCropper(mainStage);
 		return ret;
 	}
 	
