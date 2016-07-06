@@ -1,12 +1,15 @@
 package org.xxxmathxxx.tddt.editorpanes;
 
-import org.xxxmathxxx.tddt.gui.TextEditor;
+
+import javafx.scene.control.TextField;
+
+//import org.xxxmathxxx.tddt.gui.ide.TextEditor; Until its finished
 
 import javafx.scene.layout.Pane;
 
 public abstract class EditPane extends Pane {
 
-	TextEditor te;
+	TextField te;
 	Boolean isActive;
 	
 	String currentCode;
@@ -15,7 +18,7 @@ public abstract class EditPane extends Pane {
 	{	
 		isActive=false;
 		
-		te= new TextEditor();
+		te= new TextField();
 		te.setPrefSize(500, 450);
 		
 		

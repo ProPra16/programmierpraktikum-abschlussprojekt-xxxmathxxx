@@ -1,7 +1,9 @@
 package org.xxxmathxxx.tddt.gui;
 
 import org.xxxmathxxx.tddt.gui.scenes.StartupMenu;
+import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.MedalState;
+import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.gui.hints.HintCollection;
 import org.xxxmathxxx.tddt.gui.scenes.Editor;
 import org.xxxmathxxx.tddt.gui.scenes.ExercisePicker;
@@ -19,6 +21,8 @@ public class WindowManager {
 	
 	private Stage mainStage;
 	private Pane mainPane;
+	
+	private Exercise selectedExercise;
 	
 	public enum MenuType{
 		STARTUP_MENU,
@@ -83,7 +87,14 @@ public class WindowManager {
 			mainStage.setScene(new ExercisePicker(mainPane));
 		}
 		if (scene == MenuType.EDITOR){
-			mainStage.setScene(new Editor(mainPane));
+			if(selectedExercise!=null)
+			{
+				mainStage.setScene(new Editor(mainPane, selectedExercise));
+			}
+			else
+			{
+				TDDTLogManager.getInstance().logMessage("Could not start editor. Maybe there is no exercise selected?");
+			}
 		}
 	}
 
@@ -98,6 +109,11 @@ public class WindowManager {
 	public String startImageCropper() {
 		String ret = ImageCropperTool.showImageCropper(mainStage);
 		return ret;
+	}
+	
+	public void setSelectedExercise(Exercise ex)
+	{
+		this.selectedExercise=ex;
 	}
 	
 }

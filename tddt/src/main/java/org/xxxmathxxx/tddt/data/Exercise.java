@@ -8,10 +8,9 @@ public class Exercise {
 	public String name;
 	public String description;
 	public String id;
-	public ExerciseClass[] referencedClasses; // TODO: Wrap it
-	public ExerciseTest[] referencedTests; // TODO: This one too
-	public ExerciseTest[] referencedFinishTests; // TODO: yeah youve guessed
-													// right. WRAP IT UP BOY
+	public ExerciseClass[] referencedClasses; 
+	public ExerciseTest[] referencedTests; 
+
 	ExerciseConfig config;
 
 	/**
@@ -31,7 +30,6 @@ public class Exercise {
 		this.description = description;
 		this.referencedClasses = referencedClasses;
 		this.referencedTests = referencedTests;
-		this.referencedFinishTests = referencedFinishTests;
 		
 		this.config=config;
 	}
@@ -62,13 +60,6 @@ public class Exercise {
 			System.out.println("code:\n "+referencedTests[i].code.rawText);
 		}
 		
-		System.out.println("\referencedFinishTests:");
-		
-		for(int i=0; i<referencedFinishTests.length; i++)
-		{
-			System.out.println("name: "+referencedFinishTests[i].name);
-			System.out.println("code:\n "+referencedFinishTests[i].code.rawText);
-		}
 		
 		System.out.println("\nConfig:");
 		System.out.println("Babysteps:\n"

@@ -1,10 +1,16 @@
 package org.xxxmathxxx.tddt.editorpanes;
 
+import org.xxxmathxxx.tddt.data.ExerciseTest;
+
 public class TestEditPane extends EditPane{
 
+	ExerciseTest[] tests;
 	
-	public TestEditPane()
+	public TestEditPane(ExerciseTest[] tests)
 	{
-		te.setText("Du befindest dich im TestEditMode");	
+		super();
+		te.setText("Test");
+		
+		this.tests=tests;
 	}
 }

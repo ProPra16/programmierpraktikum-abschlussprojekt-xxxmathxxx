@@ -1,5 +1,6 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
+import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.editorpanes.*;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.tracking.Tracker;
@@ -20,20 +21,24 @@ public class Editor extends Scene {
 	//Teschebycheff's Tracker
 	Tracker tracker;
 	
+	//Menus
 	Pane pane;
 	Button switchButton;
 	
-	public Editor(Pane pane) {
+	//LoadedExercise
+	Exercise ex;
+	
+	public Editor(Pane pane, Exercise ex) {
 		super(pane);
-		
+		this.ex=ex;
 		this.pane=pane;
 		
 		double xSize = pane.getPrefWidth();
 		double ySize = pane.getPrefHeight();
 		
 		//Initialise Panes
-		tep= new TestEditPane();
-		cep= new CodeEditPane();
+		tep= new TestEditPane(ex.referencedTests);
+		cep= new CodeEditPane(ex.referencedClasses);
 		tep.switchActive();
 		
 		tep.relocate(10,10);

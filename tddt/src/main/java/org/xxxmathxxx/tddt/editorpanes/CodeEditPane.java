@@ -1,9 +1,16 @@
 package org.xxxmathxxx.tddt.editorpanes;
 
+import org.xxxmathxxx.tddt.data.ExerciseClass;
+
 public class CodeEditPane extends EditPane {
 	
-	public CodeEditPane()
+	ExerciseClass[] classes;
+	
+	public CodeEditPane(ExerciseClass[] classes)
 	{
-		te.setText("Du befindest dich im CodeEditMode");	
+		super();
+		te.setText("Code");
+		
+		this.classes=classes;	
 	}
 }
