@@ -50,7 +50,7 @@ public class ProfilePicker extends Pane {
 		
 		caption = new Label();
 		caption.setPrefSize(sizeX/2, 20);
-		caption.relocate(sizeX/4, sizeY-20);
+		caption.relocate(sizeX/3, sizeY-20);
 		
 		left.setScaleX(0.5);
 		left.setScaleY(0.5);

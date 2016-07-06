@@ -43,13 +43,13 @@ public class StartupMenu extends Scene {
 		
 		newProfile = new Button("New Profile");
 		newProfile.setPrefSize(128, 32);
-		newProfile.relocate(xSize/2-64,ySize - 160);
+		newProfile.relocate(xSize/2-64,ySize - 250);
 		newProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(newProfile);
 		
 		existingProfile = new Button("Use existing One");
 		existingProfile.setPrefSize(128, 32);
-		existingProfile.relocate(xSize/2-64,ySize - 110);
+		existingProfile.relocate(xSize/2-64,ySize - 200);
 		existingProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(existingProfile);
 

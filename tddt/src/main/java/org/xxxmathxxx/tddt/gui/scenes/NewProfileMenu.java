@@ -35,13 +35,13 @@ public class NewProfileMenu extends Scene {
 		
 		create = new Button("Confirm");
 		create.setPrefSize(128, 32);
-		create.relocate(xSize/2-64,ySize - 100);
+		create.relocate(xSize/2-64,ySize - 200);
 		create.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(create);
 		
 		picture = new Button("Upload a Picture");
 		picture.setPrefSize(128, 32);
-		picture.relocate(xSize/2-64,ySize - 140);
+		picture.relocate(xSize/2-64,ySize - 250);
 		picture.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(picture);
 		
@@ -65,7 +65,7 @@ public class NewProfileMenu extends Scene {
 		        } else {
 		            System.out.println("Welcome " + textField.getText() + "!");
 		            System.out.println("New Profile has been created!");
-		            //TODO: Switch back to other menu
+		            WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
 		        }
 			}
 		}

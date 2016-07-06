@@ -2,7 +2,7 @@ package org.xxxmathxxx.tddt.gui.scenes;
 
 import java.util.ArrayList;
 
-import org.xxxmathxxx.tddt.gui.AchievementPopup;
+//import org.xxxmathxxx.tddt.gui.AchievementPopup;
 import org.xxxmathxxx.tddt.gui.ProfilePicker;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.profile.MedalState;
@@ -20,7 +20,6 @@ import javafx.scene.text.TextAlignment;
 public class ExistingProfileMenu extends Scene {
 	
 	private Label infoText;
-	private Label profile;
 	private Label loggedInAs;
 	private Button newTask;
 	private Button statistics;
@@ -35,7 +34,7 @@ public class ExistingProfileMenu extends Scene {
 		
 		infoText = new Label("You are almost ready to go!");
 		infoText.setPrefSize(240, 32);
-		infoText.relocate((xSize/2)-60,70);
+		infoText.relocate((xSize/2)+10,100);
 		infoText.setFont(new Font("Times New Roman", 20));
 		infoText.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(infoText);
@@ -46,28 +45,21 @@ public class ExistingProfileMenu extends Scene {
 		loggedInAs.setFont(new Font("Times New Roman", 18));
 		pane.getChildren().add(loggedInAs);
 		
-		profile = new Label("Aranior");
-		profile.setPrefSize(280, 32);
-		profile.relocate((xSize/2)-265,ySize-140);
-		profile.setFont(new Font("Times New Roman", 20));
-		profile.setTextAlignment(TextAlignment.LEFT);
-		pane.getChildren().add(profile);
-		
 		newTask = new Button("Start a new Exercise!");
 		newTask.setPrefSize(150, 50);
-		newTask.relocate(xSize/2-20,ySize - 180);
+		newTask.relocate(xSize/2+45,ySize - 430);
 		newTask.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(newTask);
 		
 		notYou = new Button("Not you?");
 		notYou.setPrefSize(100, 30);
-		notYou.relocate(xSize/2-282,ySize - 105);
+		notYou.relocate(xSize/2-282,ySize - 255);
 		notYou.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(notYou);
 		
 		statistics = new Button("Statistics");
 		statistics.setPrefSize(150, 50);
-		statistics.relocate(xSize/2-20,ySize - 170);
+		statistics.relocate(xSize/2+45,ySize - 360);
 		statistics.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(statistics);
 		
@@ -87,7 +79,7 @@ public class ExistingProfileMenu extends Scene {
 		
 		ProfilePicker pp = new ProfilePicker(profileListTest);
 		pp.setPrefSize(150, 50);
-		pp.relocate(xSize/2-20,ySize - 470);
+		pp.relocate(xSize/2-380,ySize - 470);
 		pp.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(pp);
 		
@@ -99,13 +91,14 @@ public class ExistingProfileMenu extends Scene {
 		@Override
 		public void handle(ActionEvent event) {
 			if (event.getSource() == newTask){
+				System.out.println("Exercises not yet implemented!");
 			}
 			if (event.getSource() == statistics){
 				//for testing
 				WindowManager.getInstance().createAchievementPopup(MedalState.GOLD);
 			}
 			if (event.getSource() == notYou){
-				
+				WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
 			}
 		}
 	}
