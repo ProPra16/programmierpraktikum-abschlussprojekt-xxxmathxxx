@@ -1,11 +1,12 @@
 .label {
-   	-fx-text-fill: #333333;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+	-fx-text-fill: #111111;
 }
 
 .button {
-	-fx-font-size: 13px;
 	-fx-font-weight: bold;
-    -fx-text-fill: #333333;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+	-fx-font-size: 13px
+}
+
+.root {
+     -fx-background-image: url("file:graphics/menubackgrounds/Background1.jpg");
 }
