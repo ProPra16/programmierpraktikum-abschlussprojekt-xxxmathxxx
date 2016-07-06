@@ -1,6 +1,7 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
 import org.xxxmathxxx.tddt.gui.WindowManager;
+import org.xxxmathxxx.tddt.io.ExerciseReader;
 import org.xxxmathxxx.tddt.profile.MedalState;
 
 import javafx.event.ActionEvent;
@@ -47,6 +48,14 @@ public class ExercisePicker extends Scene {
 		@Override
 		public void handle(ActionEvent event) {
 			if (event.getSource()==start){
+				ExerciseReader temp=new ExerciseReader();
+				
+				try {
+					WindowManager.getInstance().setSelectedExercise(temp.readExercise("exercises/RomanNumbers.xml"));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				WindowManager.getInstance().showMenu(WindowManager.MenuType.EDITOR);
 			}
 		}

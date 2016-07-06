@@ -6,11 +6,13 @@ public class TestEditPane extends EditPane{
 
 	ExerciseTest[] tests;
 	
+	
 	public TestEditPane(ExerciseTest[] tests)
 	{
-		super();
-		te.setText("Test");
+		super(tests);
 		
 		this.tests=tests;
+		
+		
 	}
 }

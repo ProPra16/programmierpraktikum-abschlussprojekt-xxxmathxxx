@@ -6,8 +6,8 @@ package org.xxxmathxxx.tddt.data;
  */
 public abstract class ClassData 
 {
-	String name;
-	JavaCode code;
+	public String name;
+	public JavaCode code;
 	
 	/**
 	 * @param name Name of the class

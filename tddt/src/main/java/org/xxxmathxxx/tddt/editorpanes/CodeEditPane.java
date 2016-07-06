@@ -8,8 +8,7 @@ public class CodeEditPane extends EditPane {
 	
 	public CodeEditPane(ExerciseClass[] classes)
 	{
-		super();
-		te.setText("Code");
+		super(classes);
 		
 		this.classes=classes;	
 	}
