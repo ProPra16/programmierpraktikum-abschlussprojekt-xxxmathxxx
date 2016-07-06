@@ -41,8 +41,11 @@ public class ProfilePicker extends Pane {
 		caption = new Label();
 
 
-		if (profiles != null){
+		if (!profiles.isEmpty()){
 			setImages();
+		}
+		else{
+			caption.setText("No profile available, you need to create one!");
 		}
 		
 		getChildren().addAll(center,left,right,caption);
@@ -105,13 +108,11 @@ public class ProfilePicker extends Pane {
 	}
 
 	private void setImages() {
+		
 		Profile centerProfile = profiles.get(index);
-		if (centerProfile != null){
-			centerProfile.showImageInJavaFXImageView(center);
-		}
-		else{
-			center.setImage(GraphicsHelper.defaultProfilePicture(128));
-		}
+		
+		centerProfile.showImageInJavaFXImageView(center);
+
 		
 		if (index+1 < profiles.size()){
 			Profile rightProfile = profiles.get(index+1);
@@ -120,7 +121,6 @@ public class ProfilePicker extends Pane {
 			}
 			else{
 				right.setImage(null);
-				caption.setText("No profile available, you need to create one!");
 			}
 		}
 		else{
