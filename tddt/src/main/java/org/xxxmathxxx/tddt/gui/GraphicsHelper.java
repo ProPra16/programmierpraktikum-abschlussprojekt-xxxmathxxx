@@ -33,4 +33,8 @@ public final class GraphicsHelper {
 		return null;
 	}
 	
+	public static Image defaultProfilePicture(double pixelSize){
+		return new Image("file:graphics/unknownProfile.png",pixelSize,pixelSize,true,true);
+	}
+	
 }

@@ -1,12 +1,9 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
-import java.util.ArrayList;
 
 //import org.xxxmathxxx.tddt.gui.AchievementPopup;
-import org.xxxmathxxx.tddt.gui.ProfilePicker;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.profile.MedalState;
-import org.xxxmathxxx.tddt.profile.Profile;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

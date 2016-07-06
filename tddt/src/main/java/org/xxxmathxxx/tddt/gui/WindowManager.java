@@ -6,6 +6,7 @@ import org.xxxmathxxx.tddt.gui.hints.HintCollection;
 import org.xxxmathxxx.tddt.gui.scenes.ExistingProfileMenu;
 import org.xxxmathxxx.tddt.gui.scenes.NewProfileMenu;
 
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -21,8 +22,7 @@ public class WindowManager {
 		STARTUP_MENU,
 		NEW_PROFILE,
 		EXISTING_PROFILE,
-		STATISTICS, 
-		IMAGE_CROPPER
+		STATISTICS
 	}
 	
 	private WindowManager(){
@@ -72,9 +72,6 @@ public class WindowManager {
 		if (scene == MenuType.NEW_PROFILE){
 			mainStage.setScene(new NewProfileMenu(mainPane));
 		}
-		if (scene == MenuType.IMAGE_CROPPER){
-			new ImageCropperTool("graphics/test.jpg",mainStage).show(); //for testing purpose
-		}
 		if (scene == MenuType.STATISTICS){
 			//WHATEVER
 		}
@@ -86,6 +83,11 @@ public class WindowManager {
 	
 	public void createAchievementPopup(MedalState medal){
 		new AchievementPopup(medal).show(mainStage);
+	}
+
+	public String startImageCropper() {
+		String ret = new ImageCropperTool("graphics/test.jpg",mainStage).getImagePath();
+		return ret;
 	}
 	
 }

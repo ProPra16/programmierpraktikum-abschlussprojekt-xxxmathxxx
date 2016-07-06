@@ -65,6 +65,8 @@ public class ImageCropperTool extends Stage {
 	};
 	
 	private OperationMode mode;
+	
+	private String imagePath;
 
 	/**This creates a new stage, that allows you to select a square region of an image
 	 * Only call this constructor if you are 100% sure that the filePath points to a valid Image
@@ -120,10 +122,11 @@ public class ImageCropperTool extends Stage {
 		pane.getChildren().add(confirmButton);
 		pane.getChildren().add(otherPicture);
 		
-		scene = new Scene(pane);		
-
+		scene = new Scene(pane);	
+		
 		this.setScene(scene);
 	}
+	
 	
 	private void cropAndExport() {
 		//TODO: Feel free to replace the fileChooser with a predefined save location for all user profiles,
@@ -154,6 +157,7 @@ public class ImageCropperTool extends Stage {
 
         try {
             ImageIO.write(bufImageRGB, "png", file); 
+            imagePath = file.getAbsolutePath();
             TDDTLogManager.getInstance().logMessage("A cropped image has been stored @ " + file.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
@@ -164,6 +168,11 @@ public class ImageCropperTool extends Stage {
         //TODO: return some information about where the profile pic is stored to someone else
 
     }
+	
+	public String getImagePath(){
+		this.showAndWait();
+		return imagePath;
+	}
 	
 	private boolean isOnBottomRightCorner(MouseEvent event) {
 		if ( // 2 pix offset to enable easier selection

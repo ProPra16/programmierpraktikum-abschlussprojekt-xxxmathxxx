@@ -2,28 +2,20 @@ package org.xxxmathxxx.tddt.gui;
 
 import java.util.ArrayList;
 
-import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.Profile;
 
 import javafx.event.EventHandler;
-import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
+
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 
 public class ProfilePicker extends Pane {
 	
 	private ArrayList <Profile> profiles;
+	
 	
 	private ImageView center;
 	private ImageView left;
@@ -118,7 +110,7 @@ public class ProfilePicker extends Pane {
 			centerProfile.showImageInJavaFXImageView(center);
 		}
 		else{
-			center.setImage(null);
+			center.setImage(GraphicsHelper.defaultProfilePicture(128));
 		}
 		
 		if (index+1 < profiles.size()){
@@ -128,6 +120,7 @@ public class ProfilePicker extends Pane {
 			}
 			else{
 				right.setImage(null);
+				caption.setText("No profile available, you need to create one!");
 			}
 		}
 		else{
