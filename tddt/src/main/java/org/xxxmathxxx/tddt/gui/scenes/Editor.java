@@ -2,7 +2,6 @@ package org.xxxmathxxx.tddt.gui.scenes;
 
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.editorpanes.*;
-import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.tracking.Tracker;
 
 import javafx.event.ActionEvent;
@@ -11,6 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
+/**
+ * @author Fabian
+ *	Interface class to create an editor
+ */
 public class Editor extends Scene {
 
 	//Editor Panes
@@ -28,6 +31,11 @@ public class Editor extends Scene {
 	//LoadedExercise
 	Exercise ex;
 	
+	/**
+	 * Constructor
+	 * @param pane See Scene
+	 * @param ex Exercise to be loaded
+	 */
 	public Editor(Pane pane, Exercise ex) {
 		super(pane);
 		this.ex=ex;

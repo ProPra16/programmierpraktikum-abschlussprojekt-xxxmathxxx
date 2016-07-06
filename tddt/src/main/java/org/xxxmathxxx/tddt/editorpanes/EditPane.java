@@ -15,6 +15,10 @@ import javafx.scene.control.ToggleGroup;
 
 import javafx.scene.layout.Pane;
 
+/**
+ * @author Fabian
+ * Used to calculate logic of the editor
+ */
 public abstract class EditPane extends Pane {
 
 	TextField te;
@@ -28,6 +32,10 @@ public abstract class EditPane extends Pane {
 	
 	ClassData[] classdata;
 
+	/**
+	 * Used by Editor.java in package gui
+	 * @param classdata
+	 */
 	public EditPane(ClassData[] classdata) {
 		isActive = false;
 
@@ -66,10 +74,17 @@ public abstract class EditPane extends Pane {
 
 	}
 
+	/**
+	 * Returns is Pane is active
+	 * @return activeness
+	 */
 	public Boolean isActive() {
 		return isActive;
 	}
 
+	/**
+	 * Inverts activeness
+	 */
 	public void switchActive() {
 		if (isActive)
 			isActive = false;
@@ -77,6 +92,10 @@ public abstract class EditPane extends Pane {
 			isActive = true;
 	}
 
+	/**
+	 * Switches to specified document
+	 * @param index document to be switched to
+	 */
 	private void switchActiveDocument(int index) {
 		if(index!=selectedPage)
 		{
@@ -88,6 +107,10 @@ public abstract class EditPane extends Pane {
 		}
 	}
 
+	/**
+	 * Loads Document and saves old one
+	 * @param index
+	 */
 	private void loadPage(int index) {
 		
 		classdata[selectedPage].code.rawText=te.getText();
