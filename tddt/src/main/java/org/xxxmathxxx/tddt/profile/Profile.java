@@ -132,31 +132,11 @@ public class Profile {
 		}
 	}
 	
-	/**Saves the Profile instance to a file at the given path, the file is created if it doesn't exist yet.
-	 * @param filePath The filepath as String
+	/**Saves the Profile instance to a file at the standart path, the file is created if it doesn't exist yet.
 	 * @throws TDDTIOError
 	 */
 	public void saveProfileToFile() throws TDDTIOError{
-
-		try {
-			File output = new File("profiles/"+name);
-			output.createNewFile();
-			
-			BufferedWriter out = new BufferedWriter(new FileWriter(output));
-			
-			out.write(name+"\n");
-			out.write(profilePicPath+"\n");
-			
-			//write achievements
-			for (Map.Entry<Long, MedalState> entry : achievements.entrySet()) {
-				out.write(entry.getKey()+":"+entry.getValue().toString()+"\n");
-			}
-			
-			out.close();
-			
-		} catch (Exception e) {
-			throw new TDDTIOError("The target file doesn't exist or can't be read / is corrupted!");
-		}
+		this.saveProfileToFile("profiles/"+name);
 	}
 	
 	/* (non-Javadoc)
@@ -193,6 +173,28 @@ public class Profile {
 			}
 		}
 		return ret;
+	}
+
+	public void saveProfileToFile(String fileName) {
+		try {
+			File output = new File(fileName);
+			output.createNewFile();
+			
+			BufferedWriter out = new BufferedWriter(new FileWriter(output));
+			
+			out.write(name+"\n");
+			out.write(profilePicPath+"\n");
+			
+			//write achievements
+			for (Map.Entry<Long, MedalState> entry : achievements.entrySet()) {
+				out.write(entry.getKey()+":"+entry.getValue().toString()+"\n");
+			}
+			
+			out.close();
+			
+		} catch (Exception e) {
+			//TODO: SOMEONE ELSE DO THIS SHIT 
+		}
 	}
 	
 
