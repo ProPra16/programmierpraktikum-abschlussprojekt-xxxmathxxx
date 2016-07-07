@@ -22,16 +22,21 @@ public class SyntaxHighlighting {
 	static{
 	}
 	
-	private static SimpleAttributeSet keywordBase = new SimpleAttributeSet();
+	private static SimpleAttributeSet keywordStyle = new SimpleAttributeSet();
 	static{
-	    StyleConstants.setForeground(keywordBase, Color.MAGENTA);
-	    StyleConstants.setBold(keywordBase, true);
+	    StyleConstants.setForeground(keywordStyle, Color.MAGENTA);
+	    StyleConstants.setBold(keywordStyle, true);
 	}
 	
-	private static SimpleAttributeSet atMarker = new SimpleAttributeSet();
+	private static SimpleAttributeSet commentaryStyle = new SimpleAttributeSet();
 	static{
-	    StyleConstants.setForeground(keywordBase, Color.DARK_GRAY);
-	    StyleConstants.setItalic(keywordBase, true);
+	    StyleConstants.setForeground(commentaryStyle, Color.green);
+	}
+	
+	private static SimpleAttributeSet atMarkerStyle = new SimpleAttributeSet();
+	static{
+	    StyleConstants.setForeground(atMarkerStyle, Color.DARK_GRAY);
+	    StyleConstants.setItalic(atMarkerStyle, true);
 	}
 	private SyntaxHighlighting(){}; //hide constructor
 	
@@ -43,7 +48,6 @@ public class SyntaxHighlighting {
 	}
 
 	
-	@SuppressWarnings("serial")
 	private static ArrayList<String> keywordTable=new ArrayList<String>();
 	static{
 		keywordTable.addAll(
@@ -113,7 +117,7 @@ public class SyntaxHighlighting {
                 	//add marker
                 	if (validKeywordFound)
                 	{
-                    	marker.add(new Highlight(pos,keyword.length(),keywordBase));
+                    	marker.add(new Highlight(pos,keyword.length(),keywordStyle));
                 	}
                     pos += keyword.length();
                 }
@@ -128,7 +132,7 @@ public class SyntaxHighlighting {
 //            	while (nextPos < text.length()-1){
 //                	char next = text.charAt(nextPos);
 //                	if(next == '\t' || next == ' '){
-//                		marker.add(new Highlight(pos,nextPos-pos,atMarker));
+//                		marker.add(new Highlight(pos,nextPos-pos,atMarkerStyle));
 //                    	pos ++;
 //                		break;
 //                	}
@@ -137,6 +141,19 @@ public class SyntaxHighlighting {
 //            	
 //            	pos ++;
 //            }
+            
+            //Step 3: Single-Line-Commentary
+            
+            int pos = 0;
+            
+            while ((pos = text.indexOf("//", pos)) >= 0) {
+            	int pos2 = text.indexOf("\n",pos);
+            	if (pos2 == -1){
+            		break;
+            	}
+            	marker.add(new Highlight(pos,pos2,commentaryStyle));
+            	pos = pos2;
+            }
 
         } catch (BadLocationException e) {
         	
@@ -158,7 +175,7 @@ public class SyntaxHighlighting {
             Runnable doHighlight = new Runnable() {
                 @Override
                 public void run() {
-                	doc.setCharacterAttributes(h.start, h.length, SyntaxHighlighting.baseStyle, false);
+                	doc.setCharacterAttributes(h.start, h.length, baseStyle, false);
                 }
             };       
             SwingUtilities.invokeLater(doHighlight);
