@@ -124,27 +124,27 @@ public class SyntaxHighlighting {
             }
             
             //STEP 2: @Marker
-//            int pos = 0;
-//            
-//            while ((pos = text.indexOf("@", pos)) >= 0) {
-//            	
-//            	int nextPos = pos+1;
-//            	while (nextPos < text.length()-1){
-//                	char next = text.charAt(nextPos);
-//                	if(next == '\t' || next == ' '){
-//                		marker.add(new Highlight(pos,nextPos-pos,atMarkerStyle));
-//                    	pos ++;
-//                		break;
-//                	}
-//                	nextPos++;
-//            	}
-//            	
-//            	pos ++;
-//            }
+            int pos = 0;
+            
+            while ((pos = text.indexOf("@", pos)) >= 0) {
+            	
+            	int nextPos = pos+1;
+            	while (nextPos < text.length()-1){
+                	char next = text.charAt(nextPos);
+                	if(next == '\t' || next == ' ' || next == '\n'){
+                		marker.add(new Highlight(pos,nextPos-pos,atMarkerStyle));
+                    	pos ++;
+                		break;
+                	}
+                	nextPos++;
+            	}
+            	
+            	pos ++;
+            }
             
             //Step 3: Single-Line-Commentary
             
-            int pos = 0;
+            pos = 0;
             
             while ((pos = text.indexOf("//", pos)) >= 0) {
             	int pos2 = text.indexOf("\n",pos);
