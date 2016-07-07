@@ -10,7 +10,7 @@ import javax.swing.text.ViewFactory;
 
 public class LineLabelView extends LabelView {
 	
-	boolean isResetBreakSpots = false;
+	boolean reset = false;
 
 	public LineLabelView(Element elem) {
 		super(elem);
@@ -24,9 +24,9 @@ public class LineLabelView extends LabelView {
 	}
 
 	public void resetBreakSpots() {
-		isResetBreakSpots = true;
+		reset = true;
 		removeUpdate(null, null, null);
-		isResetBreakSpots = false;
+		reset = false;
 	}
 	
 	public void insertUpdate(DocumentEvent e, Shape a, ViewFactory f) {
@@ -38,7 +38,7 @@ public class LineLabelView extends LabelView {
 	}
 
 	public void preferenceChanged(View child, boolean width, boolean height) {
-		if (!isResetBreakSpots) {
+		if (!reset) {
 			super.preferenceChanged(child, width, height);
 		}
 	}
