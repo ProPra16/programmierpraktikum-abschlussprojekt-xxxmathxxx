@@ -19,10 +19,8 @@ public class TextEditor extends SwingNode {
 	//DONT LOOK AT THIS CLASS FOR CLEAN PROGRAMMING OR GOOD CODESTYLE, BTW F*** JAVAFX
 	
 	private JTextPane editor;
-	private ArrayList<Highlight> marker;
 	
 	public TextEditor(){
-		marker = new ArrayList<Highlight>();
 		editor = new JTextPane();
 		editor.getDocument().addDocumentListener(new ChangeListener());
 		this.setContent(editor);
@@ -32,94 +30,18 @@ public class TextEditor extends SwingNode {
 
 		@Override
 		public void insertUpdate(DocumentEvent e) {
-			checkHighlighting();			
+			SyntaxHighlighting.getInstance().checkHighlighting(editor.getStyledDocument());			
 		}
 
 		@Override
 		public void removeUpdate(DocumentEvent e) {
-			checkHighlighting();
+			SyntaxHighlighting.getInstance().checkHighlighting(editor.getStyledDocument());
 		}
 
 		@Override
 		public void changedUpdate(DocumentEvent e) {
 		}
 		
-	}
-
-	public void checkHighlighting(){
-        try {
-        	removeAllMarker();
-            Document doc = editor.getDocument();
-            
-            for (String keyword: SyntaxHighlighting.highlightTable.keySet() ){
-                String text = doc.getText(0, doc.getLength());
-                //STEP 1: Simple keywords
-                int pos = 0;
-                
-                while ((pos = text.indexOf(keyword, pos)) >= 0) {
-                	//check conditions
-                    boolean validKeywordFound = true;
-                    
-                    if (pos != 0){
-                        if (!
-                        		(
-                    			text.charAt(pos-1) == ' ' 
-                    			|| text.charAt(pos-1) == '(' 
-                    			|| text.charAt(pos-1) == '{' 
-                    			|| text.charAt(pos-1) == '\t'
-                        		)
-                    		)
-                    	{
-                    		validKeywordFound = false;
-                    	}
-                    }
- 
-                	//add marker
-                	if (validKeywordFound)
-                	{
-                    	marker.add(new Highlight(pos,keyword.length(),SyntaxHighlighting.highlightTable.get(keyword)));
-                	}
-                    pos += keyword.length();
-                }
-            }
-
-        } catch (BadLocationException e) {
-        	
-        }
-        for (Highlight h: marker){
-            Runnable doHighlight = new Runnable() {
-                @Override
-                public void run() {
-                	editor.getStyledDocument().setCharacterAttributes(h.start, h.length,h.set , true);
-                }
-            };       
-            SwingUtilities.invokeLater(doHighlight);
-        }
-
-	}
-
-	private void removeAllMarker() {
-		for (Highlight h: marker){
-            Runnable doHighlight = new Runnable() {
-                @Override
-                public void run() {
-                	editor.getStyledDocument().setCharacterAttributes(h.start, h.length, SyntaxHighlighting.baseStyle, false);
-                }
-            };       
-            SwingUtilities.invokeLater(doHighlight);
-		}
-		marker = new ArrayList<Highlight>();
-	}
-
-	public class Highlight{
-		int start;
-		int length;
-		SimpleAttributeSet set;
-		public Highlight(int start, int length, SimpleAttributeSet set){
-			this.start = start;
-			this.length = length;
-			this.set = set;
-		}
 	}
 
 	public void setLocation(int x, int y) {
