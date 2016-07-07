@@ -1,9 +1,11 @@
 package org.xxxmathxxx.tddt.editorpanes;
 
+import javax.swing.JEditorPane;
+
 import org.xxxmathxxx.tddt.data.ClassData;
 import org.xxxmathxxx.tddt.data.ExerciseClass;
 import org.xxxmathxxx.tddt.gui.EditPaneToggleButton;
-
+import org.xxxmathxxx.tddt.gui.ide.TextEditor;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,7 +24,7 @@ import javafx.scene.layout.Pane;
  */
 public abstract class EditPane extends Pane {
 
-	TextArea te;
+	TextEditor te;
 	Boolean isActive;
 
 	String currentCode;
@@ -40,9 +42,9 @@ public abstract class EditPane extends Pane {
 	public EditPane(ClassData[] classdata) {
 		isActive = false;
 
-		te = new TextArea();
-		te.relocate(10, 50);
-		te.setPrefSize(500, 450);
+		te = new TextEditor();
+		te.setLocation(10, 50);
+		te.setBounds(10, 50, 500, 450);
 
 		
 		this.classdata=classdata;

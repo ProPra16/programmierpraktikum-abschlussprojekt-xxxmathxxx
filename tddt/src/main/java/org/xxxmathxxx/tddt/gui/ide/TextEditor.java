@@ -1,45 +1,88 @@
 package org.xxxmathxxx.tddt.gui.ide;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.control.TextArea;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.StrokeLineCap;
+import javax.swing.JEditorPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.Highlighter;
 
-public class TextEditor extends TextArea {
+
+import javafx.embed.swing.SwingNode;
+
+public class TextEditor extends SwingNode {
 	//DONT LOOK AT THIS CLASS FOR CLEAN PROGRAMMING OR GOOD CODESTYLE, BTW F*** JAVAFX
 	
-	private ArrayList<Rectangle> markers; //hackiest solution ever ever
+	private JEditorPane editor;
 	
 	public TextEditor(){
-		textProperty().addListener(
-			new ChangeListener<String>() {
-		    @Override
-		    public void changed(final ObservableValue<? extends String> observable, final String oldValue, final String newValue) {
-		    	checkHighlighting(); //TODO: Increase performance by only checking changed stuff
-		    }
+		editor = new JEditorPane();
+		editor.getDocument().addDocumentListener(
+			new DocumentListener() {
+
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					// TODO Auto-generated method stub
+					System.out.println("TEST SYNTAX");
+					checkHighlighting();
+				}
+
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					// TODO Auto-generated method stub
+					System.out.println("TEST SYNTAX");
+					checkHighlighting();
+				}
+
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					System.out.println("TEST SYNTAX");
+					checkHighlighting();
+				}
+	
 		}
 		);
+		this.setContent(editor);
 	}
 
 	public void checkHighlighting(){
-		for (Rectangle r: markers){
-			this.getChildren().remove(r);
-		}
-		markers = new ArrayList<Rectangle>();
-		String[] tokens = this.getText().split("\\s+");
-		for (String t: tokens){
-			if (SyntaxHighlighting.highlightTable.containsKey(t)){
-				Rectangle marker = new Rectangle();
-				
-		        marker.setFill(SyntaxHighlighting.highlightTable.get(t));
-			}
-		}
-		for (Rectangle r: markers){
-			this.getChildren().add(r);
-		}
+        try {
+            Highlighter hilite = editor.getHighlighter();
+            Document doc = editor.getDocument();
+            
+            for (String keyword: SyntaxHighlighting.highlightTable.keySet() ){
+                String text = doc.getText(0, doc.getLength());
+                int pos = 0;
+                while ((pos = text.indexOf(keyword, pos)) >= 0) {
+                    hilite.addHighlight(pos, pos + keyword.length(), SyntaxHighlighting.highlightTable.get(keyword));
+                    pos += keyword.length();
+                }
+            }
+
+        } catch (BadLocationException e) {
+        	
+        }
+
 	}
+
+	public void setLocation(int x, int y) {
+		this.relocate(x, y);
+	}
+
+	public void setBounds(int i, int j, int k, int l) {
+		editor.setBounds(i, j, k, l);
+	}
+
+	public void setText(String rawText) {
+		editor.setText(rawText);
+	}
+
+	public String getText() {
+		return editor.getText();
+	}
+	
+
 }

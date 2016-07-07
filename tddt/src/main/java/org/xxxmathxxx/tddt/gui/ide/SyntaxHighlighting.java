@@ -1,15 +1,23 @@
 package org.xxxmathxxx.tddt.gui.ide;
 
+import java.awt.Color;
 import java.util.HashMap;
 
-import javafx.scene.paint.Color;
+import javax.swing.text.DefaultHighlighter;
+
 
 public final class SyntaxHighlighting {
 	
-	public static final HashMap<String,Color> highlightTable=new HashMap<String,Color>(){{
-		put("if",Color.PURPLE);
+	@SuppressWarnings("serial")
+	public static final HashMap<String,HLPainterCustom> highlightTable=new HashMap<String,HLPainterCustom>(){{
+		put("if",new HLPainterCustom(Color.RED));
 	}};
 
 
-	
+	static class HLPainterCustom extends DefaultHighlighter.DefaultHighlightPainter {
+
+	    public HLPainterCustom(Color color) {
+	        super(color);
+	    }
+	}
 }
