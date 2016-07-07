@@ -70,7 +70,6 @@ public abstract class EditPane extends Pane {
 		navigator[0].setSelected(true);
 		
 		te.setText(classdata[0].code.rawText);
-
 	}
 
 	/**

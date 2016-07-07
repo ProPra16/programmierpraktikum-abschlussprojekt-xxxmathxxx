@@ -1,11 +1,8 @@
 package org.xxxmathxxx.tddt.gui.ide;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -14,24 +11,21 @@ import javafx.embed.swing.SwingNode;
 public class TextEditor extends SwingNode {
 	//DONT LOOK AT THIS CLASS FOR CLEAN PROGRAMMING OR GOOD CODESTYLE, BTW F*** JAVAFX
 	
-	private JTextPane editor;
+	private JTextPaneNoWrap editor;
 	
 	private JScrollPane scrollPane;
 
-	private JPanel wrapPanel;
 	
 	
 	public TextEditor(){
-		editor = new JTextPane();
+		editor = new JTextPaneNoWrap();
 		editor.setEditorKit(new LineNumberKit());
 		editor.getDocument().addDocumentListener(new ChangeListener());
 		
-		wrapPanel = new JPanel(new BorderLayout());
-		wrapPanel.add(editor);
-		
-		scrollPane = new JScrollPane(wrapPanel);
-		
+		scrollPane = new JScrollPane(editor);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		this.setContent(scrollPane);
+			
 	}
 	
 	private class ChangeListener implements DocumentListener{
