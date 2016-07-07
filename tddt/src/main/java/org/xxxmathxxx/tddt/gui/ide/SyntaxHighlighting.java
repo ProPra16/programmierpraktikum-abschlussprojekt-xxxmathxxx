@@ -30,5 +30,10 @@ public final class SyntaxHighlighting {
 		put(" true ",keywordBase);
 		put(" false ",keywordBase);
 		put(" static ",keywordBase);
+		put(" void ",keywordBase);
+		put(" extends ",keywordBase);
+		put(" implements ",keywordBase);
+		put(" class ",keywordBase);
+
 	}};
 }

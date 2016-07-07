@@ -54,6 +54,9 @@ public class Editor extends Scene {
 		cep.relocate(10,10);
 		
 		pane.getChildren().add(tep);
+		pane.getChildren().add(cep);
+		
+		cep.setVisible(false);
 		
 		//Test
 		switchButton= new Button("Switch!");
@@ -74,17 +77,18 @@ public class Editor extends Scene {
 		{
 			tep.switchActive();
 			cep.switchActive();
-			pane.getChildren().remove(tep);
-			pane.getChildren().add(cep);
+			tep.setVisible(false);
+			cep.setVisible(true);
+
 		}
 		else if(cep.isActive())
 		{
 			tep.switchActive();
 			cep.switchActive();
-			pane.getChildren().remove(cep);
-			pane.getChildren().add(tep);
+			cep.setVisible(false);
+			tep.setVisible(true);
+
 		}
-		
 	}
 	
 	private final class menuButtonHandler implements EventHandler<ActionEvent>{

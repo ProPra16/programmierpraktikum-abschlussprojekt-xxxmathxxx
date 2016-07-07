@@ -1,18 +1,14 @@
 package org.xxxmathxxx.tddt.editorpanes;
 
-import javax.swing.JEditorPane;
-
 import org.xxxmathxxx.tddt.data.ClassData;
-import org.xxxmathxxx.tddt.data.ExerciseClass;
 import org.xxxmathxxx.tddt.gui.EditPaneToggleButton;
 import org.xxxmathxxx.tddt.gui.ide.TextEditor;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 
 //import org.xxxmathxxx.tddt.gui.ide.TextEditor; Until its finished
 
@@ -45,11 +41,11 @@ public abstract class EditPane extends Pane {
 		te = new TextEditor();
 		te.setLocation(10, 50);
 		te.setBounds(10, 50, 500, 450);
-
+		te.addEventHandler(MouseEvent.MOUSE_CLICKED, focusHelper);
+		getChildren().add(te);
 		
 		this.classdata=classdata;
 		
-		getChildren().add(te);
 
 		//Creating Navigator
 		
@@ -84,6 +80,8 @@ public abstract class EditPane extends Pane {
 	public Boolean isActive() {
 		return isActive;
 	}
+	
+	
 
 	/**
 	 * Inverts activeness
@@ -114,10 +112,18 @@ public abstract class EditPane extends Pane {
 	private void loadPage(int index) {
 		
 		classdata[selectedPage].code.rawText=te.getText();
-		
 		te.setText(classdata[index].code.rawText);
 		selectedPage=index;
 	}
+	
+	EventHandler<MouseEvent> focusHelper = new EventHandler<MouseEvent>(){
+
+		@Override
+		public void handle(MouseEvent event) {
+			te.requestFocus();
+		}
+		
+	};
 
 	private final class menuButtonHandler implements EventHandler<ActionEvent> {
 

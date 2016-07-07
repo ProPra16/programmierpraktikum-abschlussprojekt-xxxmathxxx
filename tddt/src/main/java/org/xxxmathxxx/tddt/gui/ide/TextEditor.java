@@ -1,5 +1,6 @@
 package org.xxxmathxxx.tddt.gui.ide;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.JTextPane;
@@ -75,7 +76,7 @@ public class TextEditor extends SwingNode {
         }
 
 	}
-	
+
 	private void removeAllMarker() {
 		for (Highlight h: marker){
             Runnable doHighlight = new Runnable() {
@@ -104,10 +105,13 @@ public class TextEditor extends SwingNode {
 		this.relocate(x, y);
 	}
 
-	public void setBounds(int i, int j, int k, int l) {
-		editor.setBounds(i, j, k, l);
+	public void setBounds(int i, int j, int width, int height) {
+		editor.setBounds(i, j, width, height);
+		//JAVAFX is 100% bug-free and probably uses TDD
+		editor.setSize(width,height);
+		editor.setMinimumSize(new Dimension(width,height));
 	}
-
+	
 	public void setText(String rawText) {
 		editor.setText(rawText);
 	}
