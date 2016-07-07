@@ -185,13 +185,14 @@ public class SyntaxHighlighting {
             }
 
         } catch (BadLocationException e) {
-        	
+        	//TODO: handle
         }
+        
         for (Highlight h: marker){
             Runnable doHighlight = new Runnable() {
                 @Override
                 public void run() {
-                	doc.setCharacterAttributes(h.start, h.length,h.set , true);
+                	applyStyle(doc,h.start, h.length,h.set);
                 }
             };       
             SwingUtilities.invokeLater(doHighlight);
@@ -199,13 +200,19 @@ public class SyntaxHighlighting {
 
 	}
 	
+	private void applyStyle(StyledDocument doc, int start, int length, SimpleAttributeSet s) {
+    	//doc.setCharacterAttributes(start, length, s, false);	
+	}
+	
 	private void removeAllMarker(StyledDocument doc) {
 		for (Highlight h: marker){
             Runnable doHighlight = new Runnable() {
                 @Override
                 public void run() {
-                	doc.setCharacterAttributes(h.start, h.length, baseStyle, false);
+                	applyStyle(doc,h.start,h.length,baseStyle);
                 }
+
+
             };       
             SwingUtilities.invokeLater(doHighlight);
 		}

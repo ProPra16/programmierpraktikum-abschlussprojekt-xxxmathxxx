@@ -1,11 +1,8 @@
 package org.xxxmathxxx.tddt.gui.ide;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -17,32 +14,18 @@ public class TextEditor extends SwingNode {
 	
 	private JTextPane editor;
 	
-	private JPanel frame;
 		
 	private JScrollPane scrollPane;
 	
-	private JTextArea lineNumbers;
 	
 	public TextEditor(){
 		editor = new JTextPane();
-		
-		frame = new JPanel( new BorderLayout() );
-		
-		editor.setEditorKit(new javax.swing.text.StyledEditorKit());
-        lineNumbers = new JTextArea("1\n2\n3");
-		scrollPane = new JScrollPane( frame );
-
-        scrollPane.setRowHeaderView(lineNumbers );
-		
-		frame.add( editor );
-		
-		
+		editor.setEditorKit(new LineNumberKit());
 		editor.getDocument().addDocumentListener(new ChangeListener());
 		
+		scrollPane = new JScrollPane( editor );
+		
 		this.setContent(scrollPane);
-	}
-	
-	private void updateLineNumbers() {
 	}
 	
 	private class ChangeListener implements DocumentListener{
@@ -50,20 +33,15 @@ public class TextEditor extends SwingNode {
 		@Override
 		public void insertUpdate(DocumentEvent e) {
 			SyntaxHighlighting.getInstance().checkHighlighting(editor.getStyledDocument());		
-			updateLineNumbers();
 		}
-
-
 
 		@Override
 		public void removeUpdate(DocumentEvent e) {
 			SyntaxHighlighting.getInstance().checkHighlighting(editor.getStyledDocument());
-			updateLineNumbers();
 		}
 
 		@Override
 		public void changedUpdate(DocumentEvent e) {
-			updateLineNumbers();
 		}
 		
 	}
