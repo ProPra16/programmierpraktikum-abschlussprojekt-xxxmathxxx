@@ -3,12 +3,15 @@ package org.xxxmathxxx.tddt.profile;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.xxxmathxxx.tddt.errors.TDDTIOError;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
@@ -24,7 +27,7 @@ import javafx.scene.image.ImageView;
 public class Profile {
 	
 	
-	public ProfileStats profileStats = new ProfileStats();
+	public ProfileStats profileStats;
 	
 	
 	/**
@@ -38,23 +41,28 @@ public class Profile {
 	private String profilePicPath;
 	
 	/**
+	 * Internal String that points to the stats object if one exists
+	 */
+	private String statsPath;
+	
+	/**
 	 * Internal Image object of the profile picture, is created when required
 	 */
 	private Image profilePic;
 	
-	/**
-	 * Hash-Map that encodes the MedalState the user has for Exercises with a given Long ID
-	 */
-	private HashMap<Long,MedalState> achievements;
+
 	
 	/** Default constructor for Profile
 	 * @param name The name of the profile
 	 * @param profilePicPath The path to the profile pic
 	 */
 	public Profile(String name, String profilePicPath){
+		//assignments
 		this.name = name;
 		this.profilePicPath = profilePicPath;
-		this.achievements = new HashMap<Long,MedalState>();
+		//init
+		profileStats = new ProfileStats();
+		
 	}
 	
 	/**Sets this user profiles name as a labels text, can be called by GUI-components
@@ -86,7 +94,7 @@ public class Profile {
 	 * @param newState The MedalState as MedalState
 	 */
 	public void setMedalState(long exerciseID, MedalState newState){
-		achievements.put(exerciseID, newState);
+		this.profileStats.setMedalState(exerciseID, newState);
 	}
 	
 	/**Static function that attempts to load a profile from a file stored at the given path
@@ -105,29 +113,25 @@ public class Profile {
 			in = new BufferedReader(new FileReader(input));
 			String tmpName = in.readLine();
 			String tmpImg = in.readLine();
+			String tmpStats = in.readLine();
 			
-			if (tmpName == null || tmpImg == null){
+			if (tmpName == null || tmpImg == null || tmpStats == null){
 				in.close();
 				throw new TDDTIOError("The file you are trying to open is not a valid savegame!");
 			}
 			
 			ret = new Profile(tmpName,tmpImg);
-			
-			//fetch achievements
-			
-			String curLine = in.readLine();
-			
-			while (curLine != null){
-				String[] split = curLine.split(":");
-				ret.achievements.put(Long.parseLong(split[0]),MedalState.valueOf(split[1]));
-				curLine = in.readLine();
-			}
 
 			in.close();
 			
+			//read stats
+			ObjectInput objectIn = new ObjectInputStream(new FileInputStream(tmpStats));
+			ret.profileStats = (ProfileStats) objectIn.readObject();
+			objectIn.close();
+			
 			return ret;
 			
-		} catch (IOException e) {
+		} catch (IOException | ClassNotFoundException e) {
 			throw new TDDTIOError("Could not open the specified file:");
 		}
 	}
@@ -152,10 +156,7 @@ public class Profile {
 	 * @return The MedalState for the given exercise if it exists, null otherwise (meaning the exercise was not yet worked on)
 	 */
 	public MedalState getMedalState(long exerciseID){
-		if(achievements.containsKey(exerciseID)){
-			return achievements.get(exerciseID);
-		}
-		return null;
+		return profileStats.getMedalState(exerciseID);
 	}
 	
 	public static ArrayList<Profile> getAllProfiles(){
@@ -176,7 +177,28 @@ public class Profile {
 	}
 
 	public void saveProfileToFile(String fileName) {
-		try {
+		try {	
+			//write stats
+			
+			//generate statsPath if necessary (first save)
+			if (statsPath == null){
+				int i = 0;
+				File statsOutput;
+				while(true){
+					statsOutput = new File("profiles/stats/"+i);
+					if (!statsOutput.exists()){
+						statsPath = "profiles/stats/"+i;
+						break;
+					}
+				}
+			}
+			
+			File statsOutput = new File(statsPath);
+			ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(statsOutput));
+			objectOut.writeObject(this.profileStats);
+			objectOut.close();
+			
+			//write base profile
 			File output = new File(fileName);
 			output.createNewFile();
 			
@@ -184,13 +206,8 @@ public class Profile {
 			
 			out.write(name+"\n");
 			out.write(profilePicPath+"\n");
-			
-			//write achievements
-			for (Map.Entry<Long, MedalState> entry : achievements.entrySet()) {
-				out.write(entry.getKey()+":"+entry.getValue().toString()+"\n");
-			}
-			
-			out.close();
+			out.write(statsPath);
+			out.close();		
 			
 		} catch (Exception e) {
 			//TODO: SOMEONE ELSE DO THIS SHIT 

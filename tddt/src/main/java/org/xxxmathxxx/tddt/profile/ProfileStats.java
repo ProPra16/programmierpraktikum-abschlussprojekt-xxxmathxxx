@@ -1,6 +1,7 @@
 package org.xxxmathxxx.tddt.profile;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.xxxmathxxx.tddt.tracking.Tracker;
 
@@ -15,10 +16,15 @@ import org.xxxmathxxx.tddt.tracking.Tracker;
 /**
  * The Class ProfileStats.
  */
-public class ProfileStats {
+public class ProfileStats implements java.io.Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/** The name list. */
-	private ArrayList<String> nameList;		
+	private ArrayList<String> nameList;		//TODO: CHANGE TO Long as Exercises are identified by long ID -> fabian, add this plz
 	
 	/** The mastered list. */
 	private ArrayList<Boolean> masteredList;
@@ -27,15 +33,27 @@ public class ProfileStats {
 	private ArrayList<Tracker> trackerList; 
 	
 	/**
+	 * Hash-Map that encodes the MedalState the user has for Exercises with a given Long ID
+	 */
+	private HashMap<Long,MedalState> achievements;
+	
+	/**
 	 * Instantiates a new profile stats.
 	 */
 	public ProfileStats(){
 		nameList = new ArrayList<String>();
 		masteredList = new ArrayList<Boolean>();
 		trackerList = new ArrayList<Tracker>();
-		
+		this.achievements = new HashMap<Long,MedalState>();
 	}
 	
+	/**Setter that stores a given MedalState for an exercise with a given ID
+	 * @param exerciseID The exercise ID as Long
+	 * @param newState The MedalState as MedalState
+	 */
+	public void setMedalState(long exerciseID, MedalState newState){
+		achievements.put(exerciseID, newState);
+	}
 	
 	/**
 	 * a method about adding exercise names, if name is equal to an excisting object, the excisting Object  will be removed
@@ -180,5 +198,12 @@ public class ProfileStats {
 	public int indexOf(String exerciseName){
 		int i = nameList.indexOf(exerciseName);
 		return i;
+	}
+
+	public MedalState getMedalState(long exerciseID) {
+		if (achievements.containsKey(exerciseID)){
+			return achievements.get(exerciseID);
+		}
+		return null;
 	}	
 }

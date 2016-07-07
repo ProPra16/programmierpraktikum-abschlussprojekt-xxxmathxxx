@@ -1,5 +1,7 @@
 package org.xxxmathxxx.tddt.core;
 
+import java.io.File;
+
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 
@@ -17,9 +19,16 @@ public class TDDT extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Runtime.getRuntime().addShutdownHook(new ShutdownThread());
+		initializeFileSystem();
 		TDDTLogManager.getInstance().logMessage("Starting application!");
 		WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
 		WindowManager.getInstance().showStartupInfo();
+	}
+	
+	public void initializeFileSystem(){
+		//TODO: move elsewhere
+		File stats = new File("profiles/stats");
+		stats.mkdirs();
 	}
 
 }

@@ -28,6 +28,11 @@ public class SyntaxHighlighting {
 	    StyleConstants.setBold(keywordBase, true);
 	}
 	
+	private static SimpleAttributeSet atMarker = new SimpleAttributeSet();
+	static{
+	    StyleConstants.setForeground(keywordBase, Color.DARK_GRAY);
+	    StyleConstants.setItalic(keywordBase, true);
+	}
 	private SyntaxHighlighting(){}; //hide constructor
 	
 	public static SyntaxHighlighting getInstance(){
@@ -36,10 +41,6 @@ public class SyntaxHighlighting {
 		}
 		return instance;
 	}
-	
-	
-
-	
 
 	
 	@SuppressWarnings("serial")
@@ -56,7 +57,11 @@ public class SyntaxHighlighting {
 						"protected",
 						"for",
 						"try",
-						"catch"
+						"catch",
+						"import",
+						"class",
+						"void",
+						"int"
 						)
 				);
 	}
@@ -64,10 +69,11 @@ public class SyntaxHighlighting {
 	public void checkHighlighting(StyledDocument doc){
         try {
         	removeAllMarker(doc);
-            
+        	
+            String text = doc.getText(0, doc.getLength());
+
+            //STEP 1: Simple keywords
             for (String keyword: keywordTable ){
-                String text = doc.getText(0, doc.getLength());
-                //STEP 1: Simple keywords
                 int pos = 0;
                 
                 while ((pos = text.indexOf(keyword, pos)) >= 0) {
@@ -112,6 +118,25 @@ public class SyntaxHighlighting {
                     pos += keyword.length();
                 }
             }
+            
+            //STEP 2: @Marker
+//            int pos = 0;
+//            
+//            while ((pos = text.indexOf("@", pos)) >= 0) {
+//            	
+//            	int nextPos = pos+1;
+//            	while (nextPos < text.length()-1){
+//                	char next = text.charAt(nextPos);
+//                	if(next == '\t' || next == ' '){
+//                		marker.add(new Highlight(pos,nextPos-pos,atMarker));
+//                    	pos ++;
+//                		break;
+//                	}
+//                	nextPos++;
+//            	}
+//            	
+//            	pos ++;
+//            }
 
         } catch (BadLocationException e) {
         	
