@@ -89,10 +89,7 @@ public abstract class EditPane extends Pane {
 	 * Inverts activeness
 	 */
 	public void switchActive() {
-		if (isActive)
-			isActive = false;
-		else
-			isActive = true;
+		isActive = !isActive;
 	}
 
 	/**
