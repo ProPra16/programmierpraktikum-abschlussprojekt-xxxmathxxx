@@ -1,0 +1,12 @@
+.label {
+	-fx-text-fill: #111111;
+}
+
+.button {
+	-fx-font-weight: bold;
+	-fx-font-size: 13px
+}
+
+.root {
+     -fx-background-image: url("file:graphics/menubackgrounds/Background1.jpg");
+}

@@ -55,6 +55,8 @@ public class WindowManager {
 	private void generateNewMainPane(){
 		mainPane = new Pane();
 		mainPane.setPrefSize(width, height);
+		
+		mainPane.getStylesheets().add("org/xxxmathxxx/tddt/gui/MenuStyle.css");
 	}
 	
 	private static WindowManager instance;

@@ -159,7 +159,7 @@ public class Profile {
 	}
 	
 	public static ArrayList<Profile> getAllProfiles(){
-		TDDTLogManager.getInstance().logMessage("Loading profiles form disk ...");
+		TDDTLogManager.getInstance().logMessage("Loading profiles from disk ...");
 		File profileDir = new File("profiles");
 		ArrayList<Profile> ret = new ArrayList<Profile>();
 		for (File f: profileDir.listFiles()){
