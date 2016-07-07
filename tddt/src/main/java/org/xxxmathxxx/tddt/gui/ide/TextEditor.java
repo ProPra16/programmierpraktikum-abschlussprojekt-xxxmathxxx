@@ -1,7 +1,9 @@
 package org.xxxmathxxx.tddt.gui.ide;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.event.DocumentEvent;
@@ -14,8 +16,9 @@ public class TextEditor extends SwingNode {
 	
 	private JTextPane editor;
 	
-		
 	private JScrollPane scrollPane;
+
+	private JPanel wrapPanel;
 	
 	
 	public TextEditor(){
@@ -23,7 +26,10 @@ public class TextEditor extends SwingNode {
 		editor.setEditorKit(new LineNumberKit());
 		editor.getDocument().addDocumentListener(new ChangeListener());
 		
-		scrollPane = new JScrollPane( editor );
+		wrapPanel = new JPanel(new BorderLayout());
+		wrapPanel.add(editor);
+		
+		scrollPane = new JScrollPane(wrapPanel);
 		
 		this.setContent(scrollPane);
 	}

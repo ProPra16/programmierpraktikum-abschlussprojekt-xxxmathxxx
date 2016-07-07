@@ -201,7 +201,7 @@ public class SyntaxHighlighting {
 	}
 	
 	private void applyStyle(StyledDocument doc, int start, int length, SimpleAttributeSet s) {
-    	//doc.setCharacterAttributes(start, length, s, true);	
+    	//doc.setCharacterAttributes(start, length, s, true);
 	}
 	
 	private void removeAllMarker(StyledDocument doc) {

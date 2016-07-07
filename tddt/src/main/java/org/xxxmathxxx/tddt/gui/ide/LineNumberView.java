@@ -10,7 +10,6 @@ import javax.swing.text.ParagraphView;
 import javax.swing.text.View;
 import javax.swing.text.ViewFactory;
 
-
 public class LineNumberView extends ParagraphView {
 
 	private static short width= 30; //width of the line number part in pixel
