@@ -30,6 +30,11 @@ public class SyntaxHighlighting {
 	    StyleConstants.setBold(keywordStyle, true);
 	}
 	
+	private static SimpleAttributeSet stringStyle = new SimpleAttributeSet();
+	static{
+	    StyleConstants.setForeground(stringStyle, Color.BLUE);
+	}
+	
 	private static SimpleAttributeSet commentaryStyle = new SimpleAttributeSet();
 	static{
 	    StyleConstants.setForeground(commentaryStyle, Color.green);
@@ -144,9 +149,25 @@ public class SyntaxHighlighting {
             	pos ++;
             }
             
-            //Step 3: Single-Line-Commentary
+            //Step 3: Strings
+            
+            pos = 0;
+            
+            while (pos >= 0) {
+            	Pattern p = Pattern.compile("\"(.*?)\"");
+            	Matcher m = p.matcher(text);
+
+            	if (m.find(pos)) {
+            		marker.add(new Highlight(m.start(),m.end()-m.start(),stringStyle));
+            		pos = m.end();
+            	}
+            	else{
+            		break;
+            	}
+            }
             
             
+            //Step 4: Single-Line-Commentary
             
             pos = 0;
             
