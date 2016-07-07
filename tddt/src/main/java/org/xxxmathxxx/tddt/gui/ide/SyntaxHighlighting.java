@@ -22,18 +22,20 @@ public final class SyntaxHighlighting {
 	
 	@SuppressWarnings("serial")
 	public static final HashMap<String,SimpleAttributeSet> highlightTable=new HashMap<String,SimpleAttributeSet>(){{
-		put(" if ",keywordBase);
-		put(" while ",keywordBase);
-		put(" private ",keywordBase);
-		put(" public ",keywordBase);
-		put(" final ",keywordBase);
-		put(" true ",keywordBase);
-		put(" false ",keywordBase);
-		put(" static ",keywordBase);
-		put(" void ",keywordBase);
-		put(" extends ",keywordBase);
-		put(" implements ",keywordBase);
-		put(" class ",keywordBase);
+		put("if",keywordBase);
+		put("while",keywordBase);
+		put("private",keywordBase);
+		put("public",keywordBase);
+		put("final",keywordBase);
+		put("true",keywordBase);
+		put("false",keywordBase);
+		put("static",keywordBase);
+		put("void",keywordBase);
+		put("extends",keywordBase);
+		put("implements",keywordBase);
+		put("class",keywordBase);
+		put("import",keywordBase);
+		put("do",keywordBase);
 
 	}};
 }

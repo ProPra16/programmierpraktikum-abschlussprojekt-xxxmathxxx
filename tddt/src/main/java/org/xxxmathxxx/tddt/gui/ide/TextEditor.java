@@ -57,7 +57,28 @@ public class TextEditor extends SwingNode {
                 int pos = 0;
                 
                 while ((pos = text.indexOf(keyword, pos)) >= 0) {
-                	marker.add(new Highlight(pos,keyword.length(),SyntaxHighlighting.highlightTable.get(keyword)));
+                	//check conditions
+                    boolean validKeywordFound = true;
+                    
+                    if (pos != 0){
+                        if (!
+                        		(
+                    			text.charAt(pos-1) == ' ' 
+                    			|| text.charAt(pos-1) == '(' 
+                    			|| text.charAt(pos-1) == '{' 
+                    			|| text.charAt(pos-1) == '\t'
+                        		)
+                    		)
+                    	{
+                    		validKeywordFound = false;
+                    	}
+                    }
+ 
+                	//add marker
+                	if (validKeywordFound)
+                	{
+                    	marker.add(new Highlight(pos,keyword.length(),SyntaxHighlighting.highlightTable.get(keyword)));
+                	}
                     pos += keyword.length();
                 }
             }
