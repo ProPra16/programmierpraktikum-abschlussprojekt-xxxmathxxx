@@ -15,7 +15,7 @@ public class LineNumberFactory implements ViewFactory {
 		String s = e.getName();
 		if (s != null)
 			if (s.equals(AbstractDocument.ContentElementName)) {
-				return new LabelView(e);
+				return new LineLabelView(e);
 			} else if (s.equals(AbstractDocument.ParagraphElementName)) {
 				return new LineNumberView(e);
 			} else if (s.equals(AbstractDocument.SectionElementName)) {
