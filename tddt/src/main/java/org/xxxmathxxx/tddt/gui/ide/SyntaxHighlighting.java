@@ -155,7 +155,7 @@ public class SyntaxHighlighting {
             	Matcher m = p.matcher(text);
 
             	if (m.find(pos)) {
-            		marker.add(new Highlight(m.start(),m.end(),commentaryStyle));
+            		marker.add(new Highlight(m.start(),m.end()-m.start(),commentaryStyle));
             		pos = m.end();
             	}
             	else{
