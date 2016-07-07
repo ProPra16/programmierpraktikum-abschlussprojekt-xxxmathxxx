@@ -1,16 +1,12 @@
 package org.xxxmathxxx.tddt.gui.ide;
 
 import java.awt.Dimension;
-import java.util.ArrayList;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
-import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
 
-import javax.swing.text.SimpleAttributeSet;
 
 
 import javafx.embed.swing.SwingNode;
@@ -19,6 +15,7 @@ public class TextEditor extends SwingNode {
 	//DONT LOOK AT THIS CLASS FOR CLEAN PROGRAMMING OR GOOD CODESTYLE, BTW F*** JAVAFX
 	
 	private JTextPane editor;
+	private JScrollPane frame;
 	
 	public TextEditor(){
 		editor = new JTextPane();

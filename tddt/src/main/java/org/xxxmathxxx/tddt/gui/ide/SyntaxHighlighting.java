@@ -3,6 +3,8 @@ package org.xxxmathxxx.tddt.gui.ide;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
@@ -144,15 +146,21 @@ public class SyntaxHighlighting {
             
             //Step 3: Single-Line-Commentary
             
+            
+            
             pos = 0;
             
-            while ((pos = text.indexOf("//", pos)) >= 0) {
-            	int pos2 = text.indexOf("\n",pos);
-            	if (pos2 == -1){
+            while (pos >= 0) {
+            	Pattern p = Pattern.compile("//(.*?)\n");
+            	Matcher m = p.matcher(text);
+
+            	if (m.find(pos)) {
+            		marker.add(new Highlight(m.start(),m.end(),commentaryStyle));
+            		pos = m.end();
+            	}
+            	else{
             		break;
             	}
-            	marker.add(new Highlight(pos,pos2,commentaryStyle));
-            	pos = pos2;
             }
 
         } catch (BadLocationException e) {
