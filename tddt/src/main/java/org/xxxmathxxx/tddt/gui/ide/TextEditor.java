@@ -18,7 +18,7 @@ public class TextEditor extends SwingNode {
 	
 	public TextEditor(){
 		editor = new JTextPaneNoWrap();
-		//editor.setEditorKit(new LineNumberKit());
+        editor.setEditorKit(new javax.swing.text.StyledEditorKit());
 		editor.setDocument(new SyntaxDocument());
 		
 		scrollPane = new JScrollPane(editor);
