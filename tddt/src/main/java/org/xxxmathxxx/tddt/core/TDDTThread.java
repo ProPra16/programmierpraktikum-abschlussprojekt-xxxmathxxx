@@ -17,4 +17,14 @@ public class TDDTThread {
 		//TODO: Reset timers whatever do stuff
 	}
 	
+	public Exercise getExercise(){
+		//getter because exercise shouldn't be modified directly
+		return currentExercise;
+	}
+	
+	public Profile getUserProfile(){
+		//getter because exercise shouldn't be modified directly
+		return user;
+	}
+	
 }

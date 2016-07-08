@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class TDDT extends Application{
 	
 	//visible from everywhere describes the currently running state
-	public TDDTThread currentThread;
+	public static TDDTThread currentThread;
 
 	public static void main(String[] args) {
 		launch(args);

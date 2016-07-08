@@ -1,6 +1,8 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
 
+import org.xxxmathxxx.tddt.core.TDDT;
+import org.xxxmathxxx.tddt.core.TDDTThread;
 import org.xxxmathxxx.tddt.gui.ProfilePicker;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.profile.Profile;
@@ -21,6 +23,7 @@ public class StartupMenu extends Scene {
 	private Label chooseProfile;
 	private Button newProfile;
 	private Button existingProfile;
+	private ProfilePicker pp;
 	
 	public StartupMenu(Pane pane) {
 		
@@ -56,7 +59,7 @@ public class StartupMenu extends Scene {
 		existingProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(existingProfile);
 		
-		ProfilePicker pp = new ProfilePicker(Profile.getAllProfiles());
+		pp = new ProfilePicker(Profile.getAllProfiles());
 		pp.relocate(xSize/2-300,ySize - 390);
 		pp.setPrefSize(300, 100);
 		pane.getChildren().add(pp);
@@ -72,7 +75,16 @@ public class StartupMenu extends Scene {
 				WindowManager.getInstance().showMenu(WindowManager.MenuType.NEW_PROFILE);
 			}
 			else if (event.getSource() == existingProfile){
-				WindowManager.getInstance().showMenu(WindowManager.MenuType.EXISTING_PROFILE);
+				if (pp.getSelection() != null){
+					//start new thread
+					TDDT.currentThread = new TDDTThread(pp.getSelection());
+					WindowManager.getInstance().showMenu(WindowManager.MenuType.EXISTING_PROFILE);
+					
+				}
+				else{
+					//can we even get here?
+					//TODO: add handling if necessary
+				}
 			}
 		}
 	}

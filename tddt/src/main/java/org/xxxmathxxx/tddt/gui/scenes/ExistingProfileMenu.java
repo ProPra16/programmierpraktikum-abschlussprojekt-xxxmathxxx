@@ -1,6 +1,7 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
 
+import org.xxxmathxxx.tddt.core.TDDT;
 //import org.xxxmathxxx.tddt.gui.AchievementPopup;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.profile.MedalState;
@@ -10,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
@@ -18,6 +20,8 @@ public class ExistingProfileMenu extends Scene {
 	
 	private Label infoText;
 	private Label loggedInAs;
+	private ImageView profilePic;
+	private Label profileName;
 	private Button newTask;
 	private Button statistics;
 	private Button notYou;
@@ -36,11 +40,29 @@ public class ExistingProfileMenu extends Scene {
 		infoText.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(infoText);
 		
+		profilePic = new ImageView();
+		//pretty sure those two calls are useless
+		profilePic.setFitWidth(128);
+		profilePic.setFitHeight(128);
+		
+		TDDT.currentThread.getUserProfile().showImageInJavaFXImageView(profilePic);
+
+		profilePic.relocate((xSize/2)-280,100+32+4);
+		pane.getChildren().add(profilePic);
+		
 		loggedInAs = new Label("Logged in as:");
 		loggedInAs.setPrefSize(280, 32);
 		loggedInAs.relocate((xSize/2)-280,100);
 		loggedInAs.setFont(new Font("Times New Roman", 18));
 		pane.getChildren().add(loggedInAs);
+		
+		//TODO: ordentlich designen
+		profileName = new Label();
+		TDDT.currentThread.getUserProfile().showNameInJavaFXLabel(profileName);
+		profileName.setPrefSize(280, 32);
+		profileName.relocate((xSize/2)-280,132+4+128);
+		profileName.setFont(new Font("Times New Roman", 18));
+		pane.getChildren().add(profileName);
 		
 		newTask = new Button("Start a new Exercise!");
 		newTask.setPrefSize(150, 50);
