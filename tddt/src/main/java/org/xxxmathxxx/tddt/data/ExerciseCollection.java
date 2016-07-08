@@ -1,41 +1,20 @@
 package org.xxxmathxxx.tddt.data;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 /**
  * @author Fabian
  * Exercise wrapping
  */
-public class ExerciseCollection 
+@SuppressWarnings("serial")
+public class ExerciseCollection extends ArrayList<Exercise>
 {
 
-	List<Exercise> ex;
-	
-	/**
-	 * Creates a new ExerciseColletion object
-	 */
-	public ExerciseCollection()
-	{
-		ex= new ArrayList<Exercise>();
-	}
-	
-	/**
-	 * Creates a new ExerciseColletion object
-	 * @param ex Exercise List
-	 */
-	public ExerciseCollection(ArrayList<Exercise> ex)
-	{
-		this.ex=ex;
-	}
-	
-	/**
-	 * Adds a new Exercise to the colletion
-	 * @param e Exercise
-	 */
-	public void addExercise(Exercise e)
-	{
-		ex.add(e);
+	public ExerciseCollection(ArrayList<Exercise> list){
+		super();
+		this.addAll(list);
 	}
 	
 	/**
@@ -44,28 +23,17 @@ public class ExerciseCollection
 	 */
 	public Exercise getRandomExercise()
 	{
-		int rnd= (int) (Math.random()*ex.size());
+		int rnd= (int) (Math.random()*size());
 		
-		return ex.get(rnd);
+		return get(rnd);
 	}
-	
-	/**
-	 * Returns the size of the Colletion
-	 * @return Size
-	 */
-	public int getLength()
-	{
-		return ex.size();
+
+	public ObservableList<Exercise> asObservableList() {
+		ObservableList<Exercise> ret = FXCollections.observableArrayList();
+		for(Exercise e: this){
+			ret.add(e);
+		}
+		return ret;
 	}
-	
-	/**
-	 * Returns a specified exercise
-	 * @param i Index of wanted Exercise
-	 * @return Specified Exercise
-	 */
-	public Exercise getExercise(int i)
-	{
-		return ex.get(i);
-	}
-	
+
 }

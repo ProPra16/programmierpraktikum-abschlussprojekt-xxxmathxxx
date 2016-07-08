@@ -56,7 +56,6 @@ public class ExerciseReader {
 			}
 			catch(Exception e)
 			{
-				//Phillip das ist korrekt ggrrr.. 
 				logger.logMessage("Failed to read Exercise "+files[i].getPath()+". Maybe its not in the right format?");
 			}
 		}

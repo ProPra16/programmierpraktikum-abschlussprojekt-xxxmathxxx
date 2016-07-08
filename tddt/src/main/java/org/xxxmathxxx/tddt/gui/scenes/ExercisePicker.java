@@ -2,21 +2,22 @@ package org.xxxmathxxx.tddt.gui.scenes;
 
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.data.ExerciseCollection;
+import org.xxxmathxxx.tddt.gui.ExerciseComboBox;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.io.ExerciseReader;
-import org.xxxmathxxx.tddt.profile.MedalState;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Callback;
 
 /**
  * @author Fabian
@@ -26,7 +27,7 @@ public class ExercisePicker extends Scene {
 
 	private Label infoText;
 	private Button start;
-	private ComboBox cb;
+	private ComboBox<Exercise> cb;
 	
 	private ExerciseCollection ec;
 	
@@ -54,18 +55,11 @@ public class ExercisePicker extends Scene {
 		ExerciseReader temp=new ExerciseReader();
 		ec=temp.readAllExercises();
 		
-		
-		ObservableList<String> exercises = FXCollections.observableArrayList();
-		
-		for(int i=0; i<ec.getLength();i++)
-		{
-			exercises.add(ec.getExercise(i).name);
-		}
-		
-		exercises.add("Random");
-		cb = new ComboBox(exercises);
+		//exercises.add("Random"); make a seperate button for random stuff that gives you 200 TDDT-Coins
+		cb = new ExerciseComboBox(ec.asObservableList());
 		cb.relocate(10, 50);
-		cb.setPromptText("Exercise");
+
+		
 		pane.getChildren().add(cb);
 	}
 	
@@ -76,18 +70,7 @@ public class ExercisePicker extends Scene {
 		@Override
 		public void handle(ActionEvent event) {
 			if (event.getSource()==start){
-				
-				//Ugly
-				String temp= (String) cb.getValue();
-				Exercise selectedExercise=null;
-				
-				for(int i=0; i<ec.getLength();i++)
-				{
-					if(ec.getExercise(i).name.equals(temp))
-					{
-						selectedExercise=ec.getExercise(i);
-					}
-				}
+				Exercise selectedExercise=cb.getValue();
 				
 				if(selectedExercise!=null)
 				{
