@@ -66,6 +66,7 @@ public class TDDTLogManager {
 
 		public void cleanup() {
 			fh.close();
+			System.out.println("log-handler closed!");
 		}
 
 

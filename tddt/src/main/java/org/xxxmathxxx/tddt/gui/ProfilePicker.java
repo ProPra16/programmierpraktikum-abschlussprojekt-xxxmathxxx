@@ -104,6 +104,9 @@ public class ProfilePicker extends Pane {
 	}
 
 	public Profile getSelection(){
+		if (profiles.isEmpty()){
+			return null;
+		}
 		return profiles.get(index);
 	}
 

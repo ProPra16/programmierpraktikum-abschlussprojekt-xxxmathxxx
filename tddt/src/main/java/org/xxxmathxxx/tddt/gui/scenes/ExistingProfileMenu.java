@@ -60,7 +60,8 @@ public class ExistingProfileMenu extends Scene {
 		profileName = new Label();
 		TDDT.currentThread.getUserProfile().showNameInJavaFXLabel(profileName);
 		profileName.setPrefSize(280, 32);
-		profileName.relocate((xSize/2)-280,132+4+128);
+		profileName.relocate((xSize/2)-280,132+4+128
+				);
 		profileName.setFont(new Font("Times New Roman", 18));
 		pane.getChildren().add(profileName);
 		
