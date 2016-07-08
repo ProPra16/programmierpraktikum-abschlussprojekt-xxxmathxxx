@@ -14,7 +14,7 @@ import javax.swing.text.StyledDocument;
 
 public class SyntaxHighlighting {
 	
-	private ArrayList<Highlight> marker = new ArrayList<Highlight>();
+	
 	private static SyntaxHighlighting instance;
 		
 	private static SimpleAttributeSet baseStyle = new SimpleAttributeSet();
@@ -76,8 +76,7 @@ public class SyntaxHighlighting {
 
 	public void checkHighlighting(StyledDocument doc){
         try {
-        	removeAllMarker(doc);
-        	
+        	resetStyle(doc);
             String text = doc.getText(0, doc.getLength());
 
             //STEP 1: Simple keywords
@@ -121,7 +120,7 @@ public class SyntaxHighlighting {
                 	//add marker
                 	if (validKeywordFound)
                 	{
-                    	marker.add(new Highlight(pos,keyword.length(),keywordStyle));
+                		applyStyle(doc,pos,keyword.length(),keywordStyle);
                 	}
                     pos += keyword.length();
                 }
@@ -136,7 +135,7 @@ public class SyntaxHighlighting {
             	while (nextPos < text.length()-1){
                 	char next = text.charAt(nextPos);
                 	if(next == '\t' || next == ' ' || next == '\n'){
-                		marker.add(new Highlight(pos,nextPos-pos,atMarkerStyle));
+                		applyStyle(doc,pos,nextPos-pos,atMarkerStyle);
                     	pos ++;
                 		break;
                 	}
@@ -155,7 +154,7 @@ public class SyntaxHighlighting {
             	Matcher m = p.matcher(text);
 
             	if (m.find(pos)) {
-            		marker.add(new Highlight(m.start(),m.end()-m.start(),stringStyle));
+            		applyStyle(doc,m.start(),m.end()-m.start(),stringStyle);
             		pos = m.end();
             	}
             	else{
@@ -173,7 +172,7 @@ public class SyntaxHighlighting {
             	Matcher m = p.matcher(text);
 
             	if (m.find(pos)) {
-            		marker.add(new Highlight(m.start(),m.end()-m.start(),commentaryStyle));
+            		applyStyle(doc,m.start(),m.end()-m.start(),commentaryStyle);
             		pos = m.end();
             	}
             	else{
@@ -184,33 +183,18 @@ public class SyntaxHighlighting {
         } catch (BadLocationException e) {
         	//TODO: handle
         }
-        
-        for (Highlight h: marker){
-           applyStyle(doc,h.start, h.length,h.set);
-        }
 
 	}
 	
 	private void applyStyle(StyledDocument doc, int start, int length, SimpleAttributeSet s) {
-		//doc.setCharacterAttributes(start, length, s, false);
+		doc.setCharacterAttributes(start, length, s, false);
 	}
 	
-	private void removeAllMarker(StyledDocument doc) {
-		for (Highlight h: marker){
-           applyStyle(doc,h.start,h.length,baseStyle);
-		}
-		marker = new ArrayList<Highlight>();
+	private void resetStyle(StyledDocument doc) {
+		applyStyle(doc,0,doc.getLength(),baseStyle);
+
 	}
 
-	class Highlight{
-		int start;
-		int length;
-		SimpleAttributeSet set;
-		public Highlight(int start, int length, SimpleAttributeSet set){
-			this.start = start;
-			this.length = length;
-			this.set = set;
-		}
-	}
+
 	
 }
