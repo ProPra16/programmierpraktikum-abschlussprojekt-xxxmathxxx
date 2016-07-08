@@ -1,23 +1,25 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
+import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.data.ExerciseCollection;
 import org.xxxmathxxx.tddt.gui.ExerciseComboBox;
+import org.xxxmathxxx.tddt.gui.MedalViewer;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.io.ExerciseReader;
+import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import javafx.util.Callback;
 
 /**
  * @author Fabian
@@ -30,6 +32,8 @@ public class ExercisePicker extends Scene {
 	private ComboBox<Exercise> cb;
 	
 	private ExerciseCollection ec;
+	
+	private MedalViewer mv;
 	
 	
 	public ExercisePicker(Pane pane) {
@@ -58,9 +62,22 @@ public class ExercisePicker extends Scene {
 		//exercises.add("Random"); make a seperate button for random stuff that gives you 200 TDDT-Coins
 		cb = new ExerciseComboBox(ec.asObservableList());
 		cb.relocate(10, 50);
+		cb.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Exercise>() {
 
-		
+			@Override
+			public void changed(ObservableValue<? extends Exercise> arg, Exercise before, Exercise now) {
+				if (now != null) {
+					TDDTLogManager.getInstance().logMessage("Selected exercise: " + now.name);
+					mv.setMedals(now, TDDT.currentThread.getUserProfile());
+				}
+			}
+		});
 		pane.getChildren().add(cb);
+		
+		mv = new MedalViewer();
+		mv.relocate(200, 50); //TODO: KRis design and stuff
+		pane.getChildren().add(mv);
+		
 	}
 	
 	
@@ -84,4 +101,5 @@ public class ExercisePicker extends Scene {
 			}
 		}
 	}
+	
 }

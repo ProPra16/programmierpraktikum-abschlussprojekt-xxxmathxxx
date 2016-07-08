@@ -178,7 +178,8 @@ public class ExerciseReader {
 		String silvertime = pointer.item(0).getAttributes().getNamedItem("silver").getTextContent();
 		String goldtime = pointer.item(0).getAttributes().getNamedItem("gold").getTextContent();
 
-		return new Exercise(name, id, description, referencedClasses, referencedTests, referencedFinishTests,
+		//Cast to long might be problematic
+		return new Exercise(name, (long)Integer.parseInt(id), description, referencedClasses, referencedTests, referencedFinishTests,
 				new ExerciseConfig(babysteps, Double.parseDouble(babystepsTime), timetracking,
 						Double.parseDouble(bronzetime), Double.parseDouble(silvertime), Double.parseDouble(goldtime))); // Done!
 	}

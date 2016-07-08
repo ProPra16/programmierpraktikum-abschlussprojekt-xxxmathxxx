@@ -7,7 +7,7 @@ package org.xxxmathxxx.tddt.data;
 public class Exercise {
 	public String name;
 	public String description;
-	public String id;
+	public long id;
 	public ExerciseClass[] referencedClasses; 
 	public ExerciseTest[] referencedTests; 
 
@@ -23,7 +23,7 @@ public class Exercise {
 	 * @param referencedFinishTests
 	 * @param config
 	 */
-	public Exercise(String name, String id, String description, ExerciseClass[] referencedClasses,
+	public Exercise(String name, Long id, String description, ExerciseClass[] referencedClasses,
 			ExerciseTest[] referencedTests, ExerciseTest[] referencedFinishTests, ExerciseConfig config) {
 		this.name = name;
 		this.id=id;
