@@ -12,30 +12,34 @@ import javax.swing.text.ViewFactory;
 
 public class LineNumberView extends ParagraphView {
 
-	private static short width= 30; //width of the line number part in pixel
-
-	public LineNumberView(Element e) {
-		super(e);
-		super.setInsets((short)0, (short) (0 + width), (short)0, (short)0);
+	private static short top= 0; //width of the line number part in pixel
+	private static short left= 30; //width of the line number part in pixel
+	private static short bottom= 0; //width of the line number part in pixel
+	private static short right= 0; //width of the line number part in pixel
+	
+    public LineNumberView(Element elem) {
+        super(elem);
+        this.setInsets(top, left, bottom, right);
+    }
+   
+    
+	public void removeUpdate(DocumentEvent e, Shape a, ViewFactory f) {
+	    super.removeUpdate(e, a, f);
+	    resetBreakSpots();
+	}
+	public void insertUpdate(DocumentEvent e, Shape a, ViewFactory f) {
+	    super.insertUpdate(e, a, f);
+	    resetBreakSpots();
 	}
 	
-    public void removeUpdate(DocumentEvent e, Shape a, ViewFactory f) {
-        super.removeUpdate(e, a, f);
-        resetBreakSpots();
-    }
-    public void insertUpdate(DocumentEvent e, Shape a, ViewFactory f) {
-        super.insertUpdate(e, a, f);
-        resetBreakSpots();
-    }
- 
-    private void resetBreakSpots() {
-        for (int i=0; i<layoutPool.getViewCount(); i++) {
-            View v=layoutPool.getView(i);
-            if (v instanceof LineLabelView) {
-                ((LineLabelView)v).resetBreakSpots();
-            }
-        }
-    }
+	private void resetBreakSpots() {
+	    for (int i=0; i<layoutPool.getViewCount(); i++) {
+	        View v=layoutPool.getView(i);
+	        if (v instanceof LineLabelView) {
+	            ((LineLabelView)v).resetBreakSpots();
+	        }
+	    }
+	}
 
 
 	public void paintChild(Graphics g, Rectangle r, int n) {

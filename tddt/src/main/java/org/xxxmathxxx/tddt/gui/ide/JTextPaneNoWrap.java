@@ -12,8 +12,7 @@ public class JTextPaneNoWrap extends JTextPane {
 	    Component parent = getParent();
 	    ComponentUI ui = getUI();
 
-	    return parent != null ? (ui.getPreferredSize(this).width <= parent
-	        .getSize().width) : true;
+	    return parent != null ? (ui.getPreferredSize(this).width <= parent.getSize().width) : true;
 	}
 
 }

@@ -3,8 +3,7 @@ package org.xxxmathxxx.tddt.gui.ide;
 import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
+
 
 import javafx.embed.swing.SwingNode;
 
@@ -20,30 +19,12 @@ public class TextEditor extends SwingNode {
 	public TextEditor(){
 		editor = new JTextPaneNoWrap();
 		editor.setEditorKit(new LineNumberKit());
-		editor.getDocument().addDocumentListener(new ChangeListener());
+		editor.setDocument(new SyntaxDocument());
 		
 		scrollPane = new JScrollPane(editor);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		this.setContent(scrollPane);
 			
-	}
-	
-	private class ChangeListener implements DocumentListener{
-
-		@Override
-		public void insertUpdate(DocumentEvent e) {
-			SyntaxHighlighting.getInstance().checkHighlighting(editor.getStyledDocument());		
-		}
-
-		@Override
-		public void removeUpdate(DocumentEvent e) {
-			SyntaxHighlighting.getInstance().checkHighlighting(editor.getStyledDocument());
-		}
-
-		@Override
-		public void changedUpdate(DocumentEvent e) {
-		}
-		
 	}
 
 	public void setLocation(int x, int y) {

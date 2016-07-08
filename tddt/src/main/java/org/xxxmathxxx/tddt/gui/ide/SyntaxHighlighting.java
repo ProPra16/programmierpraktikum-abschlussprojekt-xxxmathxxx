@@ -6,20 +6,17 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 
-
-
 public class SyntaxHighlighting {
 	
 	private ArrayList<Highlight> marker = new ArrayList<Highlight>();
 	private static SyntaxHighlighting instance;
-	
+		
 	private static SimpleAttributeSet baseStyle = new SimpleAttributeSet();
 	static{
 	}
@@ -189,32 +186,18 @@ public class SyntaxHighlighting {
         }
         
         for (Highlight h: marker){
-            Runnable doHighlight = new Runnable() {
-                @Override
-                public void run() {
-                	applyStyle(doc,h.start, h.length,h.set);
-                }
-            };       
-            SwingUtilities.invokeLater(doHighlight);
+           applyStyle(doc,h.start, h.length,h.set);
         }
 
 	}
 	
 	private void applyStyle(StyledDocument doc, int start, int length, SimpleAttributeSet s) {
-    	//doc.setCharacterAttributes(start, length, s, true);
+		//doc.setCharacterAttributes(start, length, s, false);
 	}
 	
 	private void removeAllMarker(StyledDocument doc) {
 		for (Highlight h: marker){
-            Runnable doHighlight = new Runnable() {
-                @Override
-                public void run() {
-                	applyStyle(doc,h.start,h.length,baseStyle);
-                }
-
-
-            };       
-            SwingUtilities.invokeLater(doHighlight);
+           applyStyle(doc,h.start,h.length,baseStyle);
 		}
 		marker = new ArrayList<Highlight>();
 	}
