@@ -8,6 +8,10 @@ import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/**The main class, this is a JavaFX application
+ * @author philipp
+ *
+ */
 public class TDDT extends Application{
 	
 	//visible from everywhere describes the currently running state

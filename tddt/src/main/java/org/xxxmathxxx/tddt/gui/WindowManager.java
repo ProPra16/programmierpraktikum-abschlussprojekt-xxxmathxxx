@@ -113,7 +113,7 @@ public class WindowManager {
 		return ret;
 	}
 	
-	public void setSelectedExercise(Exercise ex)
+	public void setSelectedExercise(Exercise ex) //??? maybe move to TDDTThread? or is this even obsolete?
 	{
 		this.selectedExercise=ex;
 	}
