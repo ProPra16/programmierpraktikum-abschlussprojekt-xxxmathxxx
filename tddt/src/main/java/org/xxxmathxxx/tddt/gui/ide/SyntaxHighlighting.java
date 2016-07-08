@@ -76,108 +76,43 @@ public class SyntaxHighlighting {
 
 	public void checkHighlighting(StyledDocument doc){
         try {
+        	
         	resetStyle(doc);
-            String text = doc.getText(0, doc.getLength());
+        	
+            String text = doc.getText(0, doc.getLength());       
+            
+            Pattern p;
+            Matcher m;
 
             //STEP 1: Simple keywords
             for (String keyword: keywordTable ){
-                int pos = 0;
-                
-                while ((pos = text.indexOf(keyword, pos)) >= 0) {
-                	//check conditions
-                    boolean validKeywordFound = true;
-                    
-                    //check pre
-                    if (pos != 0){
-                        if (!
-                        		(
-                    			text.charAt(pos-1) == ' ' 
-                    			|| text.charAt(pos-1) == '(' 
-                    			|| text.charAt(pos-1) == '{' 
-                    			|| text.charAt(pos-1) == '\t'
-                        		)
-                    		)
-                    	{
-                    		validKeywordFound = false;
-                    	}
-                    }
-                    //check post
-                    int nextPos = pos+keyword.length();
-                    if (nextPos < text.length()-1){
-                        if (!
-                        		(
-                    			text.charAt(nextPos) == ' ' 
-                    			|| text.charAt(nextPos) == ')' 
-                    			|| text.charAt(nextPos) == '}' 
-                    			|| text.charAt(nextPos) == '\t'
-                        		)
-                    		)
-                    	{
-                    		validKeywordFound = false;
-                    	}
-                    }
- 
-                	//add marker
-                	if (validKeywordFound)
-                	{
-                		applyStyle(doc,pos,keyword.length(),keywordStyle);
-                	}
-                    pos += keyword.length();
+            	p = Pattern.compile("[\\W^$]"+keyword+"[\\W^$]");
+            	m = p.matcher(text);
+                while (m.find()) {
+                	applyStyle(doc,m.start(),m.end()-m.start(),keywordStyle);
                 }
             }
             
-            //STEP 2: @Marker
-            int pos = 0;
-            
-            while ((pos = text.indexOf("@", pos)) >= 0) {
-            	
-            	int nextPos = pos+1;
-            	while (nextPos < text.length()-1){
-                	char next = text.charAt(nextPos);
-                	if(next == '\t' || next == ' ' || next == '\n'){
-                		applyStyle(doc,pos,nextPos-pos,atMarkerStyle);
-                    	pos ++;
-                		break;
-                	}
-                	nextPos++;
-            	}
-            	
-            	pos ++;
+            //STEP 2: @Marker            
+        	p = Pattern.compile("@\\w+[\\W^$]");
+        	m = p.matcher(text);
+            while (m.find()) {
+            	applyStyle(doc,m.start(),m.end()-m.start(),atMarkerStyle);
             }
             
             //Step 3: Strings
-            
-            pos = 0;
-            
-            while (pos >= 0) {
-            	Pattern p = Pattern.compile("\"(.*?)\"");
-            	Matcher m = p.matcher(text);
-
-            	if (m.find(pos)) {
-            		applyStyle(doc,m.start(),m.end()-m.start(),stringStyle);
-            		pos = m.end();
-            	}
-            	else{
-            		break;
-            	}
+        	p = Pattern.compile("\"\\w+\"");
+        	m = p.matcher(text);
+            while (m.find()) {
+            	applyStyle(doc,m.start(),m.end()-m.start(),stringStyle);
             }
             
             
             //Step 4: Single-Line-Commentary
-            
-            pos = 0;
-            
-            while (pos >= 0) {
-            	Pattern p = Pattern.compile("//(.*?)\n");
-            	Matcher m = p.matcher(text);
-
-            	if (m.find(pos)) {
-            		applyStyle(doc,m.start(),m.end()-m.start(),commentaryStyle);
-            		pos = m.end();
-            	}
-            	else{
-            		break;
-            	}
+        	p = Pattern.compile("\\\\w+\n");
+        	m = p.matcher(text);
+            while (m.find()) {
+            	applyStyle(doc,m.start(),m.end()-m.start(),commentaryStyle);
             }
 
         } catch (BadLocationException e) {
