@@ -8,6 +8,7 @@ import javax.swing.text.DefaultStyledDocument;
 public class SyntaxDocument extends DefaultStyledDocument{
     @Override
     public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
+    	System.out.println(offs);
 	    super.insertString(offs, str, a);
 		SyntaxHighlighting.getInstance().checkHighlighting(this);
     }

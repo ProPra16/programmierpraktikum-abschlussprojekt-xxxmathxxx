@@ -86,7 +86,7 @@ public class SyntaxHighlighting {
 
             //STEP 1: Simple keywords
             for (String keyword: keywordTable ){
-            	p = Pattern.compile("[\\W^$]"+keyword+"[\\W^$]");
+            	p = Pattern.compile("\\b"+keyword+"\\b");
             	m = p.matcher(text);
                 while (m.find()) {
                 	applyStyle(doc,m.start(),m.end()-m.start(),keywordStyle);
@@ -109,7 +109,7 @@ public class SyntaxHighlighting {
             
             
             //Step 4: Single-Line-Commentary
-        	p = Pattern.compile("\\\\w+\n");
+        	p = Pattern.compile("\\/\\/.*[\\r\\n$]");
         	m = p.matcher(text);
             while (m.find()) {
             	applyStyle(doc,m.start(),m.end()-m.start(),commentaryStyle);
@@ -122,7 +122,7 @@ public class SyntaxHighlighting {
 	}
 	
 	private void applyStyle(StyledDocument doc, int start, int length, SimpleAttributeSet s) {
-		doc.setCharacterAttributes(start, length, s, false);
+		doc.setCharacterAttributes(start, length, s, true);
 	}
 	
 	private void resetStyle(StyledDocument doc) {
