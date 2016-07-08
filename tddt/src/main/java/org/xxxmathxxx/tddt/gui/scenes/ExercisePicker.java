@@ -8,6 +8,7 @@ import org.xxxmathxxx.tddt.gui.MedalViewer;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.io.ExerciseReader;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
+import org.xxxmathxxx.tddt.profile.MedalState;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -29,6 +30,11 @@ public class ExercisePicker extends Scene {
 
 	private Label infoText;
 	private Button start;
+	
+	private boolean debugHorst = false;
+	private Button debugButton;
+	
+	
 	private ComboBox<Exercise> cb;
 	
 	private ExerciseCollection ec;
@@ -49,6 +55,11 @@ public class ExercisePicker extends Scene {
 		infoText.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(infoText);
 		
+		debugButton = new Button("DEBUG GIVE MEDAL!");
+		debugButton.setPrefSize(200, 200);
+		debugButton.relocate(10, 300);
+		debugButton.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
+		pane.getChildren().add(debugButton);
 		
 		start= new Button("Start!");
 		start.setPrefSize(150, 50);
@@ -98,6 +109,16 @@ public class ExercisePicker extends Scene {
 				{
 					infoText.setText("Please select an exercise!");
 				}
+			}
+			if (event.getSource() == debugButton){
+				if (debugHorst == false){
+					TDDT.currentThread.awardMedal(cb.getValue().id,MedalState.SILVER);
+					debugHorst = true;
+				}
+				else{
+					TDDT.currentThread.awardMedal(cb.getValue().id,MedalState.AUTHOR);
+				}
+				mv.setMedals(cb.getValue(),TDDT.currentThread.getUserProfile());
 			}
 		}
 	}
