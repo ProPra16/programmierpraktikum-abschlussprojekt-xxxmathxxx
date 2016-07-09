@@ -3,8 +3,7 @@ package org.xxxmathxxx.tddt.gui.hints;
 import javafx.stage.Stage;
 
 /** Basic class that contains useful hints, shown at startup
- * @author TODO: Fill in generic xxxMathxxx header with license in all files
- *
+ * @author xxxMathxxx
  */
 public class HintCollection {
 	/**
@@ -22,8 +21,8 @@ public class HintCollection {
 	};
 	
 	/**Getter function returning a JavaFX Notification containing a random hint
-	 * @param mainStage 
-	 * @return
+	 * @param mainStage The Stage in which the notification should be displayed
+	 * @return a UsefulInfoNotification containing a random hint
 	 */
 	public static UsefulInfoNotification createStartupInfo(Stage mainStage){
 		int randomIndex = ((int)(Math.round(Math.random()*(hints.length-1))));

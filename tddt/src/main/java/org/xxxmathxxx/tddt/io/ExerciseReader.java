@@ -75,8 +75,9 @@ public class ExerciseReader {
 	 * @param filename
 	 *            Filename with fileextension e.g.: "exercises\RomanNumbers.xml"
 	 * @return returns Exercise as Exercise Class
+	 * @throws A generic Exception
 	 */
-	public Exercise readExercise(String filename) throws Exception {
+	public Exercise readExercise(String filename) throws Exception { //TODO: Specify exception and handle it
 		File input = new File(filename);
 		Document exercise;
 		NodeList pointer;

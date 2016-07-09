@@ -15,13 +15,13 @@ public class Exercise {
 
 	/**
 	 * Constructor
-	 * @param name
-	 * @param id
-	 * @param description
-	 * @param referencedClasses
-	 * @param referencedTests
-	 * @param referencedFinishTests
-	 * @param config
+	 * @param name The name of the exercise as String
+	 * @param id The ID of the exercise as Long
+	 * @param description The description of the exercise as String
+	 * @param referencedClasses The classes the exercise uses
+	 * @param referencedTests The tests the exercises uses
+	 * @param referencedFinishTests The (hidden) tests that check for completion
+	 * @param config The ExerciseConfig containing additional data
 	 */
 	public Exercise(String name, Long id, String description, ExerciseClass[] referencedClasses,
 			ExerciseTest[] referencedTests, ExerciseTest[] referencedFinishTests, ExerciseConfig config) {

@@ -108,21 +108,18 @@ public class SyntaxHighlighting {
             while (m.find()) {
             	applyStyle(doc,m.start(),m.end()-m.start(),stringStyle);
             }
-            
             //Step 4: Single-Line-Commentary
         	p = Pattern.compile("\\/\\/.*[\\r\\n$]");
         	m = p.matcher(text);
             while (m.find()) {
             	applyStyle(doc,m.start(),m.end()-m.start(),commentaryStyle);
             }
-            
             //Step 5: Multi-Line-Commentary
         	p = Pattern.compile("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)");
         	m = p.matcher(text);
             while (m.find()) {
             	applyStyle(doc,m.start(),m.end()-m.start(),commentaryStyle);
             }
-
         } catch (BadLocationException e) {
         	//TODO: handle
         }
@@ -135,7 +132,6 @@ public class SyntaxHighlighting {
 	
 	private void resetStyle(StyledDocument doc) {
 		applyStyle(doc,0,doc.getLength(),baseStyle);
-
 	}
 
 

@@ -9,7 +9,7 @@
  *Tracking-datas are: Keystrokes, Time, Errors(CompileError(different types) TestFailures)
  *
  *TODO: add more identifier for different CompileErrors. You can simply add this in the class AnalyzeError in 
- * the method analyzeCompileError. ->
+ * the method analyzeCompileError.
  * 
  * WARNING: Dont FORGET to put new Error-Types in the Class Error, if you find
  * new Classifications for CompilerErrors.
