@@ -36,6 +36,7 @@ public class LineNumberPane extends JLabel {
 		lines = textPane.getText().split("\n").length;
 		
 		this.setPreferredSize(new Dimension(lnWidth,lines*fontHeight));
+		this.repaint();
 
 	}
 
