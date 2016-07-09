@@ -41,6 +41,8 @@ public class ExercisePicker extends Scene {
 	
 	private MedalViewer mv;
 	
+	private Label descr;
+	
 	
 	public ExercisePicker(Pane pane) {
 
@@ -67,6 +69,10 @@ public class ExercisePicker extends Scene {
 		start.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(start);
 		
+		descr = new Label(); //TODO: STYLE THIS WHOLE GODDAMN THING BETTER
+		descr.relocate(10, 110);
+		pane.getChildren().add(descr);
+		
 		ExerciseReader temp=new ExerciseReader();
 		ec=temp.readAllExercises();
 		
@@ -80,6 +86,8 @@ public class ExercisePicker extends Scene {
 				if (now != null) {
 					TDDTLogManager.getInstance().logMessage("Selected exercise: " + now.name);
 					mv.setMedals(now, TDDT.currentThread.getUserProfile());
+					descr.setText(now.description);
+					descr.autosize();
 				}
 			}
 		});
