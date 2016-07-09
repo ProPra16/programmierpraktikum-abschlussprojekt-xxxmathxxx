@@ -2,7 +2,6 @@ package org.xxxmathxxx.tddt.gui.scenes;
 
 import java.io.File;
 
-import org.xxxmathxxx.tddt.errors.TDDTIOError;
 import org.xxxmathxxx.tddt.gui.GraphicsHelper;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.gui.WindowManager.MenuType;
@@ -118,7 +117,6 @@ public class NewProfileMenu extends Scene {
 					//TODO: Check if a profile with this name already exists to prevent overwriting!
 					//TODO: Move logic to separate class and remove from GUI
 		            TDDTLogManager.getInstance().logMessage("Welcome " + textField.getText() + "!");
-		            TDDTLogManager.getInstance().logMessage("New Profile has been created!");
 		            
 		            //TODO: Check profile name for sanity / weird symbols etc.
 		            if(customImagePath == null){
@@ -126,12 +124,10 @@ public class NewProfileMenu extends Scene {
 		            }
 		            
 		            Profile newProfile = new Profile(textField.getText(), customImagePath);
-		            
-		            try {
-						newProfile.saveProfileToFile();
-					} catch (TDDTIOError e) {
-						e.printStackTrace();
-					}
+		            TDDTLogManager.getInstance().logMessage("New Profile has been created!");
+
+		            newProfile.saveProfileToFile();
+					TDDTLogManager.getInstance().logMessage("Profile saved!");
 		            
 		            WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
 		            

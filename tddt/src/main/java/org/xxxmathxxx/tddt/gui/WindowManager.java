@@ -10,7 +10,6 @@ import org.xxxmathxxx.tddt.gui.scenes.ExercisePicker;
 import org.xxxmathxxx.tddt.gui.scenes.ExistingProfileMenu;
 import org.xxxmathxxx.tddt.gui.scenes.NewProfileMenu;
 
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 

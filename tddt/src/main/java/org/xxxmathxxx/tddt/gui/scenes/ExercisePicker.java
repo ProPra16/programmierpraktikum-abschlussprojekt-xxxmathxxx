@@ -111,14 +111,16 @@ public class ExercisePicker extends Scene {
 				}
 			}
 			if (event.getSource() == debugButton){
-				if (debugHorst == false){
-					TDDT.currentThread.awardMedal(cb.getValue().id,MedalState.SILVER);
-					debugHorst = true;
+				if (cb.getValue()!= null){
+					if (debugHorst == false){
+						TDDT.currentThread.awardMedal(cb.getValue().id,MedalState.SILVER);
+						debugHorst = true;
+					}
+					else{
+						TDDT.currentThread.awardMedal(cb.getValue().id,MedalState.AUTHOR);
+					}
+					mv.setMedals(cb.getValue(),TDDT.currentThread.getUserProfile());
 				}
-				else{
-					TDDT.currentThread.awardMedal(cb.getValue().id,MedalState.AUTHOR);
-				}
-				mv.setMedals(cb.getValue(),TDDT.currentThread.getUserProfile());
 			}
 		}
 	}

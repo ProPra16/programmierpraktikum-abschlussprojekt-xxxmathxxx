@@ -136,13 +136,6 @@ public class Profile {
 		}
 	}
 	
-	/**Saves the Profile instance to a file at the standart path, the file is created if it doesn't exist yet.
-	 * @throws TDDTIOError
-	 */
-	public void saveProfileToFile() throws TDDTIOError{
-		this.saveProfileToFile("profiles/"+name);
-	}
-	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -176,7 +169,7 @@ public class Profile {
 		return ret;
 	}
 
-	public void saveProfileToFile(String fileName) {
+	public void saveProfileToFile() {
 		try {	
 			//write stats
 			
@@ -190,6 +183,7 @@ public class Profile {
 						statsPath = "profiles/stats/"+i;
 						break;
 					}
+					i++;
 				}
 			}
 			
@@ -199,7 +193,7 @@ public class Profile {
 			objectOut.close();
 			
 			//write base profile
-			File output = new File(fileName);
+			File output = new File("profiles/"+name);
 			output.createNewFile();
 			
 			BufferedWriter out = new BufferedWriter(new FileWriter(output));
