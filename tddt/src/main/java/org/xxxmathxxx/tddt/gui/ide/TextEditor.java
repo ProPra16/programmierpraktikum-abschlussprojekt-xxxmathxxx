@@ -2,11 +2,11 @@ package org.xxxmathxxx.tddt.gui.ide;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
-import javax.swing.text.BadLocationException;
 
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 
@@ -53,10 +53,7 @@ public class TextEditor extends SwingNode {
 		scrollPane.setRowHeaderView(linePane);
 
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		this.setContent(scrollPane);
-		
-		fixWindowsGraphicsBugs();
-			
+		this.setContent(scrollPane);			
 	}
 
 	/**Translates this function to an equivalent Swing function
@@ -101,8 +98,19 @@ public class TextEditor extends SwingNode {
 						editor.repaint();
 						scrollPane.validate();
 						scrollPane.requestFocus();
-
-						scrollPane.repaint();
+						editor.requestFocus();
+						editor.dispatchEvent(
+								new KeyEvent(editor,
+								        KeyEvent.KEY_TYPED, 0,
+								        0,
+								        KeyEvent.VK_UNDEFINED, '/')
+								);
+						editor.dispatchEvent(
+								new KeyEvent(editor,
+								        KeyEvent.KEY_TYPED, 0,
+								        0,
+								        KeyEvent.VK_UNDEFINED, '/')
+								);			
 					}
 				}
 		);

@@ -138,4 +138,7 @@ public abstract class EditPane extends Pane {
 		}
 	}
 
+	public void fixWindowsGraphicsBugs() {
+		te.fixWindowsGraphicsBugs();
+	}
 }
