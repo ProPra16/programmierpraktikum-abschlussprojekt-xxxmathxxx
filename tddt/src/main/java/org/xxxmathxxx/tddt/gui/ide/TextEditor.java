@@ -2,7 +2,6 @@ package org.xxxmathxxx.tddt.gui.ide;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -10,6 +9,7 @@ import javax.swing.SwingUtilities;
 
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 
+import javafx.application.Platform;
 import javafx.embed.swing.SwingNode;
 
 /**Swing-based IDE-styled java-editor
@@ -53,7 +53,16 @@ public class TextEditor extends SwingNode {
 		scrollPane.setRowHeaderView(linePane);
 
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		this.setContent(scrollPane);			
+		
+		Platform.runLater(new Runnable(){
+
+			@Override
+			public void run() {
+				setContent(scrollPane);			
+			}
+		});
+		
+		fixWindowsGraphicsBugs();
 	}
 
 	/**Translates this function to an equivalent Swing function
@@ -71,8 +80,6 @@ public class TextEditor extends SwingNode {
 	 */
 	public void setSize(int width, int height) {
 		scrollPane.setPreferredSize(new Dimension(width,height));
-		scrollPane.setMinimumSize(new Dimension(width,height));
-		scrollPane.setSize(width,height);
 	}
 	
 	/**Sets the text of the editor, call is piped through to the actual text component
@@ -93,24 +100,9 @@ public class TextEditor extends SwingNode {
 					@Override
 					public void run() {
 						TDDTLogManager.getInstance().logMessage("Graphics Fix for Windows applied!");
-						editor.selectAll();
-						editor.setCaretPosition(0);
-						editor.repaint();
-						scrollPane.validate();
 						scrollPane.requestFocus();
-						editor.requestFocus();
-						editor.dispatchEvent(
-								new KeyEvent(editor,
-								        KeyEvent.KEY_TYPED, 0,
-								        0,
-								        KeyEvent.VK_UNDEFINED, '/')
-								);
-						editor.dispatchEvent(
-								new KeyEvent(editor,
-								        KeyEvent.KEY_TYPED, 0,
-								        0,
-								        KeyEvent.VK_UNDEFINED, '/')
-								);			
+						scrollPane.revalidate();
+						scrollPane.repaint();
 					}
 				}
 		);
