@@ -79,8 +79,8 @@ public class CodeStampCollection {
 	 * @param codeStamp the code stamp
 	 * @return the index of the CodeStamp in the list
 	 */
-	public int indexOf(CodeStamp codeStemp){
-		return list.indexOf(codeStemp);
+	public int indexOf(CodeStamp codeStamp){
+		return list.indexOf(codeStamp);
 	}
 	
 	

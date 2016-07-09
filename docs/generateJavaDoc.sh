@@ -1,3 +1,5 @@
+#Remove old javadoc
+rm -rf javadoc
 #Check dependencies
 if ! type "gradle" > /dev/null; then
 	read -p "It appears that gradle is not installed on your system!" -n1 -s

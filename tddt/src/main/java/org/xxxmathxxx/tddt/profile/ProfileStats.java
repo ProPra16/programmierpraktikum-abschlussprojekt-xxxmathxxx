@@ -18,7 +18,7 @@ import org.xxxmathxxx.tddt.tracking.Tracker;
  */
 public class ProfileStats implements java.io.Serializable {
 
-	/**
+	/**This class is stored using Serializable and thus requires a unique identifier
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -61,7 +61,7 @@ public class ProfileStats implements java.io.Serializable {
 	 *
 	 * @param tracker the tracker
 	 * @param name the name
-	 * @return -
+	 * @param b ???
 	 */
 	public void addExercise(Tracker tracker, String name, boolean b){
 		try{
@@ -192,7 +192,7 @@ public class ProfileStats implements java.io.Serializable {
 	/**
 	 * Index of.
 	 *
-	 * @param tmp the tmp
+	 * @param exerciseName the tmp
 	 * @return the index of exercise exerciseName
 	 */
 	public int indexOf(String exerciseName){

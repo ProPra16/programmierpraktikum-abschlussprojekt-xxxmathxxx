@@ -100,7 +100,7 @@ public class Profile {
 	/**Static function that attempts to load a profile from a file stored at the given path
 	 * @param filePath The filepath as String
 	 * @return Returns the Profile that is stored in the file
-	 * @throws TDDTIOError
+	 * @throws TDDTIOError A TDDT-IO error that is logged to the default log file
 	 */
 	public static Profile loadProfileFromFile(String filePath) throws TDDTIOError{
 

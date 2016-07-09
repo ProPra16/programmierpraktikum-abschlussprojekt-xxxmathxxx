@@ -38,6 +38,10 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**A JavaFX Stage that enables loading/saving of an image and cropping-functionality
+ * @author Philipp Spohr, Jul 9, 2016
+ *
+ */
 public class ImageCropperTool extends Stage {
 	
 	//TODO: Adjust to general css style
@@ -122,7 +126,7 @@ public class ImageCropperTool extends Stage {
 
 	/**This creates a new stage, that allows you to select a square region of an image
 	 * Only call this constructor if you are 100% sure that the filePath points to a valid Image
-	 * @param root The root on which the scene should be displayed
+	 * @param owner The Stage that parents this tool
 	 * @param filePath The file path pointing to an Image
 	 */
 	public ImageCropperTool(String filePath, Stage owner){

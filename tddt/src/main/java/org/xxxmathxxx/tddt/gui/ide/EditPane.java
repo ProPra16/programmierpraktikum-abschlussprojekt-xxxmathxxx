@@ -31,7 +31,7 @@ public abstract class EditPane extends Pane {
 
 	/**
 	 * Used by Editor.java in package gui
-	 * @param classdata
+	 * @param classdata an arry containing classdata?
 	 */
 	public EditPane(ClassData[] classdata) {
 		isActive = false;
