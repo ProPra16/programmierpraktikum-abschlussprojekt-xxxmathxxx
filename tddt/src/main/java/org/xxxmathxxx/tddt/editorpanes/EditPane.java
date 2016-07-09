@@ -40,7 +40,7 @@ public abstract class EditPane extends Pane {
 
 		te = new TextEditor();
 		te.setLocation(10, 50);
-		te.setBounds(10, 50, 500, 450);
+		te.setSize(500, 450);
 		te.addEventHandler(MouseEvent.MOUSE_CLICKED, focusHelper);
 		getChildren().add(te);
 		

@@ -14,15 +14,21 @@ import javafx.stage.Stage;
  */
 public class TDDT extends Application{
 	
-	//visible from everywhere describes the currently running state
+	/**This is the current thread, visible from every class and thus globally accessible.
+	 * 
+	 */
 	public static TDDTThread currentThread;
 
+	/**This is the main function, it simply launches the JavaFX application
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
-		
-		
 	}
 
+	/* (non-Javadoc)
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Runtime.getRuntime().addShutdownHook(new ShutdownThread());
@@ -32,6 +38,11 @@ public class TDDT extends Application{
 		WindowManager.getInstance().showStartupInfo();
 	}
 	
+	//TODO: move this function (initializeFileSystem) to a separate IO-class
+	
+	/**This function intializes the file-system by creating all necessarry folders and files.
+	 * 
+	 */
 	public void initializeFileSystem(){
 		//TODO: move elsewhere
 		File stats = new File("profiles/stats");

@@ -8,10 +8,13 @@ import org.xxxmathxxx.tddt.logging.TDDTLogManager;
  * Thus any clean-up operations may find their home here
  */
 public class ShutdownThread extends Thread {
+	/* (non-Javadoc)
+	 * @see java.lang.Thread#run()
+	 */
 	@Override
 	public void run() {
 		TDDTLogManager.getInstance().logMessage("Terminating the program ...");
-		//saving current profile if one exists
+		//Saving current profile if one exists
 		if (TDDT.currentThread != null){
 			TDDTLogManager.getInstance().logMessage("Saving current profile");
 			TDDT.currentThread.getUserProfile().saveProfileToFile();
@@ -19,6 +22,5 @@ public class ShutdownThread extends Thread {
 		//Cleaning the log manager, this should be the last clean-up step so the others can still be logged
 		TDDTLogManager.getInstance().logMessage("Cleaning up log-system");
 		TDDTLogManager.getInstance().cleanup();
-		//
 	}
 }
