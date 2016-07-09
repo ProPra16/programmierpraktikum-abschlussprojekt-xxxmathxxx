@@ -26,7 +26,7 @@ public class LineNumberPane extends JLabel {
 	}
 	
 	public void paintComponent(Graphics g){
-		for (int i=0;i<lines;i++){
+		for (int i=0;i<=lines;i++){
 			g.drawString(""+(i), 0, i*fontHeight);
 		}
 	}

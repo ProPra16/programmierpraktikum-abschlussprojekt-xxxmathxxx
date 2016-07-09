@@ -40,6 +40,10 @@ public class UsefulInfoNotification extends Stage {
 	private static int spacingTopBottom = 16;
 	
 	
+	/**Default constructor, creates a new notification with the given hint
+	 * @param selectedHint The hint that will be displayed
+	 * @param mainStage The parent Stage
+	 */
 	public UsefulInfoNotification(Hint selectedHint, Stage mainStage) {
 		
 		pane = new Pane();

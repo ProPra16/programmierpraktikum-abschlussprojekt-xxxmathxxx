@@ -17,6 +17,7 @@ public class JTextPaneNoWrap extends JTextPane {
 	/* (non-Javadoc)
 	 * @see javax.swing.JEditorPane#getScrollableTracksViewportWidth()
 	 */
+	@Override
 	public boolean getScrollableTracksViewportWidth() {
 	    Component parent = getParent();
 	    ComponentUI ui = getUI();
@@ -28,6 +29,10 @@ public class JTextPaneNoWrap extends JTextPane {
     	}
 	}
 	
+	/* (non-Javadoc)
+	 * @see javax.swing.JEditorPane#setText(java.lang.String)
+	 */
+	@Override
 	public void setText(String text){
 		super.setText(text);
 		//clean the first line that somehow appears

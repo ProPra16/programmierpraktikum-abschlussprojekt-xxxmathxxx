@@ -51,8 +51,6 @@ public class TextEditor extends SwingNode {
 		
 		scrollPane = new JScrollPane(editorWrapper);
 		scrollPane.setRowHeaderView(linePane);
-
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		
 		Platform.runLater(new Runnable(){
 
