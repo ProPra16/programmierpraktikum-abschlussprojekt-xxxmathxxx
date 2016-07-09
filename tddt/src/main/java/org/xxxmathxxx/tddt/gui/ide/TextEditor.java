@@ -1,27 +1,33 @@
 package org.xxxmathxxx.tddt.gui.ide;
 
-import java.awt.Dimension;
+import java.awt.BorderLayout;
 
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 
 import javafx.embed.swing.SwingNode;
 
 public class TextEditor extends SwingNode {
 	//DONT LOOK AT THIS CLASS FOR CLEAN PROGRAMMING OR GOOD CODESTYLE, BTW F*** JAVAFX
 	
-	private JTextPaneNoWrap editor;
-	
 	private JScrollPane scrollPane;
-
-	
-	
+	private LineNumberPane linePane;
+	private JTextPaneNoWrap editor;
+	private JPanel editorWrapper;
+		
 	public TextEditor(){
 		editor = new JTextPaneNoWrap();
         editor.setEditorKit(new javax.swing.text.StyledEditorKit());
-		editor.setDocument(new SyntaxDocument());
 		
-		scrollPane = new JScrollPane(editor);
+		editorWrapper = new JPanel(new BorderLayout());
+		editorWrapper.add(editor);
+		
+		linePane = new LineNumberPane(editor); 
+		editor.setDocument(new SyntaxDocument(linePane));
+		
+		scrollPane = new JScrollPane(editorWrapper);
+		scrollPane.setRowHeaderView(linePane);
+
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		this.setContent(scrollPane);
 			
@@ -31,11 +37,8 @@ public class TextEditor extends SwingNode {
 		this.relocate(x, y);
 	}
 
-	public void setBounds(int i, int j, int width, int height) {
-		editor.setBounds(i, j, width, height);
-		//JAVAFX is 100% bug-free and probably uses TDD
-		editor.setSize(width,height);
-		editor.setMinimumSize(new Dimension(width,height));
+	public void setBounds(int x, int y, int width, int height) {
+		scrollPane.setSize(width,height);
 	}
 	
 	public void setText(String rawText) {

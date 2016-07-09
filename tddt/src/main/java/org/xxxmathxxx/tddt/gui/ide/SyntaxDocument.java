@@ -5,11 +5,30 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
 
 @SuppressWarnings("serial")
-public class SyntaxDocument extends DefaultStyledDocument{
-    @Override
-    public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
-    	System.out.println(offs);
-	    super.insertString(offs, str, a);
+public class SyntaxDocument extends DefaultStyledDocument {
+
+	LineNumberPane linePane;
+
+	public SyntaxDocument(LineNumberPane linePane) {
+		this.linePane = linePane;
+	}
+
+	@Override
+	public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
+		super.insertString(offs, str, a);
+		updateDocument();
+	}
+
+	@Override
+	public void remove(int offs, int len) throws BadLocationException {
+		super.remove(offs, len);
+		updateDocument();
+	}
+
+	private void updateDocument() {
 		SyntaxHighlighting.getInstance().checkHighlighting(this);
-    }
+		if (linePane != null) {
+			linePane.updateNumbers();
+		}
+	}
 }
