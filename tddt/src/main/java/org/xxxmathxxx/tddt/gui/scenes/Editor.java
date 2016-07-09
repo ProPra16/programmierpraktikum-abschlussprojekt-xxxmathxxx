@@ -94,7 +94,6 @@ public class Editor extends Scene {
 			cep.switchActive();
 			tep.setVisible(false);
 			cep.setVisible(true);
-			cep.resizeEditor();
 
 		}
 		else if(cep.isActive())
@@ -103,7 +102,6 @@ public class Editor extends Scene {
 			cep.switchActive();
 			cep.setVisible(false);
 			tep.setVisible(true);
-			tep.resizeEditor();
 		}
 	}
 	

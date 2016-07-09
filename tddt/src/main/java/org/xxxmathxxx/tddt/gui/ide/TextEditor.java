@@ -5,6 +5,10 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
+import javax.swing.text.BadLocationException;
+
+import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 
 import javafx.embed.swing.SwingNode;
 
@@ -50,6 +54,8 @@ public class TextEditor extends SwingNode {
 
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		this.setContent(scrollPane);
+		
+		fixWindowsGraphicsBugs();
 			
 	}
 
@@ -67,6 +73,7 @@ public class TextEditor extends SwingNode {
 	 * @param height the new height in pixel
 	 */
 	public void setSize(int width, int height) {
+		scrollPane.setPreferredSize(new Dimension(width,height));
 		scrollPane.setMinimumSize(new Dimension(width,height));
 		scrollPane.setSize(width,height);
 	}
@@ -76,6 +83,29 @@ public class TextEditor extends SwingNode {
 	 */
 	public void setText(String rawText) {
 		editor.setText(rawText);
+	}
+
+	/**JavaFX and Swing is weird and behavior varies depending on OS
+	 * This is a simple helper function that provides a workaround graphical tearing on windows
+	 */
+	public void fixWindowsGraphicsBugs() {
+		//don't even think about what is happening here or why it is working
+		SwingUtilities.invokeLater(
+				new Runnable()
+				{
+					@Override
+					public void run() {
+						TDDTLogManager.getInstance().logMessage("Graphics Fix for Windows applied!");
+						editor.selectAll();
+						editor.setCaretPosition(0);
+						editor.repaint();
+						scrollPane.validate();
+						scrollPane.requestFocus();
+
+						scrollPane.repaint();
+					}
+				}
+		);
 	}
 
 	/**This gets the currently displayed text as a raw string, useful for compiling etc.

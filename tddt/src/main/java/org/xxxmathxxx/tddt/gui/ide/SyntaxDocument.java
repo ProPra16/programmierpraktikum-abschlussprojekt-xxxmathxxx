@@ -25,7 +25,7 @@ public class SyntaxDocument extends DefaultStyledDocument {
 		updateDocument();
 	}
 
-	private void updateDocument() {
+	void updateDocument() {
 		SyntaxHighlighting.getInstance().checkHighlighting(this);
 		if (linePane != null) {
 			linePane.updateNumbers();

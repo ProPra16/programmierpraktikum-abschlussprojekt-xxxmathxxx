@@ -19,6 +19,8 @@ import javafx.scene.layout.Pane;
  * Used to calculate logic of the editor
  */
 public abstract class EditPane extends Pane {
+	
+	//TODO: Move logic to other classes eg TDDTThread
 
 	TextEditor te;
 	Boolean isActive;
@@ -39,7 +41,9 @@ public abstract class EditPane extends Pane {
 		isActive = false;
 
 		te = new TextEditor();
-		resizeEditor();
+		te.setLocation(10, 50);
+		te.setSize(500, 450);
+		
 		te.addEventHandler(MouseEvent.MOUSE_CLICKED, focusHelper);
 		getChildren().add(te);
 		this.classdata=classdata;
@@ -68,12 +72,7 @@ public abstract class EditPane extends Pane {
 		navigator[0].setSelected(true);
 		
 		te.setText(classdata[0].code.rawText);
-	}
-	
-	public void resizeEditor(){
-		//System.out.println("RESIZING");
-		te.setLocation(10, 50);
-		te.setSize(500, 450);
+		te.requestFocus();
 	}
 
 	/**
