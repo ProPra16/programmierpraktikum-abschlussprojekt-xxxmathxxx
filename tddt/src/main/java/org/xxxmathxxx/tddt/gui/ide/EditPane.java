@@ -1,8 +1,7 @@
-package org.xxxmathxxx.tddt.editorpanes;
+package org.xxxmathxxx.tddt.gui.ide;
 
 import org.xxxmathxxx.tddt.data.ClassData;
 import org.xxxmathxxx.tddt.gui.EditPaneToggleButton;
-import org.xxxmathxxx.tddt.gui.ide.TextEditor;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,18 +19,15 @@ import javafx.scene.layout.Pane;
  */
 public abstract class EditPane extends Pane {
 	
-	//TODO: Move logic to other classes eg TDDTThread
 
-	TextEditor te;
-	Boolean isActive;
+	private TextEditor te;
+	private Boolean isActive;
 
-	String currentCode;
+	private int selectedPage;
 
-	int selectedPage;
-
-	ToggleButton[] navigator;
+	private ToggleButton[] navigator;
 	
-	ClassData[] classdata;
+	private ClassData[] classdata;
 
 	/**
 	 * Used by Editor.java in package gui

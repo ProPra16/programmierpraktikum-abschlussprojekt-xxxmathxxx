@@ -1,4 +1,4 @@
-package org.xxxmathxxx.tddt.editorpanes;
+package org.xxxmathxxx.tddt.gui.ide;
 
 import org.xxxmathxxx.tddt.data.ExerciseClass;
 

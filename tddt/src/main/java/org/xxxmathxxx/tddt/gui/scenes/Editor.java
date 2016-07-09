@@ -1,7 +1,8 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
 import org.xxxmathxxx.tddt.data.Exercise;
-import org.xxxmathxxx.tddt.editorpanes.*;
+import org.xxxmathxxx.tddt.gui.ide.CodeEditPane;
+import org.xxxmathxxx.tddt.gui.ide.TestEditPane;
 import org.xxxmathxxx.tddt.tracking.Tracker;
 
 import javafx.event.ActionEvent;
