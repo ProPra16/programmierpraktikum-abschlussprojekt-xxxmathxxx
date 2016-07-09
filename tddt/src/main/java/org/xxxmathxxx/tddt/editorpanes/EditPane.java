@@ -39,11 +39,9 @@ public abstract class EditPane extends Pane {
 		isActive = false;
 
 		te = new TextEditor();
-		te.setLocation(10, 50);
-		te.setSize(500, 450);
+		resizeEditor();
 		te.addEventHandler(MouseEvent.MOUSE_CLICKED, focusHelper);
 		getChildren().add(te);
-		
 		this.classdata=classdata;
 		
 
@@ -70,6 +68,12 @@ public abstract class EditPane extends Pane {
 		navigator[0].setSelected(true);
 		
 		te.setText(classdata[0].code.rawText);
+	}
+	
+	public void resizeEditor(){
+		//System.out.println("RESIZING");
+		te.setLocation(10, 50);
+		te.setSize(500, 450);
 	}
 
 	/**

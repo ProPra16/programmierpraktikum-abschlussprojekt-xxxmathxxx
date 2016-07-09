@@ -1,6 +1,7 @@
 package org.xxxmathxxx.tddt.gui.ide;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -66,6 +67,7 @@ public class TextEditor extends SwingNode {
 	 * @param height the new height in pixel
 	 */
 	public void setSize(int width, int height) {
+		scrollPane.setMinimumSize(new Dimension(width,height));
 		scrollPane.setSize(width,height);
 	}
 	

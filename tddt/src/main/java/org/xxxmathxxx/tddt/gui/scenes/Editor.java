@@ -22,14 +22,14 @@ public class Editor extends Scene {
 	CodeEditPane cep;
 	
 	//Editstate
-	Byte state;
+	Byte state; //TODO: This is not a GUI-function -> maybe move this to TDDT Thread
 	/**
 	 * state 0= test
 	 * state 1= code
 	 * state 2= refractor
 	 */
 	
-	//Teschebycheff's Tracker
+	//Teschebycheff's Tracker //TODO Same as above
 	Tracker tracker;
 	
 	//Menus
@@ -38,7 +38,7 @@ public class Editor extends Scene {
 	Label stateLabel;
 	
 	//LoadedExercise
-	Exercise ex;
+	Exercise ex; //Duplicate -> TODO: See TDDTThread / TDDT.currentThread
 	
 	/**fgcgh
 	 * Constructor
@@ -94,6 +94,7 @@ public class Editor extends Scene {
 			cep.switchActive();
 			tep.setVisible(false);
 			cep.setVisible(true);
+			cep.resizeEditor();
 
 		}
 		else if(cep.isActive())
@@ -102,7 +103,7 @@ public class Editor extends Scene {
 			cep.switchActive();
 			cep.setVisible(false);
 			tep.setVisible(true);
-
+			tep.resizeEditor();
 		}
 	}
 	
