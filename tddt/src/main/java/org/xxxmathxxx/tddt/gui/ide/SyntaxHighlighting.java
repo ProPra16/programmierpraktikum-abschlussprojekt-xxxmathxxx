@@ -69,7 +69,9 @@ public class SyntaxHighlighting {
 						"import",
 						"class",
 						"void",
-						"int"
+						"int",
+						"new",
+						"return"
 						)
 				);
 	}
@@ -107,9 +109,15 @@ public class SyntaxHighlighting {
             	applyStyle(doc,m.start(),m.end()-m.start(),stringStyle);
             }
             
-            
             //Step 4: Single-Line-Commentary
         	p = Pattern.compile("\\/\\/.*[\\r\\n$]");
+        	m = p.matcher(text);
+            while (m.find()) {
+            	applyStyle(doc,m.start(),m.end()-m.start(),commentaryStyle);
+            }
+            
+            //Step 5: Multi-Line-Commentary
+        	p = Pattern.compile("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)");
         	m = p.matcher(text);
             while (m.find()) {
             	applyStyle(doc,m.start(),m.end()-m.start(),commentaryStyle);
