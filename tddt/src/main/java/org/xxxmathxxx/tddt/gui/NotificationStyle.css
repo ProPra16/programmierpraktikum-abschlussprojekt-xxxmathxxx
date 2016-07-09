@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'Garamond';
+    font-family: Garamond;
     src: url('../../../../../fonts/GaramondNo8-Regular.ttf');
 }
 #achievement_bg {
@@ -12,7 +12,7 @@
     -fx-padding: 15.0 30.0 15.0 30.0;
 }
 #achievement_text {
-    -fx-font-family: "Garamond";
+    -fx-font-family: Garamond;
 	-fx-font-size: 16pt;
 }
 
