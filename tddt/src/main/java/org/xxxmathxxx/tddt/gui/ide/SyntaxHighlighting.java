@@ -71,7 +71,11 @@ public class SyntaxHighlighting {
 						"void",
 						"int",
 						"new",
-						"return"
+						"return",
+						"else",
+						"true",
+						"false",
+						"this"
 						)
 				);
 	}
@@ -94,7 +98,6 @@ public class SyntaxHighlighting {
                 	applyStyle(doc,m.start(),m.end()-m.start(),keywordStyle);
                 }
             }
-            
             //STEP 2: @Marker            
         	p = Pattern.compile("@\\w+[\\W^$]");
         	m = p.matcher(text);
