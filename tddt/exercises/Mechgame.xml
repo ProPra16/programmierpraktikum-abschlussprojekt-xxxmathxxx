@@ -4,32 +4,32 @@
 	<description>Implement a mechgame!</description>
 	<classes>
 		<class name="Mechgame">
-			public class Mechgame 
-			{
-			
-			}
+public class Mechgame 
+{
+
+}
 		</class>
 		
 		<class name="TestClass">
-			public class MechgameEntity 
-			{
-			
-			}
+public class MechgameEntity 
+{
+
+}
 		</class>
 	</classes>
 		
 	<tests>
 		<test name="RomanNumberConverterTest">
-			import static org.junit.Assert.*;
-			import org.junit.Test;
-			public class MechgameTest
-			{
-				@Test
-				public void testSomething() 
-				{
-				
-				}
-			}
+import static org.junit.Assert.*;
+import org.junit.Test;
+public class MechgameTest
+{
+	@Test
+	public void testSomething() 
+	{
+	
+	}
+}
 		</test>
 	</tests>
 		

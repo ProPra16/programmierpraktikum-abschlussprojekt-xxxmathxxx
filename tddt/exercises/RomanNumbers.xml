@@ -4,32 +4,32 @@
 	<description>Convert arabic numbers to roman ones.... GO!</description>
 	<classes>
 		<class name="RomanNumberConverter">
-			public class RomanNumberConverter 
-			{
-			
-			}
+public class RomanNumberConverter 
+{
+
+}
 		</class>
 		
 		<class name="TestClass">
-			public class TestClass 
-			{
-			
-			}
+public class TestClass 
+{
+
+}
 		</class>
 	</classes>
 		
 	<tests>
 		<test name="RomanNumberConverterTest">
-			import static org.junit.Assert.*;
-			import org.junit.Test;
-			public class RomanNumbersTest 
-			{
-				@Test
-				public void testSomething() 
-				{
-				
-				}
-			}
+import static org.junit.Assert.*;
+import org.junit.Test;
+public class RomanNumbersTest 
+{
+	@Test
+	public void testSomething() 
+	{
+	
+	}
+}
 		</test>
 	</tests>
 		
