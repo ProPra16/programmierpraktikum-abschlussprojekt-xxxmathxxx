@@ -173,16 +173,19 @@ public class ExerciseReader {
 		// Medals... yeah we totally need it
 		pointer = exercise.getElementsByTagName("medals");
 
-		String bronzetime = pointer.item(0).getAttributes().getNamedItem("bronze").getTextContent(); // Convert
-																										// these
-																										// three
-		String silvertime = pointer.item(0).getAttributes().getNamedItem("silver").getTextContent();
-		String goldtime = pointer.item(0).getAttributes().getNamedItem("gold").getTextContent();
-
-		//Cast to long might be problematic
+		//Read MedalTimes
+		double bronzetime = Double.parseDouble(pointer.item(0).getAttributes().getNamedItem("bronze").getTextContent());
+		double silvertime = Double.parseDouble(pointer.item(0).getAttributes().getNamedItem("silver").getTextContent());
+		double goldtime = Double.parseDouble(pointer.item(0).getAttributes().getNamedItem("gold").getTextContent());
+		double authortime = Double.parseDouble(pointer.item(0).getAttributes().getNamedItem("author").getTextContent());
+		
+		MedalTimes times = new MedalTimes(authortime,goldtime,silvertime,bronzetime);
+		
 		return new Exercise(name, (long)Integer.parseInt(id), description, referencedClasses, referencedTests, referencedFinishTests,
-				new ExerciseConfig(babysteps, Double.parseDouble(babystepsTime), timetracking,
-						Double.parseDouble(bronzetime), Double.parseDouble(silvertime), Double.parseDouble(goldtime))); // Done!
+				new ExerciseConfig(babysteps, Double.parseDouble(babystepsTime)
+						,timetracking
+						,times
+						)); // Done!
 	}
 
 }

@@ -11,28 +11,22 @@ public class ExerciseConfig
 	
 	public Boolean timetrackingEnabled;
 	
-	public double bronzeTime; //In seks
-	public double silverTime;
-	public double goldTime;
+	public MedalTimes medalTimes; //as seconds
 	
 	/**
 	 * @param babystepsEnabled Boolean
 	 * @param babystepstime Double
 	 * @param timetrackingEnabled Boolean
-	 * @param bronzeTime Double
-	 * @param silverTime Double
-	 * @param goldTime Double
+	 * @param medalTimes The time requirements for getting medals on this exercise
 	 */
-	public ExerciseConfig(Boolean babystepsEnabled, double babystepstime, Boolean timetrackingEnabled, double bronzeTime, double silverTime, double goldTime)
+	public ExerciseConfig(Boolean babystepsEnabled, double babystepstime, Boolean timetrackingEnabled, MedalTimes medalTimes)
 	{
 		this.babystepsEnabeled=babystepsEnabled;
 		this.babystepsTime= babystepstime;
 		
 		this.timetrackingEnabled=timetrackingEnabled;
 		
-		this.bronzeTime=bronzeTime;
-		this.silverTime=silverTime;
-		this.goldTime= goldTime;
+		this.medalTimes=medalTimes;
 		
 	}
 }

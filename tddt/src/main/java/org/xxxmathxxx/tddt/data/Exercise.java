@@ -35,7 +35,7 @@ public class Exercise {
 	}
 	
 	/**
-	 * Prints the data. Testing purposes. You can thank me later.
+	 * Prints the data. Testing purposes. You can thank me later. ... TY
 	 */
 	public void print()
 	{
@@ -68,11 +68,7 @@ public class Exercise {
 		
 		System.out.println("Timetracking:\n"+config.timetrackingEnabled+"\n");
 		
-		System.out.println("Medals:"
-							+"\nBronze: "+config.bronzeTime
-							+"\nSilver: "+config.silverTime
-							+"\nGold: "+config.goldTime
-							);
+		System.out.println(this.config.medalTimes.toString());
 		
 	}
 }
