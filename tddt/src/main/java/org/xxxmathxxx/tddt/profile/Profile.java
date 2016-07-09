@@ -168,8 +168,12 @@ public class Profile {
 		}
 		return ret;
 	}
+	
+	public void saveProfileToFile(){
+		saveProfileToFile("profiles/"+name);
+	}
 
-	public void saveProfileToFile() {
+	public void saveProfileToFile(String filePath) {
 		try {	
 			//write stats
 			
@@ -193,7 +197,7 @@ public class Profile {
 			objectOut.close();
 			
 			//write base profile
-			File output = new File("profiles/"+name);
+			File output = new File(filePath);
 			output.createNewFile();
 			
 			BufferedWriter out = new BufferedWriter(new FileWriter(output));
@@ -207,6 +211,7 @@ public class Profile {
 			//TODO: SOMEONE ELSE DO THIS SHIT 
 		}
 	}
+
 	
 
 }
