@@ -74,7 +74,7 @@ public class ProfilePicker extends Pane {
 		
 		caption.setPrefSize(sizeX-(2*borderX),textSize);
 		if (!profiles.isEmpty()){
-			caption.relocate(137, sizeY-borderY-textSize+10);
+			caption.relocate((sizeX-(2*borderX)-mainFaceSize-mainFaceSize)/2+borderX+mainFaceSize/2, sizeY-borderY-textSize+10);
 		}
 		else{
 			caption.relocate(30, sizeY-borderY-textSize+10);

@@ -105,6 +105,7 @@ public class NewProfileMenu extends Scene {
 					name = textField.getText();
 		            //TODO Check if a profile with this name already exists to prevent overwriting!
 		            //TODO Check profile name for sanity / weird symbols etc.
+					//TODO Check that profile name is max 16 characters.
 		            if(customImagePath == null){
 		            	customImagePath = "graphics/unknownProfile.png";
 		            }
