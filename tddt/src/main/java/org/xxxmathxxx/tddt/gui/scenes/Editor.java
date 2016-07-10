@@ -128,7 +128,7 @@ public class Editor extends Scene {
 		switch(state)
 		{
 		case 0: //Switch to code
-			if(switchToCode()) //TODO: Test if one test fails
+			if(switchToCode()) //Checks if exacly one Test fails
 			{
 				switchLabel();
 				state=1;
@@ -138,10 +138,11 @@ public class Editor extends Scene {
 			break;
 			
 		case 1: //Switch to refractor
-			if(true) //TODO: Test if code compiles and no test are failing
+			if(switchToRefractor()) //TODO: Test if code compiles and no test are failing
 			{
 				state=2;
 				updateStateLabel();
+				errorLabel.setText("");
 			}
 			break;
 			
@@ -149,6 +150,7 @@ public class Editor extends Scene {
 			switchLabel();
 			state=0;
 			updateStateLabel();
+			errorLabel.setText("");
 			break;
 		}	
 	}
@@ -159,14 +161,11 @@ public class Editor extends Scene {
 	 */
 	private Boolean switchToCode()
 	{
-		
 		CompilationUnit[] cuArray= getCompilationUnits();
 		
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
 		
 		jsc.compileAndRunTests();
-		
-		System.out.println(jsc.getCompilerResult().hasCompileErrors());
 		
 		String retardedFishFrogString="";
 		
@@ -203,11 +202,17 @@ public class Editor extends Scene {
 		return false;
 	}
 	
+	private Boolean switchToRefractor()
+	{
+		return false;
+	}
+
+	
 	/**
 	 * Creates an Array of CompilationUnits to start compiling.
 	 * @return Array of CompilationUnits
 	 */
-	public CompilationUnit[] getCompilationUnits()
+	private CompilationUnit[] getCompilationUnits()
 	{
 		tep.save();
 		cep.save();
