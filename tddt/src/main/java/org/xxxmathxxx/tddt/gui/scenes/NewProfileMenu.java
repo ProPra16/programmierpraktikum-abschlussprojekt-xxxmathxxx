@@ -99,7 +99,7 @@ public class NewProfileMenu extends Scene {
 			}
 			else if (event.getSource() == create){
 				if ((textField.getText().isEmpty() || textField.getText() == null)) {
-					AlertMessenger.missingNameError();
+					ProfileCreator.profileCreationError();
 		        } 
 					else
 		        {
