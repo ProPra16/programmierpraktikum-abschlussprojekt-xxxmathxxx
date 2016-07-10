@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.io.File;
 
 import org.junit.Test;
-import org.xxxmathxxx.tddt.errors.TDDTIOError;
+import org.xxxmathxxx.tddt.logging.TDDTIOError;
 import org.xxxmathxxx.tddt.profile.Profile;
 
 /*Author: Tschebyscheff, 22.06.16

@@ -1,5 +1,4 @@
-/**This package contains the lightweight core including the main function
- * @author Philipp Spohr, Jun 22, 2016
- *
+/**This package contains a lightweight error and log-manager that saves all log messages for each launch to a file
+ * @author xxxMathxxx
  */
 package org.xxxmathxxx.tddt.logging;
