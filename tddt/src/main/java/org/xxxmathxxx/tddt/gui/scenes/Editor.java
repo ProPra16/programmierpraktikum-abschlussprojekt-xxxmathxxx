@@ -95,6 +95,10 @@ public class Editor extends Scene {
 		errorLabel.setPrefSize(200, 400);
 		errorLabel.relocate(xSize-250,10);
 		pane.getChildren().add(errorLabel);
+		
+		//Tschebycheff
+		tracker= new Tracker();
+		tracker.stageRed.startTimeTracking();
 	}
 	
 	/**
@@ -127,9 +131,11 @@ public class Editor extends Scene {
 	{
 		switch(state)
 		{
-		case 0: //Switch to code
+		case 0: //Switch to code (RED->green)
 			if(switchToCode()) //Checks if exacly one Test fails
 			{
+				tracker.stageRed.stopTimeTracking();
+				tracker.stageGreen.startTimeTracking();
 				switchLabel();
 				state=1;
 				updateStateLabel();
@@ -137,16 +143,20 @@ public class Editor extends Scene {
 			}
 			break;
 			
-		case 1: //Switch to refactor
+		case 1: //Switch to refactor (GREEN->Refactor)
 			if(switchToRefactor()) //TODO: Test if code compiles and no test are failing
 			{
+				tracker.stageGreen.stopTimeTracking();
+				tracker.stageRefactor.startTimeTracking();
 				state=2;
 				updateStateLabel();
 				errorLabel.setText("");
 			}
 			break;
 			
-		case 2: //Switch to test
+		case 2: //Switch to test (refactor->red)
+			tracker.stageGreen.startTimeTracking();
+			tracker.stageRefactor.stopTimeTracking();
 			switchLabel();
 			state=0;
 			updateStateLabel();
