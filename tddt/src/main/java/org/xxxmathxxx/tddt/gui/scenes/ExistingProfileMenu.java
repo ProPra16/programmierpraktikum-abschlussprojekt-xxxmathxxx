@@ -41,9 +41,9 @@ public class ExistingProfileMenu extends Scene {
 		pane.getChildren().add(infoText);
 		
 		profilePic = new ImageView();
-		//pretty sure those two calls are useless
 		profilePic.setFitWidth(128);
 		profilePic.setFitHeight(128);
+		//tested it, the calls are most definitely not useless
 		
 		TDDT.currentThread.getUserProfile().showImageInJavaFXImageView(profilePic);
 

@@ -82,8 +82,9 @@ public class StartupMenu extends Scene {
 					
 				}
 				else{
-					//can we even get here?
-					//add handling if necessary
+					//You can only get here if you have no profile created at all and try to start the program
+					//I will add a more elegant version of this later on
+					System.out.println("Please create a Profile first!");
 				}
 			}
 		}
