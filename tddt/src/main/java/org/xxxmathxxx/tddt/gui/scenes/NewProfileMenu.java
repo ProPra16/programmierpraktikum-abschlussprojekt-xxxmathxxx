@@ -5,7 +5,6 @@ import java.io.File;
 import org.xxxmathxxx.tddt.gui.GraphicsHelper;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.gui.WindowManager.MenuType;
-import org.xxxmathxxx.tddt.gui.AlertMessenger;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.profile.ProfileCreator;
 
