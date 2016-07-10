@@ -8,7 +8,7 @@ import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingDataCollection;
 
 
-// TODO: Auto-generated Javadoc
+
 /*
  * @Author: Tschebyscheff, 21.06.16
  * A class that allows to see which exercises are mastered

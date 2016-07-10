@@ -19,39 +19,37 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+
 /**
+ * The Class Profile.
+ *
  * @author xxxMathxxx 2016
  * Class that describes a user profile
  */
 public class Profile {
 	
 	
+	/** The profile stats. */
 	public ProfileStats profileStats;
 	
 	
-	/**
-	 * Internal String that contains the profile name
-	 */
+	/** Internal String that contains the profile name. */
 	private String name;
 	
-	/**
-	 * Internal String that points to the profile picture if one exists
-	 */
+	/** Internal String that points to the profile picture if one exists. */
 	private String profilePicPath;
 	
-	/**
-	 * Internal String that points to the stats object if one exists
-	 */
+	/** Internal String that points to the stats object if one exists. */
 	private String statsPath;
 	
-	/**
-	 * Internal Image object of the profile picture, is created when required
-	 */
+	/** Internal Image object of the profile picture, is created when required. */
 	private Image profilePic;
 	
 
 	
-	/** Default constructor for Profile
+	/**
+	 *  Default constructor for Profile.
+	 *
 	 * @param name The name of the profile
 	 * @param profilePicPath The path to the profile pic
 	 */
@@ -64,7 +62,18 @@ public class Profile {
 		
 	}
 	
-	/**Sets this user profiles name as a labels text, can be called by GUI-components
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
+	public String getName(){
+		return name;
+	}
+	
+	/**
+	 * Sets this user profiles name as a labels text, can be called by GUI-components.
+	 *
 	 * @param label The label that should be filled
 	 */
 	public void showNameInJavaFXLabel(Label label){
@@ -88,7 +97,9 @@ public class Profile {
 		iv.setImage(profilePic);
 	}
 	
-	/**Setter that stores a given MedalState for an exercise with a given ID
+	/**
+	 * Setter that stores a given MedalState for an exercise with a given ID.
+	 *
 	 * @param exerciseID The exercise ID as Long
 	 * @param newState The MedalState as MedalState
 	 */
@@ -96,7 +107,9 @@ public class Profile {
 		this.profileStats.setMedalState(exerciseID, newState);
 	}
 	
-	/**Static function that attempts to load a profile from a file stored at the given path
+	/**
+	 * Static function that attempts to load a profile from a file stored at the given path.
+	 *
 	 * @param filePath The filepath as String
 	 * @return Returns the Profile that is stored in the file
 	 * @throws TDDTIOError A TDDT-IO error that is logged to the default log file
@@ -143,7 +156,9 @@ public class Profile {
 		return name+":"+profilePicPath;
 	}
 	
-	/**Getter for the MedalState, accesses the internal achievements map
+	/**
+	 * Getter for the MedalState, accesses the internal achievements map.
+	 *
 	 * @param exerciseID The exercise ID as Long
 	 * @return The MedalState for the given exercise if it exists, null otherwise (meaning the exercise was not yet worked on)
 	 */
@@ -151,10 +166,18 @@ public class Profile {
 		return profileStats.getMedalState(exerciseID);
 	}
 	
+	/**
+	 * Save profile to file.
+	 */
 	public void saveProfileToFile(){
 		saveProfileToFile("profiles/"+name);
 	}
 
+	/**
+	 * Save profile to file.
+	 *
+	 * @param filePath the file path
+	 */
 	public void saveProfileToFile(String filePath) {
 		try {	
 			//write stats

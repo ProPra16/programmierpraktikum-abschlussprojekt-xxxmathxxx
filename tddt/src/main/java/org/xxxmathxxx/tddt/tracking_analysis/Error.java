@@ -12,31 +12,31 @@ package org.xxxmathxxx.tddt.tracking_analysis;
 public class Error {
 	
 	/** The total Error. Combines all different ErrorTypes. */
-	int totalError = 0;
+	public int totalError = 0;
 	
 	/** The semantic error. */
-	int semanticError = 0;
+	public int semanticError = 0;
 	
 	/** The syntax error. */
-	int syntaxError = 0;
+	public int syntaxError = 0;
 	
 	/** The not initialized error. */
-	int notInitializedError = 0;
+	public int notInitializedError = 0;
 	
 	/** The cannot find error. */
-	int cannotFindError = 0;
+	public int cannotFindError = 0;
 	
 	/** The return type error. */
-	int returnTypeError = 0;
+	public int returnTypeError = 0;
 	
 	/** The expected error. */
-	int expectedError = 0;
+	public int expectedError = 0;
 	
 	
 	
 	
 	
 	/** The test failure. */
-	int testFailure = 0;
+	public int testFailure = 0;
 
 }

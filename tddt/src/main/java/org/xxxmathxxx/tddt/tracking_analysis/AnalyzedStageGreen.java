@@ -13,13 +13,13 @@ import org.xxxmathxxx.tddt.tracking.StageGreen;
 public class AnalyzedStageGreen {
 
 	/** The time. */
-	String time;
+	public String time;
 	
 	/** The keystrokes. */
-	int keystrokes;
+	public int keystrokes;
 	
 	/** The error. */
-	Error error = new Error();
+	public Error error = new Error();
 	
 	/**
 	 * Instantiates a new analyzed stage green.

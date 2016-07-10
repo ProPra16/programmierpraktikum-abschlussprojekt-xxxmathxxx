@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BarChart fx:id="barChart" layoutX="2.0" layoutY="107.0" prefHeight="400.0" prefWidth="429.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="yAxis" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Label fx:id="profileLabel" layoutX="359.0" layoutY="4.0" text="Profil" AnchorPane.topAnchor="4.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <PieChart fx:id="pieChart" layoutX="443.0" layoutY="115.0" prefHeight="412.0" prefWidth="340.0" />
+      <MenuButton fx:id="menuButton" layoutX="1.0" layoutY="3.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="91.0" text="Exercise" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="7.0" />
+      <Button fx:id="buttonBack" layoutX="724.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Back" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Region layoutX="502.0" layoutY="7.0" prefHeight="52.0" prefWidth="200.0" />
+   </children>
+   <effect>
+      <Glow />
+   </effect>
+</AnchorPane>
