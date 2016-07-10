@@ -200,7 +200,7 @@ public class ImageCropperTool extends Stage {
         int height = (int) selectionMarker.getHeight();
 
         SnapshotParameters parameters = new SnapshotParameters();
-        parameters.setViewport(new Rectangle2D( selectionMarker.getX(), selectionMarker.getY(), width, height));
+        parameters.setViewport(new Rectangle2D( selectionMarker.getLayoutX(), selectionMarker.getLayoutY(), width, height));
 
         WritableImage wi = new WritableImage( width, height);
         iv.snapshot(parameters, wi);
