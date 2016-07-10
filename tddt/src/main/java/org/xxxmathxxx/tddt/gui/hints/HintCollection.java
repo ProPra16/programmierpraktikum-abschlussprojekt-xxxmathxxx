@@ -18,7 +18,8 @@ public class HintCollection {
 			//new Hint("file:graphics/infobackgrounds/stoneage.jpg","Did you know that infamous SkyNet was developed using TDD?"),
 			//new Hint("file:graphics/infobackgrounds/pkmnred.jpg","Did you know that these hints barely rely on facts? ...But TDD does?"),
 			new Hint("file:graphics/infobackgrounds/kantbackground.jpeg", "Did you know that in any particular theory of nature only so much real science can be encountered, as there is TDD therein?"),
-			new Hint("file:graphics/infobackgrounds/tractor.jpg", "Did you know that Tschebyscheff's tracker is an integral part of our software?")
+			new Hint("file:graphics/infobackgrounds/tractor.jpg", "Did you know that Tschebyscheff's tracker is an integral part of our software?"),
+			new Hint("file:graphics/infobackgrounds/refractor.jpg", "Did you know that refraction is the change in direction of propagation of a wave due to a change in its transmission medium while refactoring means restructuring code?")
 	};
 	
 	/**Getter function returning a JavaFX Notification containing a random hint
