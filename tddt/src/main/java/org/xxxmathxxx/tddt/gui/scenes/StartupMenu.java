@@ -5,7 +5,7 @@ import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.core.TDDTThread;
 import org.xxxmathxxx.tddt.gui.ProfilePicker;
 import org.xxxmathxxx.tddt.gui.WindowManager;
-import org.xxxmathxxx.tddt.profile.Profile;
+import org.xxxmathxxx.tddt.profile.ProfileCollection;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -59,7 +59,7 @@ public class StartupMenu extends Scene {
 		existingProfile.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(existingProfile);
 		
-		pp = new ProfilePicker(Profile.getAllProfiles());
+		pp = new ProfilePicker(ProfileCollection.getAllProfiles());
 		pp.relocate(xSize/2-300,ySize - 390);
 		pp.setPrefSize(300, 100);
 		pane.getChildren().add(pp);
