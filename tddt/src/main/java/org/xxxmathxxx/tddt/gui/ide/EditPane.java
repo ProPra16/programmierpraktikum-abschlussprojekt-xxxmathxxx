@@ -1,6 +1,7 @@
 package org.xxxmathxxx.tddt.gui.ide;
 
 import org.xxxmathxxx.tddt.data.ClassData;
+import org.xxxmathxxx.tddt.gui.ClockLabel;
 import org.xxxmathxxx.tddt.gui.EditPaneToggleButton;
 
 import javafx.event.ActionEvent;
@@ -20,6 +21,8 @@ public abstract class EditPane extends Pane {
 
 	private TextEditor te;
 	private Boolean isActive;
+	
+	private ClockLabel clock;
 
 	private int selectedPage;
 
@@ -43,6 +46,11 @@ public abstract class EditPane extends Pane {
 		this.classdata=classdata;
 		
 
+		this.clock = new ClockLabel(3.00d); //TODO: Add exercise babysteps time
+		this.clock.setPrefSize(32, 32);
+		this.clock.relocate(128, 8);
+		getChildren().add(clock);
+		
 		//Creating Navigator
 		
 		navigator = new ToggleButton[classdata.length];
