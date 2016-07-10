@@ -148,11 +148,10 @@ public class ImageCropperTool extends Stage {
 		confirmButton.relocate(150, originalImage.getHeight());
 		confirmButton.addEventHandler(ActionEvent.ANY,confButtonHandler);
 		
-		selectionMarker.addEventHandler(MouseEvent.MOUSE_PRESSED, MousePressedHandler);
-		selectionMarker.addEventHandler(MouseEvent.MOUSE_DRAGGED, MouseDraggedHandler);
-		selectionMarker.addEventHandler(MouseEvent.MOUSE_EXITED, MouseExitHandler);
-		selectionMarker.addEventHandler(MouseEvent.MOUSE_MOVED, MouseMovedHandler);
-		selectionMarker.addEventHandler(MouseEvent.MOUSE_RELEASED, MouseReleasedHandler);
+		this.addEventHandler(MouseEvent.MOUSE_PRESSED, MousePressedHandler);
+		this.addEventHandler(MouseEvent.MOUSE_DRAGGED, MouseDraggedHandler);
+		this.addEventHandler(MouseEvent.MOUSE_MOVED, MouseMovedHandler);
+		this.addEventHandler(MouseEvent.MOUSE_RELEASED, MouseReleasedHandler);
 
 		this.initOwner(owner);
 		this.initModality(Modality.WINDOW_MODAL);
@@ -233,10 +232,10 @@ public class ImageCropperTool extends Stage {
 	private boolean isOnBottomRightCorner(MouseEvent event) {
 		int tolerance = 3;
 		if (
-				event.getX() > selectionMarker.getX() + selectionMarker.getWidth() - tolerance
-				&& event.getX() < selectionMarker.getX() + selectionMarker.getWidth() + tolerance
-				&& event.getY() > selectionMarker.getY() + selectionMarker.getHeight() - tolerance
-				&& event.getY() < selectionMarker.getY() + selectionMarker.getHeight() + tolerance
+				event.getX() > selectionMarker.getLayoutX() + selectionMarker.getWidth() - tolerance
+				&& event.getX() < selectionMarker.getLayoutX() + selectionMarker.getWidth() + tolerance
+				&& event.getY() > selectionMarker.getLayoutY() + selectionMarker.getHeight() - tolerance
+				&& event.getY() < selectionMarker.getLayoutY() + selectionMarker.getHeight() + tolerance
 			) 
 		{
 			return true;
@@ -246,10 +245,10 @@ public class ImageCropperTool extends Stage {
 	
 	private boolean isOnSelection(MouseEvent event) {
 		if (
-				event.getX() > selectionMarker.getX()
-				&& event.getX() < selectionMarker.getX() + selectionMarker.getWidth()
-				&& event.getY() > selectionMarker.getY()
-				&& event.getY() < selectionMarker.getY() + selectionMarker.getHeight()
+				event.getX() > selectionMarker.getLayoutX()
+				&& event.getX() < selectionMarker.getLayoutX() + selectionMarker.getWidth()
+				&& event.getY() > selectionMarker.getLayoutY()
+				&& event.getY() < selectionMarker.getLayoutY() + selectionMarker.getHeight()
 			) 
 		{
 			return true;
@@ -267,19 +266,13 @@ public class ImageCropperTool extends Stage {
         	 else if (isOnSelection(event)){
         		 scene.setCursor(Cursor.MOVE);
         	 }
+        	 else{
+             	scene.setCursor(Cursor.DEFAULT);
+        	 }
          }
 
      };
-     
-	 EventHandler<MouseEvent> MouseExitHandler = new EventHandler<MouseEvent>() {
 
-         @Override
-         public void handle(MouseEvent event) {
-        	scene.setCursor(Cursor.DEFAULT);
-         }
-
-     };
-     
 	 EventHandler<MouseEvent> MouseReleasedHandler = new EventHandler<MouseEvent>() {
 
          @Override
@@ -305,7 +298,6 @@ public class ImageCropperTool extends Stage {
          @Override
          public void handle(MouseEvent event) {
         	 if (event.getButton() == MouseButton.PRIMARY){
-        		 
         		 oldX = selectionMarker.getLayoutX();
         		 oldY = selectionMarker.getLayoutY();
         		 oldWidth = selectionMarker.getWidth();
@@ -319,14 +311,14 @@ public class ImageCropperTool extends Stage {
              	
             	 if (isOnBottomRightCorner(event)&& event.getButton() == MouseButton.PRIMARY){
                 	 //note the click location for later 
-                	mode = OperationMode.SCALING_SELECTION;
+                	 mode = OperationMode.SCALING_SELECTION;
             	 }
             	 else if(isOnSelection(event)){
             		 mode = OperationMode.MOVING_SELECTION;
             	 }
-                 else{ //mouse click to some other location
-                	 mode = OperationMode.NONE;
-                 }
+            	 else{
+            		 mode = OperationMode.NONE;
+            	 }
         	 }
          }
 
