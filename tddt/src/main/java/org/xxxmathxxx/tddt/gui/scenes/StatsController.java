@@ -1,6 +1,8 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 import java.io.IOException;
 
+import javax.print.DocFlavor.URL;
+
 import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
@@ -76,22 +78,30 @@ public class StatsController extends Pane{ //suggestion: move this to gui packag
 		analyzedTrackingDataCollection = profile.profileStats.getAnalayzedTrackingData();
 		
 		if(analyzedTrackingData == null){
+			try{
 			analyzedTrackingData = (AnalyzedTrackingData) analyzedTrackingDataCollection.get(0);
-			if(analyzedTrackingData == null){
+			}
+			catch(IndexOutOfBoundsException e){
 				TDDTLogManager.getInstance().logMessage("Cant find any AnalyzedTrackingData in profile: " + profile.getName());
 			}
 		}
 	
+		java.net.URL url = getClass().getResource("Stats.fxml");
+		
+	//	FXMLLoader loader = new FXMLLoader(url);
+		
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Stats.fxml"));
 		loader.setController(this);
 		
 		try {
-			AnchorPane anchorPane = loader.load();
+			AnchorPane anchorPane = loader.load(url);
 			pane.getChildren().add(anchorPane);
 			this.getChildren().add(pane);
 		} catch (IOException e) {
 
 			e.printStackTrace();
+			WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
 		}
 	
 	}

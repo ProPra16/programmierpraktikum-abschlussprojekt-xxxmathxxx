@@ -93,7 +93,7 @@ public class ExistingProfileMenu extends Scene {
 			}
 			if (event.getSource() == statistics){
 				//for testing
-				WindowManager.getInstance().createAchievementPopup(MedalState.GOLD);
+				WindowManager.getInstance().showMenu(WindowManager.MenuType.STATISTICS);
 			}
 			if (event.getSource() == notYou){
 				WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
