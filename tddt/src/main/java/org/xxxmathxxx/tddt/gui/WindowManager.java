@@ -1,15 +1,17 @@
 package org.xxxmathxxx.tddt.gui;
 
-import org.xxxmathxxx.tddt.gui.scenes.StartupMenu;
-import org.xxxmathxxx.tddt.logging.TDDTLogManager;
-import org.xxxmathxxx.tddt.profile.MedalState;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.gui.hints.HintCollection;
 import org.xxxmathxxx.tddt.gui.scenes.Editor;
 import org.xxxmathxxx.tddt.gui.scenes.ExercisePicker;
 import org.xxxmathxxx.tddt.gui.scenes.ExistingProfileMenu;
 import org.xxxmathxxx.tddt.gui.scenes.NewProfileMenu;
+import org.xxxmathxxx.tddt.gui.scenes.StartupMenu;
+import org.xxxmathxxx.tddt.gui.scenes.StatsController;
+import org.xxxmathxxx.tddt.logging.TDDTLogManager;
+import org.xxxmathxxx.tddt.profile.MedalState;
 
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -82,7 +84,7 @@ public class WindowManager {
 			mainStage.setScene(new NewProfileMenu(mainPane));
 		}
 		if (scene == MenuType.STATISTICS){
-			//WHATEVER
+			mainStage.setScene(new Scene(new StatsController(mainPane)));
 		}
 		if (scene == MenuType.EXERCISEPICKER){
 			mainStage.setScene(new ExercisePicker(mainPane));

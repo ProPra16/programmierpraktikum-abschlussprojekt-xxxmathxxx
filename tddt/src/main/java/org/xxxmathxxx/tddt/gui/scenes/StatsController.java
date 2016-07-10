@@ -1,12 +1,17 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 import java.io.IOException;
 
+import org.xxxmathxxx.tddt.core.TDDT;
+import org.xxxmathxxx.tddt.gui.WindowManager;
+import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingDataCollection;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.BarChart;
@@ -61,12 +66,21 @@ public class StatsController extends Pane{ //suggestion: move this to gui packag
 	private MenuButton menuButton;
     
    
-	public StatsController(Pane mainPane, Profile mainProfile, AnalyzedTrackingData analyzedTrackingData){
-		this.pane = mainPane;
-		this.profile = mainProfile;
-		this.analyzedTrackingData = analyzedTrackingData;
+	public StatsController(Pane mainPane){
 		
-		analyzedTrackingDataCollection = profile.profileStats.getAnalayzedTrackingData(); 
+		this.profile = TDDT.currentThread.getUserProfile();
+		
+		this.pane = mainPane;
+		this.analyzedTrackingData = TDDT.currentThread.getAnalyzedTrackingData();	
+		
+		analyzedTrackingDataCollection = profile.profileStats.getAnalayzedTrackingData();
+		
+		if(analyzedTrackingData == null){
+			analyzedTrackingData = (AnalyzedTrackingData) analyzedTrackingDataCollection.get(0);
+			if(analyzedTrackingData == null){
+				TDDTLogManager.getInstance().logMessage("Cant find any AnalyzedTrackingData in profile: " + profile.getName());
+			}
+		}
 	
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Stats.fxml"));
 		loader.setController(this);
@@ -88,11 +102,26 @@ public class StatsController extends Pane{ //suggestion: move this to gui packag
 	private void initialize(){
 		
 		profileLabel.setText(profile.getName());
+		MenuItem[] menuItem = new MenuItem[analyzedTrackingDataCollection.size()];
+		
 		
 		for(int i = 0; i < analyzedTrackingDataCollection.size(); i++){
 			AnalyzedTrackingData data = (AnalyzedTrackingData) analyzedTrackingDataCollection.get(i);
-			MenuItem menuItem = new MenuItem(data.exercise);
-			menuButton.getItems().add(menuItem);
+			menuItem[i] = new MenuItem(data.exercise);
+			menuButton.getItems().add(menuItem[i]);
+			int i2 = i;
+			
+			menuItem[i].setOnAction(new EventHandler<ActionEvent>(){
+
+				@Override
+				public void handle(ActionEvent event) {
+					if(event.getSource() == menuItem[i2]){
+						
+						TDDT.currentThread.setAnalyzedTrackingData((AnalyzedTrackingData) analyzedTrackingDataCollection.get(i2));
+						WindowManager.getInstance().showMenu(WindowManager.MenuType.STATISTICS);
+					}		
+				}
+			});
 		}
 		
 		series1 = new Series<String, Integer>();
