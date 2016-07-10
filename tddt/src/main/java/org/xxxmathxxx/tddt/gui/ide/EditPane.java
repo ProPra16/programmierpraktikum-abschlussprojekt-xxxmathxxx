@@ -1,6 +1,8 @@
 package org.xxxmathxxx.tddt.gui.ide;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import org.xxxmathxxx.tddt.data.ClassData;
@@ -36,7 +38,7 @@ public abstract class EditPane extends Pane {
 
 	private ToggleButton[] navigator;
 	
-	private ClassData[] classdata;
+	public ClassData[] classdata;
 
 	/**
 	 * Used by Editor.java in package gui
@@ -113,10 +115,16 @@ public abstract class EditPane extends Pane {
 			isTest=false;
 		}
 		
-		CompilationUnit cu= new CompilationUnit(classdata[0].name, classdata[0].code.rawText, isTest);
+		CompilationUnit[] cuArray= new CompilationUnit[classdata.length];
 		
-		JavaStringCompiler jsc= CompilerFactory.getCompiler(cu);
-
+		for(int i=0; i<classdata.length;i++)
+		{
+			cuArray[i]=new CompilationUnit(classdata[i].name, classdata[i].code.rawText, isTest);
+		}
+		
+		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
+		
+		
 	}
 	
 

@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import vk.core.api.CompilationUnit;
 import vk.core.api.CompilerFactory;
+import vk.core.api.JavaStringCompiler;
 
 /**
  * @author Fabian
@@ -117,7 +118,7 @@ public class Editor extends Scene {
 		switch(state)
 		{
 		case 0: //Switch to code
-			if(tep.canSwitch()) //TODO: Test if one test fails
+			if(switchToCode()) //TODO: Test if one test fails
 			{
 				switchLabel();
 				state=1;
@@ -139,6 +140,32 @@ public class Editor extends Scene {
 			updateStateLabel();
 			break;
 		}	
+	}
+	
+	private Boolean switchToCode()
+	{
+		int addedLength=cep.classdata.length+tep.classdata.length;
+		
+		CompilationUnit[] cuArray= new CompilationUnit[addedLength];
+		
+		for(int i=0; i<cep.classdata.length;i++)
+		{
+			cuArray[i]=new CompilationUnit(cep.classdata[i].name, cep.classdata[i].code.rawText, false);
+		}
+		
+		for(int i=cep.classdata.length; i<addedLength;i++)
+		{
+			cuArray[i]=new CompilationUnit(tep.classdata[i-cep.classdata.length].name, tep.classdata[i-cep.classdata.length].code.rawText, true);
+		}
+		
+		
+		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
+		
+		jsc.compileAndRunTests();
+		
+		System.out.println(jsc.getCompilerResult().hasCompileErrors());
+		
+		return false;
 	}
 	
 	/**
