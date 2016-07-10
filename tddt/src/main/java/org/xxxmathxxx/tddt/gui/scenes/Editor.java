@@ -2,6 +2,8 @@ package org.xxxmathxxx.tddt.gui.scenes;
 
 import java.util.Iterator;
 
+import org.xxxmathxxx.tddt.core.TDDT;
+import org.xxxmathxxx.tddt.data.CodeStage;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.gui.ide.CodeEditPane;
 import org.xxxmathxxx.tddt.gui.ide.TestEditPane;
@@ -29,15 +31,12 @@ public class Editor extends Scene {
 	CodeEditPane cep;
 	
 	//Editstate
-	Byte state;
+	CodeStage state;
 	/**
 	 * state 0= test
 	 * state 1= code
 	 * state 2= refactor
 	 */
-	
-	//Teschebycheff's Tracker
-	Tracker tracker;
 	
 	//Menus
 	Pane pane;
@@ -58,7 +57,7 @@ public class Editor extends Scene {
 		this.ex=ex;
 		this.pane=pane;
 		
-		state=0;
+		state=CodeStage.TEST;
 		
 		double xSize = pane.getPrefWidth();
 		double ySize = pane.getPrefHeight();
@@ -97,8 +96,7 @@ public class Editor extends Scene {
 		pane.getChildren().add(errorLabel);
 		
 		//Tschebycheff
-		tracker= new Tracker();
-		tracker.stageRed.startTimeTracking();
+		TDDT.currentThread.tracker.stageRed.startTimeTracking();
 	}
 	
 	/**
@@ -129,36 +127,37 @@ public class Editor extends Scene {
 	 */
 	public void switchRequested()
 	{
+		Tracker tracker = TDDT.currentThread.tracker; //shortcut
 		switch(state)
 		{
-		case 0: //Switch to code (RED->green)
+		case TEST: //Switch to code (RED->green)
 			if(switchToCode()) //Checks if exacly one Test fails
 			{
 				tracker.stageRed.stopTimeTracking();
 				tracker.stageGreen.startTimeTracking();
 				switchLabel();
-				state=1;
+				state=CodeStage.CODE;
 				updateStateLabel();
 				errorLabel.setText("");
 			}
 			break;
 			
-		case 1: //Switch to refactor (GREEN->Refactor)
+		case CODE: //Switch to refactor (GREEN->Refactor)
 			if(switchToRefactor()) //TODO: Test if code compiles and no test are failing
 			{
 				tracker.stageGreen.stopTimeTracking();
 				tracker.stageRefactor.startTimeTracking();
-				state=2;
+				state=CodeStage.REFACTOR;
 				updateStateLabel();
 				errorLabel.setText("");
 			}
 			break;
 			
-		case 2: //Switch to test (refactor->red)
+		case REFACTOR: //Switch to test (refactor->red)
 			tracker.stageGreen.startTimeTracking();
 			tracker.stageRefactor.stopTimeTracking();
 			switchLabel();
-			state=0;
+			state=CodeStage.TEST;
 			updateStateLabel();
 			errorLabel.setText("");
 			break;
@@ -290,15 +289,15 @@ public class Editor extends Scene {
 	{
 		switch(state)
 		{
-		case 0: 
+		case TEST: 
 			stateLabel.setText("Teststage");
 			break;
 			
-		case 1: 
+		case CODE: 
 			stateLabel.setText("CodeStage");
 			break;
 			
-		case 2: 
+		case REFACTOR: 
 			stateLabel.setText("refactorstage");
 			break;
 		}	

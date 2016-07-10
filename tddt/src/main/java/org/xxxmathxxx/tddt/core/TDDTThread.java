@@ -3,6 +3,7 @@ package org.xxxmathxxx.tddt.core;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.profile.MedalState;
 import org.xxxmathxxx.tddt.profile.Profile;
+import org.xxxmathxxx.tddt.tracking.Tracker;
 
 /**
  * The Class TDDTThread.
@@ -15,6 +16,8 @@ public class TDDTThread {
 	/** The current exercise. */
 	private Exercise currentExercise;
 	
+	public Tracker tracker;
+	
 	/**
 	 * Instantiates a new TDDT thread.
 	 *
@@ -22,6 +25,7 @@ public class TDDTThread {
 	 */
 	public TDDTThread(Profile user){
 		this.user = user;
+		this.tracker = new Tracker();
 	}
 	
 	/**
