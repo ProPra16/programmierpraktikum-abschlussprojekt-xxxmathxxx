@@ -73,7 +73,7 @@ public class ProfilePicker extends Pane {
 		double mainFaceSize = sizeY-borderY-textSize;
 		
 		caption.setPrefSize(sizeX-(2*borderX),textSize);
-		caption.relocate(borderX, sizeY-borderY-textSize);
+		caption.relocate(140, sizeY-borderY-textSize+10);
 		caption.setTextAlignment(TextAlignment.CENTER);
 		
 		center.setFitHeight(mainFaceSize);

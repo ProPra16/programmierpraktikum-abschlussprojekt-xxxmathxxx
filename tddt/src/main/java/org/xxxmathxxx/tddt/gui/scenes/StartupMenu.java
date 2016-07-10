@@ -60,7 +60,7 @@ public class StartupMenu extends Scene {
 		pane.getChildren().add(existingProfile);
 		
 		pp = new ProfilePicker(ProfileCollection.getAllProfiles());
-		pp.relocate(xSize/2-300,ySize - 390);
+		pp.relocate(250,ySize - 390);
 		pp.setPrefSize(300, 100);
 		pane.getChildren().add(pp);
 
@@ -78,8 +78,7 @@ public class StartupMenu extends Scene {
 				if (pp.getSelection() != null){
 					//start new thread
 					TDDT.currentThread = new TDDTThread(pp.getSelection());
-					WindowManager.getInstance().showMenu(WindowManager.MenuType.EXISTING_PROFILE);
-					
+					WindowManager.getInstance().showMenu(WindowManager.MenuType.EXISTING_PROFILE);					
 				}
 				else{
 					//You can only get here if you have no profile created at all and try to start the program
