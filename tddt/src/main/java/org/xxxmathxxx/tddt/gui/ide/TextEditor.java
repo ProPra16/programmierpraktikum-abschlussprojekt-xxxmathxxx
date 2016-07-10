@@ -98,7 +98,7 @@ public class TextEditor extends SwingNode {
 				{
 					@Override
 					public void run() {
-						TDDTLogManager.getInstance().logMessage("Graphics Fix for Windows applied!");
+						TDDTLogManager.getInstance().logMessage("Graphics Fix for Windows applied @ ");
 						scrollPane.requestFocus();
 						scrollPane.revalidate();
 						scrollPane.repaint();
