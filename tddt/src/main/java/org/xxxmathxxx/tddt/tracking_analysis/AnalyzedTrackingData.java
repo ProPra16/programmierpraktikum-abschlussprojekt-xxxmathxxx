@@ -39,7 +39,6 @@ public class AnalyzedTrackingData {
 		analyzedStageRed = new AnalyzedStageRed(tracker.stageRed);
 		analyzedStageRefactor = new AnalyzedStageRefactor(tracker.stageRefactor);
 		this.exercise = exercise;
-		this.profileName = profileName;
 	}
 }
 

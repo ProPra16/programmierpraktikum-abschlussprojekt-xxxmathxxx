@@ -4,7 +4,6 @@ package org.xxxmathxxx.tddt.gui.scenes;
 import org.xxxmathxxx.tddt.core.TDDT;
 //import org.xxxmathxxx.tddt.gui.AchievementPopup;
 import org.xxxmathxxx.tddt.gui.WindowManager;
-import org.xxxmathxxx.tddt.profile.MedalState;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

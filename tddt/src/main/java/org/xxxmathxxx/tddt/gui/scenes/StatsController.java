@@ -1,8 +1,6 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 import java.io.IOException;
 
-import javax.print.DocFlavor.URL;
-
 import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
@@ -69,13 +67,12 @@ public class StatsController extends Pane{ //suggestion: move this to gui packag
     
    
 	public StatsController(Pane mainPane){
-		
+		//WTF ARE YOU DOING HERE?
 		this.profile = TDDT.currentThread.getUserProfile();
 		
 		this.pane = mainPane;
-		this.analyzedTrackingData = TDDT.currentThread.getAnalyzedTrackingData();	
 		
-		analyzedTrackingDataCollection = profile.profileStats.getAnalayzedTrackingData();
+		analyzedTrackingDataCollection = TDDT.currentThread.getUserProfile().profileStats.getAnalayzedTrackingData();	
 		
 		if(analyzedTrackingData == null){
 			try{
@@ -95,7 +92,7 @@ public class StatsController extends Pane{ //suggestion: move this to gui packag
 		loader.setController(this);
 		
 		try {
-			AnchorPane anchorPane = loader.load(url);
+			AnchorPane anchorPane = FXMLLoader.load(url);
 			pane.getChildren().add(anchorPane);
 			this.getChildren().add(pane);
 		} catch (IOException e) {
@@ -126,8 +123,7 @@ public class StatsController extends Pane{ //suggestion: move this to gui packag
 				@Override
 				public void handle(ActionEvent event) {
 					if(event.getSource() == menuItem[i2]){
-						
-						TDDT.currentThread.setAnalyzedTrackingData((AnalyzedTrackingData) analyzedTrackingDataCollection.get(i2));
+						//hier werden sicherlich NICHT irgendwelche statistiken modifiziert, die werden ja hier nur angezeigt
 						WindowManager.getInstance().showMenu(WindowManager.MenuType.STATISTICS);
 					}		
 				}

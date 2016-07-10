@@ -14,7 +14,6 @@ import java.io.ObjectOutputStream;
 
 import org.xxxmathxxx.tddt.logging.TDDTIOError;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
-import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
 
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -32,11 +31,7 @@ public class Profile {
 	
 	/** The profile stats. */
 	public ProfileStats profileStats;
-	
-	/** analyzedData*/
-	public AnalyzedTrackingData analyzedTrackingData;
-	
-	
+		
 	/** Internal String that contains the profile name. */
 	private String name;
 	
