@@ -50,6 +50,11 @@ public class MedalViewer extends Pane{
 		this.author.setFitWidth(medalSize);
 		this.author.setFitHeight(medalSize);
 		
+		this.author.setOpacity(0);
+		this.gold.setOpacity(0.2);
+		this.silver.setOpacity(0.2);
+		this.bronze.setOpacity(0.2);
+		
 		getChildren().addAll(bronze,silver,gold,author);
 	}
 	

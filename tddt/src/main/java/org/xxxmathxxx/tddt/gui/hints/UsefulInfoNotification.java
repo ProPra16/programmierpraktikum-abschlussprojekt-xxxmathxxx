@@ -1,5 +1,7 @@
 package org.xxxmathxxx.tddt.gui.hints;
 
+import org.xxxmathxxx.tddt.gui.AlertMessenger;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -127,6 +129,7 @@ public class UsefulInfoNotification extends Stage {
 		@Override
 		public void handle(ActionEvent event) {
 			((CheckBox)event.getSource()).setSelected(true);
+			AlertMessenger.showErrorMessage("Nice try ...", "Hints are informative and you can learn more from them than you would like to admit!");
 		}
 		
 	}
