@@ -134,6 +134,7 @@ public class Editor extends Scene {
 				switchLabel();
 				state=1;
 				updateStateLabel();
+				errorLabel.setText("");
 			}
 			break;
 			
@@ -153,6 +154,10 @@ public class Editor extends Scene {
 		}	
 	}
 	
+	/**
+	 * Checks if one failed test is present
+	 * @return
+	 */
 	private Boolean switchToCode()
 	{
 		
@@ -164,11 +169,11 @@ public class Editor extends Scene {
 		
 		System.out.println(jsc.getCompilerResult().hasCompileErrors());
 		
-		
+		String retardedFishFrogString="";
 		
 		if(jsc.getCompilerResult().hasCompileErrors())
 		{	
-			String retardedFishFrogString="CompileErrors found: \n";
+			retardedFishFrogString=retardedFishFrogString+"CompileErrors found: \n";
 			
 			for(int i=0; i<cuArray.length; i++)
 			{
@@ -183,7 +188,18 @@ public class Editor extends Scene {
 			errorLabel.setText(retardedFishFrogString);
 			return false;
 		}
-		
+		else
+		{
+			if(jsc.getTestResult().getNumberOfFailedTests()==1)
+			{
+				return true;
+			}
+			else
+			{
+				retardedFishFrogString=retardedFishFrogString+"More/ Less than 1 one Test failed.";
+				errorLabel.setText(retardedFishFrogString);
+			}
+		}
 		
 		return false;
 	}
