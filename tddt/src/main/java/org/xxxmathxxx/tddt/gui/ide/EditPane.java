@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 //import org.xxxmathxxx.tddt.gui.ide.TextEditor; Until its finished
 
 import javafx.scene.layout.Pane;
+import vk.core.api.CompilationUnit;
 
 /**
  * @author Fabian
@@ -79,6 +80,34 @@ public abstract class EditPane extends Pane {
 		return isActive;
 	}
 	
+	/**
+	 * Returns if switching is possible. Implementes in TestEditPane and CodeEditPane
+	 * @return Boolean
+	 */
+	public Boolean canSwitch()
+	{
+		return false;
+	}
+	
+	/**
+	 * Handles VirtualKataLib
+	 */
+	private void handleVirtualKataLib()
+	{
+		Boolean isTest;
+		if(this instanceof TestEditPane)
+		{
+			isTest=true;
+		}
+		else
+		{
+			isTest=false;
+		}
+		
+		CompilationUnit cu= new CompilationUnit(classdata[0].name, classdata[0].code.rawText, isTest);
+		
+		
+	}
 	
 
 	/**

@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import vk.core.api.CompilationUnit;
+import vk.core.api.CompilerFactory;
 
 /**
  * @author Fabian
@@ -23,14 +25,14 @@ public class Editor extends Scene {
 	CodeEditPane cep;
 	
 	//Editstate
-	Byte state; //This is not a GUI-function -> maybe move this to TDDT Thread
+	Byte state;
 	/**
 	 * state 0= test
 	 * state 1= code
 	 * state 2= refractor
 	 */
 	
-	//Teschebycheff's Tracker //Same as above
+	//Teschebycheff's Tracker
 	Tracker tracker;
 	
 	//Menus
@@ -39,7 +41,7 @@ public class Editor extends Scene {
 	Label stateLabel;
 	
 	//LoadedExercise
-	Exercise ex; //Duplicate -> TODO: See TDDTThread / TDDT.currentThread
+	Exercise ex;
 	
 	/**fgcgh
 	 * Constructor
@@ -103,6 +105,7 @@ public class Editor extends Scene {
 			cep.switchActive();
 			cep.setVisible(false);
 			tep.setVisible(true);
+
 		}
 	}
 	
@@ -114,7 +117,7 @@ public class Editor extends Scene {
 		switch(state)
 		{
 		case 0: //Switch to code
-			if(true) //Test if one test fails
+			if(tep.canSwitch()) //TODO: Test if one test fails
 			{
 				switchLabel();
 				state=1;
@@ -123,7 +126,7 @@ public class Editor extends Scene {
 			break;
 			
 		case 1: //Switch to refractor
-			if(true) //Test if code compiles and no test are failing
+			if(true) //TODO: Test if code compiles and no test are failing
 			{
 				state=2;
 				updateStateLabel();
