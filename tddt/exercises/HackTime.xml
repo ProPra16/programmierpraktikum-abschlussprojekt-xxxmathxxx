@@ -1,0 +1,47 @@
+<exercise>
+	<name>Hack Time</name>
+	<id>0000000000001337</id>
+	<description>Write a basic hack that enables you to travel back in time and do useful stuff.</description>
+	<classes>
+		<class name="HackTime">
+public class HackTime 
+{
+
+}
+		</class>
+		
+		<class name="TimeBooster">
+public class TimeBooster 
+{
+
+}
+		</class>
+	</classes>
+		
+	<tests>
+		<test name="E=MC3Test">
+import static org.junit.Assert.*;
+import org.junit.Test;
+public class EEQUALSMC3Test
+{
+	@Test
+	public void testSomething() 
+	{
+	
+	}
+}
+		</test>
+	</tests>
+		
+	<finishtests>
+		<finishtest name="FinalUltimateTest">
+		
+		</finishtest>
+	</finishtests>
+		
+	<config>
+		<babysteps value="True" time="3.22" />
+		<timetracking value="True" />
+		<medals bronze="13.37" silver="6.65" gold="1.00" author="0.001"/>
+	</config>
+</exercise>
