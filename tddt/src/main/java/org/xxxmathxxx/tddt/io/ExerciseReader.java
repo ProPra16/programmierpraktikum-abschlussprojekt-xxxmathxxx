@@ -123,7 +123,6 @@ public class ExerciseReader {
 		for (int i1 = 0; i1 < pointer.getLength(); i1++) {
 			String className1 = pointer.item(i1).getAttributes().getNamedItem("name").getTextContent();
 			String classCode1 = pointer.item(i1).getTextContent();
-
 			referencedClasses[i1] = new ExerciseClass(className1, new JavaCode(classCode1));
 
 		}
