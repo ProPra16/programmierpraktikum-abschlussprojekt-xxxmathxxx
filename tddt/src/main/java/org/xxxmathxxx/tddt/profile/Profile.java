@@ -134,6 +134,7 @@ public class Profile {
 			}
 			
 			ret = new Profile(tmpName,tmpImg);
+			ret.statsPath = tmpStats;
 
 			in.close();
 			
