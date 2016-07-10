@@ -1,5 +1,8 @@
 package org.xxxmathxxx.tddt.gui.ide;
 
+import java.util.Collection;
+import java.util.Set;
+
 import org.xxxmathxxx.tddt.data.ClassData;
 import org.xxxmathxxx.tddt.gui.EditPaneToggleButton;
 
@@ -12,7 +15,12 @@ import javafx.scene.input.MouseEvent;
 //import org.xxxmathxxx.tddt.gui.ide.TextEditor; Until its finished
 
 import javafx.scene.layout.Pane;
+import junit.framework.TestResult;
 import vk.core.api.CompilationUnit;
+import vk.core.api.CompileError;
+import vk.core.api.CompilerFactory;
+import vk.core.api.CompilerResult;
+import vk.core.api.JavaStringCompiler;
 
 /**
  * @author Fabian
@@ -86,11 +94,12 @@ public abstract class EditPane extends Pane {
 	 */
 	public Boolean canSwitch()
 	{
+		handleVirtualKataLib();
 		return false;
 	}
 	
 	/**
-	 * Handles VirtualKataLib
+	 * Handles VirtualKataLib. Does not work at all.
 	 */
 	private void handleVirtualKataLib()
 	{
@@ -106,7 +115,8 @@ public abstract class EditPane extends Pane {
 		
 		CompilationUnit cu= new CompilationUnit(classdata[0].name, classdata[0].code.rawText, isTest);
 		
-		
+		JavaStringCompiler jsc= CompilerFactory.getCompiler(cu);
+
 	}
 	
 
