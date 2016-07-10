@@ -6,7 +6,10 @@
 		<class name="RomanNumberConverter">
 public class RomanNumberConverter 
 {
-
+	public static String convert(int i)
+	{
+		return "";
+	}
 }
 		</class>
 		
