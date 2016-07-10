@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.xxxmathxxx.tddt.tracking.Tracker;
+import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
+import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingDataCollection;
 
 
+// TODO: Auto-generated Javadoc
 /*
  * @Author: Tschebyscheff, 21.06.16
  * A class that allows to see which exercises are mastered
@@ -18,9 +21,7 @@ import org.xxxmathxxx.tddt.tracking.Tracker;
  */
 public class ProfileStats implements java.io.Serializable {
 
-	/**This class is stored using Serializable and thus requires a unique identifier
-	 * 
-	 */
+	/** This class is stored using Serializable and thus requires a unique identifier. */
 	private static final long serialVersionUID = 1L;
 
 	/** The name list. */
@@ -32,9 +33,10 @@ public class ProfileStats implements java.io.Serializable {
 	/** The tracker list. */
 	private ArrayList<Tracker> trackerList; 
 	
-	/**
-	 * Hash-Map that encodes the MedalState the user has for Exercises with a given Long ID
-	 */
+	/** The tracking data list. */
+	private AnalyzedTrackingDataCollection trackingDataList;
+	
+	/** Hash-Map that encodes the MedalState the user has for Exercises with a given Long ID. */
 	private HashMap<Long,MedalState> achievements;
 	
 	/**
@@ -44,10 +46,35 @@ public class ProfileStats implements java.io.Serializable {
 		nameList = new ArrayList<String>();
 		masteredList = new ArrayList<Boolean>();
 		trackerList = new ArrayList<Tracker>();
+		trackingDataList = new AnalyzedTrackingDataCollection();
 		this.achievements = new HashMap<Long,MedalState>();
 	}
 	
-	/**Setter that stores a given MedalState for an exercise with a given ID
+	
+	/**
+	 * Adds the tracking data.
+	 *
+	 * @param data the AnalyzedTrackingData
+	 */
+	public void addTrackingData(AnalyzedTrackingData data){
+		trackingDataList.add(data);
+		
+	}
+	
+	/**
+	 * Gets the analayzed tracking data.
+	 *
+	 * @return the analayzed tracking data
+	 */
+	public AnalyzedTrackingDataCollection getAnalayzedTrackingData(){
+		return trackingDataList;
+	}
+	
+	
+	
+	/**
+	 * Setter that stores a given MedalState for an exercise with a given ID.
+	 *
 	 * @param exerciseID The exercise ID as Long
 	 * @param newState The MedalState as MedalState
 	 */
@@ -104,9 +131,10 @@ public class ProfileStats implements java.io.Serializable {
 	}
 	
 	/**
-	 * Sets the mastered exercise, true means exercise was mastered
+	 * Sets the mastered exercise, true means exercise was mastered.
 	 *
 	 * @param i the i ndex
+	 * @param b the b
 	 */
 	public void setMasteredExercise(int i, boolean b){
 		masteredList.set(i, b);
@@ -167,7 +195,7 @@ public class ProfileStats implements java.io.Serializable {
 	/**
 	 * Gets the tracker.
 	 *
-	 * @param exerciseName, the exerciseName
+	 * @param exerciseName the exercise name
 	 * @return the tracker
 	 */
 	public Tracker getTracker(String exerciseName){
@@ -200,6 +228,12 @@ public class ProfileStats implements java.io.Serializable {
 		return i;
 	}
 
+	/**
+	 * Gets the medal state.
+	 *
+	 * @param exerciseID the exercise ID
+	 * @return the medal state
+	 */
 	public MedalState getMedalState(long exerciseID) {
 		if (achievements.containsKey(exerciseID)){
 			return achievements.get(exerciseID);

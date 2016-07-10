@@ -26,7 +26,7 @@ public class AnalyzedTrackingDataCollectionTests {
 	String string11 = "public class test{public static int hello() { return 1;}}";
 	String string12 = "import static org.junit.Assert.* ;import org.junit.Test; public class TestofTest {@Test public void methodTest(){ assertEquals(2, test.hello());}}";
 	
-	
+	/*
 	@Test
 	public void analyzeTrackingDataCollectionTests1(){
 		
@@ -113,4 +113,5 @@ public class AnalyzedTrackingDataCollectionTests {
 		
 		assertEquals(list, collection.getAllDataWithName("profilName1"));
 	}
+	*/
 }
