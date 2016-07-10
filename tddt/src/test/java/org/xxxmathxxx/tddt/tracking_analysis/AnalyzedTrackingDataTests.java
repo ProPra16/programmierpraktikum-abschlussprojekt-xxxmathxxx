@@ -12,9 +12,7 @@ import org.xxxmathxxx.tddt.tracking.Tracker;
 
 import vk.core.api.CompilationUnit;
 import vk.core.api.CompilerFactory;
-import vk.core.api.CompilerResult;
 import vk.core.api.JavaStringCompiler;
-import vk.core.api.TestResult;
 
 /**
  * @author Tschebyscheff, 05.07.16

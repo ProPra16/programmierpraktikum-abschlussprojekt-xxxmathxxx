@@ -81,7 +81,7 @@ public class TextEditor extends SwingNode {
 	}
 	
 	/**Sets the text of the editor, call is piped through to the actual text component
-	 * @param rawText
+	 * @param rawText The text that should be displayed in the editor
 	 */
 	public void setText(String rawText) {
 		editor.setText(rawText);
