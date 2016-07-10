@@ -9,7 +9,7 @@ package org.xxxmathxxx.tddt.tracking_analysis;
  *
  * @author Tschebyscheff, 05.07.16
  */
-public class Error {
+public class ErrorCounter {
 	
 	/** The total Error. Combines all different ErrorTypes. */
 	public int totalError = 0;

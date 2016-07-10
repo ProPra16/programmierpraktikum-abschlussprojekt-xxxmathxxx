@@ -1,8 +1,7 @@
-package org.xxxmathxxx.tddt.gui.scenes;
+package org.xxxmathxxx.tddt.gui;
 import java.io.IOException;
 
 import org.xxxmathxxx.tddt.core.TDDT;
-import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
@@ -32,28 +31,20 @@ import javafx.scene.layout.Pane;
  * TODO: handle MenuButton(ActionEvent) and backButton
  *
  */
-public class StatsController extends Pane{ //suggestion: move this to gui package and add only the scene that contains this to gui.scenes
-	
-	private Pane pane ;
+public class StatisticsPane extends Pane{ //suggestion: move this to gui package and add only the scene that contains this to gui.scenes
+
 	private Profile profile;
 	private AnalyzedTrackingDataCollection analyzedTrackingDataCollection;
 	AnalyzedTrackingData analyzedTrackingData;
-	@SuppressWarnings("rawtypes")
-	private  XYChart.Series series1;
-	@SuppressWarnings("rawtypes")
-	private  XYChart.Series series2;
-	@SuppressWarnings("rawtypes")
-	private  XYChart.Series series3;
-	@SuppressWarnings("rawtypes")
-	private  XYChart.Series series4;
-	@SuppressWarnings("rawtypes")
-	private  XYChart.Series series5;
-	@SuppressWarnings("rawtypes")
-	private  XYChart.Series series6;
-	@SuppressWarnings("rawtypes")
-	private  XYChart.Series series7;
+	private  XYChart.Series<String, Integer> series1;
+	private  XYChart.Series<String, Integer> series2;
+	private  XYChart.Series<String, Integer> series3;
+	private  XYChart.Series<String, Integer> series4;
+	private  XYChart.Series<String, Integer> series5;
+	private  XYChart.Series<String, Integer> series6;
+	private  XYChart.Series<String, Integer> series7;
 	@FXML
-	private BarChart<Number, String> barChart;
+	private BarChart<String, Integer> barChart;
 	@FXML
 	private CategoryAxis xAxis;
 	@FXML
@@ -66,12 +57,10 @@ public class StatsController extends Pane{ //suggestion: move this to gui packag
 	private MenuButton menuButton;
     
    
-	public StatsController(Pane mainPane){
+	public StatisticsPane(){
 		//WTF ARE YOU DOING HERE?
 		this.profile = TDDT.currentThread.getUserProfile();
-		
-		this.pane = mainPane;
-		
+				
 		analyzedTrackingDataCollection = TDDT.currentThread.getUserProfile().profileStats.getAnalayzedTrackingData();	
 		
 		if(analyzedTrackingData == null){
@@ -83,18 +72,10 @@ public class StatsController extends Pane{ //suggestion: move this to gui packag
 			}
 		}
 	
-		java.net.URL url = getClass().getResource("Stats.fxml");
-		
-	//	FXMLLoader loader = new FXMLLoader(url);
-		
-		
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Stats.fxml"));
-		loader.setController(this);
 		
 		try {
-			AnchorPane anchorPane = FXMLLoader.load(url);
-			pane.getChildren().add(anchorPane);
-			this.getChildren().add(pane);
+			AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("Stats.fxml"));
+			getChildren().add(anchorPane);
 		} catch (IOException e) {
 
 			e.printStackTrace();

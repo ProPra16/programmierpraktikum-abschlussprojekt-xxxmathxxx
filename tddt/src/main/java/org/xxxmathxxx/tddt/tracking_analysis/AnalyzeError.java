@@ -30,7 +30,7 @@ public class AnalyzeError {
 	 * @param error the error
 	 * @return the error
 	 */
-	public static Error analyzeCodeStamps(CodeStampCollection codeStampCollection, Error error){
+	public static ErrorCounter analyzeCodeStamps(CodeStampCollection codeStampCollection, ErrorCounter error){
 		
 		CodeStamp codeStamp;
 		Result result;
@@ -64,7 +64,7 @@ public class AnalyzeError {
 	 * @param error the error
 	 * @return the error
 	 */
-	public static Error handleCompileError(ArrayList<Object> list, Result result, Error error){
+	public static ErrorCounter handleCompileError(ArrayList<Object> list, Result result, ErrorCounter error){
 		
 		CompileError compileError;
 		CompilationUnit compUnit;
@@ -91,7 +91,7 @@ public class AnalyzeError {
 	 * @param error the error
 	 * @return the error
 	 */
-	private static Error analyzeCompileError(String compilerError, Error error){
+	private static ErrorCounter analyzeCompileError(String compilerError, ErrorCounter error){
 		
 		error.totalError++;
 		

@@ -19,7 +19,7 @@ public class AnalyzedStageRefactor {
 	public int keystrokes;
 	
 	/** The error. */
-	public Error error = new Error();
+	public ErrorCounter error = new ErrorCounter();
 	
 	/**
 	 * Instantiates a new analyzed stage refactor.

@@ -19,7 +19,7 @@ public class AnalyzedStageRed {
 	int keystrokes;
 	
 	/** The error. */
-	public Error error = new Error();
+	public ErrorCounter error = new ErrorCounter();
 	
 	/**
 	 * Instantiates a new analyzed stage red.
