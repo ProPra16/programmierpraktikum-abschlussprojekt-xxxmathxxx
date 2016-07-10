@@ -1,6 +1,8 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
 
+import javax.swing.SwingUtilities;
+
 import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.data.CodeStage;
 import org.xxxmathxxx.tddt.data.Exercise;
@@ -132,8 +134,16 @@ public class Editor extends Scene {
 				boolean hasSwitched = TDDT.currentThread.requestSwitch(TDDT.currentThread.state,self);
 
 				if (hasSwitched){ //this means a change has occured!
-					switchLabel();
-					updateStateLabel(TDDT.currentThread.state);
+					SwingUtilities.invokeLater( //don't think too much about it swing and javafx is bugged as f***
+							new Runnable(){
+								@Override
+								public void run() 
+								{
+									switchLabel();
+									updateStateLabel(TDDT.currentThread.state);									
+								}
+							}
+						);
 				}
 			}
 		}
