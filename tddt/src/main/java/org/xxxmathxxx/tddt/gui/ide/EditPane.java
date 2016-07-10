@@ -17,7 +17,6 @@ import javafx.scene.input.MouseEvent;
 //import org.xxxmathxxx.tddt.gui.ide.TextEditor; Until its finished
 
 import javafx.scene.layout.Pane;
-import junit.framework.TestResult;
 import vk.core.api.CompilationUnit;
 import vk.core.api.CompileError;
 import vk.core.api.CompilerFactory;
