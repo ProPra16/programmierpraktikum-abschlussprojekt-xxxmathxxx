@@ -44,6 +44,7 @@ public class Editor extends Scene {
 	Pane pane;
 	Button switchButton;
 	Label stateLabel;
+	Label errorLabel;
 	
 	//LoadedExercise
 	Exercise ex;
@@ -87,8 +88,14 @@ public class Editor extends Scene {
 		//Label
 		stateLabel= new Label("Teststage");
 		stateLabel.setPrefSize(100, 50);
-		stateLabel.relocate(10,ySize-150);
+		stateLabel.relocate(10,ySize-100);
 		pane.getChildren().add(stateLabel);
+		
+		//Errorlabel
+		errorLabel= new Label();
+		errorLabel.setPrefSize(200, 400);
+		errorLabel.relocate(xSize-250,10);
+		pane.getChildren().add(errorLabel);
 	}
 	
 	/**
@@ -148,6 +155,45 @@ public class Editor extends Scene {
 	
 	private Boolean switchToCode()
 	{
+		
+		CompilationUnit[] cuArray= getCompilationUnits();
+		
+		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
+		
+		jsc.compileAndRunTests();
+		
+		System.out.println(jsc.getCompilerResult().hasCompileErrors());
+		
+		
+		
+		if(jsc.getCompilerResult().hasCompileErrors())
+		{	
+			String retardedFishFrogString="CompileErrors found: \n";
+			
+			for(int i=0; i<cuArray.length; i++)
+			{
+				Iterator<CompileError> errors=jsc.getCompilerResult().getCompilerErrorsForCompilationUnit(cuArray[i]).iterator();
+						
+				while(errors.hasNext())
+				{
+					retardedFishFrogString=retardedFishFrogString+((CompileError) errors.next()).getMessage();
+				}
+			}
+			
+			errorLabel.setText(retardedFishFrogString);
+			return false;
+		}
+		
+		
+		return false;
+	}
+	
+	/**
+	 * Creates an Array of CompilationUnits to start compiling.
+	 * @return Array of CompilationUnits
+	 */
+	public CompilationUnit[] getCompilationUnits()
+	{
 		tep.save();
 		cep.save();
 		
@@ -165,25 +211,9 @@ public class Editor extends Scene {
 			cuArray[i]=new CompilationUnit(tep.classdata[i-cep.classdata.length].name, tep.classdata[i-cep.classdata.length].code.rawText, true);
 		}
 		
-		
-		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		
-		jsc.compileAndRunTests();
-		
-		System.out.println(jsc.getCompilerResult().hasCompileErrors());
-		
-		for(int i=0; i<cuArray.length; i++)
-		{
-			Iterator<CompileError> errors=jsc.getCompilerResult().getCompilerErrorsForCompilationUnit(cuArray[i]).iterator();
-						
-			while(errors.hasNext())
-			{
-				System.out.println(((CompileError) errors.next()).getMessage());
-			}
-		}
-		
-		return false;
+		return cuArray;
 	}
+
 	
 	/**
 	 * Updates StateLabel to currentState
