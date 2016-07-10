@@ -3,7 +3,6 @@ package org.xxxmathxxx.tddt.gui.scenes;
 import java.io.File;
 
 import org.xxxmathxxx.tddt.gui.GraphicsHelper;
-import org.xxxmathxxx.tddt.profile.ProfileCreator;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.gui.WindowManager.MenuType;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
@@ -20,6 +19,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.Region;
+import javafx.scene.control.Alert;
 
 public class NewProfileMenu extends Scene {	
 	
@@ -98,7 +100,15 @@ public class NewProfileMenu extends Scene {
 			}
 			else if (event.getSource() == create){
 				if ((textField.getText().isEmpty() || textField.getText() == null)) {
-					ProfileCreator.profileCreationError();
+					//Fixing this whole section later
+					Alert noTextDialog = new Alert(AlertType.ERROR);
+					noTextDialog.setTitle("Info");
+					noTextDialog.setHeaderText("You haven't entered a name yet!");
+					String s ="In order to proceed you need to enter a name for your profile!";
+					noTextDialog.setContentText(s);
+					//the following line is pure BS but javafx is still buggy
+					noTextDialog.getDialogPane().getChildren().stream().filter(node -> node instanceof Label).forEach(node -> ((Label)node).setMinHeight(Region.USE_PREF_SIZE));
+					noTextDialog.showAndWait();
 		        } 
 					else
 		        {
@@ -111,7 +121,10 @@ public class NewProfileMenu extends Scene {
 		            }
 		            
 		            Profile newProfile = new Profile(textField.getText(), customImagePath);
-					ProfileCreator.createProfile(newProfile);
+		            TDDTLogManager.getInstance().logMessage("New Profile has been created!");
+		            
+		            newProfile.saveProfileToFile();
+		    		TDDTLogManager.getInstance().logMessage("Profile saved!");
 		            
 		            WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
 		            
