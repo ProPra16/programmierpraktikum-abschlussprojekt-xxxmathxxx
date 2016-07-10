@@ -33,7 +33,7 @@ public class Editor extends Scene {
 	/**
 	 * state 0= test
 	 * state 1= code
-	 * state 2= refractor
+	 * state 2= refactor
 	 */
 	
 	//Teschebycheff's Tracker
@@ -137,8 +137,8 @@ public class Editor extends Scene {
 			}
 			break;
 			
-		case 1: //Switch to refractor
-			if(switchToRefractor()) //TODO: Test if code compiles and no test are failing
+		case 1: //Switch to refactor
+			if(switchToRefactor()) //TODO: Test if code compiles and no test are failing
 			{
 				state=2;
 				updateStateLabel();
@@ -202,8 +202,46 @@ public class Editor extends Scene {
 		return false;
 	}
 	
-	private Boolean switchToRefractor()
+	private Boolean switchToRefactor()
 	{
+		CompilationUnit[] cuArray= getCompilationUnits();
+		
+		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
+		
+		jsc.compileAndRunTests();
+		
+		String retardedFishFrogString="";
+		
+		if(jsc.getCompilerResult().hasCompileErrors())
+		{	
+			retardedFishFrogString=retardedFishFrogString+"CompileErrors found: \n";
+			
+			for(int i=0; i<cuArray.length; i++)
+			{
+				Iterator<CompileError> errors=jsc.getCompilerResult().getCompilerErrorsForCompilationUnit(cuArray[i]).iterator();
+						
+				while(errors.hasNext())
+				{
+					retardedFishFrogString=retardedFishFrogString+((CompileError) errors.next()).getMessage();
+				}
+			}
+			
+			errorLabel.setText(retardedFishFrogString);
+			return false;
+		}
+		else
+		{
+			if(jsc.getTestResult().getNumberOfFailedTests()==0)
+			{
+				return true;
+			}
+			else
+			{
+				retardedFishFrogString=retardedFishFrogString+"There are failed tests.";
+				errorLabel.setText(retardedFishFrogString);
+			}
+		}
+		
 		return false;
 	}
 
@@ -251,7 +289,7 @@ public class Editor extends Scene {
 			break;
 			
 		case 2: 
-			stateLabel.setText("Refractorstage");
+			stateLabel.setText("refactorstage");
 			break;
 		}	
 	}

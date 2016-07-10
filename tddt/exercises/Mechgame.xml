@@ -6,14 +6,24 @@
 		<class name="Mechgame">
 public class Mechgame 
 {
-
+	
 }
 		</class>
 		
 		<class name="MechgameEntity">
 public class MechgameEntity 
 {
-
+	int health;
+	
+	public MechgameEntity()
+	{	
+		health=10;
+	}
+	
+	public int getHealth()
+	{
+		return health;
+	}
 }
 		</class>
 	</classes>
