@@ -130,7 +130,7 @@ public class Editor extends Scene {
 			if (event.getSource()==switchButton){
 				tep.save();
 				cep.save();
-				boolean hasSwitched = TDDT.currentThread.requestSwitch(TDDT.currentThread.state,self);
+				boolean hasSwitched = TDDT.currentThread.requestSwitch(self);
 
 				if (hasSwitched){ //this means a change has occured!
 					switchLabel();

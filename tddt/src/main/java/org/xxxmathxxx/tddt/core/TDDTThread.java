@@ -84,7 +84,7 @@ public class TDDTThread {
 		user.setMedalState(exerciseID, newState);
 	}
 
-	public boolean requestSwitch(CodeStage state, Editor ed) {
+	public boolean requestSwitch(Editor ed) {
 		Tracker tracker = TDDT.currentThread.tracker; //shortcut
 		switch(state)
 		{
