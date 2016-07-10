@@ -1,6 +1,5 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
-import java.util.Collection;
 import java.util.Iterator;
 
 import org.xxxmathxxx.tddt.data.Exercise;

@@ -27,7 +27,7 @@ import javafx.scene.layout.Pane;
  * TODO: handle MenuButton(ActionEvent) and backButton
  *
  */
-public class StatsController extends Pane{
+public class StatsController extends Pane{ //suggestion: move this to gui package and add only the scene that contains this to gui.scenes
 	
 	private Pane pane ;
 	private Profile profile;
@@ -95,47 +95,47 @@ public class StatsController extends Pane{
 			menuButton.getItems().add(menuItem);
 		}
 		
-		series1 = new Series();
+		series1 = new Series<String, Integer>();
 		series1.setName("totalError");
-		series1.getData().add(new Data("Stage Red", analyzedTrackingData.analyzedStageRed.error.totalError));
-		series1.getData().add(new Data("Stage Green", analyzedTrackingData.analyzedStageGreen.error.totalError));
-		series1.getData().add(new Data("Stage Refactor", analyzedTrackingData.analyzedStageGreen.error.totalError));
+		series1.getData().add(new Data<String, Integer>("Stage Red", analyzedTrackingData.analyzedStageRed.error.totalError));
+		series1.getData().add(new Data<String, Integer>("Stage Green", analyzedTrackingData.analyzedStageGreen.error.totalError));
+		series1.getData().add(new Data<String, Integer>("Stage Refactor", analyzedTrackingData.analyzedStageGreen.error.totalError));
 		
-		series2 = new Series();
+		series2 = new Series<String, Integer>();
 		series2.setName("notInitializedError");
-		series2.getData().add(new Data("Stage Red", analyzedTrackingData.analyzedStageRed.error.notInitializedError));
-		series2.getData().add(new Data("Stage Green", analyzedTrackingData.analyzedStageGreen.error.notInitializedError));
-		series2.getData().add(new Data("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.notInitializedError));
+		series2.getData().add(new Data<String, Integer>("Stage Red", analyzedTrackingData.analyzedStageRed.error.notInitializedError));
+		series2.getData().add(new Data<String, Integer>("Stage Green", analyzedTrackingData.analyzedStageGreen.error.notInitializedError));
+		series2.getData().add(new Data<String, Integer>("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.notInitializedError));
 		
-		series3 = new Series();
+		series3 = new Series<String, Integer>();
 		series3.setName("cannotFindError");
-		series3.getData().add(new Data("Stage Red", analyzedTrackingData.analyzedStageRed.error.cannotFindError));
-		series3.getData().add(new Data("Stage Green", analyzedTrackingData.analyzedStageGreen.error.cannotFindError));
-		series3.getData().add(new Data("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.cannotFindError));
+		series3.getData().add(new Data<String, Integer>("Stage Red", analyzedTrackingData.analyzedStageRed.error.cannotFindError));
+		series3.getData().add(new Data<String, Integer>("Stage Green", analyzedTrackingData.analyzedStageGreen.error.cannotFindError));
+		series3.getData().add(new Data<String, Integer>("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.cannotFindError));
 		
-		series4 = new Series();
+		series4 = new Series<String, Integer>();
 		series4.setName("returnTypeError");
-		series4.getData().add(new Data("Stage Red", analyzedTrackingData.analyzedStageRed.error.returnTypeError));
-		series4.getData().add(new Data("Stage Green", analyzedTrackingData.analyzedStageGreen.error.returnTypeError));
-		series4.getData().add(new Data("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.returnTypeError));
+		series4.getData().add(new Data<String, Integer>("Stage Red", analyzedTrackingData.analyzedStageRed.error.returnTypeError));
+		series4.getData().add(new Data<String, Integer>("Stage Green", analyzedTrackingData.analyzedStageGreen.error.returnTypeError));
+		series4.getData().add(new Data<String, Integer>("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.returnTypeError));
 		
-		series5 = new Series();
+		series5 = new Series<String, Integer>();
 		series5.setName("expectedError");
-		series5.getData().add(new Data("Stage Red", analyzedTrackingData.analyzedStageRed.error.expectedError));
-		series5.getData().add(new Data("Stage Green", analyzedTrackingData.analyzedStageGreen.error.expectedError));
-		series5.getData().add(new Data("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.expectedError));
+		series5.getData().add(new Data<String, Integer>("Stage Red", analyzedTrackingData.analyzedStageRed.error.expectedError));
+		series5.getData().add(new Data<String, Integer>("Stage Green", analyzedTrackingData.analyzedStageGreen.error.expectedError));
+		series5.getData().add(new Data<String, Integer>("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.expectedError));
 		
-		series6 = new Series();
+		series6 = new Series<String, Integer>();
 		series6.setName("semnaticError");
-		series6.getData().add(new Data("Stage Red", analyzedTrackingData.analyzedStageRed.error.semanticError));
-		series6.getData().add(new Data("Stage Green", analyzedTrackingData.analyzedStageGreen.error.semanticError));
-		series6.getData().add(new Data("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.semanticError));
+		series6.getData().add(new Data<String, Integer>("Stage Red", analyzedTrackingData.analyzedStageRed.error.semanticError));
+		series6.getData().add(new Data<String, Integer>("Stage Green", analyzedTrackingData.analyzedStageGreen.error.semanticError));
+		series6.getData().add(new Data<String, Integer>("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.semanticError));
 		
-		series7 = new Series();
+		series7 = new Series<String, Integer>();
 		series7.setName("syntaxError");
-		series7.getData().add(new Data("Stage Red", analyzedTrackingData.analyzedStageRed.error.syntaxError));
-		series7.getData().add(new Data("Stage Green", analyzedTrackingData.analyzedStageGreen.error.syntaxError));
-		series7.getData().add(new Data("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.syntaxError));
+		series7.getData().add(new Data<String, Integer>("Stage Red", analyzedTrackingData.analyzedStageRed.error.syntaxError));
+		series7.getData().add(new Data<String, Integer>("Stage Green", analyzedTrackingData.analyzedStageGreen.error.syntaxError));
+		series7.getData().add(new Data<String, Integer>("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.syntaxError));
 		
 		xAxis.setLabel("Error");
 		yAxis.setLabel("Number");

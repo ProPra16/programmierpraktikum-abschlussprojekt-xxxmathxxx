@@ -3,18 +3,7 @@
  */
 package org.xxxmathxxx.tddt.tracking_analysis;
 
-import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-
-import org.junit.Test;
-import org.xxxmathxxx.tddt.tracking.CodeStamp;
-import org.xxxmathxxx.tddt.tracking.GenerateCodeStamp;
-import org.xxxmathxxx.tddt.tracking.Tracker;
-
-import vk.core.api.CompilationUnit;
-import vk.core.api.CompilerFactory;
-import vk.core.api.JavaStringCompiler;
 
 /**
  * @author Tschebyscheff, 05.07.16

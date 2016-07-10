@@ -1,10 +1,5 @@
 package org.xxxmathxxx.tddt.gui.ide;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-
 import org.xxxmathxxx.tddt.data.ClassData;
 import org.xxxmathxxx.tddt.gui.EditPaneToggleButton;
 
@@ -14,14 +9,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 
-//import org.xxxmathxxx.tddt.gui.ide.TextEditor; Until its finished
-
 import javafx.scene.layout.Pane;
-import vk.core.api.CompilationUnit;
-import vk.core.api.CompileError;
-import vk.core.api.CompilerFactory;
-import vk.core.api.CompilerResult;
-import vk.core.api.JavaStringCompiler;
 
 /**
  * @author Fabian
