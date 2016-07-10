@@ -43,11 +43,10 @@ public class ExistingProfileMenu extends Scene {
 		profilePic = new ImageView();
 		profilePic.setFitWidth(128);
 		profilePic.setFitHeight(128);
-		//tested it, the calls are most definitely not useless
 		
 		TDDT.currentThread.getUserProfile().showImageInJavaFXImageView(profilePic);
 
-		profilePic.relocate((xSize/2)-280,100+32+4);
+		profilePic.relocate((xSize/2)-280,146);
 		pane.getChildren().add(profilePic);
 		
 		loggedInAs = new Label("Logged in as:");
@@ -56,12 +55,10 @@ public class ExistingProfileMenu extends Scene {
 		loggedInAs.setFont(new Font("Times New Roman", 18));
 		pane.getChildren().add(loggedInAs);
 		
-		//TODO: ordentlich designen
 		profileName = new Label();
 		TDDT.currentThread.getUserProfile().showNameInJavaFXLabel(profileName);
 		profileName.setPrefSize(280, 32);
-		profileName.relocate((xSize/2)-280,132+4+128
-				);
+		profileName.relocate((xSize/2)-280,290);
 		profileName.setFont(new Font("Times New Roman", 18));
 		pane.getChildren().add(profileName);
 		

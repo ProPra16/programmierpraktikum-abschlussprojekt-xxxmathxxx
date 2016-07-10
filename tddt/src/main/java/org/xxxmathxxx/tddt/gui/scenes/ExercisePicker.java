@@ -48,29 +48,26 @@ public class ExercisePicker extends Scene {
 
 		super(pane);
 		
-		double xSize = pane.getPrefWidth();
-		double ySize = pane.getPrefHeight();
-		
 		infoText= new Label("Pick an exercise!");
-		infoText.relocate(10,10);
+		infoText.relocate(20,45);
 		infoText.setFont(new Font("Times New Roman", 20));
 		infoText.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(infoText);
 		
-		debugButton = new Button("DEBUG GIVE MEDAL!");
-		debugButton.setPrefSize(200, 200);
-		debugButton.relocate(10, 300);
+		debugButton = new Button("GIVE MEDAL!");
+		debugButton.setPrefSize(100, 50);
+		debugButton.relocate(660, 55);
 		debugButton.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(debugButton);
 		
 		start= new Button("Start!");
 		start.setPrefSize(150, 50);
-		start.relocate(xSize/2+45,ySize - 430);
+		start.relocate(480,55);
 		start.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(start);
 		
 		descr = new Label(); //STYLE THIS WHOLE GODDAMN THING BETTER
-		descr.relocate(10, 110);
+		descr.relocate(200, 135);
 		pane.getChildren().add(descr);
 		
 		ExerciseReader temp=new ExerciseReader();
@@ -78,7 +75,7 @@ public class ExercisePicker extends Scene {
 		
 		//exercises.add("Random"); make a seperate button for random stuff that gives you 200 TDDT-Coins
 		cb = new ExerciseComboBox(ec.asObservableList());
-		cb.relocate(10, 50);
+		cb.relocate(20, 85);
 		cb.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Exercise>() {
 
 			@Override
