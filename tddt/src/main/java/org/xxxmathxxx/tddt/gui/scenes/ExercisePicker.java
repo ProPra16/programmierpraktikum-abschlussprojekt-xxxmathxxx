@@ -69,7 +69,7 @@ public class ExercisePicker extends Scene {
 		start.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(start);
 		
-		descr = new Label(); //TODO: STYLE THIS WHOLE GODDAMN THING BETTER
+		descr = new Label(); //STYLE THIS WHOLE GODDAMN THING BETTER
 		descr.relocate(10, 110);
 		pane.getChildren().add(descr);
 		

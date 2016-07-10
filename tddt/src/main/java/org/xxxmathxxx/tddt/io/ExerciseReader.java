@@ -31,7 +31,6 @@ public class ExerciseReader {
 			logger = TDDTLogManager.getInstance();
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

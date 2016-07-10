@@ -44,8 +44,6 @@ import javafx.stage.Stage;
  */
 public class ImageCropperTool extends Stage {
 	
-	//TODO: Adjust to general css style
-	
 	//javafx elements
 	
 	private Rectangle selectionMarker;

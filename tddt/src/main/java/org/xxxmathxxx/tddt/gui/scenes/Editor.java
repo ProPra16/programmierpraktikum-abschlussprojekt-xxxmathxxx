@@ -23,14 +23,14 @@ public class Editor extends Scene {
 	CodeEditPane cep;
 	
 	//Editstate
-	Byte state; //TODO: This is not a GUI-function -> maybe move this to TDDT Thread
+	Byte state; //This is not a GUI-function -> maybe move this to TDDT Thread
 	/**
 	 * state 0= test
 	 * state 1= code
 	 * state 2= refractor
 	 */
 	
-	//Teschebycheff's Tracker //TODO Same as above
+	//Teschebycheff's Tracker //Same as above
 	Tracker tracker;
 	
 	//Menus
@@ -114,7 +114,7 @@ public class Editor extends Scene {
 		switch(state)
 		{
 		case 0: //Switch to code
-			if(true) //TODO: Test if one test fails
+			if(true) //Test if one test fails
 			{
 				switchLabel();
 				state=1;
@@ -123,7 +123,7 @@ public class Editor extends Scene {
 			break;
 			
 		case 1: //Switch to refractor
-			if(true) //TODO: Test if code compiles and no test are failing
+			if(true) //Test if code compiles and no test are failing
 			{
 				state=2;
 				updateStateLabel();

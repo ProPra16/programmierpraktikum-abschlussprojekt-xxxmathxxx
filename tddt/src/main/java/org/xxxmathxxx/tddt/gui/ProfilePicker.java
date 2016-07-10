@@ -26,7 +26,7 @@ public class ProfilePicker extends Pane {
 	private int index = 0;
 	
 	public ProfilePicker(ArrayList<Profile> profiles){
-		//TODO: Stylize / make more pretty
+		//Stylize / make more pretty
 		this.profiles = profiles;
 		
 		//init images

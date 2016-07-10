@@ -83,7 +83,7 @@ public class StartupMenu extends Scene {
 				}
 				else{
 					//can we even get here?
-					//TODO: add handling if necessary
+					//add handling if necessary
 				}
 			}
 		}

@@ -25,7 +25,7 @@ import javafx.scene.text.TextAlignment;
 
 public class NewProfileMenu extends Scene {	
 	
-	//TODO: DO THE TODO STUFF and clean this mess up
+	//DO THE STUFF and clean this mess up
 	
 	//jfx elements
 	private Label newProfile;
@@ -77,7 +77,7 @@ public class NewProfileMenu extends Scene {
 		pane.getChildren().add(textField);
 		
 		profilePic = new ImageView(GraphicsHelper.defaultProfilePicture(128));
-		profilePic.relocate(300, 170); //TODO: ordentlich ausrichten
+		profilePic.relocate(300, 170); //ordentlich ausrichten
 		profilePic.setFitWidth(128);
 		profilePic.setFitHeight(128);
 		pane.getChildren().add(profilePic);
@@ -101,7 +101,7 @@ public class NewProfileMenu extends Scene {
 				WindowManager.getInstance().showMenu(MenuType.STARTUP_MENU);
 			}
 			else if (event.getSource() == create){
-				//TODO: MOVE SHITTY LOGIC OUT TO SEPERATE CLASSES, GUI SHOULD BE KEPT LIGHTWEIGHT!!!
+				//MOVE SHITTY LOGIC OUT TO SEPERATE CLASSES, GUI SHOULD BE KEPT LIGHTWEIGHT!!!
 				if ((textField.getText().isEmpty() || textField.getText() == null)) {
 					Alert noTextDialog = new Alert(AlertType.ERROR);
 					noTextDialog.setTitle("Info");
@@ -114,11 +114,11 @@ public class NewProfileMenu extends Scene {
 		        } 
 					else
 		        {
-					//TODO: Check if a profile with this name already exists to prevent overwriting!
-					//TODO: Move logic to separate class and remove from GUI
+					//Check if a profile with this name already exists to prevent overwriting!
+					//Move logic to separate class and remove from GUI
 		            TDDTLogManager.getInstance().logMessage("Welcome " + textField.getText() + "!");
 		            
-		            //TODO: Check profile name for sanity / weird symbols etc.
+		            //Check profile name for sanity / weird symbols etc.
 		            if(customImagePath == null){
 		            	customImagePath = "graphics/unknownProfile.png";
 		            }
