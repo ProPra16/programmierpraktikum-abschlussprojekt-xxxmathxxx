@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+import javax.swing.text.StyledEditorKit;
 
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 
@@ -40,9 +41,10 @@ public class TextEditor extends SwingNode {
 	 * Default constructor
 	 */
 	public TextEditor(){
-		editor = new JTextPaneNoWrap();
-        editor.setEditorKit(new javax.swing.text.StyledEditorKit());
 		
+		editor = new JTextPaneNoWrap();
+        editor.setEditorKit(new StyledEditorKit());
+        
 		editorWrapper = new JPanel(new BorderLayout());
 		editorWrapper.add(editor);
 		
