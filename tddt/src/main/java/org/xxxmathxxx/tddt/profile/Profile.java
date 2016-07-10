@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 
 import org.xxxmathxxx.tddt.logging.TDDTIOError;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
@@ -150,23 +149,6 @@ public class Profile {
 	 */
 	public MedalState getMedalState(long exerciseID){
 		return profileStats.getMedalState(exerciseID);
-	}
-	
-	public static ArrayList<Profile> getAllProfiles(){
-		TDDTLogManager.getInstance().logMessage("Loading profiles from disk ...");
-		File profileDir = new File("profiles");
-		ArrayList<Profile> ret = new ArrayList<Profile>();
-		for (File f: profileDir.listFiles()){
-			if (!f.isDirectory()){
-				try {
-					ret.add(Profile.loadProfileFromFile(f.getAbsolutePath()));
-					TDDTLogManager.getInstance().logMessage("Found profile: "+f.getName());
-				} catch (TDDTIOError e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return ret;
 	}
 	
 	public void saveProfileToFile(){
