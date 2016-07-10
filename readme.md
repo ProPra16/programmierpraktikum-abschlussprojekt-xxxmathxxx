@@ -23,10 +23,15 @@ We do not provide a static documentation here, instead you can create your own u
 
 Navigate to the docs folder with `cd docs`.
 Then execute the following command: `sh generateJavaDoc.sh`
+On Windows you can use the corresponding batch-file.
+
 ###How to generate a class-diagram as .pdf###
 
 Navigate to the docs folder with `cd docs`.
 Then execute the following command: `sh generateClassDiagram.sh`
+On Windows you can use the corresponding batch-file.
+Note that in order for this to work you need a working LaTex system with pdftex and the following packages:
+tikz, tikz-qtree, tikz-qtree-compat
 
 ##How to use our software##
 
