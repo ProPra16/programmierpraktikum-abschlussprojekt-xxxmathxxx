@@ -3,6 +3,7 @@ package org.xxxmathxxx.tddt.gui.scenes;
 import java.io.File;
 
 import org.xxxmathxxx.tddt.gui.GraphicsHelper;
+import org.xxxmathxxx.tddt.profile.ProfileCreator;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.gui.WindowManager.MenuType;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
@@ -11,21 +12,16 @@ import org.xxxmathxxx.tddt.profile.Profile;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 public class NewProfileMenu extends Scene {	
-	
-	//DO THE STUFF and clean this mess up
 	
 	//jfx elements
 	private Label newProfile;
@@ -51,7 +47,7 @@ public class NewProfileMenu extends Scene {
 		newProfile.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(newProfile);
 		
-		back = new Button("back tomainmenu");
+		back = new Button("back to mainmenu");
 		back.setPrefSize(175, 32);
 		back.relocate((xSize/2)-83,ySize-40);
 		back.setFont(new Font("Times New Roman", 20));
@@ -77,7 +73,7 @@ public class NewProfileMenu extends Scene {
 		pane.getChildren().add(textField);
 		
 		profilePic = new ImageView(GraphicsHelper.defaultProfilePicture(128));
-		profilePic.relocate(335, 170); //ordentlich ausrichten
+		profilePic.relocate(335, 170);
 		profilePic.setFitWidth(128);
 		profilePic.setFitHeight(128);
 		pane.getChildren().add(profilePic);
@@ -101,21 +97,12 @@ public class NewProfileMenu extends Scene {
 				WindowManager.getInstance().showMenu(MenuType.STARTUP_MENU);
 			}
 			else if (event.getSource() == create){
-				//MOVE SHITTY LOGIC OUT TO SEPERATE CLASSES, GUI SHOULD BE KEPT LIGHTWEIGHT!!!
 				if ((textField.getText().isEmpty() || textField.getText() == null)) {
-					Alert noTextDialog = new Alert(AlertType.ERROR);
-					noTextDialog.setTitle("Info");
-					noTextDialog.setHeaderText("You haven't entered a name yet!");
-					String s ="In order to proceed you need to enter a name for your profile!";
-					noTextDialog.setContentText(s);
-					//the following line is pure BS but javafx is still buggy
-					noTextDialog.getDialogPane().getChildren().stream().filter(node -> node instanceof Label).forEach(node -> ((Label)node).setMinHeight(Region.USE_PREF_SIZE));
-					noTextDialog.showAndWait();
+					ProfileCreator.profileCreationError();
 		        } 
 					else
 		        {
 					//Check if a profile with this name already exists to prevent overwriting!
-					//Move logic to separate class and remove from GUI
 		            TDDTLogManager.getInstance().logMessage("Welcome " + textField.getText() + "!");
 		            
 		            //Check profile name for sanity / weird symbols etc.
@@ -124,10 +111,7 @@ public class NewProfileMenu extends Scene {
 		            }
 		            
 		            Profile newProfile = new Profile(textField.getText(), customImagePath);
-		            TDDTLogManager.getInstance().logMessage("New Profile has been created!");
-
-		            newProfile.saveProfileToFile();
-					TDDTLogManager.getInstance().logMessage("Profile saved!");
+					ProfileCreator.createProfile(newProfile);
 		            
 		            WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
 		            
