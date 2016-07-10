@@ -84,7 +84,7 @@ public class TDDTThread {
 		user.setMedalState(exerciseID, newState);
 	}
 
-	public void requestSwitch(CodeStage state, Editor ed) {
+	public boolean requestSwitch(CodeStage state, Editor ed) {
 		Tracker tracker = TDDT.currentThread.tracker; //shortcut
 		switch(state)
 		{
@@ -95,9 +95,9 @@ public class TDDTThread {
 				tracker.stageRed.stopTimeTracking();
 				tracker.stageGreen.startTimeTracking();
 				state=CodeStage.CODE;
+				return true;
 			}
 			break;
-			
 		case CODE: //Switch to refactor (GREEN->Refactor)
 			if(switchToRefactor(ed)) //TODO: Test if code compiles and no test are failing
 			{
@@ -105,16 +105,17 @@ public class TDDTThread {
 				tracker.stageGreen.stopTimeTracking();
 				tracker.stageRefactor.startTimeTracking();
 				state=CodeStage.REFACTOR;
+				return true;
 			}
 			break;
-			
 		case REFACTOR: //Switch to test (refactor->red)
 			TDDTLogManager.getInstance().logMessage("Switching to Test Stage");
 			tracker.stageGreen.startTimeTracking();
 			tracker.stageRefactor.stopTimeTracking();
 			state=CodeStage.TEST;
-			break;
+			return true;
 		}	
+		return false;
 	}
 
 	

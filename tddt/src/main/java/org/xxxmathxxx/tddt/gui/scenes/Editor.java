@@ -98,7 +98,6 @@ public class Editor extends Scene {
 			cep.switchActive();
 			cep.setVisible(false);
 			tep.setVisible(true);
-
 		}
 	}
 	
@@ -130,12 +129,11 @@ public class Editor extends Scene {
 			if (event.getSource()==switchButton){
 				tep.save();
 				cep.save();
-				CodeStage oldState  = TDDT.currentThread.state;
-				TDDT.currentThread.requestSwitch(TDDT.currentThread.state,self);
+				boolean hasSwitched = TDDT.currentThread.requestSwitch(TDDT.currentThread.state,self);
 
-				if (oldState != TDDT.currentThread.state){ //this means a change has occured!
-					updateStateLabel(TDDT.currentThread.state);
+				if (hasSwitched){ //this means a change has occured!
 					switchLabel();
+					updateStateLabel(TDDT.currentThread.state);
 				}
 			}
 		}
