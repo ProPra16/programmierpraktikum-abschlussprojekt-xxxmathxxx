@@ -89,44 +89,6 @@ public abstract class EditPane extends Pane {
 	public Boolean isActive() {
 		return isActive;
 	}
-	
-	/**
-	 * Returns if switching is possible. Implementes in TestEditPane and CodeEditPane
-	 * @return Boolean
-	 */
-	public Boolean canSwitch()
-	{
-		handleVirtualKataLib();
-		return false;
-	}
-	
-	/**
-	 * Handles VirtualKataLib. Does not work at all.
-	 */
-	private void handleVirtualKataLib()
-	{
-		Boolean isTest;
-		if(this instanceof TestEditPane)
-		{
-			isTest=true;
-		}
-		else
-		{
-			isTest=false;
-		}
-		
-		CompilationUnit[] cuArray= new CompilationUnit[classdata.length];
-		
-		for(int i=0; i<classdata.length;i++)
-		{
-			cuArray[i]=new CompilationUnit(classdata[i].name, classdata[i].code.rawText, isTest);
-		}
-		
-		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		
-		
-	}
-	
 
 	/**
 	 * Inverts activeness
@@ -159,6 +121,14 @@ public abstract class EditPane extends Pane {
 		classdata[selectedPage].code.rawText=te.getText();
 		te.setText(classdata[index].code.rawText);
 		selectedPage=index;
+	}
+	
+	/**
+	 * Actualizes content of ClassData[]
+	 */
+	public void save()
+	{
+		classdata[selectedPage].code.rawText=te.getText();
 	}
 	
 	EventHandler<MouseEvent> focusHelper = new EventHandler<MouseEvent>(){

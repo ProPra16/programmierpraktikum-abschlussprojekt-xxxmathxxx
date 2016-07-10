@@ -19,7 +19,7 @@ public class TimeBooster
 	</classes>
 		
 	<tests>
-		<test name="E=MC3Test">
+		<test name="EEQUALSMC3Test">
 import static org.junit.Assert.*;
 import org.junit.Test;
 public class EEQUALSMC3Test

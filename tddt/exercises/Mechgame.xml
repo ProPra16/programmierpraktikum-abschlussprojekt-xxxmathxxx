@@ -10,7 +10,7 @@ public class Mechgame
 }
 		</class>
 		
-		<class name="TestClass">
+		<class name="MechgameEntity">
 public class MechgameEntity 
 {
 
@@ -19,7 +19,7 @@ public class MechgameEntity
 	</classes>
 		
 	<tests>
-		<test name="RomanNumberConverterTest">
+		<test name="MechgameTest">
 import static org.junit.Assert.*;
 import org.junit.Test;
 public class MechgameTest

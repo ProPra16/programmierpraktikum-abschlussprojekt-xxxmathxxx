@@ -1,5 +1,8 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.gui.ide.CodeEditPane;
 import org.xxxmathxxx.tddt.gui.ide.TestEditPane;
@@ -12,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import vk.core.api.CompilationUnit;
+import vk.core.api.CompileError;
 import vk.core.api.CompilerFactory;
 import vk.core.api.JavaStringCompiler;
 
@@ -144,6 +148,9 @@ public class Editor extends Scene {
 	
 	private Boolean switchToCode()
 	{
+		tep.save();
+		cep.save();
+		
 		int addedLength=cep.classdata.length+tep.classdata.length;
 		
 		CompilationUnit[] cuArray= new CompilationUnit[addedLength];
@@ -164,6 +171,16 @@ public class Editor extends Scene {
 		jsc.compileAndRunTests();
 		
 		System.out.println(jsc.getCompilerResult().hasCompileErrors());
+		
+		for(int i=0; i<cuArray.length; i++)
+		{
+			Iterator<CompileError> errors=jsc.getCompilerResult().getCompilerErrorsForCompilationUnit(cuArray[i]).iterator();
+						
+			while(errors.hasNext())
+			{
+				System.out.println(((CompileError) errors.next()).getMessage());
+			}
+		}
 		
 		return false;
 	}
