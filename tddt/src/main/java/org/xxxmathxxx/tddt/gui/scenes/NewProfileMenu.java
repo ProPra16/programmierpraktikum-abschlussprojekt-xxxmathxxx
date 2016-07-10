@@ -5,6 +5,7 @@ import java.io.File;
 import org.xxxmathxxx.tddt.gui.GraphicsHelper;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.gui.WindowManager.MenuType;
+import org.xxxmathxxx.tddt.gui.AlertMessenger;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.profile.ProfileCreator;
 
@@ -98,7 +99,7 @@ public class NewProfileMenu extends Scene {
 			}
 			else if (event.getSource() == create){
 				if ((textField.getText().isEmpty() || textField.getText() == null)) {
-					ProfileCreator.profileCreationError();
+					AlertMessenger.missingNameError();
 		        } 
 					else
 		        {
