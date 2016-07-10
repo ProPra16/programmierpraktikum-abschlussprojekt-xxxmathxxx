@@ -41,7 +41,7 @@ public class AnalyzedTrackingDataTests {
 		CodeStamp codeStamp = GenerateCodeStamp.generate(compiler);
 		tracker.stageGreen.codeStampCollection.addCodeStemp(codeStamp);
 		
-		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker, "exercise", "profilName");
+		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker, "exercise");
 		
 		assertEquals(data.analyzedStageGreen.error.testFailure, 1);
 	}
@@ -56,7 +56,7 @@ public class AnalyzedTrackingDataTests {
 		
 		CodeStamp codeStamp = GenerateCodeStamp.generate(compiler);
 		tracker.stageGreen.codeStampCollection.addCodeStemp(codeStamp);
-		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker, "exercise", "profilName");
+		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker, "exercise");
 		
 		assertEquals(data.analyzedStageGreen.error.syntaxError, 1);
 	}
@@ -71,7 +71,7 @@ public class AnalyzedTrackingDataTests {
 		
 		CodeStamp codeStamp = GenerateCodeStamp.generate(compiler);
 		tracker.stageRefactor.codeStampCollection.addCodeStemp(codeStamp);
-		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker, "exercise", "profilName");
+		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker, "exercise");
 		
 		assertEquals(data.analyzedStageRefactor.error.syntaxError, 2);
 	}
@@ -86,7 +86,7 @@ public class AnalyzedTrackingDataTests {
 		
 		CodeStamp codeStamp = GenerateCodeStamp.generate(compiler);
 		tracker.stageRefactor.codeStampCollection.addCodeStemp(codeStamp);
-		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker, "exercise", "profilName");
+		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker, "exercise");
 		
 		assertEquals(data.analyzedStageRefactor.error.semanticError, 1);
 	}

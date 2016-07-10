@@ -33,7 +33,7 @@ public class AnalyzedTrackingData {
 	 * @param exercise the exercise
 	 * @param profileName the profile name
 	 */
-	public AnalyzedTrackingData(Tracker tracker, String exercise, String profileName){
+	public AnalyzedTrackingData(Tracker tracker, String exercise){
 		
 		analyzedStageGreen = new AnalyzedStageGreen(tracker.stageGreen);
 		analyzedStageRed = new AnalyzedStageRed(tracker.stageRed);
