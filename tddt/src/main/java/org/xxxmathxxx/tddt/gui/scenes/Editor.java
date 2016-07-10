@@ -1,13 +1,11 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
-import java.util.Iterator;
 
 import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.data.CodeStage;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.gui.ide.CodeEditPane;
 import org.xxxmathxxx.tddt.gui.ide.TestEditPane;
-import org.xxxmathxxx.tddt.tracking.Tracker;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,34 +13,24 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import vk.core.api.CompilationUnit;
-import vk.core.api.CompileError;
-import vk.core.api.CompilerFactory;
-import vk.core.api.JavaStringCompiler;
+
 
 /**
  * @author Fabian
  *	Interface class to create an editor
  */
 public class Editor extends Scene {
+	
+	private Editor self = this; //reference for button handler
 
 	//Editor Panes
-	TestEditPane tep;
-	CodeEditPane cep;
-	
-	//Editstate
-	CodeStage state;
-	/**
-	 * state 0= test
-	 * state 1= code
-	 * state 2= refactor
-	 */
+	public TestEditPane tep;
+	public CodeEditPane cep;
 	
 	//Menus
 	Pane pane;
 	Button switchButton;
 	Label stateLabel;
-	Label errorLabel;
 	
 	//LoadedExercise
 	Exercise ex;
@@ -56,9 +44,7 @@ public class Editor extends Scene {
 		super(pane);
 		this.ex=ex;
 		this.pane=pane;
-		
-		state=CodeStage.TEST;
-		
+				
 		double xSize = pane.getPrefWidth();
 		double ySize = pane.getPrefHeight();
 		
@@ -89,12 +75,6 @@ public class Editor extends Scene {
 		stateLabel.relocate(10,ySize-100);
 		pane.getChildren().add(stateLabel);
 		
-		//Errorlabel
-		errorLabel= new Label();
-		errorLabel.setPrefSize(200, 400);
-		errorLabel.relocate(xSize-250,10);
-		pane.getChildren().add(errorLabel);
-		
 		//Tschebycheff
 		TDDT.currentThread.tracker.stageRed.startTimeTracking();
 	}
@@ -123,169 +103,9 @@ public class Editor extends Scene {
 	}
 	
 	/**
-	 * Called when a stateswitch was requested by the User
-	 */
-	public void switchRequested()
-	{
-		Tracker tracker = TDDT.currentThread.tracker; //shortcut
-		switch(state)
-		{
-		case TEST: //Switch to code (RED->green)
-			if(switchToCode()) //Checks if exacly one Test fails
-			{
-				tracker.stageRed.stopTimeTracking();
-				tracker.stageGreen.startTimeTracking();
-				switchLabel();
-				state=CodeStage.CODE;
-				updateStateLabel();
-				errorLabel.setText("");
-			}
-			break;
-			
-		case CODE: //Switch to refactor (GREEN->Refactor)
-			if(switchToRefactor()) //TODO: Test if code compiles and no test are failing
-			{
-				tracker.stageGreen.stopTimeTracking();
-				tracker.stageRefactor.startTimeTracking();
-				state=CodeStage.REFACTOR;
-				updateStateLabel();
-				errorLabel.setText("");
-			}
-			break;
-			
-		case REFACTOR: //Switch to test (refactor->red)
-			tracker.stageGreen.startTimeTracking();
-			tracker.stageRefactor.stopTimeTracking();
-			switchLabel();
-			state=CodeStage.TEST;
-			updateStateLabel();
-			errorLabel.setText("");
-			break;
-		}	
-	}
-	
-	/**
-	 * Checks if one failed test is present
-	 * @return
-	 */
-	private Boolean switchToCode()
-	{
-		CompilationUnit[] cuArray= getCompilationUnits();
-		
-		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		
-		jsc.compileAndRunTests();
-		
-		String retardedFishFrogString="";
-		
-		if(jsc.getCompilerResult().hasCompileErrors())
-		{	
-			retardedFishFrogString=retardedFishFrogString+"CompileErrors found: \n";
-			
-			for(int i=0; i<cuArray.length; i++)
-			{
-				Iterator<CompileError> errors=jsc.getCompilerResult().getCompilerErrorsForCompilationUnit(cuArray[i]).iterator();
-						
-				while(errors.hasNext())
-				{
-					retardedFishFrogString=retardedFishFrogString+((CompileError) errors.next()).getMessage();
-				}
-			}
-			
-			errorLabel.setText(retardedFishFrogString);
-			return false;
-		}
-		else
-		{
-			if(jsc.getTestResult().getNumberOfFailedTests()==1)
-			{
-				return true;
-			}
-			else
-			{
-				retardedFishFrogString=retardedFishFrogString+"More/ Less than 1 one Test failed.";
-				errorLabel.setText(retardedFishFrogString);
-			}
-		}
-		
-		return false;
-	}
-	
-	private Boolean switchToRefactor()
-	{
-		CompilationUnit[] cuArray= getCompilationUnits();
-		
-		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		
-		jsc.compileAndRunTests();
-		
-		String retardedFishFrogString="";
-		
-		if(jsc.getCompilerResult().hasCompileErrors())
-		{	
-			retardedFishFrogString=retardedFishFrogString+"CompileErrors found: \n";
-			
-			for(int i=0; i<cuArray.length; i++)
-			{
-				Iterator<CompileError> errors=jsc.getCompilerResult().getCompilerErrorsForCompilationUnit(cuArray[i]).iterator();
-						
-				while(errors.hasNext())
-				{
-					retardedFishFrogString=retardedFishFrogString+((CompileError) errors.next()).getMessage();
-				}
-			}
-			
-			errorLabel.setText(retardedFishFrogString);
-			return false;
-		}
-		else
-		{
-			if(jsc.getTestResult().getNumberOfFailedTests()==0)
-			{
-				return true;
-			}
-			else
-			{
-				retardedFishFrogString=retardedFishFrogString+"There are failed tests.";
-				errorLabel.setText(retardedFishFrogString);
-			}
-		}
-		
-		return false;
-	}
-
-	
-	/**
-	 * Creates an Array of CompilationUnits to start compiling.
-	 * @return Array of CompilationUnits
-	 */
-	private CompilationUnit[] getCompilationUnits()
-	{
-		tep.save();
-		cep.save();
-		
-		int addedLength=cep.classdata.length+tep.classdata.length;
-		
-		CompilationUnit[] cuArray= new CompilationUnit[addedLength];
-		
-		for(int i=0; i<cep.classdata.length;i++)
-		{
-			cuArray[i]=new CompilationUnit(cep.classdata[i].name, cep.classdata[i].code.rawText, false);
-		}
-		
-		for(int i=cep.classdata.length; i<addedLength;i++)
-		{
-			cuArray[i]=new CompilationUnit(tep.classdata[i-cep.classdata.length].name, tep.classdata[i-cep.classdata.length].code.rawText, true);
-		}
-		
-		return cuArray;
-	}
-
-	
-	/**
 	 * Updates StateLabel to currentState
 	 */
-	private void updateStateLabel()
+	private void updateStateLabel(CodeStage state)
 	{
 		switch(state)
 		{
@@ -308,7 +128,15 @@ public class Editor extends Scene {
 		@Override
 		public void handle(ActionEvent event) {
 			if (event.getSource()==switchButton){
-				switchRequested();
+				tep.save();
+				cep.save();
+				CodeStage oldState  = TDDT.currentThread.state;
+				TDDT.currentThread.requestSwitch(TDDT.currentThread.state,self);
+
+				if (oldState != TDDT.currentThread.state){ //this means a change has occured!
+					updateStateLabel(TDDT.currentThread.state);
+					switchLabel();
+				}
 			}
 		}
 	}
