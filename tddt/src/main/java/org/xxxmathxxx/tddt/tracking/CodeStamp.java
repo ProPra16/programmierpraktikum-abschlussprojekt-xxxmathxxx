@@ -3,9 +3,6 @@
  */
 package org.xxxmathxxx.tddt.tracking;
 
-import java.util.Iterator;
-import java.util.Set;
-
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 
 import vk.core.api.CompilationUnit;
@@ -56,31 +53,20 @@ public class CodeStamp {
 	 * Generates a CodeStamp.
 	 *
 	 * @param compiler the compiler
+	 * @param cuArray 
 	 * @return the code stamp
 	 */
-	public static CodeStamp generateCodeStamp(JavaStringCompiler compiler){	
+	public static CodeStamp generateCodeStamp(JavaStringCompiler compiler, CompilationUnit[] cUnits){	
 		TDDTLogManager.getInstance().logMessage("Generating new Code-Stamp");
 		compiler.compileAndRunTests();
-		
-		Set<String> set = compiler.getAllCompilationUnitNames();
-		Iterator<String> iterator = set.iterator();
-		CompilationUnit compilationUnit = null;
-		int i = 0;
-		CompilationUnit[] cUnits = new CompilationUnit[set.size()];
 
 		CompilerResult compilerResult = compiler.getCompilerResult();
 		TestResult testResult = compiler.getTestResult();
-		
-		Result result = new Result(testResult,compilerResult);
-
-		while(iterator.hasNext()){
-			String nextName = iterator.next();
-			TDDTLogManager.getInstance().logMessage("CompilationUnit found and added to CodeStamp: "+nextName);
-			compilationUnit = compiler.getCompilationUnitByName(nextName);	
-			cUnits[i] = compilationUnit;
-			i++;
+		if (compilerResult == null || testResult == null){
+			System.out.println("HI");
 		}
 		
+		Result result = new Result(testResult,compilerResult);
 		
 		CodeStamp codeStamp = new CodeStamp(result, cUnits);
 		return codeStamp;
