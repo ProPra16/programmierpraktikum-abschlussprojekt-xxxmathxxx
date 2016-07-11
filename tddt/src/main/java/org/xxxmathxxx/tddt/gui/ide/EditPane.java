@@ -38,9 +38,6 @@ public abstract class EditPane extends FlowPane {
 	public EditPane(ClassData[] classdata) {
 		isActive = false;
 
-		
-		
-
 		this.clock = new ClockLabel(3.00d); //TODO: Add exercise babysteps time
 		this.clock.setPrefSize(32, 32);
 		this.clock.relocate(128, 8);

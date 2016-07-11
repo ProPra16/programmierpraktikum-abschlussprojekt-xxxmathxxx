@@ -14,7 +14,7 @@ public class Exercise {
 	public ExerciseTest[] referencedTests; 
 	public ExerciseTest referencedFinishTest;
 
-	ExerciseConfig config;
+	public ExerciseConfig config;
 
 	/**
 	 * Constructor
