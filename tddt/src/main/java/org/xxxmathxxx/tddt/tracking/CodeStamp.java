@@ -4,7 +4,6 @@
 package org.xxxmathxxx.tddt.tracking;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -29,8 +28,6 @@ public class CodeStamp {
 	/** The list of CompilationUnits. */
 	private ArrayList<Object> list = new ArrayList<Object>();
 	
-	/** The date. */
-	private Date date;
 	
 	/**
 	 * Instantiates a new code stamp.
@@ -39,10 +36,9 @@ public class CodeStamp {
 	 * @param list the CompilationUnit list
 	 * @param date the date
 	 */
-	public CodeStamp(Result result, ArrayList<Object> list, Date date){
+	public CodeStamp(Result result, ArrayList<Object> list){
 		this.result = result;
 		this.list = list;
-		this.date = date;
 	}
 	
 	/**
@@ -78,7 +74,6 @@ public class CodeStamp {
 		Set<String> set = compiler.getAllCompilationUnitNames();
 		String[] s = new String[set.size()];
 		Iterator<String> iterator = set.iterator();
-		Date date = new Date();
 		CompilationUnit compilationUnit = null;
 		int i = 0;
 		
@@ -94,16 +89,8 @@ public class CodeStamp {
 		}
 		
 		
-		CodeStamp codeStamp = new CodeStamp(result, list, date);
+		CodeStamp codeStamp = new CodeStamp(result, list);
 		return codeStamp;
 	}
-	
-	/**
-	 * Gets the date.
-	 *
-	 * @return the date
-	 */
-	public Date getDate(){
-		return date;
-	}
+
 }
