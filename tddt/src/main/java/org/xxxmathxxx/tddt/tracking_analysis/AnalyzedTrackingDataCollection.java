@@ -4,10 +4,9 @@ import java.util.HashMap;
 import org.xxxmathxxx.tddt.data.Exercise;
 
 
-/**
- * The Class AnalyzedTrackingDataCollection.
+/**This hash map contains AnalyzedTrackingData that is mapped with a given Exercise as key to the data.
  *
- * @author Tschebyscheff, 30.06.16
+ * @author xxxMathxxx 2016
  */
 public class AnalyzedTrackingDataCollection extends HashMap<Exercise,AnalyzedTrackingData>{
 
@@ -16,14 +15,18 @@ public class AnalyzedTrackingDataCollection extends HashMap<Exercise,AnalyzedTra
 	private static final long serialVersionUID = 108521877637533329L;
 	
 
+	/**Returns the AnalyzedTrackingData for a given exercise
+	 * @param exercise The exercise as Exercise
+	 * @return The AnalyzedTrackingData associated with this exercise
+	 */
 	public AnalyzedTrackingData getDataWithExercise(Exercise exercise){
 		return get(exercise);
 	}
 	
-	/**
-	 * Adds the analyzed tracking data.
-	 *
-	 * @param data the data
+
+	/**Adds AnalyzedTrackingData to a given exercise
+	 * @param exercise The exercise to which the data should be added
+	 * @param data The AnalyzedTrackingData
 	 */
 	public void addAnalyzedTrackingData(Exercise exercise, AnalyzedTrackingData data){
 		put(exercise,data);
