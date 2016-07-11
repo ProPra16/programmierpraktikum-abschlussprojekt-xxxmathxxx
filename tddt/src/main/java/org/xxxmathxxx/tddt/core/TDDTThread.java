@@ -120,6 +120,13 @@ public class TDDTThread {
 		return false;
 	}
 	
+	
+	
+	public void finalizeExercise()
+	{
+		//Here you go
+	}
+	
 	/**
 	 * Checks if one failed test is present
 	 * @return
@@ -175,6 +182,7 @@ public class TDDTThread {
 		}
 		return false;
 	}
+	
 	
 	//TODO: ISNT THIS DUPLICATE TOO WHEN WE ALREADY HAVE THE TRACKER ADDED TO THIS THREAD?
 	/**

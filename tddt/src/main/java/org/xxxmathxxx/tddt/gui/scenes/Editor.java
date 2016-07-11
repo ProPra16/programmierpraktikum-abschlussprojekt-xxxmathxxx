@@ -246,10 +246,10 @@ public class Editor extends Scene {
 				showOtherside(TDDT.currentThread.state);
 			}
 			
-			//Finalizebutton
+			//FinalizeButton
 			if(event.getSource()==finalizeButton)
 			{
-				//Here you go
+				TDDT.currentThread.finalizeExercise();
 			}
 		}
 	}
