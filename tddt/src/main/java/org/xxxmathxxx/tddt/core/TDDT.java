@@ -37,9 +37,7 @@ public class TDDT extends Application{
 		WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
 		WindowManager.getInstance().showStartupInfo();
 	}
-	
-	//TODO: move this function (initializeFileSystem) to a separate IO-class
-	
+		
 	/**This function intializes the file-system by creating all necessarry folders and files.
 	 * 
 	 */

@@ -29,14 +29,18 @@ public class TDDTThread {
 	/** The current exercise. */
 	private Exercise currentExercise;
 	
+	/** The active tracker */
 	public Tracker tracker;
 	
+	/** The current state of the Thread, 
+	 *  @see CodeStage 
+	 */
 	public CodeStage state;
 	
 	/**
 	 * Instantiates a new TDDT thread.
 	 *
-	 * @param user the user
+	 * @param user The Profile for which the thread is created
 	 */
 	public TDDTThread(Profile user){
 		this.user = user;
@@ -55,8 +59,7 @@ public class TDDTThread {
 	}
 	
 	/**
-	 * Gets the exercise.
-	 *
+	 * Gets the exercise currently worked on.
 	 * @return the exercise
 	 */
 	public Exercise getExercise(){
@@ -70,7 +73,7 @@ public class TDDTThread {
 	 * @return the user profile
 	 */
 	public Profile getUserProfile(){
-		//getter because exercise shouldn't be modified directly
+		//getter because profile shouldn't be modified directly/ is set only in the constructor
 		return user;
 	}
 
@@ -85,7 +88,10 @@ public class TDDTThread {
 	}
 	
 	
-
+	/**Requests a switch to the next state and attempts to perform it.
+	 * @param ed The editor from which the switch is called. (This is unelegant as f*** btw, we should simply pass the compilation units)
+	 * @return True if the change is performed, false otherwise
+	 */
 	public boolean requestSwitch(Editor ed) {
 		Tracker tracker = TDDT.currentThread.tracker; //shortcut
 		switch(state)
@@ -124,7 +130,10 @@ public class TDDTThread {
 	
 	public void finalizeExercise()
 	{
-		//Here you go
+		//Step 0: Check if successful
+		
+		//Step 1: Check total time
+		//tracker.getTotalTime(); -> Method doesn't exist
 	}
 	
 	/**
