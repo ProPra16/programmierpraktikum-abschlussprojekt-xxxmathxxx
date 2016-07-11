@@ -74,7 +74,9 @@ public class CodeStamp {
 		Result result = new Result(testResult,compilerResult);
 
 		while(iterator.hasNext()){
-			compilationUnit = compiler.getCompilationUnitByName(iterator.next());	
+			String nextName = iterator.next();
+			TDDTLogManager.getInstance().logMessage("CompilationUnit found and added to CodeStamp: "+nextName);
+			compilationUnit = compiler.getCompilationUnitByName(nextName);	
 			cUnits[i] = compilationUnit;
 			i++;
 		}
