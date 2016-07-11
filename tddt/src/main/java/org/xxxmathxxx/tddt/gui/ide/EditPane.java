@@ -10,6 +10,8 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
+import vk.core.api.CompilationUnit;
 
 /**
  * @author Fabian
@@ -193,4 +195,5 @@ public abstract class EditPane extends FlowPane {
 	public void fixWindowsGraphicsBugs() {
 		te.fixWindowsGraphicsBugs();
 	}
+	
 }

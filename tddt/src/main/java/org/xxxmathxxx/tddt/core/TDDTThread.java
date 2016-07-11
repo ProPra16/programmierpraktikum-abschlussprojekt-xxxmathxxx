@@ -234,7 +234,7 @@ public class TDDTThread {
 		return cuArray;
 	}
 
-	public void cancelRequested() {
+	public void cancelRequested(Editor ed) {
 		TDDTLogManager.getInstance().logMessage("Switching to Test Stage");
 		tracker.stageGreen.stopTimeTracking();
 		tracker.stageRed.startTimeTracking();

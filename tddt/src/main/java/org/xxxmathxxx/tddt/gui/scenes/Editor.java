@@ -4,7 +4,6 @@ import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.data.CodeStage;
 import org.xxxmathxxx.tddt.gui.ide.CodeEditPane;
 import org.xxxmathxxx.tddt.gui.ide.TestEditPane;
-import org.xxxmathxxx.tddt.timer.BasicTimer;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,8 +22,7 @@ public class Editor extends Scene {
 	private Editor self = this; //reference for button handler
 
 	//Editor Panes
-	public TestEditPane tep;
-	public CodeEditPane cep;
+	public TestEditPane tep;	public CodeEditPane cep;
 	
 	//Menus
 	Pane pane;
@@ -36,10 +34,6 @@ public class Editor extends Scene {
 	
 	//Boolean 
 	Boolean nonEditState;
-	
-	//Babysteps timer
-	BasicTimer tepTimer;
-	BasicTimer cepTimer;
 	
 	/**
 	 * Constructor
@@ -103,8 +97,6 @@ public class Editor extends Scene {
 		
 		//Boolean
 		nonEditState=false;
-		
-		//BabystepTimer
 		
 	}
 	
@@ -271,7 +263,7 @@ public class Editor extends Scene {
 			//CancelButton
 			if(event.getSource()==cancelButton&& TDDT.currentThread.state==CodeStage.CODE)
 			{
-				TDDT.currentThread.cancelRequested();
+				TDDT.currentThread.cancelRequested(self);
 				cep.rerollChanges();
 				switchLabel();
 				updateStateLabel(TDDT.currentThread.state);	
