@@ -2,7 +2,6 @@ package org.xxxmathxxx.tddt.gui;
 import java.io.IOException;
 
 import org.xxxmathxxx.tddt.core.TDDT;
-import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingDataCollection;
@@ -58,20 +57,9 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
     
    
 	public StatisticsPane(){
-		//WTF ARE YOU DOING HERE?
 		this.profile = TDDT.currentThread.getUserProfile();
 				
 		analyzedTrackingDataCollection = TDDT.currentThread.getUserProfile().profileStats.getAnalayzedTrackingData();	
-		
-		if(analyzedTrackingData == null){
-			try{
-			analyzedTrackingData = (AnalyzedTrackingData) analyzedTrackingDataCollection.get(0);
-			}
-			catch(IndexOutOfBoundsException e){
-				TDDTLogManager.getInstance().logMessage("Cant find any AnalyzedTrackingData in profile: " + profile.getName());
-			}
-		}
-	
 		
 		try {
 			AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("Stats.fxml"));
