@@ -18,21 +18,13 @@ import vk.core.api.CompilationUnit;
 import vk.core.api.CompilerFactory;
 import vk.core.api.JavaStringCompiler;
 
-/**This is a singleton class and describes the current state of the program.
- * That means it contains information about the user and the exercise that is currently being run.
- * It also contains a tracker and a pointer to the editor in which the exercise is performed.
- * @author xxxMathxx 2016
+/**
+ * The Class TDDTThread.
  */
 public class TDDTThread {
 	
-	/**
-	 * TDDTThread is constructed as a singleton class. There is only one instance and it is managed internally.
-	 */
 	private static TDDTThread instance;
 	
-	/**This is your way to access the running Thread from other classes.
-	 * @return The only existing instance of TDDTThread
-	 */
 	public static TDDTThread getInstance(){
 		if (instance == null){
 			instance = new TDDTThread();
@@ -40,7 +32,7 @@ public class TDDTThread {
 		return instance;
 	}
 	
-	/** The active profile. */
+	/** The profile. */
 	private Profile profile;
 	
 	/** The current exercise. */
@@ -114,6 +106,7 @@ public class TDDTThread {
 	 * @return True if the change is performed, false otherwise
 	 */
 	public boolean requestSwitch() {
+		tracker.babystepsTimer.toggleActive();
 		switch(state)
 		{
 		case TEST: //Switch to code (RED->green)
@@ -124,6 +117,8 @@ public class TDDTThread {
 				tracker.stageGreen.startTimeTracking();
 				state=CodeStage.CODE;
 				ed.cep.createBackup();
+				tracker.babystepsTimer.resetTimer();
+				tracker.babystepsTimer.toggleActive();
 				return true;
 			}
 			break;
@@ -142,8 +137,11 @@ public class TDDTThread {
 			tracker.stageGreen.startTimeTracking();
 			tracker.stageRefactor.stopTimeTracking();
 			state=CodeStage.TEST;
+			tracker.babystepsTimer.resetTimer();
+			tracker.babystepsTimer.toggleActive();
 			return true;
 		}	
+		tracker.babystepsTimer.toggleActive();
 		return false;
 	}
 	
@@ -265,20 +263,23 @@ public class TDDTThread {
 		tracker.stageRed.startTimeTracking();
 		state=CodeStage.TEST;
 		ed.cep.rerollChanges();
+		tracker.babystepsTimer.resetTimer();
 	}
 
 	public void performBabystepRevert() {
+		if(getExercise().config.babystepsEnabeled)
+		{
 		switch(state)
 		{
 		case TEST:
 			ed.tep.rerollChanges();
 			break;
+			
 		case CODE:
 			ed.cep.rerollChanges();
 			break;
-		case REFACTOR:
+			}
 		}
-		
 	}
 
 	public void reset() {
