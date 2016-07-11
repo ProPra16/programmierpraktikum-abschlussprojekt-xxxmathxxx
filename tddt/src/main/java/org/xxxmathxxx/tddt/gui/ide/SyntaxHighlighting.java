@@ -75,7 +75,8 @@ public class SyntaxHighlighting {
 						"else",
 						"true",
 						"false",
-						"this"
+						"this",
+						"boolean"
 						)
 				);
 	}
