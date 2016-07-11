@@ -12,6 +12,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * @author xxxMathxxx 2016
+ * This class creates the profile picker which is displayed in the middle of the StartupMenu.
+ */
 public class ProfilePicker extends Pane {
 	
 	private ArrayList <Profile> profiles;
@@ -25,6 +29,10 @@ public class ProfilePicker extends Pane {
 	
 	private int index = 0;
 	
+	/**
+	 * Constructor for the ProfilePicker
+	 * @param ArrayList List of the profiles saved in the profile folder
+	 */
 	public ProfilePicker(ArrayList<Profile> profiles){
 		//Stylize / make more pretty
 		this.profiles = profiles;

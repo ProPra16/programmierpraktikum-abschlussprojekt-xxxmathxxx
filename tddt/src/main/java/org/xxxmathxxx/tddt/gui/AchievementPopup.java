@@ -14,6 +14,10 @@ import javafx.stage.Popup;
 import javafx.stage.Screen;
 import javafx.util.Duration;
 
+/**
+ * @author xxxMathxxx 2016
+ * This class creates the achievement Popup.
+ */
 public class AchievementPopup extends Popup {
 	
 	private Label text;

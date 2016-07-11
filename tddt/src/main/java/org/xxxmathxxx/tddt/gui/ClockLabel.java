@@ -8,6 +8,10 @@ import org.xxxmathxxx.tddt.timer.BasicTimer;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
+/**
+ * @author xxxMathxxx 2016
+ * This class creates the clock and makes sure it runs properly.
+ */
 public class ClockLabel extends Label{
 	
 	BasicTimer syncedTimer;
