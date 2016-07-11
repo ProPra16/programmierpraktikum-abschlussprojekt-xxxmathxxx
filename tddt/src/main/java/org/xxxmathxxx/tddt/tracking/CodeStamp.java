@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.xxxmathxxx.tddt.logging.TDDTLogManager;
+
 import vk.core.api.CompilationUnit;
 import vk.core.api.CompilerResult;
 import vk.core.api.JavaStringCompiler;
@@ -23,7 +25,7 @@ import vk.core.api.TestResult;
 public class CodeStamp {
 
 	/** The result. */
-	public Result result;
+	private Result result;
 	
 	/** The list of CompilationUnits. */
 	private ArrayList<Object> list = new ArrayList<Object>();
@@ -68,6 +70,7 @@ public class CodeStamp {
 	 * @return the code stamp
 	 */
 	public static CodeStamp generateCodeStamp(JavaStringCompiler compiler){	
+		TDDTLogManager.getInstance().logMessage("Generating new Code-Stamp");
 		compiler.compileAndRunTests();
 		
 		ArrayList<Object> list = new ArrayList<Object>();
@@ -91,6 +94,11 @@ public class CodeStamp {
 		
 		CodeStamp codeStamp = new CodeStamp(result, list);
 		return codeStamp;
+	}
+	
+	public Result getResult(){
+		//getter because it should not be modified from outside
+		return result;
 	}
 
 }

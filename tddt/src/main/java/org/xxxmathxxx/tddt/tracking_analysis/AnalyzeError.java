@@ -38,7 +38,7 @@ public class AnalyzeError {
 		for(int i = 0; i < codeStampCollection.size(); i++){
 
 			codeStamp = codeStampCollection.getCodeStemp(i);
-			result = codeStamp.result;
+			result = codeStamp.getResult();
 			try{
 				error.testFailure += result.getNumberOfFailedTests();
 			}

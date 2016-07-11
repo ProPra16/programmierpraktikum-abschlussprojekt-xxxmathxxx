@@ -134,7 +134,7 @@ public class TDDTThread {
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
 		CodeStamp codeStamp = CodeStamp.generateCodeStamp(jsc);
 
-		if(codeStamp.result.getNumberOfFailedTests()!=0)
+		if(codeStamp.getResult().getNumberOfFailedTests()!=0)
 		{
 			AlertMessenger.showErrorMessage("Failure","You haven't finished this task yet!");
 			return;
@@ -154,14 +154,14 @@ public class TDDTThread {
 		tracker.stageRed.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc));
 		CodeStamp codeStamp = tracker.stageRed.codeStampCollection.getLatestCodeStamp();
 		
-		if(codeStamp.result.compilerError())
+		if(codeStamp.getResult().compilerError())
 		{	
 			AlertMessenger.showErrorMessage("Compile-error", codeStamp.getCompilerErrors());
 			return false;
 		}
 		else
 		{
-			if(codeStamp.result.oneFailedTest())
+			if(codeStamp.getResult().oneFailedTest())
 			{
 				return true;
 			}
@@ -180,7 +180,7 @@ public class TDDTThread {
 		tracker.stageGreen.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc));
 		CodeStamp codeStamp = tracker.stageGreen.codeStampCollection.getLatestCodeStamp();
 		
-		if(codeStamp.result.compilerError())
+		if(codeStamp.getResult().compilerError())
 		{	
 			AlertMessenger.showErrorMessage("Test Failed!", codeStamp.getCompilerErrors());
 			return false;

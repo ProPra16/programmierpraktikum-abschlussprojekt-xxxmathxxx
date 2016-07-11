@@ -32,10 +32,6 @@ public class ErrorCounter {
 	/** The expected error. */
 	public int expectedError = 0;
 	
-	
-	
-	
-	
 	/** The test failure. */
 	public int testFailure = 0;
 
