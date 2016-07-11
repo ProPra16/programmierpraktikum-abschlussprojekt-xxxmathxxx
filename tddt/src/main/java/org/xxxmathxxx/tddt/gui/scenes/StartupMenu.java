@@ -3,6 +3,7 @@ package org.xxxmathxxx.tddt.gui.scenes;
 
 import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.core.TDDTThread;
+import org.xxxmathxxx.tddt.gui.AlertMessenger;
 import org.xxxmathxxx.tddt.gui.ProfilePicker;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.profile.ProfileCollection;
@@ -81,9 +82,7 @@ public class StartupMenu extends Scene {
 					WindowManager.getInstance().showMenu(WindowManager.MenuType.EXISTING_PROFILE);					
 				}
 				else{
-					//You can only get here if you have no profile created at all and try to start the program
-					//I will add a more elegant version of this later on
-					System.out.println("Please create a Profile first!");
+					AlertMessenger.showErrorMessage("No profile available", "Please create a profile to start practice!");
 				}
 			}
 		}
