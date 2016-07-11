@@ -269,7 +269,6 @@ public class Editor extends Scene {
 			if(event.getSource()==cancelButton&& TDDTThread.getInstance().state==CodeStage.CODE)
 			{
 				TDDTThread.getInstance().cancelRequested();
-				cep.rerollChanges();
 				switchLabel();
 				updateStateLabel(TDDTThread.getInstance().state);	
 			}

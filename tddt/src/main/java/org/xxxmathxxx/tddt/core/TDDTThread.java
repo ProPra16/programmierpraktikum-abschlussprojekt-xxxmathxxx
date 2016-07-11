@@ -255,10 +255,22 @@ public class TDDTThread {
 		tracker.stageGreen.stopTimeTracking();
 		tracker.stageRed.startTimeTracking();
 		state=CodeStage.TEST;
+		ed.cep.rerollChanges();
 	}
 
 	public void performBabystepRevert() {
-		// TODO Auto-generated method stub
+		switch(state)
+		{
+		case TEST:
+			ed.tep.rerollChanges();
+			break;
+			
+		case CODE:
+			ed.cep.rerollChanges();
+			
+			break;
+			
+		}
 		
 	}
 
