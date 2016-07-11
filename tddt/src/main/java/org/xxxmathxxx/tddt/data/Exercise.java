@@ -10,6 +10,7 @@ public class Exercise {
 	public long id;
 	public ExerciseClass[] referencedClasses; 
 	public ExerciseTest[] referencedTests; 
+	public ExerciseTest referencedFinishTest;
 
 	ExerciseConfig config;
 
@@ -24,13 +25,13 @@ public class Exercise {
 	 * @param config The ExerciseConfig containing additional data
 	 */
 	public Exercise(String name, Long id, String description, ExerciseClass[] referencedClasses,
-			ExerciseTest[] referencedTests, ExerciseTest[] referencedFinishTests, ExerciseConfig config) {
+			ExerciseTest[] referencedTests, ExerciseTest referencedFinishTest, ExerciseConfig config) {
 		this.name = name;
 		this.id=id;
 		this.description = description;
 		this.referencedClasses = referencedClasses;
 		this.referencedTests = referencedTests;
-		
+		this.referencedFinishTest = referencedFinishTest;
 		this.config=config;
 	}
 	
@@ -70,5 +71,9 @@ public class Exercise {
 		
 		System.out.println(this.config.medalTimes.toString());
 		
+	}
+
+	public ExerciseTest getFinalTest() {
+		return referencedFinishTest;
 	}
 }

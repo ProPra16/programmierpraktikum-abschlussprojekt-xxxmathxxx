@@ -249,7 +249,7 @@ public class Editor extends Scene {
 			//FinalizeButton
 			if(event.getSource()==finalizeButton)
 			{
-				TDDT.currentThread.finalizeExercise();
+				TDDT.currentThread.finalizeExercise(self);
 			}
 		}
 	}

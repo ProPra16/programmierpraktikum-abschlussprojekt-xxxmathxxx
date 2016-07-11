@@ -99,7 +99,6 @@ public class ExerciseReader {
 
 		ExerciseClass[] referencedClasses;
 		ExerciseTest[] referencedTests;
-		ExerciseTest[] referencedFinishTests;
 
 		//Fetches name
 		pointer= exercise.getElementsByTagName("name");
@@ -140,14 +139,12 @@ public class ExerciseReader {
 
 		// Fetches Finishtest ->Extension
 		pointer = exercise.getElementsByTagName("finishtest");
-		referencedFinishTests = new ExerciseTest[pointer.getLength()];
 
-		for (int i = 0; i < pointer.getLength(); i++) {
-			String testName = pointer.item(i).getAttributes().getNamedItem("name").getTextContent();
-			String testCode = pointer.item(i).getTextContent();
 
-			referencedFinishTests[i] = new ExerciseTest(testName, new JavaCode(testCode));
-		}
+		String testName = pointer.item(0).getAttributes().getNamedItem("name").getTextContent();
+		String testCode = pointer.item(0).getTextContent();
+
+		ExerciseTest referencedFinishTest = new ExerciseTest(testName, new JavaCode(testCode));
 
 		// ****Fetches config
 
@@ -179,7 +176,7 @@ public class ExerciseReader {
 		
 		MedalTimes times = new MedalTimes(authortime,goldtime,silvertime,bronzetime);
 		
-		return new Exercise(name, (long)Integer.parseInt(id), description, referencedClasses, referencedTests, referencedFinishTests,
+		return new Exercise(name, (long)Integer.parseInt(id), description, referencedClasses, referencedTests, referencedFinishTest,
 				new ExerciseConfig(babysteps, Double.parseDouble(babystepsTime)
 						,timetracking
 						,times

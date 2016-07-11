@@ -128,21 +128,23 @@ public class TDDTThread {
 	
 	
 	
-	public void finalizeExercise()
+	public void finalizeExercise(Editor ed)
 	{
-		//Step 0: Check if successful
+		//Step 0: Check if final test is successful
+		CompilationUnit[] cuArray= getCompilationUnits(ed,true);
+		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
+		CodeStamp codeStamp = GenerateCodeStamp.generate(jsc);
 		
 		//Step 1: Check total time
 		//tracker.getTotalTime(); -> Method doesn't exist
 	}
 	
-	/**
-	 * Checks if one failed test is present
-	 * @return
+	/**Attempts to switch to code state
+	 * @return True if change is succesful, false otherwise
 	 */
 	private Boolean switchToCode(Editor ed)
 	{
-		CompilationUnit[] cuArray= getCompilationUnits(ed);
+		CompilationUnit[] cuArray= getCompilationUnits(ed,false);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
 		tracker.stageRed.codeStampCollection.addCodeStemp(GenerateCodeStamp.generate(jsc));
 		CodeStamp codeStamp = tracker.stageRed.codeStampCollection.getLatestCodeStamp();
@@ -168,7 +170,7 @@ public class TDDTThread {
 	
 	private Boolean switchToRefactor(Editor ed)
 	{
-		CompilationUnit[] cuArray= getCompilationUnits(ed);
+		CompilationUnit[] cuArray= getCompilationUnits(ed,false);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
 		tracker.stageGreen.codeStampCollection.addCodeStemp(GenerateCodeStamp.generate(jsc));
 		CodeStamp codeStamp = tracker.stageGreen.codeStampCollection.getLatestCodeStamp();
@@ -198,12 +200,15 @@ public class TDDTThread {
 	 * Creates an Array of CompilationUnits to start compiling.
 	 * @return Array of CompilationUnits
 	 */
-	private CompilationUnit[] getCompilationUnits(Editor ed)
+	private CompilationUnit[] getCompilationUnits(Editor ed, boolean withFinalTest)
 	{
 		CodeEditPane cep = ed.cep; //shortcut
 		TestEditPane tep = ed.tep;
 		
 		int addedLength=cep.classdata.length+tep.classdata.length;
+		if (withFinalTest){
+			addedLength++;
+		}
 		
 		CompilationUnit[] cuArray= new CompilationUnit[addedLength];
 		
@@ -215,6 +220,9 @@ public class TDDTThread {
 		for(int i=cep.classdata.length; i<addedLength;i++)
 		{
 			cuArray[i]=new CompilationUnit(tep.classdata[i-cep.classdata.length].name, tep.classdata[i-cep.classdata.length].code.rawText, true);
+		}
+		if (withFinalTest){
+			cuArray[cuArray.length-1] = new CompilationUnit(TDDT.currentThread.getExercise().getFinalTest().name,TDDT.currentThread.getExercise().getFinalTest().code.rawText,true);
 		}
 		
 		return cuArray;
