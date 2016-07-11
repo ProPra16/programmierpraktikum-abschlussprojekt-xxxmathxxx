@@ -22,7 +22,7 @@ public class CodeStampCollection {
 	 *
 	 * @param codeStamp the code stamp
 	 */
-	public void addCodeStemp(CodeStamp codeStamp){
+	public void addCodeStamp(CodeStamp codeStamp){
 		list.add(codeStamp);
 	}
 	

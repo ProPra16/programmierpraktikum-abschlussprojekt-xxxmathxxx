@@ -39,7 +39,7 @@ public class AnalyzedTrackingDataTests {
 		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);
 		
 		CodeStamp codeStamp = GenerateCodeStamp.generate(compiler);
-		tracker.stageGreen.codeStampCollection.addCodeStemp(codeStamp);
+		tracker.stageGreen.codeStampCollection.addCodeStamp(codeStamp);
 		
 		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker);
 		
@@ -55,7 +55,7 @@ public class AnalyzedTrackingDataTests {
 		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);
 		
 		CodeStamp codeStamp = GenerateCodeStamp.generate(compiler);
-		tracker.stageGreen.codeStampCollection.addCodeStemp(codeStamp);
+		tracker.stageGreen.codeStampCollection.addCodeStamp(codeStamp);
 		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker);
 		
 		assertEquals(data.analyzedStageGreen.error.syntaxError, 1);
@@ -70,7 +70,7 @@ public class AnalyzedTrackingDataTests {
 		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);
 		
 		CodeStamp codeStamp = GenerateCodeStamp.generate(compiler);
-		tracker.stageRefactor.codeStampCollection.addCodeStemp(codeStamp);
+		tracker.stageRefactor.codeStampCollection.addCodeStamp(codeStamp);
 		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker);
 		
 		assertEquals(data.analyzedStageRefactor.error.syntaxError, 2);
@@ -85,7 +85,7 @@ public class AnalyzedTrackingDataTests {
 		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);
 		
 		CodeStamp codeStamp = GenerateCodeStamp.generate(compiler);
-		tracker.stageRefactor.codeStampCollection.addCodeStemp(codeStamp);
+		tracker.stageRefactor.codeStampCollection.addCodeStamp(codeStamp);
 		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker);
 		
 		assertEquals(data.analyzedStageRefactor.error.semanticError, 1);

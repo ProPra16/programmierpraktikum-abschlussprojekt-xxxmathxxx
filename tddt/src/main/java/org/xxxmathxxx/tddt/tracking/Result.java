@@ -100,14 +100,6 @@ public class Result {
 		this.testResult = testResult;
 	}
 	
-	/**
-	 * Gets the test result.
-	 *
-	 * @return the test result
-	 */
-	public TestResult getTestResult(){
-		return testResult;
-	}
 	
 	/**
 	 * Gets the compiler result.
@@ -122,9 +114,13 @@ public class Result {
 	/**
 	 * Resett results.
 	 */
-	public void resettResults(){
+	public void resetResults(){
 		compilerResult = null;
 		testResult = null;
 		
+	}
+
+	public int getNumberOfFailedTests() {
+		return testResult.getNumberOfFailedTests();
 	}	
 }

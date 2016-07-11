@@ -13,7 +13,6 @@ import org.xxxmathxxx.tddt.tracking.Result;
 
 import vk.core.api.CompilationUnit;
 import vk.core.api.CompileError;
-import vk.core.api.TestResult;
 
 /**
  * The Class AnalyzeError.
@@ -35,15 +34,13 @@ public class AnalyzeError {
 		CodeStamp codeStamp;
 		Result result;
 		ArrayList<Object> list;
-		TestResult testResult;;
 
 		for(int i = 0; i < codeStampCollection.size(); i++){
 
 			codeStamp = codeStampCollection.getCodeStemp(i);
 			result = codeStamp.result;
-			testResult = result.getTestResult();
 			try{
-				error.testFailure += testResult.getNumberOfFailedTests();
+				error.testFailure += result.getNumberOfFailedTests();
 			}
 			catch(NullPointerException e){}
 			

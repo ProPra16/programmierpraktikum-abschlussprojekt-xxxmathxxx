@@ -30,8 +30,6 @@ public class WindowManager {
 	}
 	
 	private WindowManager(){
-		
-
 				
 		mainStage = new Stage();
 		mainStage.setTitle("TDDT - Main Menu");
