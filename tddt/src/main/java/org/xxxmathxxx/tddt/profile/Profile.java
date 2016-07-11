@@ -60,18 +60,6 @@ public class Profile {
 		
 	}
 	
-	
-	
-	
-	/**
-	 * Gets the name.
-	 *
-	 * @return the name
-	 */
-	public String getName(){
-		return name;
-	}
-	
 	/**
 	 * Sets this user profiles name as a labels text, can be called by GUI-components.
 	 *

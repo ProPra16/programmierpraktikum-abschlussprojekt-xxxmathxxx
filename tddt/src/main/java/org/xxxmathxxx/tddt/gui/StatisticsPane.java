@@ -59,7 +59,7 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 	public StatisticsPane(){
 		this.profile = TDDT.currentThread.getUserProfile();
 				
-		analyzedTrackingDataCollection = TDDT.currentThread.getUserProfile().profileStats.getAnalayzedTrackingData();	
+		analyzedTrackingDataCollection = TDDT.currentThread.getUserProfile().profileStats.getAnalayzedTrackingData();	//WHY ARE WE PASSING AN ENTIRE COLLECTION HERE??? AND WHY IS THE METHOD NAME WRONG?
 		
 		try {
 			AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("Stats.fxml"));
@@ -69,15 +69,15 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 			e.printStackTrace();
 			WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
 		}
-	
+		initialize();
 	}
 	
 	
 	@SuppressWarnings("unchecked")
 	@FXML
 	private void initialize(){
-		
-		profileLabel.setText(profile.getName());
+		profileLabel = new Label();
+		profile.showNameInJavaFXLabel(profileLabel);
 		MenuItem[] menuItem = new MenuItem[analyzedTrackingDataCollection.size()];
 		
 		
@@ -85,15 +85,13 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 			AnalyzedTrackingData data = (AnalyzedTrackingData) analyzedTrackingDataCollection.get(i);
 			menuItem[i] = new MenuItem(data.exercise);
 			menuButton.getItems().add(menuItem[i]);
-			int i2 = i;
 			
 			menuItem[i].setOnAction(new EventHandler<ActionEvent>(){
 
 				@Override
 				public void handle(ActionEvent event) {
-					if(event.getSource() == menuItem[i2]){
-						//hier werden sicherlich NICHT irgendwelche statistiken modifiziert, die werden ja hier nur angezeigt
-						WindowManager.getInstance().showMenu(WindowManager.MenuType.STATISTICS);
+					if(event.getSource() == menuButton){
+						WindowManager.getInstance().showMenu(WindowManager.MenuType.EXISTING_PROFILE);
 					}		
 				}
 			});
