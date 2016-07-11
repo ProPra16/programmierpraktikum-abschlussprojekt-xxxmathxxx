@@ -31,7 +31,7 @@ public class ExerciseReader {
 			logger = TDDTLogManager.getInstance();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.logMessage("A horrible mistake happened. The XML-Reader was not able to start up: \n"+e.getMessage());
 		}
 	}
 
@@ -76,7 +76,7 @@ public class ExerciseReader {
 	 * @return returns Exercise as Exercise Class
 	 * @throws Exception A generic Exception
 	 */
-	public Exercise readExercise(String filename) throws Exception { //TODO: Specify exception and handle it
+	public Exercise readExercise(String filename) throws Exception { 
 		File input = new File(filename);
 		Document exercise;
 		NodeList pointer;
@@ -86,8 +86,8 @@ public class ExerciseReader {
 
 		} catch (Exception e) 
 		{
-			TDDTLogManager.getInstance().logMessage("You've screwed up m8. Likely the file you're searching for doesn't exist or is not in xml form.");
-
+			TDDTLogManager.getInstance().logMessage("You've screwed up m8. Likely the file you're searching for doesn't exist or is not in xml form. \n"+e.getMessage());
+			
 
 			return null;
 		}
