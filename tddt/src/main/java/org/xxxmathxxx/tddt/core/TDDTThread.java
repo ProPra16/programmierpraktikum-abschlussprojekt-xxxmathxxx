@@ -18,13 +18,21 @@ import vk.core.api.CompilationUnit;
 import vk.core.api.CompilerFactory;
 import vk.core.api.JavaStringCompiler;
 
-/**
- * The Class TDDTThread.
+/**This is a singleton class and describes the current state of the program.
+ * That means it contains information about the user and the exercise that is currently being run.
+ * It also contains a tracker and a pointer to the editor in which the exercise is performed.
+ * @author xxxMathxx 2016
  */
 public class TDDTThread {
 	
+	/**
+	 * TDDTThread is constructed as a singleton class. There is only one instance and it is managed internally.
+	 */
 	private static TDDTThread instance;
 	
+	/**This is your way to access the running Thread from other classes.
+	 * @return The only existing instance of TDDTThread
+	 */
 	public static TDDTThread getInstance(){
 		if (instance == null){
 			instance = new TDDTThread();
@@ -32,7 +40,7 @@ public class TDDTThread {
 		return instance;
 	}
 	
-	/** The profile. */
+	/** The active profile. */
 	private Profile profile;
 	
 	/** The current exercise. */

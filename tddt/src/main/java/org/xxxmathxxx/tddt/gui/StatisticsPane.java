@@ -1,7 +1,6 @@
 package org.xxxmathxxx.tddt.gui;
 import java.io.IOException;
 
-import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.core.TDDTThread;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.profile.Profile;

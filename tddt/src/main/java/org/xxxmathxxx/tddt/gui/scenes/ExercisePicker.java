@@ -1,6 +1,5 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
-import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.core.TDDTThread;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.data.ExerciseCollection;

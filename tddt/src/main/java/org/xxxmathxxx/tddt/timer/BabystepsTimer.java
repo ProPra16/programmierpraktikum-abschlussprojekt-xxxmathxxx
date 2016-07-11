@@ -1,6 +1,5 @@
 package org.xxxmathxxx.tddt.timer;
 
-import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.core.TDDTThread;
 
 public class BabystepsTimer extends BasicTimer{
