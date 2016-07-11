@@ -102,6 +102,7 @@ public class TDDTThread {
 				tracker.stageRed.stopTimeTracking();
 				tracker.stageGreen.startTimeTracking();
 				state=CodeStage.CODE;
+				ed.cep.createBackup();
 				return true;
 			}
 			break;
@@ -234,8 +235,10 @@ public class TDDTThread {
 	}
 
 	public void cancelRequested() {
-		// TODO Auto-generated method stub
-		
+		TDDTLogManager.getInstance().logMessage("Switching to Test Stage");
+		tracker.stageGreen.stopTimeTracking();
+		tracker.stageRed.startTimeTracking();
+		state=CodeStage.TEST;
 	}
 	
 }

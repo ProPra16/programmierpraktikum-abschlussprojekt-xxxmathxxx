@@ -19,12 +19,12 @@ import javafx.scene.layout.Pane;
 public abstract class EditPane extends FlowPane {
 	
 
-	private TextEditor te;
+	protected TextEditor te;
 	private Boolean isActive;
 	
 	private ClockLabel clock;
 
-	private int selectedPage;
+	protected int selectedPage;
 
 	private ToggleButton[] navigator;
 	
@@ -121,7 +121,7 @@ public abstract class EditPane extends FlowPane {
 	 * Loads Document and saves old one
 	 * @param index
 	 */
-	private void loadPage(int index) {
+	protected void loadPage(int index) {
 		
 		classdata[selectedPage].code.rawText=te.getText();
 		te.setText(classdata[index].code.rawText);

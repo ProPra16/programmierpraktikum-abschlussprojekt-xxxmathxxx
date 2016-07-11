@@ -133,6 +133,7 @@ public class Editor extends Scene {
 		{
 		case TEST: 
 			stateLabel.setText("Teststage");
+			cancelButton.setDisable(true);
 			viewOtherside.setDisable(false);
 			break;
 			
@@ -178,6 +179,7 @@ public class Editor extends Scene {
 		if(!nonEditState)
 		{
 			switchButton.setDisable(true);
+			cancelButton.setDisable(true);
 			nonEditState=true;
 			
 			tep.setVisible(true);
@@ -188,6 +190,7 @@ public class Editor extends Scene {
 		else
 		{
 			switchButton.setDisable(false);
+			cancelButton.setDisable(false);
 			nonEditState=false;
 			
 			tep.setVisible(false);
@@ -261,6 +264,9 @@ public class Editor extends Scene {
 			if(event.getSource()==cancelButton&& TDDT.currentThread.state==CodeStage.CODE)
 			{
 				TDDT.currentThread.cancelRequested();
+				cep.rerollChanges();
+				switchLabel();
+				updateStateLabel(TDDT.currentThread.state);	
 			}
 		}
 	}
