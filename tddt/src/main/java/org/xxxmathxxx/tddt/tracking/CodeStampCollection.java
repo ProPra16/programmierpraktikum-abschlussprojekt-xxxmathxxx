@@ -42,7 +42,7 @@ public class CodeStampCollection {
 	 * @return the latest code stamp
 	 */
 	public CodeStamp getLatestCodeStamp(){
-		return (CodeStamp) list.get(list.size());
+		return (CodeStamp) list.get(list.size() - 1);
 	}
 
 	/**
