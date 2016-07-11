@@ -19,7 +19,8 @@ public class HintCollection {
 			new Hint("file:graphics/infobackgrounds/info.jpg","Did you know that these hints barely rely on facts? ...But TDD does?"),
 			new Hint("file:graphics/infobackgrounds/kantbackground.jpeg", "Did you know that in any particular theory of nature only so much real science can be encountered, as there is TDD therein?"),
 			new Hint("file:graphics/infobackgrounds/tractor.jpg", "Did you know that Tschebyscheff's tracker is an integral part of our software?"),
-			new Hint("file:graphics/infobackgrounds/refractor.jpg", "Did you know that refraction is the change in direction of propagation of a wave due to a change in its transmission medium while refactoring means restructuring code?")
+			new Hint("file:graphics/infobackgrounds/refractor.jpg", "Did you know that refraction is the change in direction of propagation of a wave due to a change in its transmission medium while refactoring means restructuring code?"),
+			new Hint("file:graphics/infobackgrounds/lightspeed.jpg", "Did you know that hacking time is actually possible by using some java code, TDD and calculating E=mc^3 instead of E=mc^2?")
 	};
 	
 	/**Getter function returning a JavaFX Notification containing a random hint
