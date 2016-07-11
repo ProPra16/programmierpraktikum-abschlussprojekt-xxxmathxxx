@@ -6,7 +6,9 @@
 		<class name="HackTime">
 public class HackTime 
 {
+	public boolean isTimeHacked(){
 
+	}
 }
 		</class>
 		
@@ -37,6 +39,16 @@ public class EEQUALSMC3Test
 		<finishtest name="FinalUltimateTest">
 		
 		</finishtest>
+import static org.junit.Assert.*;
+import org.junit.Test;
+public class EEQUALSMC3Test
+{
+	@Test
+	public void theonlytestneeded() 
+	{
+		assertEquals(HackTime.isTimeHacked(),true);
+	}
+}
 	</finishtests>
 		
 	<config>

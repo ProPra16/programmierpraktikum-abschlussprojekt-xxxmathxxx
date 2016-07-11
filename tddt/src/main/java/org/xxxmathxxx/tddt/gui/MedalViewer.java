@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 
 public class MedalViewer extends Pane{
 	
+	//as of now we are using a fixed resolution, thus sizes of this component are fixed through those statics
 	private static int width = 128;
 	private static int height = 64;
 	
