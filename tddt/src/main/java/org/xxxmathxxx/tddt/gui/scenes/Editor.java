@@ -1,6 +1,5 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
-import org.xxxmathxxx.tddt.babysteps.BabystepTimer;
 import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.data.CodeStage;
 import org.xxxmathxxx.tddt.gui.ide.CodeEditPane;
@@ -23,8 +22,7 @@ public class Editor extends Scene {
 	private Editor self = this; //reference for button handler
 
 	//Editor Panes
-	public TestEditPane tep;
-	public CodeEditPane cep;
+	public TestEditPane tep;	public CodeEditPane cep;
 	
 	//Menus
 	Pane pane;
@@ -36,10 +34,6 @@ public class Editor extends Scene {
 	
 	//Boolean 
 	Boolean nonEditState;
-	
-	//Babysteps timer
-	BabystepTimer tepTimer;
-	BabystepTimer cepTimer;
 	
 	/**
 	 * Constructor
@@ -103,8 +97,6 @@ public class Editor extends Scene {
 		
 		//Boolean
 		nonEditState=false;
-		
-		//BabystepTimer
 		
 	}
 	

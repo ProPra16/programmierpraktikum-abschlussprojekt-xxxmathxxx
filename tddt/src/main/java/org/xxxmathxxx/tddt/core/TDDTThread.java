@@ -239,6 +239,8 @@ public class TDDTThread {
 		tracker.stageGreen.stopTimeTracking();
 		tracker.stageRed.startTimeTracking();
 		state=CodeStage.TEST;
+		
+	
 	}
 	
 }
