@@ -11,7 +11,6 @@ import vk.core.api.CompilationUnit;
 import vk.core.api.CompileError;
 import vk.core.api.CompilerResult;
 import vk.core.api.JavaStringCompiler;
-import vk.core.api.TestFailure;
 import vk.core.api.TestResult;
 
 /**

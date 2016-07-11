@@ -38,7 +38,7 @@ public class TDDT extends Application{
 		WindowManager.getInstance().showStartupInfo();
 	}
 		
-	/**This function intializes the file-system by creating all necessarry folders and files.
+	/**This function initializes the file-system by creating all necessary folders and files.
 	 * 
 	 */
 	public void initializeFileSystem(){

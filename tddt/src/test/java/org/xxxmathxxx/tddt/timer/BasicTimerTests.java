@@ -15,15 +15,15 @@ public class BasicTimerTests {
 		
 	@Test public void constructorTest() {
 		BasicTimer testTimer = new BasicTimer();
-		assertEquals(testTimer.getTimeInSecondsAsString(),"0");
+		assertEquals(testTimer.getTime(),0.0,0);
 	}
 	
 	@Test public void clockNotRunningTest() {
 		BasicTimer testTimer = new BasicTimer();
 		try {
 			Thread.sleep(1000);
-			assertEquals(testTimer.getTimeInSecondsAsString(), "0");
-		} catch (InterruptedException e) {
+			assertEquals(testTimer.getTime(),0.0,0);
+			} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
@@ -33,8 +33,8 @@ public class BasicTimerTests {
 		testTimer.toggleActive();
 		try {
 			Thread.sleep(1000);
-			assertNotEquals(testTimer.getTimeInSecondsAsString(), "0");
-		}
+			assertNotEquals(testTimer.getTime(),0.0,0);
+			}
 		catch (InterruptedException e) {
 			e.printStackTrace();
 		}
