@@ -134,7 +134,7 @@ public class TDDTThread {
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
 		CodeStamp codeStamp = CodeStamp.generateCodeStamp(jsc,cuArray);
 
-		if(codeStamp.finalTestSuccessful(jsc))
+		if(codeStamp.getResult().getNumberOfFailedTests() != 0)
 		{
 			AlertMessenger.showErrorMessage("Failure","You haven't finished this task yet!");
 			return;

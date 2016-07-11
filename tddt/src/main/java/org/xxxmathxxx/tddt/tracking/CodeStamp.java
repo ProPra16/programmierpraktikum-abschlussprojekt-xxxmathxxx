@@ -89,16 +89,4 @@ public class CodeStamp {
 		return result;
 	}
 
-
-	public boolean finalTestSuccessful(JavaStringCompiler compiler) {
-		CompilationUnit fTest = cUnits[cUnits.length-1];
-		for (TestFailure f: compiler.getTestResult().getTestFailures()){
-			if (f.getTestClassName() == fTest.getClassName()){
-				return false;
-			}
-		}
-		return true;
-
-	}
-
 }
