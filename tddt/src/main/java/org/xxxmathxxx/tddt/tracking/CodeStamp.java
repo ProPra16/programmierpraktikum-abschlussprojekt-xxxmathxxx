@@ -3,9 +3,12 @@
  */
 package org.xxxmathxxx.tddt.tracking;
 
+import java.util.Collection;
+
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 
 import vk.core.api.CompilationUnit;
+import vk.core.api.CompileError;
 import vk.core.api.CompilerResult;
 import vk.core.api.JavaStringCompiler;
 import vk.core.api.TestResult;
@@ -62,8 +65,16 @@ public class CodeStamp {
 
 		CompilerResult compilerResult = compiler.getCompilerResult();
 		TestResult testResult = compiler.getTestResult();
+		
 		if (compilerResult == null || testResult == null){
-			System.out.println("HI");
+			//Probably an invalid finish test
+			CompilationUnit fTest = cUnits[cUnits.length-1];
+			TDDTLogManager.getInstance().logMessage(fTest.getClassContent());
+			Collection <CompileError> errors = compiler.getCompilerResult().getCompilerErrorsForCompilationUnit(fTest);
+			for (CompileError e: errors){
+				TDDTLogManager.getInstance().logMessage("Error found: "+e.getMessage());
+				TDDTLogManager.getInstance().logMessage("Occuring in line: "+e.getCodeLineContainingTheError());
+			}
 		}
 		
 		Result result = new Result(testResult,compilerResult);

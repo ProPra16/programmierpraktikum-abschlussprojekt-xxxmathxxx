@@ -6,7 +6,7 @@
 		<class name="HackTime">
 public class HackTime 
 {
-	public boolean isTimeHacked(){
+	public static boolean isTimeHacked(){
 		return false;
 	}
 }
@@ -37,7 +37,7 @@ public class EEQUALSMC3Test
 		
 	<finishtests>
 		<finishtest name="FinalUltimateTest">
-		import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 import org.junit.Test;
 public class FinalUltimateTest
 {
