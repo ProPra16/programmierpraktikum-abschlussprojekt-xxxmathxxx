@@ -3,7 +3,6 @@
  */
 package org.xxxmathxxx.tddt.tracking_analysis;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -33,7 +32,7 @@ public class AnalyzeError {
 		
 		CodeStamp codeStamp;
 		Result result;
-		ArrayList<CompilationUnit> list;
+		CompilationUnit[] cUnits;
 
 		for(int i = 0; i < codeStampCollection.size(); i++){
 
@@ -45,8 +44,8 @@ public class AnalyzeError {
 			catch(NullPointerException e){}
 			
 			if(result.compilerError()){
-				list = codeStamp.getCompilationUnits();
-				error = AnalyzeError.handleCompileError(list, result, error);
+				cUnits = codeStamp.getCompilationUnits();
+				error = AnalyzeError.handleCompileError(cUnits, result, error);
 			}	
 			
 		}
@@ -61,15 +60,15 @@ public class AnalyzeError {
 	 * @param error the error
 	 * @return the error
 	 */
-	public static ErrorCounter handleCompileError(ArrayList<CompilationUnit> list, Result result, ErrorCounter error){
+	public static ErrorCounter handleCompileError(CompilationUnit[] cUnits, Result result, ErrorCounter error){
 		
 		CompileError compileError;
 		CompilationUnit compUnit;
 		Collection<CompileError> collection;
 		Iterator<CompileError> iterator;		
 		
-		for(int i2 = 0; i2 < list.size(); i2++){
-			compUnit = (CompilationUnit) list.get(i2);
+		for(int i2 = 0; i2 < cUnits.length; i2++){
+			compUnit = cUnits[i2];
 			collection = result.getCompilerErrors(compUnit);
 			iterator = collection.iterator();
 			

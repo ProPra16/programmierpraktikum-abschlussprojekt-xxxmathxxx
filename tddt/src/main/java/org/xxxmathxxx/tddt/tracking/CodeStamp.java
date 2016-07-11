@@ -3,7 +3,6 @@
  */
 package org.xxxmathxxx.tddt.tracking;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -28,7 +27,7 @@ public class CodeStamp {
 	private Result result;
 	
 	/** The list of CompilationUnits. */
-	private ArrayList<CompilationUnit> list;
+	private CompilationUnit[] cUnits; //array is the format required by VirtualKataLib so why convert all the time
 	
 	
 	/**
@@ -38,29 +37,19 @@ public class CodeStamp {
 	 * @param list the CompilationUnit list
 	 * @param date the date
 	 */
-	public CodeStamp(Result result, ArrayList<CompilationUnit> list){
+	public CodeStamp(Result result, CompilationUnit[] cUnits){
 		this.result = result;
-		this.list = list;
+		this.cUnits = cUnits;
 	}
-	
-	/**
-	 * Gets the compiler errors.
-	 *
-	 * @return the compiler errors
-	 */
-	public String getCompilerErrors(){
-		String ret = "";
-		ret = result.getCompilerErrors(list);
-		return ret;
-	}
+
 	
 	/**
 	 * Gets the compilation units.
 	 *
 	 * @return the compilation units
 	 */
-	public ArrayList<CompilationUnit> getCompilationUnits(){
-		return list;
+	public CompilationUnit[] getCompilationUnits(){
+		return cUnits;
 	}
 	
 	/**
@@ -73,13 +62,13 @@ public class CodeStamp {
 		TDDTLogManager.getInstance().logMessage("Generating new Code-Stamp");
 		compiler.compileAndRunTests();
 		
-		ArrayList<CompilationUnit> list = new ArrayList<CompilationUnit>();
 		Set<String> set = compiler.getAllCompilationUnitNames();
 		String[] s = new String[set.size()];
 		Iterator<String> iterator = set.iterator();
 		CompilationUnit compilationUnit = null;
 		int i = 0;
-		
+		CompilationUnit[] cUnits = new CompilationUnit[set.size()];
+
 		CompilerResult compilerResult = compiler.getCompilerResult();
 		TestResult testResult = compiler.getTestResult();
 		
@@ -88,11 +77,11 @@ public class CodeStamp {
 		while(iterator.hasNext()){
 			s[i] = (String) iterator.next();
 			compilationUnit = compiler.getCompilationUnitByName(s[i++]);	
-			list.add(compilationUnit);
+			cUnits[i] = compilationUnit;
 		}
 		
 		
-		CodeStamp codeStamp = new CodeStamp(result, list);
+		CodeStamp codeStamp = new CodeStamp(result, cUnits);
 		return codeStamp;
 	}
 	

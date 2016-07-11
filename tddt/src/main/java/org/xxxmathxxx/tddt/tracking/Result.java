@@ -3,7 +3,6 @@
  */
 package org.xxxmathxxx.tddt.tracking;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -60,11 +59,11 @@ public class Result {
 	 * @param list the compilation units
 	 * @return the compiler errors
 	 */
-	public String getCompilerErrors(ArrayList<CompilationUnit> list){
+	public String getCompilerErrors(CompilationUnit[] cUnits){
 		String ret = "CompileErrors found: \n";
-		for(int i = 0; i < list.size(); i++)
+		for(int i = 0; i < cUnits.length; i++)
 		{
-			CompilationUnit compUnit = (CompilationUnit) list.get(i);
+			CompilationUnit compUnit = (CompilationUnit) cUnits[i];
 			Collection<CompileError> collection = getCompilerErrors(compUnit);
 			Iterator<CompileError> errors = collection.iterator();
 					
