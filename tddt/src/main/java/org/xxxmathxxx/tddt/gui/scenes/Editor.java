@@ -226,6 +226,7 @@ public class Editor extends Scene {
 				boolean hasSwitched = TDDT.currentThread.requestSwitch(self);
 
 				if (hasSwitched){ //this means a change has occured!
+					
 					if(TDDT.currentThread.state!=CodeStage.REFACTOR)
 					{
 						switchLabel();

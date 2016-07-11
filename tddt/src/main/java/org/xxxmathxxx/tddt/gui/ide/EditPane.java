@@ -9,14 +9,14 @@ import javafx.event.EventHandler;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
-
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
 /**
  * @author Fabian
  * Used to calculate logic of the editor
  */
-public abstract class EditPane extends Pane {
+public abstract class EditPane extends FlowPane {
 	
 
 	private TextEditor te;
@@ -37,13 +37,7 @@ public abstract class EditPane extends Pane {
 	public EditPane(ClassData[] classdata) {
 		isActive = false;
 
-		te = new TextEditor();
-		te.setLocation(10, 50);
-		te.setSize(500, 450);
 		
-		te.addEventHandler(MouseEvent.MOUSE_CLICKED, focusHelper);
-		getChildren().add(te);
-		this.classdata=classdata;
 		
 
 		this.clock = new ClockLabel(3.00d); //TODO: Add exercise babysteps time
@@ -62,7 +56,7 @@ public abstract class EditPane extends Pane {
 		for (int i = 0; i < classdata.length; i++) {
 			ToggleButton temp = new EditPaneToggleButton(classdata[i].name, i);
 			temp.setPrefHeight(25);
-			temp.relocate(tempNextX, 10);
+			//temp.relocate(tempNextX, 10);
 			temp.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 			getChildren().add(temp);
 			navigator[i] = temp;
@@ -70,11 +64,27 @@ public abstract class EditPane extends Pane {
 			temp.setToggleGroup(tg);
 		}
 		
+		//Editor
+		te = new TextEditor();
+		te.setLocation(10, 50);
+		te.setSize(500, 450);
+		
+		te.addEventHandler(MouseEvent.MOUSE_CLICKED, focusHelper);
+		getChildren().add(te);
+		this.classdata=classdata;
+		
+		
+		
+		
 		selectedPage = 0;
 		navigator[0].setSelected(true);
 		
 		te.setText(classdata[0].code.rawText);
 		te.requestFocus();
+		
+		
+		
+		
 	}
 
 	/**
