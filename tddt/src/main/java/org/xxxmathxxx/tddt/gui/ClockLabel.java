@@ -17,7 +17,7 @@ public class ClockLabel extends Label{
 	public ClockLabel(double totalTime){
 		this.totalTime = totalTime;
 		this.setText("TEST");
-		new Timer().scheduleAtFixedRate(new TimeUpdateTask(),0 , 20);
+		new Timer().scheduleAtFixedRate(new TimeUpdateTask(),0 , 50);
 
 	}
 	
@@ -25,7 +25,9 @@ public class ClockLabel extends Label{
 	private class TimeUpdateTask extends TimerTask{
 		@Override
 		public void run() {
-			syncTime(TDDT.currentThread.tracker.totalTimer.getTime());
+			if (TDDT.currentThread != null){
+				syncTime(TDDT.currentThread.tracker.totalTimer.getTime());
+			}
 		}
 	}
 	

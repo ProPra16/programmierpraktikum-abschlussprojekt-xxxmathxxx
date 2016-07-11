@@ -9,8 +9,10 @@ import org.xxxmathxxx.tddt.gui.scenes.StartupMenu;
 import org.xxxmathxxx.tddt.gui.scenes.Statistics;
 import org.xxxmathxxx.tddt.profile.MedalState;
 
+import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class WindowManager {
 	
@@ -41,6 +43,7 @@ public class WindowManager {
 	
 		mainStage.setResizable(false);
 		
+		mainStage.setOnCloseRequest(windowCloseEvent);
 		mainStage.show();
 		mainStage.centerOnScreen();
 		
@@ -99,5 +102,14 @@ public class WindowManager {
 		String ret = ImageCropperTool.showImageCropper(mainStage);
 		return ret;
 	}
+	
+	EventHandler<WindowEvent> windowCloseEvent = new EventHandler<WindowEvent>(){
+
+		@Override
+		public void handle(WindowEvent event) {
+			Runtime.getRuntime().exit(0);
+		}
+		
+	};
 	
 }
