@@ -244,7 +244,9 @@ public class Editor extends Scene {
 					{
 						switchLabel();
 					}
-					updateStateLabel(TDDT.currentThread.state);		
+					updateStateLabel(TDDT.currentThread.state);	
+					tep.createBackup();
+					cep.createBackup();
 				}
 			}
 			

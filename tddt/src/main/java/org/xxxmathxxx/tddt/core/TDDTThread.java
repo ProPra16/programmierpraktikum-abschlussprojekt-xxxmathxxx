@@ -234,6 +234,10 @@ public class TDDTThread {
 		return cuArray;
 	}
 
+	/**
+	 * Is called when the Users requests to cancel from Coding to Testing stage
+	 * @param ed
+	 */
 	public void cancelRequested(Editor ed) {
 		TDDTLogManager.getInstance().logMessage("Switching to Test Stage");
 		tracker.stageGreen.stopTimeTracking();
