@@ -43,8 +43,8 @@ Our logfiles, documenting our weekly meeting, can be found in the logs folder.
 
 ##License and Warranty##
 
-//TODO//
-
+This program is provided under the terms of the Eclipse Public License 1.0. 
+For more information regarding this, open the license.pdf, which can be found in the same folder as this file.
 
 
 

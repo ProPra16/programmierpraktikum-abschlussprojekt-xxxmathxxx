@@ -80,7 +80,7 @@ public class NewProfileMenu extends Scene {
 		pane.getChildren().add(textField);
 		
 		profilePic = new ImageView(GraphicsHelper.defaultProfilePicture(128));
-		profilePic.relocate(340, 170);
+		profilePic.relocate(338, 170);
 		profilePic.setFitWidth(128);
 		profilePic.setFitHeight(128);
 		pane.getChildren().add(profilePic);
