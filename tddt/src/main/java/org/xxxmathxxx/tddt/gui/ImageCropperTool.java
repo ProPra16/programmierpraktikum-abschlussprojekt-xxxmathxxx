@@ -144,8 +144,8 @@ public class ImageCropperTool extends Stage {
         selectionMarker.setFill(Color.LIGHTBLUE.deriveColor(0, 1, 1, 0.4));
         
 		confirmButton = new Button("Confirm profile picture!");
-		confirmButton.setPrefSize(200, 50);
-		confirmButton.relocate(150, originalImage.getHeight());
+		confirmButton.setPrefSize(180, 40);
+		confirmButton.relocate(originalImage.getWidth()/2-90, originalImage.getHeight()+5);
 		confirmButton.addEventHandler(ActionEvent.ANY,confButtonHandler);
 		
 		this.addEventHandler(MouseEvent.MOUSE_PRESSED, MousePressedHandler);
@@ -159,6 +159,7 @@ public class ImageCropperTool extends Stage {
 		
 		//javafx is intuitive and ... makes a lot of sense ... all the time
 		pane = new Pane();
+		pane.getStylesheets().add("org/xxxmathxxx/tddt/gui/MenuStyle.css");
 		pane.setPrefSize(originalImage.getWidth(), originalImage.getHeight()+50);
 		
 		Group imageLayer = new Group();
