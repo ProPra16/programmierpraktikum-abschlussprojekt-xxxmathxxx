@@ -44,7 +44,7 @@ public abstract class EditPane extends FlowPane {
 		//Clock
 		if(TDDTThread.getInstance().getExercise().config.babystepsEnabeled)
 		{
-			this.babyClock = new ReversedClockLabel(TDDTThread.getInstance().tracker.babystepsTimer, TDDTThread.getInstance().getExercise().config.babystepsTime); //TODO: Add exercise babysteps time
+			this.babyClock = new ReversedClockLabel(TDDTThread.getInstance().tracker.babystepsTimer); //TODO: Add exercise babysteps time
 			this.babyClock.setPrefSize(32, 32);
 			this.babyClock.relocate(128, 8);
 			getChildren().add(babyClock);

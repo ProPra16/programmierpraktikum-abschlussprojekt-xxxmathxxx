@@ -3,6 +3,7 @@ package org.xxxmathxxx.tddt.gui;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.xxxmathxxx.tddt.core.TDDTThread;
 import org.xxxmathxxx.tddt.timer.BasicTimer;
 
 import javafx.application.Platform;
@@ -14,11 +15,12 @@ public class ReversedClockLabel extends Label {
 	
 	BasicTimer syncedTimerr;
 	
-	public ReversedClockLabel(BasicTimer syncedTimer, double bsTime) {
+	public ReversedClockLabel(BasicTimer syncedTimer) {
 		this.syncedTimerr = syncedTimer;
 		new Timer().scheduleAtFixedRate(new TimeUpdateTask(),0 , 50);
 		
-		babystepsTime=bsTime*60;
+		
+		babystepsTime=TDDTThread.getInstance().getExercise().config.babystepsTime*60;
 	}
 
 	private class TimeUpdateTask extends TimerTask{
