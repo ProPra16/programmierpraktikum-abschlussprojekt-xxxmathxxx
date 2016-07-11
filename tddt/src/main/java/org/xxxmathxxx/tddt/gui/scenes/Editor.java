@@ -30,6 +30,7 @@ public class Editor extends Scene {
 	Button switchButton;
 	Button viewOtherside;
 	Button finalizeButton;
+	Button cancelButton;
 	Label stateLabel;
 	
 	//Boolean 
@@ -78,6 +79,13 @@ public class Editor extends Scene {
 		finalizeButton.relocate(xSize-200,10);
 		finalizeButton.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(finalizeButton);
+		
+		cancelButton= new Button("Cancel");
+		cancelButton.setPrefSize(150, 50);
+		cancelButton.relocate(xSize-200,ySize-90);
+		cancelButton.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
+		pane.getChildren().add(cancelButton);
+		cancelButton.setDisable(true);
 		
 		//Label
 		stateLabel= new Label("Teststage");
@@ -130,11 +138,13 @@ public class Editor extends Scene {
 			
 		case CODE: 
 			stateLabel.setText("CodeStage");
+			cancelButton.setDisable(false);
 			break;
 			
 		case REFACTOR: 
 			stateLabel.setText("refactorstage");
 			viewOtherside.setDisable(true);
+			cancelButton.setDisable(true);
 			break;
 		}	
 	}
@@ -245,6 +255,12 @@ public class Editor extends Scene {
 			if(event.getSource()==finalizeButton)
 			{
 				TDDT.currentThread.finalizeExercise(self);
+			}
+			
+			//CancelButton
+			if(event.getSource()==cancelButton&& TDDT.currentThread.state==CodeStage.CODE)
+			{
+				TDDT.currentThread.cancelRequested();
 			}
 		}
 	}

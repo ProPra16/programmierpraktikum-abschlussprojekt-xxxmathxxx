@@ -96,7 +96,7 @@ public class TDDTThread {
 		switch(state)
 		{
 		case TEST: //Switch to code (RED->green)
-			if(switchToCode(ed)) //Checks if exacly one Test fails
+			if(switchToCode(ed)) //Checks if exacly one Test fails/ the program does not compile
 			{
 				TDDTLogManager.getInstance().logMessage("Switching to Code Stage");
 				tracker.stageRed.stopTimeTracking();
@@ -161,22 +161,12 @@ public class TDDTThread {
 		tracker.stageRed.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
 		CodeStamp codeStamp = tracker.stageRed.codeStampCollection.getLatestCodeStamp();
 		
-		if(codeStamp.getResult().compilerError())
+		if(codeStamp.getResult().compilerError()||codeStamp.getResult().oneFailedTest())
 		{	
-			AlertMessenger.showErrorMessage("Compile-error", codeStamp.getResult().getCompilerErrors(cuArray));
-			return false;
+			return true;
 		}
-		else
-		{
-			if(codeStamp.getResult().oneFailedTest())
-			{
-				return true;
-			}
-			else
-			{
-				AlertMessenger.showErrorMessage("Test Failed!", "More/ Less than 1 one Test failed.");
-			}
-		}
+
+		AlertMessenger.showErrorMessage("Could not switch.", codeStamp.getResult().getCompilerErrors(cuArray));
 		return false;
 	}
 	
@@ -241,6 +231,11 @@ public class TDDTThread {
 		}
 		
 		return cuArray;
+	}
+
+	public void cancelRequested() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
