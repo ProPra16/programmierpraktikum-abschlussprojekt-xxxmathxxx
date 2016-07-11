@@ -17,6 +17,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * @author xxxMathxxx 2016
+ * The scene which shows up as soon as the program starts
+ */
 public class StartupMenu extends Scene {
 
 	
@@ -26,6 +30,10 @@ public class StartupMenu extends Scene {
 	private Button existingProfile;
 	private ProfilePicker pp;
 	
+	/**
+	 * Constructor for this Menu
+	 * @param pane See Scene
+	 */
 	public StartupMenu(Pane pane) {
 		
 		super(pane);
@@ -67,7 +75,9 @@ public class StartupMenu extends Scene {
 
 	}
 	
-	
+	/**
+	 * Handler for the different buttons in this menu
+	 */
 	private final class menuButtonHandler implements EventHandler<ActionEvent>{
 
 		@Override

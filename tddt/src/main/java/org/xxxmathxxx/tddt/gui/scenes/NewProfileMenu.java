@@ -20,6 +20,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * @author xxxMathxxx 2016
+ * The scene in which a new profile is created
+ */
 public class NewProfileMenu extends Scene {	
 	
 	//jfx elements
@@ -34,6 +38,10 @@ public class NewProfileMenu extends Scene {
 	private String customImagePath = null;
 	private String name = null;
 	
+	/**
+	 * Constructor for this Menu
+	 * @param pane See Scene
+	 */
 	public NewProfileMenu (Pane pane){
 		super(pane);
 		//get width and height from main pane
@@ -78,6 +86,9 @@ public class NewProfileMenu extends Scene {
 		pane.getChildren().add(profilePic);
 	}
 	
+	/**
+	 * Handler for the different buttons in this menu
+	 */
 	private final class menuButtonHandler implements EventHandler<ActionEvent>{
 
 		@Override

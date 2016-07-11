@@ -15,6 +15,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
+/**The scene after you picked a profile
+ * @author xxxMathxxx 2016
+ *	
+ */
 public class ExistingProfileMenu extends Scene {
 	
 	private Label infoText;
@@ -25,6 +29,10 @@ public class ExistingProfileMenu extends Scene {
 	private Button statistics;
 	private Button notYou;
 	
+	/**
+	 * Constructor for this Menu
+	 * @param pane See Scene
+	 */
 	public ExistingProfileMenu(Pane pane) {
 		
 		super(pane);
@@ -82,6 +90,9 @@ public class ExistingProfileMenu extends Scene {
 		//DEBUG STUFF END
 	}
 	
+	/**
+	 * Handler for the different buttons
+	 */
 	private final class menuButtonHandler implements EventHandler<ActionEvent>{
 
 		@Override

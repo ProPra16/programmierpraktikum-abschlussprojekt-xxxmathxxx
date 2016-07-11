@@ -23,8 +23,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 /**
- * @author Fabian
- * Here a exercise should be picked 
+ * @author xxxMathxxx 2016
+ * Here an exercise should be picked 
  */
 public class ExercisePicker extends Scene {
 
@@ -40,7 +40,10 @@ public class ExercisePicker extends Scene {
 	
 	private Label descr;
 	
-	
+	/**
+	 * Constructor for this Menu
+	 * @param pane See Scene
+	 */
 	public ExercisePicker(Pane pane) {
 
 		super(pane);
@@ -88,7 +91,9 @@ public class ExercisePicker extends Scene {
 	}
 	
 	
-	
+	/**
+	 * Handler for the different buttons in this menu
+	 */
 	private final class menuButtonHandler implements EventHandler<ActionEvent>{
 
 		@Override
