@@ -26,7 +26,7 @@ public class BasicTimer {
 	/**
 	 * The elapsed time in seconds
 	 */
-	private double elapsedTime; 
+	protected double elapsedTime; 
 	
 	/**
 	 * The internal state of the clock, describes whether or not it counts seconds
@@ -48,8 +48,17 @@ public class BasicTimer {
 		public void run() {
 			if (isRunning){
 				elapsedTime += (double)updateRate/1000d;
+				onTick();
 			}
 		}
+	}
+	
+	/**
+	 * Gets called on tick
+	 */
+	public void onTick()
+	{
+		
 	}
 	
 	public void toggleActive(){

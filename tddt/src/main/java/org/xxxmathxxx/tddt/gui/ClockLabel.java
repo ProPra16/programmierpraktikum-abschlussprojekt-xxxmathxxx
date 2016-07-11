@@ -5,8 +5,7 @@ import java.util.TimerTask;
 
 import org.xxxmathxxx.tddt.core.TDDT;
 
-import com.sun.glass.ui.Application;
-
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 
@@ -32,7 +31,7 @@ public class ClockLabel extends Label{
 	}
 	
 	public void syncTime(double time){
-		Application.invokeLater(new Runnable(){
+		Platform.runLater(new Runnable(){
 			@Override
 			public void run() {
 				try{
