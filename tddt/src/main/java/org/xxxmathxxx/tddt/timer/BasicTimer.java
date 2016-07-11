@@ -47,7 +47,7 @@ public class BasicTimer {
 		@Override
 		public void run() {
 			if (isRunning){
-				elapsedTime =+ updateRate;
+				elapsedTime += (double)updateRate/1000d;
 			}
 		}
 	}
