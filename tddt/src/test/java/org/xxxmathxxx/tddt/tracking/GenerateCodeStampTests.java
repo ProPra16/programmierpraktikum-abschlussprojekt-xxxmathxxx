@@ -17,7 +17,7 @@ import vk.core.api.JavaStringCompiler;
  * @author Tschebyscheff, 25.06.16
  *
  */
-public class GenerateCodeStempTests {
+public class GenerateCodeStampTests {
 
 	
 	@Test

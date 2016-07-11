@@ -45,7 +45,7 @@ public class TDDTThread {
 	}
 	
 	/**
-	 * Begin exercise.
+	 * Begins a given exercise.
 	 *
 	 * @param ex the ex
 	 */
@@ -83,6 +83,8 @@ public class TDDTThread {
 	public void awardMedal(Long exerciseID, MedalState newState) {
 		user.setMedalState(exerciseID, newState);
 	}
+	
+	
 
 	public boolean requestSwitch(Editor ed) {
 		Tracker tracker = TDDT.currentThread.tracker; //shortcut
@@ -174,6 +176,7 @@ public class TDDTThread {
 		return false;
 	}
 	
+	//TODO: ISNT THIS DUPLICATE TOO WHEN WE ALREADY HAVE THE TRACKER ADDED TO THIS THREAD?
 	/**
 	 * Creates an Array of CompilationUnits to start compiling.
 	 * @return Array of CompilationUnits
