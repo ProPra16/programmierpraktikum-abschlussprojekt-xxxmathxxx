@@ -2,7 +2,6 @@ package org.xxxmathxxx.tddt.gui.scenes;
 
 import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.data.CodeStage;
-import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.gui.ide.CodeEditPane;
 import org.xxxmathxxx.tddt.gui.ide.TestEditPane;
 
@@ -14,9 +13,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 
-/**
- * @author Fabian
- *	Interface class to create an editor
+/**The editor scene
+ * @author xxxMathxxx 2016
+ *	
  */
 public class Editor extends Scene {
 	
@@ -33,28 +32,23 @@ public class Editor extends Scene {
 	Button finalizeButton;
 	Label stateLabel;
 	
-	//LoadedExercise
-	Exercise ex;
-	
 	//Boolean 
 	Boolean nonEditState;
 	
 	/**fgcgh
 	 * Constructor
 	 * @param pane See Scene
-	 * @param ex Exercise to be loaded
 	 */
-	public Editor(Pane pane, Exercise ex) {
+	public Editor(Pane pane) {
 		super(pane);
-		this.ex=ex;
 		this.pane=pane;
 				
 		double xSize = pane.getPrefWidth();
 		double ySize = pane.getPrefHeight();
 		
 		//Initialise Panes
-		tep= new TestEditPane(ex.referencedTests);
-		cep= new CodeEditPane(ex.referencedClasses);
+		tep= new TestEditPane(TDDT.currentThread.getExercise().referencedTests);
+		cep= new CodeEditPane(TDDT.currentThread.getExercise().referencedClasses);
 		tep.switchActive();
 		
 		tep.relocate(10,10);

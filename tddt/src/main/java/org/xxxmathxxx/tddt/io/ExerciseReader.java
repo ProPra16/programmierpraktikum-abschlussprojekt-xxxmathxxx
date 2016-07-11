@@ -140,10 +140,8 @@ public class ExerciseReader {
 		// Fetches Finishtest ->Extension
 		pointer = exercise.getElementsByTagName("finishtest");
 
-
 		String testName = pointer.item(0).getAttributes().getNamedItem("name").getTextContent();
 		String testCode = pointer.item(0).getTextContent();
-
 		ExerciseTest referencedFinishTest = new ExerciseTest(testName, new JavaCode(testCode));
 
 		// ****Fetches config

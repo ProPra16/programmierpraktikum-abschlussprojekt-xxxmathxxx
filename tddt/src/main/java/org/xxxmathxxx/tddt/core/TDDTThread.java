@@ -229,9 +229,9 @@ public class TDDTThread {
 		}
 		if (withFinalTest){
 			cuArray[cuArray.length-1] = new CompilationUnit(
-					TDDT.currentThread.getExercise().getFinalTest().name
-					,TDDT.currentThread.getExercise().getFinalTest().code.rawText
-					,true);
+					currentExercise.referencedFinishTest.name,
+					currentExercise.referencedFinishTest.code.rawText,
+					true);
 		}
 		
 		return cuArray;

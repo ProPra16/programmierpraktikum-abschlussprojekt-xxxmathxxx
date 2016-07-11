@@ -37,11 +37,9 @@ public class EEQUALSMC3Test
 		
 	<finishtests>
 		<finishtest name="FinalUltimateTest">
-		
-		</finishtest>
-import static org.junit.Assert.*;
+		import static org.junit.Assert.*;
 import org.junit.Test;
-public class EEQUALSMC3Test
+public class FinalUltimateTest
 {
 	@Test
 	public void theonlytestneeded() 
@@ -49,6 +47,8 @@ public class EEQUALSMC3Test
 		assertEquals(HackTime.isTimeHacked(),true);
 	}
 }
+		</finishtest>
+
 	</finishtests>
 		
 	<config>

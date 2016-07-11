@@ -72,8 +72,4 @@ public class Exercise {
 		System.out.println(this.config.medalTimes.toString());
 		
 	}
-
-	public ExerciseTest getFinalTest() {
-		return referencedFinishTest;
-	}
 }
