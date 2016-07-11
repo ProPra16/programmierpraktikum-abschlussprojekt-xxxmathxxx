@@ -11,7 +11,6 @@ import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.MedalState;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.tracking.CodeStamp;
-import org.xxxmathxxx.tddt.tracking.GenerateCodeStamp;
 import org.xxxmathxxx.tddt.tracking.Tracker;
 
 import vk.core.api.CompilationUnit;
@@ -133,7 +132,7 @@ public class TDDTThread {
 		//Step 0: Check if final test is successful
 		CompilationUnit[] cuArray= getCompilationUnits(ed,true);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		CodeStamp codeStamp = GenerateCodeStamp.generate(jsc);
+		CodeStamp codeStamp = CodeStamp.generateCodeStamp(jsc);
 
 		if(codeStamp.result.getNumberOfFailedTests()!=0)
 		{
@@ -152,7 +151,7 @@ public class TDDTThread {
 	{
 		CompilationUnit[] cuArray= getCompilationUnits(ed,false);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		tracker.stageRed.codeStampCollection.addCodeStamp(GenerateCodeStamp.generate(jsc));
+		tracker.stageRed.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc));
 		CodeStamp codeStamp = tracker.stageRed.codeStampCollection.getLatestCodeStamp();
 		
 		if(codeStamp.result.compilerError())
@@ -178,7 +177,7 @@ public class TDDTThread {
 	{
 		CompilationUnit[] cuArray= getCompilationUnits(ed,false);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		tracker.stageGreen.codeStampCollection.addCodeStamp(GenerateCodeStamp.generate(jsc));
+		tracker.stageGreen.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc));
 		CodeStamp codeStamp = tracker.stageGreen.codeStampCollection.getLatestCodeStamp();
 		
 		if(codeStamp.result.compilerError())

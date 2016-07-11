@@ -25,7 +25,7 @@ public class GenerateCodeStampTests {
 		CompilationUnit compUnit1 = new CompilationUnit("Test1", "ich bin code1", false);
 		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1);
 		
-		CodeStamp codeStemp = GenerateCodeStamp.generate(compiler);
+		CodeStamp codeStemp = CodeStamp.generateCodeStamp(compiler);
 		ArrayList<Object> list = codeStemp.getCompilationUnits();
 		
 		CompilationUnit compUnitTest = (CompilationUnit) list.get(0);

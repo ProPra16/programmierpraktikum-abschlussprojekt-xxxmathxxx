@@ -5,6 +5,13 @@ package org.xxxmathxxx.tddt.tracking;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.Set;
+
+import vk.core.api.CompilationUnit;
+import vk.core.api.CompilerResult;
+import vk.core.api.JavaStringCompiler;
+import vk.core.api.TestResult;
 
 /**
  * The Class CodeStamp.
@@ -56,6 +63,41 @@ public class CodeStamp {
 	 */
 	public ArrayList<Object> getCompilationUnits(){
 		return list;
+	}
+	
+	/**
+	 * Generates a CodeStamp.
+	 *
+	 * @param compiler the compiler
+	 * @return the code stamp
+	 */
+	public static CodeStamp generateCodeStamp(JavaStringCompiler compiler){	
+		compiler.compileAndRunTests();
+		
+		ArrayList<Object> list = new ArrayList<Object>();
+		Set<String> set = compiler.getAllCompilationUnitNames();
+		String[] s = new String[set.size()];
+		Iterator<String> iterator = set.iterator();
+		Result result = new Result();
+		Date date = new Date();
+		CompilationUnit compilationUnit = null;
+		int i = 0;
+		
+		CompilerResult compilerResult = compiler.getCompilerResult();
+		TestResult testResult = compiler.getTestResult();
+		result.add(compilerResult);
+		result.add(testResult);
+		
+		
+		while(iterator.hasNext()){
+			s[i] = (String) iterator.next();
+			compilationUnit = compiler.getCompilationUnitByName(s[i++]);	
+			list.add(compilationUnit);
+		}
+		
+		
+		CodeStamp codeStamp = new CodeStamp(result, list, date);
+		return codeStamp;
 	}
 	
 	/**

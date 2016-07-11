@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.xxxmathxxx.tddt.tracking.CodeStamp;
-import org.xxxmathxxx.tddt.tracking.GenerateCodeStamp;
 import org.xxxmathxxx.tddt.tracking.Tracker;
 
 import vk.core.api.CompilationUnit;
@@ -38,7 +37,7 @@ public class AnalyzedTrackingDataTests {
 		CompilationUnit compUnit2 = new CompilationUnit("TestofTest", string12, true);	
 		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);
 		
-		CodeStamp codeStamp = GenerateCodeStamp.generate(compiler);
+		CodeStamp codeStamp = CodeStamp.generateCodeStamp(compiler);
 		tracker.stageGreen.codeStampCollection.addCodeStamp(codeStamp);
 		
 		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker);
@@ -54,7 +53,7 @@ public class AnalyzedTrackingDataTests {
 		CompilationUnit compUnit2 = new CompilationUnit("TestofTest", string21, true);	
 		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);
 		
-		CodeStamp codeStamp = GenerateCodeStamp.generate(compiler);
+		CodeStamp codeStamp = CodeStamp.generateCodeStamp(compiler);
 		tracker.stageGreen.codeStampCollection.addCodeStamp(codeStamp);
 		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker);
 		
@@ -69,7 +68,7 @@ public class AnalyzedTrackingDataTests {
 		CompilationUnit compUnit2 = new CompilationUnit("TestofTest", string42, true);	
 		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);
 		
-		CodeStamp codeStamp = GenerateCodeStamp.generate(compiler);
+		CodeStamp codeStamp = CodeStamp.generateCodeStamp(compiler);
 		tracker.stageRefactor.codeStampCollection.addCodeStamp(codeStamp);
 		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker);
 		
@@ -84,7 +83,7 @@ public class AnalyzedTrackingDataTests {
 		CompilationUnit compUnit2 = new CompilationUnit("TestofTest", string12, true);	
 		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);
 		
-		CodeStamp codeStamp = GenerateCodeStamp.generate(compiler);
+		CodeStamp codeStamp = CodeStamp.generateCodeStamp(compiler);
 		tracker.stageRefactor.codeStampCollection.addCodeStamp(codeStamp);
 		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker);
 		
