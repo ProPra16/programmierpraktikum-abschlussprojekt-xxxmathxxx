@@ -1,5 +1,6 @@
 package org.xxxmathxxx.tddt.gui.ide;
 
+import org.xxxmathxxx.tddt.core.TDDTThread;
 import org.xxxmathxxx.tddt.data.ClassData;
 import org.xxxmathxxx.tddt.gui.ClockLabel;
 import org.xxxmathxxx.tddt.gui.EditPaneToggleButton;
@@ -23,7 +24,7 @@ public abstract class EditPane extends FlowPane {
 	protected TextEditor te;
 	private Boolean isActive;
 	
-	private ClockLabel clock;
+	private ClockLabel babyClock;
 
 	protected int selectedPage;
 
@@ -39,10 +40,10 @@ public abstract class EditPane extends FlowPane {
 	public EditPane(ClassData[] classdata) {
 		isActive = false;
 
-		this.clock = new ClockLabel(3.00d); //TODO: Add exercise babysteps time
-		this.clock.setPrefSize(32, 32);
-		this.clock.relocate(128, 8);
-		getChildren().add(clock);
+		this.babyClock = new ClockLabel(TDDTThread.getInstance().tracker.babystepsTimer); //TODO: Add exercise babysteps time
+		this.babyClock.setPrefSize(32, 32);
+		this.babyClock.relocate(128, 8);
+		getChildren().add(babyClock);
 		
 		//Creating Navigator
 		

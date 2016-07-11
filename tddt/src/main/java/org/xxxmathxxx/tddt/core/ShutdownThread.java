@@ -15,14 +15,14 @@ public class ShutdownThread extends Thread {
 	public void run() {
 		TDDTLogManager.getInstance().logMessage("Terminating the program ...");
 		//Saving current profile if one exists
-		if (TDDT.currentThread != null){
+		if (TDDTThread.getInstance() != null){
 			TDDTLogManager.getInstance().logMessage("Saving current profile");
-			TDDT.currentThread.getUserProfile().saveProfileToFile();
+			TDDTThread.getInstance().getUserProfile().saveProfileToFile();
 		}
 		//Killing timers
-		if (TDDT.currentThread != null){
-			TDDT.currentThread.tracker.totalTimer.toggleActive();
-			TDDT.currentThread = null;
+		if (TDDTThread.getInstance() != null){
+			TDDTThread.getInstance().tracker.babystepsTimer.toggleActive();
+			TDDTThread.getInstance().reset();
 		}
 		//Cleaning the log manager, this should be the last clean-up step so the others can still be logged
 		TDDTLogManager.getInstance().logMessage("Cleaning up log-system");

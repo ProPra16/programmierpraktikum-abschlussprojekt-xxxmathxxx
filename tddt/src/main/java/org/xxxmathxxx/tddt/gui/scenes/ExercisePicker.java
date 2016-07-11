@@ -1,6 +1,7 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
 import org.xxxmathxxx.tddt.core.TDDT;
+import org.xxxmathxxx.tddt.core.TDDTThread;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.data.ExerciseCollection;
 import org.xxxmathxxx.tddt.gui.AlertMessenger;
@@ -76,7 +77,7 @@ public class ExercisePicker extends Scene {
 			public void changed(ObservableValue<? extends Exercise> arg, Exercise before, Exercise now) {
 				if (now != null) {
 					TDDTLogManager.getInstance().logMessage("Selected exercise: " + now.name);
-					mv.setMedals(now, TDDT.currentThread.getUserProfile());
+					mv.setMedals(now, TDDTThread.getInstance().getUserProfile());
 					descr.setText(now.description);
 					descr.autosize();
 				}
@@ -103,7 +104,7 @@ public class ExercisePicker extends Scene {
 				
 				if(selectedExercise!=null)
 				{
-					TDDT.currentThread.beginExercise(selectedExercise);
+					TDDTThread.getInstance().beginExercise(selectedExercise);
 					WindowManager.getInstance().showMenu(WindowManager.MenuType.EDITOR);
 				}
 				else

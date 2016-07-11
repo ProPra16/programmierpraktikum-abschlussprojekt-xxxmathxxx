@@ -3,7 +3,7 @@
  */
 package org.xxxmathxxx.tddt.tracking;
 
-import org.xxxmathxxx.tddt.timer.BasicTimer;
+import org.xxxmathxxx.tddt.timer.BabystepsTimer;
 
 /**
  * The Class Tracker.
@@ -22,8 +22,7 @@ public class Tracker {
 	/** The stage refactor. */
 	public ActivityTracker stageRefactor;
 	
-	/** A timer that tracks the entire time spend doing this exercise */
-	public BasicTimer totalTimer;
+	public BabystepsTimer babystepsTimer;
 	
 	/**
 	 * Instantiates a new tracker.
@@ -32,6 +31,6 @@ public class Tracker {
 		stageRed = new ActivityTracker();
 		stageGreen = new ActivityTracker();
 		stageRefactor = new ActivityTracker();
-		totalTimer = new BasicTimer();
+		babystepsTimer = new BabystepsTimer();
 	}
 }

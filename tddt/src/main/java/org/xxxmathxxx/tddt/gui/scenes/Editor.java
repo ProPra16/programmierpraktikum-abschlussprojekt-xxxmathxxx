@@ -1,6 +1,6 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
-import org.xxxmathxxx.tddt.core.TDDT;
+import org.xxxmathxxx.tddt.core.TDDTThread;
 import org.xxxmathxxx.tddt.data.CodeStage;
 import org.xxxmathxxx.tddt.gui.ide.CodeEditPane;
 import org.xxxmathxxx.tddt.gui.ide.TestEditPane;
@@ -19,10 +19,10 @@ import javafx.scene.layout.Pane;
  */
 public class Editor extends Scene {
 	
-	private Editor self = this; //reference for button handler
 
 	//Editor Panes
-	public TestEditPane tep;	public CodeEditPane cep;
+	public TestEditPane tep;
+	public CodeEditPane cep;
 	
 	//Menus
 	Pane pane;
@@ -34,6 +34,10 @@ public class Editor extends Scene {
 	
 	//Boolean 
 	Boolean nonEditState;
+	
+	//Babysteps timer
+	BasicTimer tepTimer;
+	BasicTimer cepTimer;
 	
 	/**
 	 * Constructor
@@ -47,8 +51,8 @@ public class Editor extends Scene {
 		double ySize = pane.getPrefHeight();
 		
 		//Initialise Panes
-		tep= new TestEditPane(TDDT.currentThread.getExercise().referencedTests);
-		cep= new CodeEditPane(TDDT.currentThread.getExercise().referencedClasses);
+		tep= new TestEditPane(TDDTThread.getInstance().getExercise().referencedTests);
+		cep= new CodeEditPane(TDDTThread.getInstance().getExercise().referencedClasses);
 		tep.switchActive();
 		
 		tep.relocate(10,10);
@@ -93,7 +97,7 @@ public class Editor extends Scene {
 		pane.getChildren().add(stateLabel);
 		
 		//Tschebycheff
-		TDDT.currentThread.tracker.stageRed.startTimeTracking();
+		TDDTThread.getInstance().tracker.stageRed.startTimeTracking();
 		
 		//Boolean
 		nonEditState=false;
@@ -236,15 +240,15 @@ public class Editor extends Scene {
 			if (event.getSource()==switchButton && !nonEditState){
 				tep.save();
 				cep.save();
-				boolean hasSwitched = TDDT.currentThread.requestSwitch(self);
+				boolean hasSwitched = TDDTThread.getInstance().requestSwitch();
 
 				if (hasSwitched){ //this means a change has occured!
 					
-					if(TDDT.currentThread.state!=CodeStage.REFACTOR)
+					if(TDDTThread.getInstance().state!=CodeStage.REFACTOR)
 					{
 						switchLabel();
 					}
-					updateStateLabel(TDDT.currentThread.state);	
+					updateStateLabel(TDDTThread.getInstance().state);	
 					tep.createBackup();
 					cep.createBackup();
 				}
@@ -253,22 +257,22 @@ public class Editor extends Scene {
 			//Otherside Button
 			if (event.getSource()==viewOtherside)
 			{
-				showOtherside(TDDT.currentThread.state);
+				showOtherside(TDDTThread.getInstance().state);
 			}
 			
 			//FinalizeButton
 			if(event.getSource()==finalizeButton)
 			{
-				TDDT.currentThread.finalizeExercise(self);
+				TDDTThread.getInstance().finalizeExercise();
 			}
 			
 			//CancelButton
-			if(event.getSource()==cancelButton&& TDDT.currentThread.state==CodeStage.CODE)
+			if(event.getSource()==cancelButton&& TDDTThread.getInstance().state==CodeStage.CODE)
 			{
-				TDDT.currentThread.cancelRequested(self);
+				TDDTThread.getInstance().cancelRequested();
 				cep.rerollChanges();
 				switchLabel();
-				updateStateLabel(TDDT.currentThread.state);	
+				updateStateLabel(TDDTThread.getInstance().state);	
 			}
 		}
 	}

@@ -23,8 +23,17 @@ import vk.core.api.JavaStringCompiler;
  */
 public class TDDTThread {
 	
-	/** The user. */
-	private Profile user;
+	private static TDDTThread instance;
+	
+	public static TDDTThread getInstance(){
+		if (instance == null){
+			instance = new TDDTThread();
+		}
+		return instance;
+	}
+	
+	/** The profile. */
+	private Profile profile;
 	
 	/** The current exercise. */
 	private Exercise currentExercise;
@@ -37,15 +46,19 @@ public class TDDTThread {
 	 */
 	public CodeStage state;
 	
-	/**
-	 * Instantiates a new TDDT thread.
-	 *
-	 * @param user The Profile for which the thread is created
-	 */
-	public TDDTThread(Profile user){
-		this.user = user;
-		this.tracker = new Tracker();
+	private Editor ed;
+	
+	public void setProfile(Profile p){
+		instance.profile = p;
+	}
+	
+	public void setEditor(Editor e){
+		this.ed = e;
+	}
+	
+	private TDDTThread(){
 		state = CodeStage.TEST;
+		tracker = new Tracker();
 	}
 	
 	/**
@@ -55,7 +68,7 @@ public class TDDTThread {
 	 */
 	public void beginExercise(Exercise ex){
 		this.currentExercise = ex;
-		this.tracker.totalTimer.toggleActive();
+		this.tracker.babystepsTimer.toggleActive();
 	}
 	
 	/**
@@ -68,13 +81,13 @@ public class TDDTThread {
 	}
 	
 	/**
-	 * Gets the user profile.
+	 * Gets the profile profile.
 	 *
-	 * @return the user profile
+	 * @return the profile profile
 	 */
 	public Profile getUserProfile(){
 		//getter because profile shouldn't be modified directly/ is set only in the constructor
-		return user;
+		return profile;
 	}
 
 	/**
@@ -83,7 +96,7 @@ public class TDDTThread {
 	 * @param newState the new state
 	 */
 	public void awardMedal(MedalState newState) {
-		user.setMedalState(currentExercise.id, newState);
+		profile.setMedalState(currentExercise.id, newState);
 	}
 	
 	
@@ -91,8 +104,7 @@ public class TDDTThread {
 	 * @param ed The editor from which the switch is called. (This is unelegant as f*** btw, we should simply pass the compilation units)
 	 * @return True if the change is performed, false otherwise
 	 */
-	public boolean requestSwitch(Editor ed) {
-		Tracker tracker = TDDT.currentThread.tracker; //shortcut
+	public boolean requestSwitch() {
 		switch(state)
 		{
 		case TEST: //Switch to code (RED->green)
@@ -128,10 +140,10 @@ public class TDDTThread {
 	
 	
 	
-	public void finalizeExercise(Editor ed)
+	public void finalizeExercise()
 	{
 		//Step 0: Check if final test is successful
-		CompilationUnit[] cuArray= getCompilationUnits(ed,true);
+		CompilationUnit[] cuArray= getCompilationUnits(true);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
 		CodeStamp codeStamp = CodeStamp.generateCodeStamp(jsc,cuArray);
 
@@ -141,9 +153,9 @@ public class TDDTThread {
 			return;
 		}
 		
-		this.tracker.totalTimer.toggleActive();
-		TDDTLogManager.getInstance().logMessage("Total time needed for this exercise: "+this.tracker.totalTimer.getTimeInSecondsAsString());
-		MedalState medalEarned = currentExercise.checkMedalForTime(this.tracker.totalTimer.getTime());
+		this.tracker.babystepsTimer.toggleActive();
+		TDDTLogManager.getInstance().logMessage("Total time needed for this exercise: "+this.tracker.babystepsTimer.getTimeInSecondsAsString());
+		MedalState medalEarned = currentExercise.checkMedalForTime(this.tracker.babystepsTimer.getTime());
 		if (medalEarned != MedalState.NONE){
 			awardMedal(medalEarned);
 			WindowManager.getInstance().createAchievementPopup(medalEarned);
@@ -157,7 +169,7 @@ public class TDDTThread {
 	 */
 	private Boolean switchToCode(Editor ed)
 	{
-		CompilationUnit[] cuArray= getCompilationUnits(ed,false);
+		CompilationUnit[] cuArray= getCompilationUnits(false);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
 		tracker.stageRed.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
 		CodeStamp codeStamp = tracker.stageRed.codeStampCollection.getLatestCodeStamp();
@@ -173,7 +185,7 @@ public class TDDTThread {
 	
 	private Boolean switchToRefactor(Editor ed)
 	{
-		CompilationUnit[] cuArray= getCompilationUnits(ed,false);
+		CompilationUnit[] cuArray= getCompilationUnits(false);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
 		tracker.stageGreen.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
 		CodeStamp codeStamp = tracker.stageGreen.codeStampCollection.getLatestCodeStamp();
@@ -203,7 +215,7 @@ public class TDDTThread {
 	 * Creates an Array of CompilationUnits to start compiling.
 	 * @return Array of CompilationUnits
 	 */
-	private CompilationUnit[] getCompilationUnits(Editor ed, boolean withFinalTest)
+	private CompilationUnit[] getCompilationUnits(boolean withFinalTest)
 	{
 		CodeEditPane cep = ed.cep; //shortcut
 		TestEditPane tep = ed.tep;
@@ -243,6 +255,16 @@ public class TDDTThread {
 		tracker.stageGreen.stopTimeTracking();
 		tracker.stageRed.startTimeTracking();
 		state=CodeStage.TEST;
+	}
+
+	public void performBabystepRevert() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void reset() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

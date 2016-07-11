@@ -13,11 +13,6 @@ import javafx.stage.Stage;
  *
  */
 public class TDDT extends Application{
-	
-	/**This is the current thread, visible from every class and thus globally accessible.
-	 * 
-	 */
-	public static TDDTThread currentThread;
 
 	/**This is the main function, it simply launches the JavaFX application
 	 * @param args

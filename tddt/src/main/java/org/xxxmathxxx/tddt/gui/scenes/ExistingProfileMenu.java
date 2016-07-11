@@ -2,6 +2,7 @@ package org.xxxmathxxx.tddt.gui.scenes;
 
 
 import org.xxxmathxxx.tddt.core.TDDT;
+import org.xxxmathxxx.tddt.core.TDDTThread;
 //import org.xxxmathxxx.tddt.gui.AchievementPopup;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 
@@ -51,7 +52,7 @@ public class ExistingProfileMenu extends Scene {
 		profilePic.setFitWidth(128);
 		profilePic.setFitHeight(128);
 		
-		TDDT.currentThread.getUserProfile().showImageInJavaFXImageView(profilePic);
+		TDDTThread.getInstance().getUserProfile().showImageInJavaFXImageView(profilePic);
 
 		profilePic.relocate((xSize/2)-280,146);
 		pane.getChildren().add(profilePic);
@@ -63,7 +64,7 @@ public class ExistingProfileMenu extends Scene {
 		pane.getChildren().add(loggedInAs);
 		
 		profileName = new Label();
-		TDDT.currentThread.getUserProfile().showNameInJavaFXLabel(profileName);
+		TDDTThread.getInstance().getUserProfile().showNameInJavaFXLabel(profileName);
 		profileName.setPrefSize(280, 32);
 		profileName.relocate((xSize/2)-280,290);
 		profileName.setFont(new Font("Times New Roman", 18));

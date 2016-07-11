@@ -2,6 +2,7 @@ package org.xxxmathxxx.tddt.gui;
 import java.io.IOException;
 
 import org.xxxmathxxx.tddt.core.TDDT;
+import org.xxxmathxxx.tddt.core.TDDTThread;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
@@ -58,9 +59,9 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
     
    
 	public StatisticsPane(){
-		this.profile = TDDT.currentThread.getUserProfile();
+		this.profile = TDDTThread.getInstance().getUserProfile();
 				
-		analyzedTrackingDataCollection = TDDT.currentThread.getUserProfile().profileStats.getAnalayzedTrackingData();	//WHY ARE WE PASSING AN ENTIRE COLLECTION HERE??? AND WHY IS THE METHOD NAME WRONG?
+		analyzedTrackingDataCollection = TDDTThread.getInstance().getUserProfile().profileStats.getAnalayzedTrackingData();	//WHY ARE WE PASSING AN ENTIRE COLLECTION HERE??? AND WHY IS THE METHOD NAME WRONG?
 		
 		try {
 			AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("Stats.fxml"));

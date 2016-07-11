@@ -1,7 +1,6 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
 
-import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.core.TDDTThread;
 import org.xxxmathxxx.tddt.gui.AlertMessenger;
 import org.xxxmathxxx.tddt.gui.ProfilePicker;
@@ -88,7 +87,7 @@ public class StartupMenu extends Scene {
 			else if (event.getSource() == existingProfile){
 				if (pp.getSelection() != null){
 					//start new thread
-					TDDT.currentThread = new TDDTThread(pp.getSelection());
+					TDDTThread.getInstance().setProfile(pp.getSelection());
 					WindowManager.getInstance().showMenu(WindowManager.MenuType.EXISTING_PROFILE);					
 				}
 				else{
