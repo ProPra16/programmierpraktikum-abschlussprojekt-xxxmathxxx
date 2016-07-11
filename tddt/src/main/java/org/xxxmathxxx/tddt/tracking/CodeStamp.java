@@ -18,7 +18,7 @@ import java.util.Date;
 public class CodeStamp {
 
 	/** The result. */
-	private Result result;
+	public Result result;
 	
 	/** The list of CompilationUnits. */
 	private ArrayList<Object> list = new ArrayList<Object>();

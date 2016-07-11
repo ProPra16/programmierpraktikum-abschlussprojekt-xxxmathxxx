@@ -11,6 +11,8 @@ import org.xxxmathxxx.tddt.gui.scenes.Editor;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.MedalState;
 import org.xxxmathxxx.tddt.profile.Profile;
+import org.xxxmathxxx.tddt.tracking.CodeStamp;
+import org.xxxmathxxx.tddt.tracking.GenerateCodeStamp;
 import org.xxxmathxxx.tddt.tracking.Tracker;
 
 import vk.core.api.CompilationUnit;
@@ -117,10 +119,6 @@ public class TDDTThread {
 		}	
 		return false;
 	}
-
-	
-	//TODO: IMPORTANT!!!!!! switchToCode() and switchToRefactor() are BOTH probably somehow already in TSCHEBYSCHEFFS TRAKTOR so we might have redundant duplicate code here
-	
 	
 	/**
 	 * Checks if one failed test is present
@@ -129,70 +127,39 @@ public class TDDTThread {
 	private Boolean switchToCode(Editor ed)
 	{
 		CompilationUnit[] cuArray= getCompilationUnits(ed);
-		
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
+		tracker.stageRed.codeStampCollection.addCodeStemp(GenerateCodeStamp.generate(jsc));
+		CodeStamp codeStamp = tracker.stageRed.codeStampCollection.getLatestCodeStamp();
 		
-		jsc.compileAndRunTests();
-		
-		String retardedFishFrogString="";
-		
-		if(jsc.getCompilerResult().hasCompileErrors())
+		if(codeStamp.result.compilerError())
 		{	
-			retardedFishFrogString=retardedFishFrogString+"CompileErrors found: \n";
-			
-			for(int i=0; i<cuArray.length; i++)
-			{
-				Iterator<CompileError> errors=jsc.getCompilerResult().getCompilerErrorsForCompilationUnit(cuArray[i]).iterator();
-						
-				while(errors.hasNext())
-				{
-					retardedFishFrogString=retardedFishFrogString+((CompileError) errors.next()).getMessage();
-				}
-			}
-			AlertMessenger.showErrorMessage("Compile-error", retardedFishFrogString);
+			AlertMessenger.showErrorMessage("Compile-error", codeStamp.result.getCompilerErrors(cuArray) );
 			return false;
 		}
 		else
 		{
-			if(jsc.getTestResult().getNumberOfFailedTests()==1)
+			if(codeStamp.result.oneFailedTest())
 			{
 				return true;
 			}
 			else
 			{
-				retardedFishFrogString=retardedFishFrogString+"More/ Less than 1 one Test failed.";
-				AlertMessenger.showErrorMessage("Test Failed!", retardedFishFrogString);
+				AlertMessenger.showErrorMessage("Test Failed!", "More/ Less than 1 one Test failed.");
 			}
 		}
-		
 		return false;
 	}
 	
 	private Boolean switchToRefactor(Editor ed)
 	{
 		CompilationUnit[] cuArray= getCompilationUnits(ed);
-		
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
+		tracker.stageGreen.codeStampCollection.addCodeStemp(GenerateCodeStamp.generate(jsc));
+		CodeStamp codeStamp = tracker.stageGreen.codeStampCollection.getLatestCodeStamp();
 		
-		jsc.compileAndRunTests();
-		
-		String retardedFishFrogString="";
-		
-		if(jsc.getCompilerResult().hasCompileErrors())
+		if(codeStamp.result.compilerError())
 		{	
-			retardedFishFrogString=retardedFishFrogString+"CompileErrors found: \n";
-			
-			for(int i=0; i<cuArray.length; i++)
-			{
-				Iterator<CompileError> errors=jsc.getCompilerResult().getCompilerErrorsForCompilationUnit(cuArray[i]).iterator();
-						
-				while(errors.hasNext())
-				{
-					retardedFishFrogString=retardedFishFrogString+((CompileError) errors.next()).getMessage();
-				}
-			}
-			
-			AlertMessenger.showErrorMessage("Test Failed!", retardedFishFrogString);
+			AlertMessenger.showErrorMessage("Test Failed!", codeStamp.result.getCompilerErrors(cuArray));
 			return false;
 		}
 		else
@@ -203,8 +170,7 @@ public class TDDTThread {
 			}
 			else
 			{
-				retardedFishFrogString=retardedFishFrogString+"There are failed tests.";
-				AlertMessenger.showErrorMessage("Test Failed!", retardedFishFrogString);
+				AlertMessenger.showErrorMessage("Test Failed!", "There are failed tests.");
 			}
 		}
 		
