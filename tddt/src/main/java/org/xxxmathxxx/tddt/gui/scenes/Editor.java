@@ -243,11 +243,11 @@ public class Editor extends Scene {
 
 				if (hasSwitched){ //this means a change has occured!
 					
-					if(TDDTThread.getInstance().state!=CodeStage.REFACTOR)
+					if(TDDTThread.getInstance().getState()!=CodeStage.REFACTOR)
 					{
 						switchLabel();
 					}
-					updateStateLabel(TDDTThread.getInstance().state);	
+					updateStateLabel(TDDTThread.getInstance().getState());	
 					tep.createBackup();
 					cep.createBackup();
 				}
@@ -256,7 +256,7 @@ public class Editor extends Scene {
 			//Otherside Button
 			if (event.getSource()==viewOtherside)
 			{
-				showOtherside(TDDTThread.getInstance().state);
+				showOtherside(TDDTThread.getInstance().getState());
 			}
 			
 			//FinalizeButton
@@ -266,11 +266,11 @@ public class Editor extends Scene {
 			}
 			
 			//CancelButton
-			if(event.getSource()==cancelButton&& TDDTThread.getInstance().state==CodeStage.CODE)
+			if(event.getSource()==cancelButton&& TDDTThread.getInstance().getState()==CodeStage.CODE)
 			{
 				TDDTThread.getInstance().cancelRequested();
 				switchLabel();
-				updateStateLabel(TDDTThread.getInstance().state);	
+				updateStateLabel(TDDTThread.getInstance().getState());	
 			}
 		}
 	}

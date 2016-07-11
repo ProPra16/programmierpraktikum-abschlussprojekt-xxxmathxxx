@@ -44,7 +44,7 @@ public class TDDTThread {
 	/** The current state of the Thread, 
 	 *  @see CodeStage 
 	 */
-	public CodeStage state;
+	private CodeStage state;
 	
 	private Editor ed;
 	
@@ -57,7 +57,7 @@ public class TDDTThread {
 	}
 	
 	private TDDTThread(){
-		state = CodeStage.TEST;
+		state =CodeStage.TEST;
 		tracker = new Tracker();
 	}
 	
@@ -107,7 +107,7 @@ public class TDDTThread {
 	 */
 	public boolean requestSwitch() {
 		tracker.babystepsTimer.toggleActive();
-		switch(state)
+		switch(getState())
 		{
 		case TEST: //Switch to code (RED->green)
 			if(switchToCode()) //Checks if exacly one Test fails/ the program does not compile
@@ -115,7 +115,7 @@ public class TDDTThread {
 				TDDTLogManager.getInstance().logMessage("Switching to Code Stage");
 				tracker.stageRed.stopTimeTracking();
 				tracker.stageGreen.startTimeTracking();
-				state=CodeStage.CODE;
+				state =CodeStage.CODE;
 				ed.cep.createBackup();
 				tracker.babystepsTimer.resetTimer();
 				tracker.babystepsTimer.toggleActive();
@@ -128,7 +128,7 @@ public class TDDTThread {
 				TDDTLogManager.getInstance().logMessage("Switching to Refactor Stage");
 				tracker.stageGreen.stopTimeTracking();
 				tracker.stageRefactor.startTimeTracking();
-				state=CodeStage.REFACTOR;
+				state =CodeStage.REFACTOR;
 				return true;
 			}
 			break;
@@ -136,7 +136,7 @@ public class TDDTThread {
 			TDDTLogManager.getInstance().logMessage("Switching to Test Stage");
 			tracker.stageGreen.startTimeTracking();
 			tracker.stageRefactor.stopTimeTracking();
-			state=CodeStage.TEST;
+			state =CodeStage.TEST;
 			tracker.babystepsTimer.resetTimer();
 			tracker.babystepsTimer.toggleActive();
 			return true;
@@ -261,7 +261,7 @@ public class TDDTThread {
 		TDDTLogManager.getInstance().logMessage("Switching to Test Stage");
 		tracker.stageGreen.stopTimeTracking();
 		tracker.stageRed.startTimeTracking();
-		state=CodeStage.TEST;
+		state = CodeStage.TEST;
 		ed.cep.rerollChanges();
 		tracker.babystepsTimer.resetTimer();
 	}
@@ -269,22 +269,33 @@ public class TDDTThread {
 	public void performBabystepRevert() {
 		if(getExercise().config.babystepsEnabeled)
 		{
-		switch(state)
-		{
-		case TEST:
-			ed.tep.rerollChanges();
-			break;
-			
-		case CODE:
-			ed.cep.rerollChanges();
-			break;
+			switch(state)
+			{
+			case TEST:
+				ed.tep.rerollChanges();
+				break;
+				
+			case CODE:
+				ed.cep.rerollChanges();
+				break;
+	
+			case REFACTOR:	
+				break;
 			}
-		}
+		}		
 	}
 
 	public void reset() {
 		// TODO Auto-generated method stub
 		
 	}
+
+	/**
+	 * @return the state
+	 */
+	public CodeStage getState() {
+		return state;
+	}
+
 	
 }
