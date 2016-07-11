@@ -12,20 +12,20 @@ package org.xxxmathxxx.tddt.tracking;
 public class Tracker {
 
 	/** The stage red. */
-	public TimeTracker stageRed;
+	public ActivityTracker stageRed;
 	
 	/** The stage green. */
-	public TimeTracker stageGreen;
+	public ActivityTracker stageGreen;
 	
 	/** The stage refactor. */
-	public TimeTracker stageRefactor;
+	public ActivityTracker stageRefactor;
 	
 	/**
 	 * Instantiates a new tracker.
 	 */
 	public Tracker(){
-		stageRed = new TimeTracker();
-		stageGreen = new TimeTracker();
-		stageRefactor = new TimeTracker();
+		stageRed = new ActivityTracker();
+		stageGreen = new ActivityTracker();
+		stageRefactor = new ActivityTracker();
 	}
 }
