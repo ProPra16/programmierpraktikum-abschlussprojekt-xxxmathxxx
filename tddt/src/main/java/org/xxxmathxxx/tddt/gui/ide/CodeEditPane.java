@@ -20,31 +20,6 @@ public class CodeEditPane extends EditPane {
 		
 		this.classes=classes;
 		
-		savedClasses= new String[classdata.length];
-	}
-	
-	/**
-	 * Creates backup of content.
-	 */
-	public void createBackup() {
-		System.out.println("Saving current state as backup");
 
-		for(int i=0; i<classdata.length;i++)
-		{
-			savedClasses[i]=classdata[i].code.rawText;
-		}
-	}
-	
-	/**
-	 * Rerolls changes to the state when createBackup() was called
-	 */
-	public void rerollChanges()
-	{
-		for(int i=0; i<classdata.length;i++)
-		{
-			classdata[i].code.rawText=savedClasses[i];
-		}
-		
-		te.setText(savedClasses[selectedPage]);
 	}
 }

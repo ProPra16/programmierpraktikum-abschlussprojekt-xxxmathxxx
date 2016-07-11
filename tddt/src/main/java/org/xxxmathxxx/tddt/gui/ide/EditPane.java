@@ -29,6 +29,7 @@ public abstract class EditPane extends FlowPane {
 	private ToggleButton[] navigator;
 	
 	public ClassData[] classdata;
+	private String[] backupClassdata;
 
 	/**
 	 * Used by Editor.java in package gui
@@ -82,7 +83,7 @@ public abstract class EditPane extends FlowPane {
 		te.setText(classdata[0].code.rawText);
 		te.requestFocus();
 		
-		
+		backupClassdata= new String[classdata.length];
 		
 		
 	}
@@ -146,6 +147,31 @@ public abstract class EditPane extends FlowPane {
 	public void save()
 	{
 		classdata[selectedPage].code.rawText=te.getText();
+	}
+	
+	/**
+	 * Creates backup of content.
+	 */
+	public void createBackup() {
+		System.out.println("Saving current state as backup");
+
+		for(int i=0; i<classdata.length;i++)
+		{
+			backupClassdata[i]=classdata[i].code.rawText;
+		}
+	}
+	
+	/**
+	 * Rerolls changes to the state when createBackup() was called
+	 */
+	public void rerollChanges()
+	{
+		for(int i=0; i<classdata.length;i++)
+		{
+			classdata[i].code.rawText=backupClassdata[i];
+		}
+		
+		te.setText(backupClassdata[selectedPage]);
 	}
 	
 	EventHandler<MouseEvent> focusHelper = new EventHandler<MouseEvent>(){
