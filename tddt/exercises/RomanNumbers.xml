@@ -30,7 +30,8 @@ public class RomanNumberConverterTest
 	@Test
 	public void testSomething() 
 	{
-	
+		RomanNumberConverter rnc= new RomanNumberConverter();
+		assertEquals(rnc.convert(1), "I");
 	}
 }
 		</test>
