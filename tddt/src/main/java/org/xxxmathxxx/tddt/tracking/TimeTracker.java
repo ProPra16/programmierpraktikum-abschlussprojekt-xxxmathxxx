@@ -11,7 +11,10 @@ import org.xxxmathxxx.tddt.timer.BasicTimer;
  * @author Tschebyscheff, 23.06.16
  * rudimentary tracking class, defined for time tracking
  */
-public abstract class TimeTracker extends ActivityTracker {
+public class TimeTracker extends ActivityTracker {
+	
+	/** The code stemp collection. */
+	public CodeStampCollection codeStampCollection = new CodeStampCollection(); //100% sure that this belongs into a time tracker??????
 
 	/** The timer. */
 	private BasicTimer timer;

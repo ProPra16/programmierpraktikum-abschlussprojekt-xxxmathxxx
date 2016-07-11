@@ -11,13 +11,13 @@ import org.xxxmathxxx.tddt.tracking.Tracker;
 public class AnalyzedTrackingData {
 	
 	/** The analyzed stage green. */
-	public AnalyzedStageGreen analyzedStageGreen;
+	public AnalyzedStage analyzedStageGreen;
 	
 	/** The analyzed stage red. */
-	public AnalyzedStageRed analyzedStageRed;
+	public AnalyzedStage analyzedStageRed;
 	
 	/** The analyzed stage refactor. */
-	public AnalyzedStageRefactor analyzedStageRefactor; 
+	public AnalyzedStage analyzedStageRefactor; 
 	
 	
 	/**
@@ -29,9 +29,9 @@ public class AnalyzedTrackingData {
 	 */
 	public AnalyzedTrackingData(Tracker tracker){
 		
-		analyzedStageGreen = new AnalyzedStageGreen(tracker.stageGreen);
-		analyzedStageRed = new AnalyzedStageRed(tracker.stageRed);
-		analyzedStageRefactor = new AnalyzedStageRefactor(tracker.stageRefactor);
+		analyzedStageGreen = new AnalyzedStage(tracker.stageGreen);
+		analyzedStageRed = new AnalyzedStage(tracker.stageRed);
+		analyzedStageRefactor = new AnalyzedStage(tracker.stageRefactor);
 	}
 }
 
