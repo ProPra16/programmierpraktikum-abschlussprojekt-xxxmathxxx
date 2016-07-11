@@ -133,7 +133,7 @@ public class TDDTThread {
 		
 		if(codeStamp.result.compilerError())
 		{	
-			AlertMessenger.showErrorMessage("Compile-error", codeStamp.result.getCompilerErrors(cuArray) );
+			AlertMessenger.showErrorMessage("Compile-error", codeStamp.getCompilerErrors());
 			return false;
 		}
 		else
@@ -159,7 +159,7 @@ public class TDDTThread {
 		
 		if(codeStamp.result.compilerError())
 		{	
-			AlertMessenger.showErrorMessage("Test Failed!", codeStamp.result.getCompilerErrors(cuArray));
+			AlertMessenger.showErrorMessage("Test Failed!", codeStamp.getCompilerErrors());
 			return false;
 		}
 		else
@@ -173,7 +173,6 @@ public class TDDTThread {
 				AlertMessenger.showErrorMessage("Test Failed!", "There are failed tests.");
 			}
 		}
-		
 		return false;
 	}
 	

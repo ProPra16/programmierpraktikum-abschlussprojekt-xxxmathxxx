@@ -3,6 +3,7 @@
  */
 package org.xxxmathxxx.tddt.tracking;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -12,7 +13,6 @@ import vk.core.api.CompilerResult;
 import vk.core.api.TestResult;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Result.
  *
@@ -50,7 +50,7 @@ public class Result {
 	/**
 	 * One failed test.
 	 *
-	 * @return true, if Numer of FailedTests == 1
+	 * @return true, if Number of FailedTests == 1
 	 */
 	public boolean oneFailedTest(){
 		if(testResult.getNumberOfFailedTests() == 1)
@@ -61,15 +61,15 @@ public class Result {
 	/**
 	 * Gets the compiler errors.
 	 *
-	 * @param compUnit the compilation units
+	 * @param list the compilation units
 	 * @return the compiler errors
 	 */
-	public String getCompilerErrors(CompilationUnit[] compUnit){
+	public String getCompilerErrors(ArrayList<Object> list){
 		String ret = "CompileErrors found: \n";
-		
-		for(int i = 0; i < compUnit.length; i++)
+		for(int i = 0; i < list.size(); i++)
 		{
-			Collection<CompileError> collection = getCompilerErrors(compUnit[i]);
+			CompilationUnit compUnit = (CompilationUnit) list.get(i);
+			Collection<CompileError> collection = getCompilerErrors(compUnit);
 			Iterator<CompileError> errors = collection.iterator();
 					
 			while(errors.hasNext())

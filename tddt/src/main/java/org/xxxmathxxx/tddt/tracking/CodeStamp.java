@@ -6,7 +6,6 @@ package org.xxxmathxxx.tddt.tracking;
 import java.util.ArrayList;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CodeStamp.
  *
@@ -37,6 +36,17 @@ public class CodeStamp {
 		this.result = result;
 		this.list = list;
 		this.date = date;
+	}
+	
+	/**
+	 * Gets the compiler errors.
+	 *
+	 * @return the compiler errors
+	 */
+	public String getCompilerErrors(){
+		String ret = "";
+		ret = result.getCompilerErrors(list);
+		return ret;
 	}
 	
 	/**
