@@ -118,6 +118,18 @@ public abstract class EditPane extends Pane {
 		selectedPage=index;
 	}
 	
+	public void switchDisabeled()
+	{
+		if(!te.isDisable())
+		{
+			te.setDisable(true);
+		}
+		else
+		{
+			te.setDisable(false);
+		}
+	}
+	
 	/**
 	 * Actualizes content of ClassData[]
 	 */

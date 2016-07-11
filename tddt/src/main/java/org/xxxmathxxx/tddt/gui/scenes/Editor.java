@@ -29,10 +29,14 @@ public class Editor extends Scene {
 	//Menus
 	Pane pane;
 	Button switchButton;
+	Button viewOtherside;
 	Label stateLabel;
 	
 	//LoadedExercise
 	Exercise ex;
+	
+	//Boolean 
+	Boolean nonEditState;
 	
 	/**fgcgh
 	 * Constructor
@@ -63,10 +67,17 @@ public class Editor extends Scene {
 		
 		//Button
 		switchButton= new Button("Switch!");
-		switchButton.setPrefSize(100, 50);
+		switchButton.setPrefSize(150, 50);
 		switchButton.relocate(xSize-200,ySize-150);
 		switchButton.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(switchButton);
+		
+		viewOtherside= new Button("View Otherside!");
+		viewOtherside.setPrefSize(150, 50);
+		viewOtherside.relocate(xSize-200,ySize-210);
+		viewOtherside.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
+		pane.getChildren().add(viewOtherside);
+		
 		
 		//Label
 		stateLabel= new Label("Teststage");
@@ -76,6 +87,9 @@ public class Editor extends Scene {
 		
 		//Tschebycheff
 		TDDT.currentThread.tracker.stageRed.startTimeTracking();
+		
+		//Boolean
+		nonEditState=false;
 	}
 	
 	/**
@@ -103,7 +117,7 @@ public class Editor extends Scene {
 	}
 	
 	/**
-	 * Updates StateLabel to currentState
+	 * Updates StateLabel to currentState, also updates othersidebutton now
 	 */
 	private void updateStateLabel(CodeStage state)
 	{
@@ -111,6 +125,7 @@ public class Editor extends Scene {
 		{
 		case TEST: 
 			stateLabel.setText("Teststage");
+			viewOtherside.setDisable(false);
 			break;
 			
 		case CODE: 
@@ -119,15 +134,92 @@ public class Editor extends Scene {
 			
 		case REFACTOR: 
 			stateLabel.setText("refactorstage");
+			viewOtherside.setDisable(true);
 			break;
 		}	
 	}
 	
+	/**
+	 * Shows the other side. Non editable of course
+	 * @param state
+	 */
+	private void showOtherside(CodeStage state)
+	{
+		switch(state)
+		{
+		case TEST: 
+			switchShowCode();
+			break;
+			
+		case CODE: 
+			switchShowTest();
+			break;
+			
+		default: //Nasty eclipsewarningsses
+			break;
+		}
+	}
+	
+	/**
+	 * Helper for showOtherside()
+	 */
+	private void switchShowTest() 
+	{
+		if(!nonEditState)
+		{
+			switchButton.setDisable(true);
+			nonEditState=true;
+			
+			tep.setVisible(true);
+			cep.setVisible(false);
+			
+			tep.switchDisabeled();
+		}
+		else
+		{
+			switchButton.setDisable(false);
+			nonEditState=false;
+			
+			tep.setVisible(false);
+			cep.setVisible(true);
+			
+			tep.switchDisabeled();
+		}	
+	}
+
+	/**
+	 * Helper for showOtherside()
+	 */
+	private void switchShowCode() 
+	{
+		if(!nonEditState)
+		{
+			switchButton.setDisable(true);
+			nonEditState=true;
+			
+			tep.setVisible(false);
+			cep.setVisible(true);
+			
+			cep.switchDisabeled();
+		}
+		else
+		{
+			switchButton.setDisable(false);
+			nonEditState=false;
+			
+			tep.setVisible(true);
+			cep.setVisible(false);
+			
+			cep.switchDisabeled();
+		}	
+		
+	}
+
 	private final class menuButtonHandler implements EventHandler<ActionEvent>{
 
 		@Override
 		public void handle(ActionEvent event) {
-			if (event.getSource()==switchButton){
+			if (event.getSource()==switchButton && !nonEditState){
 				tep.save();
 				cep.save();
 				boolean hasSwitched = TDDT.currentThread.requestSwitch(self);
@@ -136,6 +228,10 @@ public class Editor extends Scene {
 					switchLabel();
 					updateStateLabel(TDDT.currentThread.state);		
 				}
+			}
+			if (event.getSource()==viewOtherside)
+			{
+				showOtherside(TDDT.currentThread.state);
 			}
 		}
 	}
