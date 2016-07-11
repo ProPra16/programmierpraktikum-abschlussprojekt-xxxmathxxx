@@ -108,7 +108,7 @@ public class TDDTThread {
 		switch(state)
 		{
 		case TEST: //Switch to code (RED->green)
-			if(switchToCode(ed)) //Checks if exacly one Test fails/ the program does not compile
+			if(switchToCode()) //Checks if exacly one Test fails/ the program does not compile
 			{
 				TDDTLogManager.getInstance().logMessage("Switching to Code Stage");
 				tracker.stageRed.stopTimeTracking();
@@ -119,7 +119,7 @@ public class TDDTThread {
 			}
 			break;
 		case CODE: //Switch to refactor (GREEN->Refactor)
-			if(switchToRefactor(ed)) //TODO: Test if code compiles and no test are failing
+			if(switchToRefactor()) //TODO: Test if code compiles and no test are failing
 			{
 				TDDTLogManager.getInstance().logMessage("Switching to Refactor Stage");
 				tracker.stageGreen.stopTimeTracking();
@@ -167,7 +167,7 @@ public class TDDTThread {
 	/**Attempts to switch to code state
 	 * @return True if change is succesful, false otherwise
 	 */
-	private Boolean switchToCode(Editor ed)
+	private Boolean switchToCode()
 	{
 		CompilationUnit[] cuArray= getCompilationUnits(false);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
@@ -183,7 +183,7 @@ public class TDDTThread {
 		return false;
 	}
 	
-	private Boolean switchToRefactor(Editor ed)
+	private Boolean switchToRefactor()
 	{
 		CompilationUnit[] cuArray= getCompilationUnits(false);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
@@ -250,7 +250,7 @@ public class TDDTThread {
 	 * Is called when the Users requests to cancel from Coding to Testing stage
 	 * @param ed
 	 */
-	public void cancelRequested(Editor ed) {
+	public void cancelRequested() {
 		TDDTLogManager.getInstance().logMessage("Switching to Test Stage");
 		tracker.stageGreen.stopTimeTracking();
 		tracker.stageRed.startTimeTracking();

@@ -35,10 +35,6 @@ public class Editor extends Scene {
 	//Boolean 
 	Boolean nonEditState;
 	
-	//Babysteps timer
-	BasicTimer tepTimer;
-	BasicTimer cepTimer;
-	
 	/**
 	 * Constructor
 	 * @param pane See Scene
@@ -46,7 +42,7 @@ public class Editor extends Scene {
 	public Editor(Pane pane) {
 		super(pane);
 		this.pane=pane;
-				
+		
 		double xSize = pane.getPrefWidth();
 		double ySize = pane.getPrefHeight();
 		
@@ -101,6 +97,9 @@ public class Editor extends Scene {
 		
 		//Boolean
 		nonEditState=false;
+		
+		//register @ TDDTTHread
+		TDDTThread.getInstance().setEditor(this);
 		
 	}
 	
