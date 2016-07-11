@@ -78,17 +78,15 @@ public class CodeStamp {
 		Set<String> set = compiler.getAllCompilationUnitNames();
 		String[] s = new String[set.size()];
 		Iterator<String> iterator = set.iterator();
-		Result result = new Result();
 		Date date = new Date();
 		CompilationUnit compilationUnit = null;
 		int i = 0;
 		
 		CompilerResult compilerResult = compiler.getCompilerResult();
 		TestResult testResult = compiler.getTestResult();
-		result.add(compilerResult);
-		result.add(testResult);
 		
-		
+		Result result = new Result(testResult,compilerResult);
+
 		while(iterator.hasNext()){
 			s[i] = (String) iterator.next();
 			compilationUnit = compiler.getCompilationUnitByName(s[i++]);	

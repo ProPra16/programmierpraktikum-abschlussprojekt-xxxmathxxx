@@ -14,7 +14,7 @@ import vk.core.api.TestResult;
 
 
 /**
- * The Class Result.
+ * The Class Result. ??? WHAT DOES IT EVEN DO?
  *
  * @author Tschebyscheff, 24.06.16
  * class saves Compile and Test Results
@@ -22,23 +22,19 @@ import vk.core.api.TestResult;
 public class Result {
 
 	/** The test result. */
-	TestResult testResult;
+	private TestResult testResult;
 	
 	/** The compiler result. */
-	CompilerResult compilerResult;
+	private CompilerResult compilerResult;
 	
-	/**
-	 * Adds the CompilerResult compilerResult.
-	 *
-	 * @param compilerResult the compilerResult
-	 */
-	public void add(CompilerResult compilerResult){
+	
+	public Result(TestResult testResult, CompilerResult compilerResult){
+		this.testResult = testResult;
 		this.compilerResult = compilerResult;
 	}
 	
 	/**
 	 * Compiler error.
-	 *
 	 * @return true, if successful
 	 */
 	public boolean compilerError(){
@@ -59,7 +55,7 @@ public class Result {
 	}
 	
 	/**
-	 * Gets the compiler errors.
+	 * Gets the compiler errors. //AREN't those functions all available by default???
 	 *
 	 * @param list the compilation units
 	 * @return the compiler errors
@@ -88,16 +84,6 @@ public class Result {
 	 */
 	public Collection<CompileError> getCompilerErrors(CompilationUnit compUnit){
 		return compilerResult.getCompilerErrorsForCompilationUnit(compUnit);
-	}
-	
-	
-	/**
-	 * Adds the testResult.
-	 *
-	 * @param testResult the testResult
-	 */
-	public void add(TestResult testResult){
-		this.testResult = testResult;
 	}
 	
 	
