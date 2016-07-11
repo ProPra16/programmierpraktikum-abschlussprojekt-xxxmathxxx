@@ -134,6 +134,12 @@ public class TDDTThread {
 		CompilationUnit[] cuArray= getCompilationUnits(ed,true);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
 		CodeStamp codeStamp = GenerateCodeStamp.generate(jsc);
+
+		if(codeStamp.result.getTestResult().getNumberOfFailedTests()!=0)
+		{
+			AlertMessenger.showErrorMessage("Failure","You haven't finished this task yet!");
+			return;
+		}
 		
 		//Step 1: Check total time
 		//tracker.getTotalTime(); -> Method doesn't exist
@@ -217,12 +223,15 @@ public class TDDTThread {
 			cuArray[i]=new CompilationUnit(cep.classdata[i].name, cep.classdata[i].code.rawText, false);
 		}
 		
-		for(int i=cep.classdata.length; i<addedLength;i++)
+		for(int i=0; i<tep.classdata.length;i++)
 		{
-			cuArray[i]=new CompilationUnit(tep.classdata[i-cep.classdata.length].name, tep.classdata[i-cep.classdata.length].code.rawText, true);
+			cuArray[cep.classdata.length+i]=new CompilationUnit(tep.classdata[i].name, tep.classdata[i].code.rawText, true);
 		}
 		if (withFinalTest){
-			cuArray[cuArray.length-1] = new CompilationUnit(TDDT.currentThread.getExercise().getFinalTest().name,TDDT.currentThread.getExercise().getFinalTest().code.rawText,true);
+			cuArray[cuArray.length-1] = new CompilationUnit(
+					TDDT.currentThread.getExercise().getFinalTest().name
+					,TDDT.currentThread.getExercise().getFinalTest().code.rawText
+					,true);
 		}
 		
 		return cuArray;

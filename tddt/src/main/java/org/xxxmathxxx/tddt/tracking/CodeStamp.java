@@ -50,15 +50,6 @@ public class CodeStamp {
 	}
 	
 	/**
-	 * Gets the result.
-	 *
-	 * @return the result of compiling and executing
-	 */
-	public Result getResult(){
-		return result;
-	}
-	
-	/**
 	 * Gets the compilation units.
 	 *
 	 * @return the compilation units
