@@ -7,20 +7,49 @@ import org.xxxmathxxx.tddt.profile.Profile;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
+/**This Pane is able to show a graphical representation of a medalState
+ * @author xxxMathxxx 2016
+ *
+ */
 public class MedalViewer extends Pane{
 	
 	//as of now we are using a fixed resolution, thus sizes of this component are fixed through those statics
+	
+	/**
+	 * The width in pixel
+	 */
 	private static int width = 128;
+	/**
+	 * The height in pixel
+	 */
 	private static int height = 64;
 	
+	/**
+	 * The border size in pixel (top,bottom,left,right)
+	 */
 	private static int border = 4;
 	
+	/**
+	 * The ImageView showing the bronze medal
+	 */
 	private ImageView bronze;
+	/**
+	 * The ImageView showing the silver medal
+	 */
 	private ImageView silver;
+	/**
+	 * The ImageView showing the gold medal
+	 */
 	private ImageView gold;
+	/**
+	 * The ImageView showing the author medal
+	 */
 	private ImageView author;
 	
 	
+	/**Default constructor, defines layout and initializes medals.
+	 * Note, that the author medal is hidden by default so people don't realize it's a feature.
+	 */
 	public MedalViewer(){
 		
 		//TODO: maybe improve the design and style
@@ -59,6 +88,10 @@ public class MedalViewer extends Pane{
 		getChildren().addAll(bronze,silver,gold,author);
 	}
 	
+	/**Shows the medal state for a given profile and exercise
+	 * @param ex The Exercise
+	 * @param pr The Profile
+	 */
 	public void setMedals(Exercise ex, Profile pr){
 		
 		//this is very stupid redundant code and
