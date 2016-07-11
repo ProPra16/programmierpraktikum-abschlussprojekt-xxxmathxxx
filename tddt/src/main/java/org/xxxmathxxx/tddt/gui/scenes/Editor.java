@@ -1,10 +1,10 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
-import org.xxxmathxxx.tddt.babysteps.BabystepTimer;
 import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.data.CodeStage;
 import org.xxxmathxxx.tddt.gui.ide.CodeEditPane;
 import org.xxxmathxxx.tddt.gui.ide.TestEditPane;
+import org.xxxmathxxx.tddt.timer.BasicTimer;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -38,8 +38,8 @@ public class Editor extends Scene {
 	Boolean nonEditState;
 	
 	//Babysteps timer
-	BabystepTimer tepTimer;
-	BabystepTimer cepTimer;
+	BasicTimer tepTimer;
+	BasicTimer cepTimer;
 	
 	/**
 	 * Constructor
