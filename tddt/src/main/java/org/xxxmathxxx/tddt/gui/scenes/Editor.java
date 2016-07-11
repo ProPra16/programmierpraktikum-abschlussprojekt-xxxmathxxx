@@ -30,6 +30,7 @@ public class Editor extends Scene {
 	Pane pane;
 	Button switchButton;
 	Button viewOtherside;
+	Button finalizeButton;
 	Label stateLabel;
 	
 	//LoadedExercise
@@ -65,7 +66,7 @@ public class Editor extends Scene {
 		
 		cep.setVisible(false);
 		
-		//Button
+		//Buttons
 		switchButton= new Button("Switch!");
 		switchButton.setPrefSize(150, 50);
 		switchButton.relocate(xSize-200,ySize-150);
@@ -78,6 +79,11 @@ public class Editor extends Scene {
 		viewOtherside.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(viewOtherside);
 		
+		finalizeButton= new Button("Finalize");
+		finalizeButton.setPrefSize(150, 50);
+		finalizeButton.relocate(xSize-200,10);
+		finalizeButton.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
+		pane.getChildren().add(finalizeButton);
 		
 		//Label
 		stateLabel= new Label("Teststage");
@@ -219,6 +225,7 @@ public class Editor extends Scene {
 
 		@Override
 		public void handle(ActionEvent event) {
+			//SwitchButton
 			if (event.getSource()==switchButton && !nonEditState){
 				tep.save();
 				cep.save();
@@ -232,9 +239,17 @@ public class Editor extends Scene {
 					updateStateLabel(TDDT.currentThread.state);		
 				}
 			}
+			
+			//Otherside Button
 			if (event.getSource()==viewOtherside)
 			{
 				showOtherside(TDDT.currentThread.state);
+			}
+			
+			//Finalizebutton
+			if(event.getSource()==finalizeButton)
+			{
+				//Here you go
 			}
 		}
 	}
