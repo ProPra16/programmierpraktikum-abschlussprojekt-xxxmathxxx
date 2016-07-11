@@ -9,10 +9,6 @@ import org.xxxmathxxx.tddt.tracking.Tracker;
  * @author Tschebyscheff, 30.06.16
  */
 public class AnalyzedTrackingData {
-
-	/** The exercise. */
-	public String exercise;
-	
 	/** The profile name. */
 	public String profileName;
 	
@@ -33,12 +29,11 @@ public class AnalyzedTrackingData {
 	 * @param exercise the exercise
 	 * @param profileName the profile name
 	 */
-	public AnalyzedTrackingData(Tracker tracker, String exercise){
+	public AnalyzedTrackingData(Tracker tracker){
 		
 		analyzedStageGreen = new AnalyzedStageGreen(tracker.stageGreen);
 		analyzedStageRed = new AnalyzedStageRed(tracker.stageRed);
 		analyzedStageRefactor = new AnalyzedStageRefactor(tracker.stageRefactor);
-		this.exercise = exercise;
 	}
 }
 

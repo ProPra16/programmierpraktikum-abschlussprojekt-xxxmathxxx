@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.xxxmathxxx.tddt.tracking.Tracker;
-import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingDataCollection;
 
 
@@ -50,16 +49,6 @@ public class ProfileStats implements java.io.Serializable {
 		this.achievements = new HashMap<Long,MedalState>();
 	}
 	
-	
-	/**
-	 * Adds the tracking data.
-	 *
-	 * @param data the AnalyzedTrackingData
-	 */
-	public void addTrackingData(AnalyzedTrackingData data){
-		trackingDataList.add(data);
-		
-	}
 	
 	/**
 	 * Gets the analayzed tracking data.

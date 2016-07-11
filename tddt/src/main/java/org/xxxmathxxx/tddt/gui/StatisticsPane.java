@@ -2,6 +2,7 @@ package org.xxxmathxxx.tddt.gui;
 import java.io.IOException;
 
 import org.xxxmathxxx.tddt.core.TDDT;
+import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingDataCollection;
@@ -80,21 +81,23 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 		profile.showNameInJavaFXLabel(profileLabel);
 		MenuItem[] menuItem = new MenuItem[analyzedTrackingDataCollection.size()];
 		
+		int counter = 0;
 		
-		for(int i = 0; i < analyzedTrackingDataCollection.size(); i++){
-			AnalyzedTrackingData data = (AnalyzedTrackingData) analyzedTrackingDataCollection.get(i);
-			menuItem[i] = new MenuItem(data.exercise);
-			menuButton.getItems().add(menuItem[i]);
+		for(Exercise ex : analyzedTrackingDataCollection.keySet()){
+			//AnalyzedTrackingData data = (AnalyzedTrackingData) analyzedTrackingDataCollection.get(ex); AS OF NOW NOT EVEN USED
+			menuItem[counter] = new MenuItem(ex.name);
+			menuButton.getItems().add(menuItem[counter]);
 			
-			menuItem[i].setOnAction(new EventHandler<ActionEvent>(){
+			menuItem[counter].setOnAction(new EventHandler<ActionEvent>(){
 
 				@Override
 				public void handle(ActionEvent event) {
 					if(event.getSource() == menuButton){
-						WindowManager.getInstance().showMenu(WindowManager.MenuType.EXISTING_PROFILE);
+						WindowManager.getInstance().showMenu(WindowManager.MenuType.EXISTING_PROFILE); //?
 					}		
 				}
 			});
+			counter++;
 		}
 		
 		series1 = new Series<String, Integer>();
