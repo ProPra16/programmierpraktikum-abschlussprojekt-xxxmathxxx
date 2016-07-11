@@ -272,12 +272,10 @@ public class TDDTThread {
 		case TEST:
 			ed.tep.rerollChanges();
 			break;
-			
 		case CODE:
 			ed.cep.rerollChanges();
-			
 			break;
-			
+		case REFACTOR:
 		}
 		
 	}
