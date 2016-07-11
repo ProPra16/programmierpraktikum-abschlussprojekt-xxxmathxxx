@@ -9,8 +9,6 @@ import org.xxxmathxxx.tddt.tracking.Tracker;
  * @author Tschebyscheff, 30.06.16
  */
 public class AnalyzedTrackingData {
-	/** The profile name. */
-	public String profileName;
 	
 	/** The analyzed stage green. */
 	public AnalyzedStageGreen analyzedStageGreen;
