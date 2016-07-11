@@ -60,7 +60,7 @@ public class Result {
 	 * @param list the compilation units
 	 * @return the compiler errors
 	 */
-	public String getCompilerErrors(ArrayList<Object> list){
+	public String getCompilerErrors(ArrayList<CompilationUnit> list){
 		String ret = "CompileErrors found: \n";
 		for(int i = 0; i < list.size(); i++)
 		{

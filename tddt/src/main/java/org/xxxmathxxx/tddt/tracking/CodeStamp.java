@@ -28,7 +28,7 @@ public class CodeStamp {
 	private Result result;
 	
 	/** The list of CompilationUnits. */
-	private ArrayList<Object> list = new ArrayList<Object>();
+	private ArrayList<CompilationUnit> list;
 	
 	
 	/**
@@ -38,7 +38,7 @@ public class CodeStamp {
 	 * @param list the CompilationUnit list
 	 * @param date the date
 	 */
-	public CodeStamp(Result result, ArrayList<Object> list){
+	public CodeStamp(Result result, ArrayList<CompilationUnit> list){
 		this.result = result;
 		this.list = list;
 	}
@@ -59,7 +59,7 @@ public class CodeStamp {
 	 *
 	 * @return the compilation units
 	 */
-	public ArrayList<Object> getCompilationUnits(){
+	public ArrayList<CompilationUnit> getCompilationUnits(){
 		return list;
 	}
 	
@@ -73,7 +73,7 @@ public class CodeStamp {
 		TDDTLogManager.getInstance().logMessage("Generating new Code-Stamp");
 		compiler.compileAndRunTests();
 		
-		ArrayList<Object> list = new ArrayList<Object>();
+		ArrayList<CompilationUnit> list = new ArrayList<CompilationUnit>();
 		Set<String> set = compiler.getAllCompilationUnitNames();
 		String[] s = new String[set.size()];
 		Iterator<String> iterator = set.iterator();

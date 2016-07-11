@@ -33,7 +33,7 @@ public class AnalyzeError {
 		
 		CodeStamp codeStamp;
 		Result result;
-		ArrayList<Object> list;
+		ArrayList<CompilationUnit> list;
 
 		for(int i = 0; i < codeStampCollection.size(); i++){
 
@@ -61,7 +61,7 @@ public class AnalyzeError {
 	 * @param error the error
 	 * @return the error
 	 */
-	public static ErrorCounter handleCompileError(ArrayList<Object> list, Result result, ErrorCounter error){
+	public static ErrorCounter handleCompileError(ArrayList<CompilationUnit> list, Result result, ErrorCounter error){
 		
 		CompileError compileError;
 		CompilationUnit compUnit;

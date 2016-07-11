@@ -26,7 +26,7 @@ public class GenerateCodeStampTests {
 		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1);
 		
 		CodeStamp codeStemp = CodeStamp.generateCodeStamp(compiler);
-		ArrayList<Object> list = codeStemp.getCompilationUnits();
+		ArrayList<CompilationUnit> list = codeStemp.getCompilationUnits();
 		
 		CompilationUnit compUnitTest = (CompilationUnit) list.get(0);
 		assertEquals(compUnit1, compUnitTest);
