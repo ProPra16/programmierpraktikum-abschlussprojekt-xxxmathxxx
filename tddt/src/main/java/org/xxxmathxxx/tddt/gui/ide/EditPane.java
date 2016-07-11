@@ -4,6 +4,7 @@ import org.xxxmathxxx.tddt.core.TDDTThread;
 import org.xxxmathxxx.tddt.data.ClassData;
 import org.xxxmathxxx.tddt.gui.ClockLabel;
 import org.xxxmathxxx.tddt.gui.EditPaneToggleButton;
+import org.xxxmathxxx.tddt.gui.ReversedClockLabel;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,7 +23,7 @@ public abstract class EditPane extends FlowPane {
 	protected TextEditor te;
 	private Boolean isActive;
 	
-	private ClockLabel babyClock;
+	private ReversedClockLabel babyClock;
 	private ClockLabel totalClock;
 	
 
@@ -43,7 +44,7 @@ public abstract class EditPane extends FlowPane {
 		//Clock
 		if(TDDTThread.getInstance().getExercise().config.babystepsEnabeled)
 		{
-			this.babyClock = new ClockLabel(TDDTThread.getInstance().tracker.babystepsTimer); //TODO: Add exercise babysteps time
+			this.babyClock = new ReversedClockLabel(TDDTThread.getInstance().tracker.babystepsTimer, TDDTThread.getInstance().getExercise().config.babystepsTime); //TODO: Add exercise babysteps time
 			this.babyClock.setPrefSize(32, 32);
 			this.babyClock.relocate(128, 8);
 			getChildren().add(babyClock);

@@ -1,25 +1,39 @@
 package org.xxxmathxxx.tddt.gui;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.xxxmathxxx.tddt.timer.BasicTimer;
 
 import javafx.application.Platform;
 
 public class ReversedClockLabel extends ClockLabel {
 
-	double babystepsTime;
+	public double babystepsTime;
+	
+	BasicTimer syncedTimerr;
 	
 	public ReversedClockLabel(BasicTimer syncedTimer, double bsTime) {
 		super(syncedTimer);
+		this.syncedTimerr = syncedTimer;
+		new Timer().scheduleAtFixedRate(new TimeUpdateTask(),0 , 50);
 		
-		
+		babystepsTime=bsTime;
 	}
 
-	public void syncTime(double time){
+	private class TimeUpdateTask extends TimerTask{
+		@Override
+		public void run() {
+			syncTime(syncedTimer.getTime(), babystepsTime);
+		}
+	}
+	
+	public void syncTime(double time, double bsTime){
 		Platform.runLater(new Runnable(){
 			@Override
 			public void run() {
 				try{
-					setText(""+Math.round(time));
+					setText(""+String.valueOf(bsTime*60-Math.round(time)));
 				}
 				catch(Exception e){
 					//TODO:

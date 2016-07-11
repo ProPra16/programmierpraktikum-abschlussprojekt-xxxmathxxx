@@ -6,7 +6,7 @@ public class BabystepsTimer extends BasicTimer{
 
 	@Override
 	public void onTick(){
-		if (this.elapsedTime > TDDTThread.getInstance().getExercise().config.babystepsTime*5){
+		if (this.elapsedTime > TDDTThread.getInstance().getExercise().config.babystepsTime*60){
 			TDDTThread.getInstance().performBabystepRevert(); //trigger revert
 			this.elapsedTime = 0; //reset time
 		}
