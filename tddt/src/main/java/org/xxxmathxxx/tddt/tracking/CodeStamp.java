@@ -63,7 +63,6 @@ public class CodeStamp {
 		compiler.compileAndRunTests();
 		
 		Set<String> set = compiler.getAllCompilationUnitNames();
-		String[] s = new String[set.size()];
 		Iterator<String> iterator = set.iterator();
 		CompilationUnit compilationUnit = null;
 		int i = 0;
@@ -75,9 +74,9 @@ public class CodeStamp {
 		Result result = new Result(testResult,compilerResult);
 
 		while(iterator.hasNext()){
-			s[i] = (String) iterator.next();
-			compilationUnit = compiler.getCompilationUnitByName(s[i++]);	
+			compilationUnit = compiler.getCompilationUnitByName(iterator.next());	
 			cUnits[i] = compilationUnit;
+			i++;
 		}
 		
 		
