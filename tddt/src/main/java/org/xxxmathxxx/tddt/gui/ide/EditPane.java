@@ -11,6 +11,8 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
+import vk.core.api.CompilationUnit;
 
 /**
  * @author Fabian
@@ -39,16 +41,15 @@ public abstract class EditPane extends FlowPane {
 	 */
 	public EditPane(ClassData[] classdata) {
 		isActive = false;
-
-		this.babyClock = new ClockLabel(TDDTThread.getInstance().tracker.babystepsTimer);
-		this.babyClock.setPrefSize(32, 32);
-		this.babyClock.relocate(128, 8);
-		getChildren().add(babyClock);
 		
-		this.totalClock = new ClockLabel(TDDTThread.getInstance().tracker.totalTimer);
-		this.totalClock.setPrefSize(32, 32);
-		this.totalClock.relocate(128+32+16, 8);
-		getChildren().add(totalClock);
+		//Clock
+		if(TDDTThread.getInstance().getExercise().config.babystepsEnabeled)
+		{
+			this.babyClock = new ClockLabel(TDDTThread.getInstance().tracker.babystepsTimer); //TODO: Add exercise babysteps time
+			this.babyClock.setPrefSize(32, 32);
+			this.babyClock.relocate(128, 8);
+			getChildren().add(babyClock);
+		}
 		//Creating Navigator
 		
 		navigator = new ToggleButton[classdata.length];
