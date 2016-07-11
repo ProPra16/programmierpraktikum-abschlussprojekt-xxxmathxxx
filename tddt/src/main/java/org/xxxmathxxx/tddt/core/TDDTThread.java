@@ -1,6 +1,5 @@
 package org.xxxmathxxx.tddt.core;
 
-import java.util.Iterator;
 
 import org.xxxmathxxx.tddt.data.CodeStage;
 import org.xxxmathxxx.tddt.data.Exercise;
@@ -16,7 +15,6 @@ import org.xxxmathxxx.tddt.tracking.GenerateCodeStamp;
 import org.xxxmathxxx.tddt.tracking.Tracker;
 
 import vk.core.api.CompilationUnit;
-import vk.core.api.CompileError;
 import vk.core.api.CompilerFactory;
 import vk.core.api.JavaStringCompiler;
 
