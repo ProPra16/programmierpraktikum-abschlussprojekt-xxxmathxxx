@@ -10,6 +10,15 @@ import java.util.TimerTask;
  */
 public class BasicTimer {
 	
+	// STATICS
+	
+	/**
+	 * The updateRate in ms
+	 */
+	private static int updateRate = 10; 
+	
+	// STATICS
+	
 	/**
 	 * The internal timer object
 	 */
@@ -17,7 +26,7 @@ public class BasicTimer {
 	/**
 	 * The elapsed time in seconds
 	 */
-	private int elapsedTime; 
+	private double elapsedTime; 
 	
 	/**
 	 * The internal state of the clock, describes whether or not it counts seconds
@@ -31,14 +40,14 @@ public class BasicTimer {
 	public BasicTimer(){
 		timer = new Timer();
 		isRunning = false;
-		timer.scheduleAtFixedRate(new TimeUpdateTask(),0 , 1000);
+		timer.scheduleAtFixedRate(new TimeUpdateTask(),0 , updateRate);
 	}
 	
 	private class TimeUpdateTask extends TimerTask{
 		@Override
 		public void run() {
 			if (isRunning){
-				elapsedTime ++;
+				elapsedTime =+ updateRate;
 			}
 		}
 	}
@@ -52,6 +61,10 @@ public class BasicTimer {
 	 */
 	public String getTimeInSecondsAsString(){
 		return ""+elapsedTime;
+	}
+
+	public double getTime() {
+		return elapsedTime;
 	}
 	
 }

@@ -4,6 +4,7 @@ package org.xxxmathxxx.tddt.core;
 import org.xxxmathxxx.tddt.data.CodeStage;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.gui.AlertMessenger;
+import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.gui.ide.CodeEditPane;
 import org.xxxmathxxx.tddt.gui.ide.TestEditPane;
 import org.xxxmathxxx.tddt.gui.scenes.Editor;
@@ -54,7 +55,7 @@ public class TDDTThread {
 	 */
 	public void beginExercise(Exercise ex){
 		this.currentExercise = ex;
-		//TODO: Reset timers whatever do stuff
+		this.tracker.totalTimer.toggleActive();
 	}
 	
 	/**
@@ -79,11 +80,10 @@ public class TDDTThread {
 	/**
 	 * Award medal.
 	 *
-	 * @param exerciseID the exercise ID
 	 * @param newState the new state
 	 */
-	public void awardMedal(Long exerciseID, MedalState newState) {
-		user.setMedalState(exerciseID, newState);
+	public void awardMedal(MedalState newState) {
+		user.setMedalState(currentExercise.id, newState);
 	}
 	
 	
@@ -134,12 +134,19 @@ public class TDDTThread {
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
 		CodeStamp codeStamp = CodeStamp.generateCodeStamp(jsc,cuArray);
 
-		if(codeStamp.getResult().getNumberOfFailedTests()!=0)
+		if(codeStamp.finalTestSuccessful(jsc))
 		{
 			AlertMessenger.showErrorMessage("Failure","You haven't finished this task yet!");
 			return;
 		}
 		
+		this.tracker.totalTimer.toggleActive();
+		TDDTLogManager.getInstance().logMessage("Total time needed for this exercise: "+this.tracker.totalTimer.getTimeInSecondsAsString());
+		MedalState medalEarned = currentExercise.checkMedalForTime(this.tracker.totalTimer.getTime());
+		if (medalEarned != MedalState.NONE){
+			awardMedal(medalEarned);
+			WindowManager.getInstance().createAchievementPopup(medalEarned);
+		}
 		//Step 1: Check total time
 		//tracker.getTotalTime(); -> Method doesn't exist
 	}

@@ -1,5 +1,7 @@
 package org.xxxmathxxx.tddt.data;
 
+import org.xxxmathxxx.tddt.profile.MedalState;
+
 /**
  * @author Fabian
  * Class to save all information about exercises
@@ -71,5 +73,21 @@ public class Exercise {
 		
 		System.out.println(this.config.medalTimes.toString());
 		
+	}
+
+	public MedalState checkMedalForTime(double time) {
+		if (time <this.config.medalTimes.author){
+			return MedalState.AUTHOR;
+		}
+		else if (time <this.config.medalTimes.gold){
+			return MedalState.GOLD;
+		}
+		else if (time <this.config.medalTimes.silver){
+			return MedalState.SILVER;
+		}
+		else if (time <this.config.medalTimes.bronze){
+			return MedalState.BRONZE;
+		}
+		return MedalState.NONE; //feelsBadMan
 	}
 }
