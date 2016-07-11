@@ -4,6 +4,7 @@
 package org.xxxmathxxx.tddt.tracking;
 
 import org.xxxmathxxx.tddt.timer.BabystepsTimer;
+import org.xxxmathxxx.tddt.timer.BasicTimer;
 
 /**
  * The Class Tracker.
@@ -24,6 +25,8 @@ public class Tracker {
 	
 	public BabystepsTimer babystepsTimer;
 	
+	public BasicTimer totalTimer;
+	
 	/**
 	 * Instantiates a new tracker.
 	 */
@@ -32,5 +35,6 @@ public class Tracker {
 		stageGreen = new ActivityTracker();
 		stageRefactor = new ActivityTracker();
 		babystepsTimer = new BabystepsTimer();
+		totalTimer = new BasicTimer();
 	}
 }

@@ -23,6 +23,8 @@ public abstract class EditPane extends FlowPane {
 	private Boolean isActive;
 	
 	private ClockLabel babyClock;
+	private ClockLabel totalClock;
+	
 
 	protected int selectedPage;
 
@@ -38,11 +40,15 @@ public abstract class EditPane extends FlowPane {
 	public EditPane(ClassData[] classdata) {
 		isActive = false;
 
-		this.babyClock = new ClockLabel(TDDTThread.getInstance().tracker.babystepsTimer); //TODO: Add exercise babysteps time
+		this.babyClock = new ClockLabel(TDDTThread.getInstance().tracker.babystepsTimer);
 		this.babyClock.setPrefSize(32, 32);
 		this.babyClock.relocate(128, 8);
 		getChildren().add(babyClock);
 		
+		this.totalClock = new ClockLabel(TDDTThread.getInstance().tracker.totalTimer);
+		this.totalClock.setPrefSize(32, 32);
+		this.totalClock.relocate(128+32+16, 8);
+		getChildren().add(totalClock);
 		//Creating Navigator
 		
 		navigator = new ToggleButton[classdata.length];

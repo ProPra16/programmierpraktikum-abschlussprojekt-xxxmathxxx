@@ -77,6 +77,7 @@ public class TDDTThread {
 	public void beginExercise(Exercise ex){
 		this.currentExercise = ex;
 		this.tracker.babystepsTimer.toggleActive();
+		this.tracker.totalTimer.toggleActive();
 	}
 	
 	/**
@@ -163,7 +164,7 @@ public class TDDTThread {
 		
 		this.tracker.babystepsTimer.toggleActive();
 		TDDTLogManager.getInstance().logMessage("Total time needed for this exercise: "+this.tracker.babystepsTimer.getTimeInSecondsAsString());
-		MedalState medalEarned = currentExercise.checkMedalForTime(this.tracker.babystepsTimer.getTime());
+		MedalState medalEarned = currentExercise.checkMedalForTime(this.tracker.totalTimer.getTime());
 		if (medalEarned != MedalState.NONE){
 			awardMedal(medalEarned);
 			WindowManager.getInstance().createAchievementPopup(medalEarned);
