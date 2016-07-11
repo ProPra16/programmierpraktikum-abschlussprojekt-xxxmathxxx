@@ -68,7 +68,7 @@ public class ExistingProfileMenu extends Scene {
 		pane.getChildren().add(newTask);
 		
 		notYou = new Button("Not you?");
-		notYou.setPrefSize(100, 30);
+		notYou.setPrefSize(130, 30);
 		notYou.relocate(xSize/2-282,ySize - 255);
 		notYou.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(notYou);
