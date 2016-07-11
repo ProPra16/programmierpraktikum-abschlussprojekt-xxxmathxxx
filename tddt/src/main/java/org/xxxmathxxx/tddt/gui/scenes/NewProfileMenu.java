@@ -47,10 +47,9 @@ public class NewProfileMenu extends Scene {
 		newProfile.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(newProfile);
 		
-		back = new Button("back to mainmenu");
-		back.setPrefSize(175, 32);
-		back.relocate((xSize/2)-83,ySize-40);
-		back.setFont(new Font("Times New Roman", 20));
+		back = new Button("Back");
+		back.setPrefSize(128, 32);
+		back.relocate((xSize/2)-64,ySize-100);
 		back.setTextAlignment(TextAlignment.LEFT);
 		back.addEventHandler(ActionEvent.ACTION,new menuButtonHandler());
 		pane.getChildren().add(back);
