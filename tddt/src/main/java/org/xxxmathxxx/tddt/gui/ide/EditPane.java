@@ -50,6 +50,11 @@ public abstract class EditPane extends FlowPane {
 			this.babyClock.relocate(128, 8);
 			getChildren().add(babyClock);
 		}
+		
+		this.totalClock = new ClockLabel(TDDTThread.getInstance().tracker.totalTimer); //TODO: Add exercise babysteps time
+		this.totalClock.setPrefSize(32, 32);
+		this.totalClock.relocate(128+16+32, 8);
+		getChildren().add(totalClock);
 		//Creating Navigator
 		
 		navigator = new ToggleButton[classdata.length];
