@@ -15,8 +15,8 @@ public class HintCollection {
 			new Hint("file:graphics/infobackgrounds/pkmnred.jpg","Did you know that a program which can be written in one day using TDD takes around one lightyear to be written without TDD?"),
 			new Hint("file:graphics/infobackgrounds/nokor.jpg","Did you know that North Korea bans the public use of TDD due to the grave danger it poses to the political party?"),
 			new Hint("file:graphics/infobackgrounds/stoneage.jpg","Did you know that during the Stone Age no software was written at all? Experts believe that this is due to the lack of TDD in this era."),
-			//new Hint("file:graphics/infobackgrounds/stoneage.jpg","Did you know that infamous SkyNet was developed using TDD?"),
-			//new Hint("file:graphics/infobackgrounds/pkmnred.jpg","Did you know that these hints barely rely on facts? ...But TDD does?"),
+			new Hint("file:graphics/infobackgrounds/robot.jpg","Did you know that infamous SkyNet was developed using TDD?"),
+			new Hint("file:graphics/infobackgrounds/info.jpg","Did you know that these hints barely rely on facts? ...But TDD does?"),
 			new Hint("file:graphics/infobackgrounds/kantbackground.jpeg", "Did you know that in any particular theory of nature only so much real science can be encountered, as there is TDD therein?"),
 			new Hint("file:graphics/infobackgrounds/tractor.jpg", "Did you know that Tschebyscheff's tracker is an integral part of our software?"),
 			new Hint("file:graphics/infobackgrounds/refractor.jpg", "Did you know that refraction is the change in direction of propagation of a wave due to a change in its transmission medium while refactoring means restructuring code?")
