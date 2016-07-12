@@ -11,7 +11,12 @@ import org.xxxmathxxx.tddt.tracking.ActivityTracker;
  *
  * @author Tschebyscheff, 30.06.16
  */
-public class AnalyzedStage {
+public class AnalyzedStage implements java.io.Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3L;
 
 	/** The time. */
 	public double time;

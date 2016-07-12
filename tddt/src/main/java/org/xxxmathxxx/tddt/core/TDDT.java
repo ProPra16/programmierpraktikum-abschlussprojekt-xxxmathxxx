@@ -14,6 +14,7 @@ import javafx.stage.Stage;
  */
 public class TDDT extends Application{
 
+
 	/**This is the main function, it simply launches the JavaFX application
 	 * @param args
 	 */

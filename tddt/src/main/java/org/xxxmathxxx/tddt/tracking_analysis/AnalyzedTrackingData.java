@@ -12,6 +12,11 @@ import org.xxxmathxxx.tddt.tracking.TrackerManager;
  */
 public class AnalyzedTrackingData implements java.io.Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2L;
+	
 	public HashMap<CodeStage,AnalyzedStage> anMap;
 
 	public AnalyzedTrackingData(TrackerManager tm){
