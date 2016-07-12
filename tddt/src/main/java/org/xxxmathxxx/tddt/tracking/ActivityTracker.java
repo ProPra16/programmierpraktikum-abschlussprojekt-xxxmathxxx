@@ -29,8 +29,8 @@ public class ActivityTracker{
 		timer = new BasicTimer();
 	}
 
-	public void toggleTimer() {
-		this.timer.toggleActive();
+	public void setTimerActive(boolean state) {
+		this.timer.setActive(state);
 	}
 
 	
