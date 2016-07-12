@@ -14,33 +14,28 @@ import org.xxxmathxxx.tddt.logging.TDDTLogManager;
  * @author Fabian
  * Reads XML-Exercises from disc
  */
-public class ExerciseReader {
+public final class ExerciseReader {
 
-	DocumentBuilderFactory factory;
-	DocumentBuilder builder;
-	TDDTLogManager logger; //Huehue like woodcutting
-
-	/**
-	 * Creates new ExerciseReader. You have to initialise this class!
-	 */
-	public ExerciseReader() {
+	private static DocumentBuilderFactory factory= DocumentBuilderFactory.newInstance();
+	private static DocumentBuilder builder;
+	static{
 		try {
-			factory = DocumentBuilderFactory.newInstance();
 			builder = factory.newDocumentBuilder();
-
-			logger = TDDTLogManager.getInstance();
-
-		} catch (Exception e) {
-			logger.logMessage("A horrible mistake happened. The XML-Reader was not able to start up: \n"+e.getMessage());
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
+	private static TDDTLogManager logger= TDDTLogManager.getInstance(); //woodcutting confirmed
+
+
 
 	/**
 	 * Reads all exercises from disk and return them as Collection.
 	 * Use this Method.
 	 * @return List filled with all saved exercises. Null if no exercises could be found.
 	 */
-	public ExerciseCollection readAllExercises()
+	public static ExerciseCollection readAllExercises()
 	{
 		File file = new File("exercises");
 		File[] files = file.listFiles();
@@ -76,7 +71,7 @@ public class ExerciseReader {
 	 * @return returns Exercise as Exercise Class
 	 * @throws Exception A generic Exception
 	 */
-	public Exercise readExercise(String filename) throws Exception { 
+	public static Exercise readExercise(String filename) throws Exception { 
 		File input = new File(filename);
 		Document exercise;
 		NodeList pointer;

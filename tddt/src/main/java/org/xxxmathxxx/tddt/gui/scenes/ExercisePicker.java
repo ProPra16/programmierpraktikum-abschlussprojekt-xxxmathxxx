@@ -64,8 +64,7 @@ public class ExercisePicker extends Scene {
 		descr.relocate(200, 135);
 		pane.getChildren().add(descr);
 		
-		ExerciseReader temp=new ExerciseReader();
-		ec=temp.readAllExercises();
+		ec=ExerciseReader.readAllExercises();
 		
 		//exercises.add("Random"); make a seperate button for random stuff that gives you 200 TDDT-Coins
 		cb = new ExerciseComboBox(ec.asObservableList());

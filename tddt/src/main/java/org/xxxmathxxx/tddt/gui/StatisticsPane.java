@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.xxxmathxxx.tddt.core.TDDTThread;
 import org.xxxmathxxx.tddt.data.Exercise;
-import org.xxxmathxxx.tddt.gui.scenes.ExercisePicker;
+import org.xxxmathxxx.tddt.io.ExerciseReader;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedStage;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
@@ -61,7 +61,7 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 	@FXML
 	private MenuButton menuButton;
 	
-	private ExercisePicker exPick;
+	private ExerciseComboBox exPick;
     
    
 	public StatisticsPane(){
@@ -77,7 +77,7 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 			e.printStackTrace();
 			WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
 		}
-		initialize();
+		exPick = new ExerciseComboBox(ExerciseReader.readAllExercises().asObservableList());
 	}
 	
 	

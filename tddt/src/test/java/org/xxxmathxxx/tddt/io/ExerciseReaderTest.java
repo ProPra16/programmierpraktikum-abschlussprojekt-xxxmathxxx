@@ -12,16 +12,14 @@ import static org.junit.Assert.*;
 public class ExerciseReaderTest {
 	@Test
 	public void testRandomExercise() throws Exception {
-		ExerciseReader er = new ExerciseReader();
-		ExerciseCollection ex = er.readAllExercises();
+		ExerciseCollection ex = ExerciseReader.readAllExercises();
 		assertEquals(true, (ex.getRandomExercise() instanceof Exercise));
 
 	}
 	
 	@Test
 	public void testExampleExercises() throws Exception {
-		ExerciseReader er = new ExerciseReader();
-		Exercise test = er.readExercise("exercises/RomanNumbers.xml");
+		Exercise test = ExerciseReader.readExercise("exercises/RomanNumbers.xml");
 		test.print();
 		assertEquals(test.name, "RomanNumbers");
 

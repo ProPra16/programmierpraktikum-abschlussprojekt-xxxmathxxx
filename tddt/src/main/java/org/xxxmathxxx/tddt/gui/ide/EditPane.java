@@ -12,7 +12,6 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.layout.HBox;
 import vk.core.api.CompilationUnit;
 
 /**
