@@ -14,9 +14,8 @@ import vk.core.api.CompilationUnit;
 import vk.core.api.CompileError;
 
 /**
- * The Class AnalyzeError.
- *
- * @author Tschebyscheff, 30.06.16
+ * The Class AnalyzeError contains static functions to extract statistical data from CodeStamps
+ * @author xxxMathxxx
  */
 public class AnalyzeError {
 	
@@ -26,7 +25,7 @@ public class AnalyzeError {
 	 *
 	 * @param codeStampCollection the code stamp collection
 	 * @param error the error
-	 * @return the error
+	 * @return The ErrorCounter storing the occured errors
 	 */
 	public static ErrorCounter analyzeCodeStamps(CodeStampCollection codeStampCollection, ErrorCounter error){
 		
@@ -53,9 +52,9 @@ public class AnalyzeError {
 	}
 	
 	/**
-	 * Handle compile error.
+	 * Counts errors occurring in various compilation units and generates an ErrorCounter
 	 *
-	 * @param list the list
+	 * @param cUnits The compilation units used
 	 * @param result the result
 	 * @param error the error
 	 * @return the error

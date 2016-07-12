@@ -167,7 +167,6 @@ public class TDDTThread {
 	}
 	
 	/**Requests a switch to the next state and attempts to perform it.
-	 * @param editor The editor from which the switch is called. (This is unelegant as f*** btw, we should simply pass the compilation units)
 	 */
 	public void requestSwitch() {
 		TDDTLogManager.getInstance().logMessage("Stateswitch requested");
@@ -372,7 +371,6 @@ public class TDDTThread {
 
 	/**
 	 * Is called when the Users requests to cancel from Coding to Testing stage
-	 * @param editor
 	 */
 	public void cancelRequested() {
 		TDDTLogManager.getInstance().logMessage("Switching to Test Stage");
