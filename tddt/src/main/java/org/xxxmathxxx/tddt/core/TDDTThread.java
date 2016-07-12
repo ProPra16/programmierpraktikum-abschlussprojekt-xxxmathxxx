@@ -223,6 +223,7 @@ public class TDDTThread {
 	public void finalizeExercise()
 	{
 		ed.tep.save();
+		ed.cep.save();
 		//Step 0: Check if final test is successful
 		CompilationUnit[] cuArray= getCompilationUnits(true);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
