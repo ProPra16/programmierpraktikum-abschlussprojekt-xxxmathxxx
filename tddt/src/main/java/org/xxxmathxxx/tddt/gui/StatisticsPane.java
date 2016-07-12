@@ -1,14 +1,14 @@
 package org.xxxmathxxx.tddt.gui;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.xxxmathxxx.tddt.core.TDDTThread;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.profile.Profile;
+import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedStage;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingDataCollection;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -100,59 +100,18 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 			counter++;
 		}
 		
+		ArrayList<PieChart.Data> pieChartData = new ArrayList<PieChart.Data>();
+
 		series1 = new Series<String, Integer>();
 		series1.setName("totalError");
-		series1.getData().add(new Data<String, Integer>("Stage Red", analyzedTrackingData.analyzedStageRed.error.totalError));
-		series1.getData().add(new Data<String, Integer>("Stage Green", analyzedTrackingData.analyzedStageGreen.error.totalError));
-		series1.getData().add(new Data<String, Integer>("Stage Refactor", analyzedTrackingData.analyzedStageGreen.error.totalError));
-		
-		series2 = new Series<String, Integer>();
-		series2.setName("notInitializedError");
-		series2.getData().add(new Data<String, Integer>("Stage Red", analyzedTrackingData.analyzedStageRed.error.notInitializedError));
-		series2.getData().add(new Data<String, Integer>("Stage Green", analyzedTrackingData.analyzedStageGreen.error.notInitializedError));
-		series2.getData().add(new Data<String, Integer>("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.notInitializedError));
-		
-		series3 = new Series<String, Integer>();
-		series3.setName("cannotFindError");
-		series3.getData().add(new Data<String, Integer>("Stage Red", analyzedTrackingData.analyzedStageRed.error.cannotFindError));
-		series3.getData().add(new Data<String, Integer>("Stage Green", analyzedTrackingData.analyzedStageGreen.error.cannotFindError));
-		series3.getData().add(new Data<String, Integer>("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.cannotFindError));
-		
-		series4 = new Series<String, Integer>();
-		series4.setName("returnTypeError");
-		series4.getData().add(new Data<String, Integer>("Stage Red", analyzedTrackingData.analyzedStageRed.error.returnTypeError));
-		series4.getData().add(new Data<String, Integer>("Stage Green", analyzedTrackingData.analyzedStageGreen.error.returnTypeError));
-		series4.getData().add(new Data<String, Integer>("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.returnTypeError));
-		
-		series5 = new Series<String, Integer>();
-		series5.setName("expectedError");
-		series5.getData().add(new Data<String, Integer>("Stage Red", analyzedTrackingData.analyzedStageRed.error.expectedError));
-		series5.getData().add(new Data<String, Integer>("Stage Green", analyzedTrackingData.analyzedStageGreen.error.expectedError));
-		series5.getData().add(new Data<String, Integer>("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.expectedError));
-		
-		series6 = new Series<String, Integer>();
-		series6.setName("semnaticError");
-		series6.getData().add(new Data<String, Integer>("Stage Red", analyzedTrackingData.analyzedStageRed.error.semanticError));
-		series6.getData().add(new Data<String, Integer>("Stage Green", analyzedTrackingData.analyzedStageGreen.error.semanticError));
-		series6.getData().add(new Data<String, Integer>("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.semanticError));
-		
-		series7 = new Series<String, Integer>();
-		series7.setName("syntaxError");
-		series7.getData().add(new Data<String, Integer>("Stage Red", analyzedTrackingData.analyzedStageRed.error.syntaxError));
-		series7.getData().add(new Data<String, Integer>("Stage Green", analyzedTrackingData.analyzedStageGreen.error.syntaxError));
-		series7.getData().add(new Data<String, Integer>("Stage Refactor", analyzedTrackingData.analyzedStageRefactor.error.syntaxError));
-		
+		for (AnalyzedStage as : analyzedTrackingData.anMap.values()){
+			series1.getData().add(new Data<String, Integer>("Stage Red",as.error.totalError));
+			pieChartData.add(new PieChart.Data("StageRed", as.time));
+		}
 		xAxis.setLabel("Error");
 		yAxis.setLabel("Number");
 		barChart.getData().addAll(series1, series2, series3, series4, series5, series6, series7);
 	
-		
-		ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                new PieChart.Data("StageRed", Integer.parseInt(analyzedTrackingData.analyzedStageRed.time)),
-                new PieChart.Data("StageRefactor", Integer.parseInt(analyzedTrackingData.analyzedStageRefactor.time)),
-                new PieChart.Data("StageGreen", Integer.parseInt(analyzedTrackingData.analyzedStageGreen.time)));
-		
 		pieChart.getData().addAll(pieChartData);
 		pieChart.setTitle("Time");
 		
