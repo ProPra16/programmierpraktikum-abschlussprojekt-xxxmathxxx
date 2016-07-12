@@ -1,6 +1,7 @@
 package org.xxxmathxxx.tddt.gui.hints;
 
 import org.xxxmathxxx.tddt.gui.AlertMessenger;
+import org.xxxmathxxx.tddt.gui.GraphicsHelper;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -91,7 +92,7 @@ public class UsefulInfoNotification extends Stage {
 		
 		dialogScene = new Scene(pane);
 		
-		dialogScene.getStylesheets().add("org/xxxmathxxx/tddt/gui/NotificationStyle.css");
+		dialogScene.getStylesheets().add(this.getClass().getResource("/NotificationStyle.css").toExternalForm());
 		
 		this.setScene(dialogScene);
 		this.initStyle(StageStyle.UNDECORATED);
@@ -112,16 +113,16 @@ public class UsefulInfoNotification extends Stage {
 	 * Static reference to all the mathematicians glorious faces
 	 */
 	private static String[] faceImagePaths = new String[]{
-			"file:graphics/faces/fou.jpeg",
-			"file:graphics/faces/tsc.jpeg",
-			"file:graphics/faces/cau.jpeg",
-			"file:graphics/faces/eul.png",
-			"file:graphics/faces/kant.jpeg"
+			"/graphics/faces/fou.jpeg",
+			"/graphics/faces/tsc.jpeg",
+			"/graphics/faces/cau.jpeg",
+			"/graphics/faces/eul.png",
+			"/graphics/faces/kant.jpeg"
 	};
 	
 	private static Image generateRandomMathFace(){
 		int randomIndex = ((int)Math.round((Math.random()*(faceImagePaths.length-1))));
-		return new Image(faceImagePaths[randomIndex]);
+		return new Image(GraphicsHelper.getResourcePath(faceImagePaths[randomIndex]));
 	}
 	
 	private class CheckBoxTrollBot implements EventHandler<ActionEvent>{

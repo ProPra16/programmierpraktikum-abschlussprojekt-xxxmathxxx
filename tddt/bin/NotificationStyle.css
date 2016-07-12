@@ -1,6 +1,6 @@
 @font-face {
     font-family: Garamond;
-    src: url('../../../../../fonts/GaramondNo8-Regular.ttf');
+    src: url('/fonts/GaramondNo8-Regular.ttf');
 }
 #achievement_bg {
     -fx-background-color:

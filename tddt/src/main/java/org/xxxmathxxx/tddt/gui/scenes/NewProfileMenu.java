@@ -100,7 +100,7 @@ public class NewProfileMenu extends Scene {
 						new File(customImagePath).delete();
 					}
 					customImagePath = newPath;
-					profilePic.setImage(new Image("file:"+customImagePath));
+					profilePic.setImage(new Image(customImagePath));
 				}
 			}
 			else if (event.getSource() == back){
@@ -117,7 +117,7 @@ public class NewProfileMenu extends Scene {
 		            //TODO Check profile name for sanity / weird symbols etc.
 					//TODO Check that profile name is max 14 characters.
 		            if(customImagePath == null){
-		            	customImagePath = "graphics/unknownProfile.png";
+		            	customImagePath = GraphicsHelper.getResourcePath("/graphics/unknownProfile.png");
 		            }
 		            
 		            Profile newProfile = new Profile(name, customImagePath);

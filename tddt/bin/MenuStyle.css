@@ -8,5 +8,5 @@
 }
 
 .root {
-     -fx-background-image: url("file:graphics/menubackgrounds/Background1.jpg");
+     -fx-background-image: url("/graphics/menubackgrounds/Background1.jpg");
 }
