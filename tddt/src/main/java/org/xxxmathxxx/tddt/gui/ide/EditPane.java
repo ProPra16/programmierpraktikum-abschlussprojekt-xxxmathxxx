@@ -21,14 +21,14 @@ import vk.core.api.CompilationUnit;
 public abstract class EditPane extends FlowPane {
 	
 
-	protected TextEditor te;
+	private TextEditor te;
 	private Boolean isActive;
 	
 	private ReversedClockLabel babyClock;
 	private ClockLabel totalClock;
 	
 
-	protected int selectedPage;
+	private int selectedPage;
 
 	private ToggleButton[] navigator;
 	

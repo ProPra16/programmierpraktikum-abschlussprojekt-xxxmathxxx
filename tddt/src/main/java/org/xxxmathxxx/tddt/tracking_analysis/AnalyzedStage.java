@@ -22,8 +22,15 @@ public class AnalyzedStage implements java.io.Serializable{
 	public double time;
 	
 	/** The keystrokes. */
-	public int keystrokes;
+	private int keystrokes;
 	
+	/**Getter for the keystrokes
+	 * @return the keystrokes that occured in this Stage as Integer
+	 */
+	public int getKeystrokes() {
+		return keystrokes;
+	}
+
 	/** The error. */
 	public ErrorCounter error = new ErrorCounter();
 	

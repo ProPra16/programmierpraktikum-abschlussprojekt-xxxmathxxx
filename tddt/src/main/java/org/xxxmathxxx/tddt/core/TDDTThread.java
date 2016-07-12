@@ -52,8 +52,14 @@ public class TDDTThread {
 	 */
 	public TrackerManager trackerManager;
 	
+	/**
+	 * The babystepsTimer that counts down the babysteps time if the extension is active.
+	 */
 	public BabystepsTimer babystepsTimer;
 	
+	/**The timer that tracks the total time elapsed on one exercise.
+	 * 
+	 */
 	public BasicTimer totalTimer;
 	
 	/** The current state of the Thread, 
@@ -61,14 +67,17 @@ public class TDDTThread {
 	 */
 	private CodeStage state;
 	
-	private Editor ed;
+	/**The editor in which the current Thread is running. This reference is needed to send update hooks to the editor (so it can visualize when a stage change has occured)
+	 * 
+	 */
+	private Editor editor;
 	
 	public void setProfile(Profile p){
 		instance.profile = p;
 	}
 	
 	public void setEditor(Editor e){
-		this.ed = e;
+		this.editor = e;
 	}
 	
 	private TDDTThread(){}
@@ -149,13 +158,13 @@ public class TDDTThread {
 	}
 	
 	/**Requests a switch to the next state and attempts to perform it.
-	 * @param ed The editor from which the switch is called. (This is unelegant as f*** btw, we should simply pass the compilation units)
+	 * @param editor The editor from which the switch is called. (This is unelegant as f*** btw, we should simply pass the compilation units)
 	 */
 	public void requestSwitch() {
 		TDDTLogManager.getInstance().logMessage("Stateswitch requested");
 		//Saves all Changes
-		ed.tep.save();
-		ed.cep.save();
+		editor.tep.save();
+		editor.cep.save();
 		
 		disableAllTimers();
 		
@@ -230,8 +239,8 @@ public class TDDTThread {
 	
 	public void finalizeExercise()
 	{
-		ed.tep.save();
-		ed.cep.save();
+		editor.tep.save();
+		editor.cep.save();
 		//Step 0: Check if final test is successful
 		CompilationUnit[] cuArray= getCompilationUnits(true);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
@@ -317,8 +326,8 @@ public class TDDTThread {
 	 */
 	private CompilationUnit[] getCompilationUnits(boolean withFinalTest)
 	{
-		CodeEditPane cep = ed.cep; //shortcut
-		TestEditPane tep = ed.tep;
+		CodeEditPane cep = editor.cep; //shortcut
+		TestEditPane tep = editor.tep;
 		
 		int addedLength=cep.classdata.length+tep.classdata.length;
 		if (withFinalTest){
@@ -348,13 +357,13 @@ public class TDDTThread {
 
 	/**
 	 * Is called when the Users requests to cancel from Coding to Testing stage
-	 * @param ed
+	 * @param editor
 	 */
 	public void cancelRequested() {
 		TDDTLogManager.getInstance().logMessage("Switching to Test Stage");
 		state = CodeStage.TEST;
 		babystepsTimer.resetTimer();
-		ed.cep.rerollTo(trackerManager.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+		editor.cep.rerollTo(trackerManager.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 	}
 
 	public void performBabystepRevert() {
@@ -363,13 +372,13 @@ public class TDDTThread {
 			switch(state)
 			{
 			case TEST:
-				//ed.tep.rerollChanges();
-				ed.tep.rerollTo(trackerManager.atMap.get(CodeStage.REFACTOR).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+				//editor.tep.rerollChanges();
+				editor.tep.rerollTo(trackerManager.atMap.get(CodeStage.REFACTOR).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 				break;
 				
 			case CODE:
-				//ed.cep.rerollChanges();
-				ed.cep.rerollTo(trackerManager.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+				//editor.cep.rerollChanges();
+				editor.cep.rerollTo(trackerManager.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 				break;
 	
 			case REFACTOR:	
@@ -381,7 +390,7 @@ public class TDDTThread {
 	/**
 	 * Resets everything.
 	 */
-	public void reset() {
+	private void reset() {
 		TDDTLogManager.getInstance().logMessage("Editor gets resetted.");
 		WindowManager.getInstance().showMenu(MenuType.EXERCISEPICKER);
 		state =CodeStage.TEST;

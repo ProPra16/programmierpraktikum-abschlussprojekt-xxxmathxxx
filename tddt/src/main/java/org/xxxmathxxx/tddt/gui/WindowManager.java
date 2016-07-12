@@ -103,7 +103,7 @@ public class WindowManager {
 		return ret;
 	}
 	
-	EventHandler<WindowEvent> windowCloseEvent = new EventHandler<WindowEvent>(){
+	private EventHandler<WindowEvent> windowCloseEvent = new EventHandler<WindowEvent>(){
 
 		@Override
 		public void handle(WindowEvent event) {

@@ -30,7 +30,7 @@ public class ReversedClockLabel extends Label {
 		}
 	}
 	
-	public void syncTime(double time, double bsTime){
+	private void syncTime(double time, double bsTime){
 		Platform.runLater(new Runnable(){
 			@Override
 			public void run() {
