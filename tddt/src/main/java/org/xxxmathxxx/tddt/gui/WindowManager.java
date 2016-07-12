@@ -107,6 +107,7 @@ public class WindowManager {
 
 		@Override
 		public void handle(WindowEvent event) {
+			mainStage.close();
 			Runtime.getRuntime().exit(0);
 		}
 		
