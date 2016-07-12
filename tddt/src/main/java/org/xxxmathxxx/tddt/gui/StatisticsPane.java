@@ -78,7 +78,9 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 			WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
 		}
 		exPick = new ExerciseComboBox(ExerciseReader.readAllExercises().asObservableList());
+		getChildren().add(exPick);
 	}
+	
 	
 	
 	@SuppressWarnings("unchecked")
@@ -87,25 +89,7 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 		profileLabel = new Label();
 		profile.showNameInJavaFXLabel(profileLabel);
 		MenuItem[] menuItem = new MenuItem[analyzedTrackingDataCollection.size()];
-		
-		int counter = 0;
-		
-		for(Exercise ex : analyzedTrackingDataCollection.keySet()){
-			//AnalyzedTrackingData data = (AnalyzedTrackingData) analyzedTrackingDataCollection.get(ex); AS OF NOW NOT EVEN USED
-			menuItem[counter] = new MenuItem(ex.name);
-			menuButton.getItems().add(menuItem[counter]);
-			
-			menuItem[counter].setOnAction(new EventHandler<ActionEvent>(){
 
-				@Override
-				public void handle(ActionEvent event) {
-					if(event.getSource() == menuButton){
-						WindowManager.getInstance().showMenu(WindowManager.MenuType.EXISTING_PROFILE); //?
-					}		
-				}
-			});
-			counter++;
-		}
 		
 		ArrayList<PieChart.Data> pieChartData = new ArrayList<PieChart.Data>();
 
