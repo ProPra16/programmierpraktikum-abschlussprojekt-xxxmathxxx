@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import org.xxxmathxxx.tddt.core.TDDTThread;
 import org.xxxmathxxx.tddt.data.Exercise;
+import org.xxxmathxxx.tddt.gui.scenes.ExercisePicker;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedStage;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingDataCollection;
+import org.xxxmathxxx.tddt.tracking_analysis.ErrorType;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -34,8 +36,11 @@ import javafx.scene.layout.Pane;
 public class StatisticsPane extends Pane{ //suggestion: move this to gui package and add only the scene that contains this to gui.scenes
 
 	private Profile profile;
+	
 	private AnalyzedTrackingDataCollection analyzedTrackingDataCollection;
+	
 	AnalyzedTrackingData analyzedTrackingData;
+	
 	private  XYChart.Series<String, Integer> series1;
 	private  XYChart.Series<String, Integer> series2;
 	private  XYChart.Series<String, Integer> series3;
@@ -55,6 +60,8 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 	private PieChart pieChart;
 	@FXML
 	private MenuButton menuButton;
+	
+	private ExercisePicker exPick;
     
    
 	public StatisticsPane(){
@@ -105,7 +112,7 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 		series1 = new Series<String, Integer>();
 		series1.setName("totalError");
 		for (AnalyzedStage as : analyzedTrackingData.anMap.values()){
-			series1.getData().add(new Data<String, Integer>("Stage Red",as.error.totalError));
+			series1.getData().add(new Data<String, Integer>("Stage Red",as.error.getErrorCount(ErrorType.ANY)));
 			pieChartData.add(new PieChart.Data("StageRed", as.time));
 		}
 		xAxis.setLabel("Error");

@@ -238,7 +238,9 @@ public class TDDTThread {
 		//tm.getTotalTime(); -> Method doesn't exist
 		
 		//STEP 2: Update stats
-		profile.profileStats.getAnalayzedTrackingData().put(currentExercise, new AnalyzedTrackingData(tm));
+		AnalyzedTrackingData dataForThisExercise = new AnalyzedTrackingData(tm);
+		profile.profileStats.getAnalayzedTrackingData().put(currentExercise, dataForThisExercise);
+		dataForThisExercise.log();
 	}
 	
 	/**Attempts to switch to code state

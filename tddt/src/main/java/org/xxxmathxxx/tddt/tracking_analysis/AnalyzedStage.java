@@ -1,5 +1,6 @@
 package org.xxxmathxxx.tddt.tracking_analysis;
 
+import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.tracking.ActivityTracker;
 
 /**
@@ -22,5 +23,11 @@ public class AnalyzedStage {
 		time = tracker.getElapsedTime();
 		keystrokes = tracker.keystrokes;
 		AnalyzeError.analyzeCodeStamps(tracker.codeStampCollection, error);
+	}
+
+	public void log() {
+		TDDTLogManager.getInstance().logMessage("You used "+keystrokes+" keystrokes!");
+		TDDTLogManager.getInstance().logMessage("You spent "+time+" seconds in this phase!");
+		error.log();
 	}
 }

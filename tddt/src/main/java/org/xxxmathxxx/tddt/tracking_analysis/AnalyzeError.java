@@ -39,7 +39,7 @@ public class AnalyzeError {
 			codeStamp = codeStampCollection.getCodeStemp(i);
 			result = codeStamp.getResult();
 			try{
-				error.testFailure += result.getNumberOfFailedTests();
+				error.addError(ErrorType.TEST_FAILURE,result.getNumberOfFailedTests());
 			}
 			catch(NullPointerException e){}
 			
@@ -89,34 +89,37 @@ public class AnalyzeError {
 	 */
 	private static ErrorCounter analyzeCompileError(String compilerError, ErrorCounter error){
 		
-		error.totalError++;
+		
+		//TODO: PLEASE!!! FOR THE LOVE OF GOD SOMEONE HAS TO CHECK IF ALL THOSE ERRORS ARE CORRECT AND MAYBE ADD SOME MORE
+		
+		error.addError(ErrorType.ANY);
 		
 		if(compilerError.contains("not have been initialized")){ //Variable wurde nicht initialisiert
-			error.semanticError++;
-			error.notInitializedError++;
+			error.addError(ErrorType.SEMANTIC);
+			error.addError(ErrorType.NOT_INITIALIZED);
 		}
 		else if(compilerError.contains("Invalid type expression")){ // Compiler findet etwas nicht, zum beipiel wegen fehlendem Smeikolon, falscher REchtschreiung(großes IF anstatt if)
-			error.semanticError++;
-			error.cannotFindError++;
+			error.addError(ErrorType.SEMANTIC);
+			error.addError(ErrorType.CANNOT_FIND);
 		}
 		else if(compilerError.contains("cannot find symbol")){    //Compiler findet etwas nicht, zum Beispiel package, variable ,klasse
-			error.syntaxError++;
-			error.cannotFindError++;
+			error.addError(ErrorType.SYNTAX);
+			error.addError(ErrorType.CANNOT_FIND);
 		}
 		else if(compilerError.contains("return type required")){  // rückgabewert vergessen
-			error.syntaxError++;
+			error.addError(ErrorType.SYNTAX);
 		}
 		else if(compilerError.contains("reached end of file while parsing")){ // Klammern vergessen
-			error.syntaxError++;
-			error.expectedError++;
+			error.addError(ErrorType.SYNTAX);
+			error.addError(ErrorType.EXPECTED_WRONG_TYPE);
 		}
 		else if(compilerError.contains("cannot resolve symbol")){  // Compiler findet eine Beschreibung  im SourceCode nicht
-			error.syntaxError++;
-			error.cannotFindError++;
+			error.addError(ErrorType.SYNTAX);
+			error.addError(ErrorType.CANNOT_FIND);
 		}
 		else if(compilerError.contains("expected")) {              // Klammer, Semikolon oder ähnliches vergessen
-			error.syntaxError++;
-			error.expectedError++;
+			error.addError(ErrorType.SYNTAX);
+			error.addError(ErrorType.EXPECTED_WRONG_TYPE);
 		}
 		return error;
 	}
