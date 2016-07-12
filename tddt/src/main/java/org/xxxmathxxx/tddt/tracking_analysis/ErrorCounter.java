@@ -22,7 +22,10 @@ public class ErrorCounter {
 	}
 
 	public void log() {
-		TDDTLogManager.getInstance().logMessage("You made ");
+		for (ErrorType t : errors.keySet()){
+			TDDTLogManager.getInstance().logMessage("You made "+errors.get(t)+" errors of the type: "+t.toString());
+
+		}
 	}
 
 	public void addError(ErrorType type) {
