@@ -65,6 +65,7 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 			e.printStackTrace();
 			WindowManager.getInstance().showMenu(WindowManager.MenuType.STARTUP_MENU);
 		}
+		//TODO: change to fxml to comply with other stuff
 		exPick = new ExerciseComboBox(ExerciseReader.readAllExercises().asObservableList());
 		getChildren().add(exPick);
 	}

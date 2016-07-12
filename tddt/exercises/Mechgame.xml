@@ -6,7 +6,9 @@
 		<class name="Mechgame">
 public class Mechgame 
 {
-	
+	public static boolean amIAMechGame(){
+		return false;
+	}
 }
 		</class>
 		
@@ -46,7 +48,17 @@ public class MechgameTest
 		
 	<finishtests>
 		<finishtest name="FinalTestMechgame">
+import static org.junit.Assert.*;
+import org.junit.Test;
+public class MechgameTest
+{
+	@Test
+	public void FinalTestUltimate() 
+	{
+		assertEquals(Mechgame.amIAMechGame(),true);
 		
+	}
+}		
 		</finishtest>
 	</finishtests>
 		
