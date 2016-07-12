@@ -64,9 +64,23 @@ public class JTextPaneNoWrap extends JTextPane {
 					e1.printStackTrace();
 				}
 			}
-			if (e.isAltDown() && e.getKeyChar() == '0'){
+			else if (e.isAltDown() && e.getKeyChar() == '0'){
 				try {
 					getDocument().insertString(getCaretPosition(), "}", null);
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+			}
+			else if (e.isAltDown() && e.getKeyChar() == '8'){
+				try {
+					getDocument().insertString(getCaretPosition(), "[", null);
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+			}
+			else if (e.isAltDown() && e.getKeyChar() == '9'){
+				try {
+					getDocument().insertString(getCaretPosition(), "]", null);
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
 				}
