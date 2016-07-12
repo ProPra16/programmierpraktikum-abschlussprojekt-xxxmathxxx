@@ -1,7 +1,7 @@
 <exercise>
 	<name>RomanNumbers</name>
 	<id>0000000000000000</id>
-	<description>Convert arabic numbers to roman ones.... GO!</description>
+	<description>Write a converter to convert the arabic numbers 1-50 to roman ones.</description>
 	<classes>
 		<class name="RomanNumberConverter">
 public class RomanNumberConverter 
@@ -10,13 +10,6 @@ public class RomanNumberConverter
 	{
 		return "";
 	}
-}
-		</class>
-		
-		<class name="TestClass">
-public class TestClass 
-{
-
 }
 		</class>
 	</classes>
@@ -28,10 +21,9 @@ import org.junit.Test;
 public class RomanNumberConverterTest 
 {
 	@Test
-	public void testSomething() 
+	public static void testSomething() 
 	{
-		RomanNumberConverter rnc= new RomanNumberConverter();
-		assertEquals(rnc.convert(1), "I");
+		assertEquals(RomanNumberConverter.convert(1), "I");
 	}
 }
 		</test>
@@ -39,7 +31,82 @@ public class RomanNumberConverterTest
 		
 	<finishtests>
 		<finishtest name="FinalTestRomanNumbers">
-		
+import static org.junit.Assert.*;
+import org.junit.Test;
+public class FinalTestRomanNumbers
+{
+	@Test
+	public static void test1() 
+	{
+		assertEquals(RomanNumberConverter.convert(1), "I");
+	}
+	
+	@Test
+	public static void test2() 
+	{
+		assertEquals(RomanNumberConverter.convert(1), "II");
+	}
+	
+	@Test
+	public static void test3() 
+	{
+		assertEquals(RomanNumberConverter.convert(1), "III");
+	}
+	
+	@Test
+	public static void test4() 
+	{
+		assertEquals(RomanNumberConverter.convert(1), "IV");
+	}
+	
+	@Test
+	public static void test5() 
+	{
+		assertEquals(RomanNumberConverter.convert(1), "V");
+	}
+	
+	@Test
+	public static void test9() 
+	{
+		assertEquals(RomanNumberConverter.convert(1), "IX");
+	}
+	
+	@Test
+	public static void test10() 
+	{
+		assertEquals(RomanNumberConverter.convert(1), "X");
+	}
+	
+	@Test
+	public static void test15() 
+	{
+		assertEquals(RomanNumberConverter.convert(1), "XV");
+	}
+	
+	@Test
+	public static void test20() 
+	{
+		assertEquals(RomanNumberConverter.convert(1), "XX");
+	}
+	
+	@Test
+	public static void test40() 
+	{
+		assertEquals(RomanNumberConverter.convert(1), "XL");
+	}
+	
+	@Test
+	public static void test45() 
+	{
+		assertEquals(RomanNumberConverter.convert(1), "XLV");
+	}
+	
+	@Test
+	public static void test50() 
+	{
+		assertEquals(RomanNumberConverter.convert(1), "L");
+	}
+}		
 		</finishtest>
 	</finishtests>
 		
