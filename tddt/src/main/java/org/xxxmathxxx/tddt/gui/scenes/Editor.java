@@ -92,9 +92,6 @@ public class Editor extends Scene {
 		stateLabel.relocate(10,ySize-100);
 		pane.getChildren().add(stateLabel);
 		
-		//Tschebycheff
-		TDDTThread.getInstance().tm.stageRed.startTimeTracking();
-		
 		//Boolean
 		nonEditState=false;
 		
