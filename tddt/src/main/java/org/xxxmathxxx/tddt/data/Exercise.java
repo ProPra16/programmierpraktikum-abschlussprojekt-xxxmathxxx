@@ -77,16 +77,16 @@ public class Exercise {
 	}
 
 	public MedalState checkMedalForTime(double time) {
-		if (time <this.config.medalTimes.author){
+		if (time <this.config.medalTimes.author*60){
 			return MedalState.AUTHOR;
 		}
-		else if (time <this.config.medalTimes.gold){
+		else if (time <this.config.medalTimes.gold*60){
 			return MedalState.GOLD;
 		}
-		else if (time <this.config.medalTimes.silver){
+		else if (time <this.config.medalTimes.silver*60){
 			return MedalState.SILVER;
 		}
-		else if (time <this.config.medalTimes.bronze){
+		else if (time <this.config.medalTimes.bronze*60){
 			return MedalState.BRONZE;
 		}
 		return MedalState.NONE; //feelsBadMan
