@@ -1,7 +1,21 @@
 package org.xxxmathxxx.tddt.io;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Stream;
 
 import javax.xml.parsers.*;
 
@@ -36,32 +50,85 @@ public final class ExerciseReader {
 	 * @return List filled with all saved exercises. Null if no exercises could be found.
 	 */
 	public static ExerciseCollection readAllExercises()
-	{
-		File file = new File("exercises");
-		File[] files = file.listFiles();
-		
+	{  
 		ArrayList<Exercise> exercises= new ArrayList<Exercise>();
-		
-		for(int i=0; i<files.length;i++)
-		{
-			try
-			{
-				exercises.add(readExercise(files[i].getPath()));
+		Stream<Path> walk = null;
+		FileSystem fileSystem = null;
+		try {
+			boolean runningFromJar = false;
+		    URI uri = ExerciseReader.class.getResource("/exercises").toURI();
+		    System.out.println(uri);
+		    Path myPath;
+		    if (uri.getScheme().equals("jar")) {
+		    	System.out.println("RUNNING FROM JAR");
+		        fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+		        myPath = fileSystem.getPath("/exercises");
+		        runningFromJar = true;
+		    } else {
+		    	System.out.println("NOT RUNNING FROM JAR");
+		        myPath = Paths.get(uri);
+		    }
+		    walk = Files.walk(myPath, 1);
+		    for (Iterator<Path> it = walk.iterator(); it.hasNext();){
+		    	Path p = it.next();
+		    	if (!p.toString().endsWith(".xml")){
+		    		continue;
+		    	}
+		    	else{
+		    		System.out.println(p);
+		    	}
+		    	File f;
+		    	if (runningFromJar){
+			    	String absoloutePath = ExerciseReader.class.getResource(p.toString()).toExternalForm();
+			    	System.out.println(absoloutePath);
+			    	f = new File(absoloutePath);
+		    	}
+		    	else{
+		    		f = p.toFile();
+		    	}
+
+		    	if (f.isDirectory()){
+		    		continue;
+		    	}
+		    	System.out.println(f);
+				try{
+					exercises.add(readExercise(f));
+			        TDDTLogManager.getInstance().logMessage("Found exercise: "+f.getAbsolutePath());
+				}
+				catch(Exception e)
+				{
+					logger.logMessage("Failed to read Exercise "+f.getName()+". Maybe its not in the right format?");
+				}		
 			}
-			catch(Exception e)
-			{
-				logger.logMessage("Failed to read Exercise "+files[i].getPath()+". Maybe its not in the right format?");
+		    
+
+	    }
+
+	catch(IOException | URISyntaxException e1)
+	{
+		e1.printStackTrace();
+	}
+	finally{
+		if ( walk != null){
+			walk.close();
+		}
+		if (fileSystem != null){
+			try {
+				fileSystem.close();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
-		
-		if(!exercises.isEmpty())
-		{
-			return new ExerciseCollection(exercises);
-		}
-		
-		return null;
 	}
 	
+	if(!exercises.isEmpty())
+	{
+		return new ExerciseCollection(exercises);
+	}
+	
+	return null;
+
+}
 	
 	/**
 	 * Reads specified Exercise from Disc
@@ -71,8 +138,7 @@ public final class ExerciseReader {
 	 * @return returns Exercise as Exercise Class
 	 * @throws Exception A generic Exception
 	 */
-	public static Exercise readExercise(String filename) throws Exception { 
-		File input = new File(filename);
+	public static Exercise readExercise(File input) throws Exception { 
 		Document exercise;
 		NodeList pointer;
 
@@ -168,12 +234,13 @@ public final class ExerciseReader {
 		double authortime = Double.parseDouble(pointer.item(0).getAttributes().getNamedItem("author").getTextContent());
 		
 		MedalTimes times = new MedalTimes(authortime,goldtime,silvertime,bronzetime);
-		
-		return new Exercise(name, (long)Integer.parseInt(id), description, referencedClasses, referencedTests, referencedFinishTest,
+		Exercise ret = new Exercise(name, (long)Integer.parseInt(id), description, referencedClasses, referencedTests, referencedFinishTest,
 				new ExerciseConfig(babysteps, Double.parseDouble(babystepsTime)
 						,timetracking
 						,times
-						)); // Done!
+						));
+		//ret.print();
+		return ret; // Done!
 	}
 
 }

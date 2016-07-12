@@ -16,12 +16,4 @@ public class ExerciseReaderTest {
 		assertEquals(true, (ex.getRandomExercise() instanceof Exercise));
 
 	}
-	
-	@Test
-	public void testExampleExercises() throws Exception {
-		Exercise test = ExerciseReader.readExercise("exercises/RomanNumbers.xml");
-		test.print();
-		assertEquals(test.name, "RomanNumbers");
-
-	}
 }
