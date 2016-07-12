@@ -31,6 +31,7 @@ public class Editor extends Scene {
 	Button viewOtherside;
 	Button finalizeButton;
 	Button cancelButton;
+	Button quitButton;
 	Label stateLabel;
 	
 	//Boolean 
@@ -64,28 +65,34 @@ public class Editor extends Scene {
 		//Buttons
 		switchButton= new Button("Switch!");
 		switchButton.setPrefSize(150, 50);
-		switchButton.relocate(xSize-200,ySize-150);
+		switchButton.relocate(xSize-200,ySize-230);
 		switchButton.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(switchButton);
 		
 		viewOtherside= new Button("View Otherside!");
 		viewOtherside.setPrefSize(150, 50);
-		viewOtherside.relocate(xSize-200,ySize-210);
+		viewOtherside.relocate(xSize-200,ySize-290);
 		viewOtherside.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(viewOtherside);
 		
 		finalizeButton= new Button("Finalize");
 		finalizeButton.setPrefSize(150, 50);
-		finalizeButton.relocate(xSize-200,10);
+		finalizeButton.relocate(xSize-200,36);
 		finalizeButton.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(finalizeButton);
 		
 		cancelButton= new Button("Cancel");
 		cancelButton.setPrefSize(150, 50);
-		cancelButton.relocate(xSize-200,ySize-90);
+		cancelButton.relocate(xSize-200,ySize-170);
 		cancelButton.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(cancelButton);
 		cancelButton.setDisable(true);
+		
+		quitButton= new Button("I am tired of this shit");
+		quitButton.setPrefSize(150, 25);
+		quitButton.relocate(xSize-200,ySize-70);
+		quitButton.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
+		pane.getChildren().add(quitButton);
 		
 		//Label
 		stateLabel= new Label();
@@ -274,6 +281,11 @@ public class Editor extends Scene {
 				TDDTThread.getInstance().cancelRequested();
 				updateEditPanes();
 				updateStateLabel();	
+			}
+			
+			if(event.getSource()==quitButton)
+			{
+				TDDTThread.getInstance().exitRequest();
 			}
 		}
 	}

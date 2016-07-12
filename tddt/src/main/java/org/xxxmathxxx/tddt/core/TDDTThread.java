@@ -369,5 +369,10 @@ public class TDDTThread {
 		return state;
 	}
 
+	public void exitRequest() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }
