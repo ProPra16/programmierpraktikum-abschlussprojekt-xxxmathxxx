@@ -260,7 +260,7 @@ public class TDDTThread {
 		
 		babystepsTimer.setActive(false);
 		totalTimer.setActive(false);
-		TDDTLogManager.getInstance().logMessage("Total time needed for this exercise: "+babystepsTimer.getTimeInSecondsAsString());
+		TDDTLogManager.getInstance().logMessage("Total time needed for this exercise: "+totalTimer.getTimeInSecondsAsString());
 		MedalState medalEarned = currentExercise.checkMedalForTime(totalTimer.getTime());
 		if (medalEarned != MedalState.NONE){
 			awardMedal(medalEarned);

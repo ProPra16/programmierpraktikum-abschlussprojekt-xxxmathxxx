@@ -16,7 +16,10 @@ public class ShutdownThread extends Thread {
 		//Saving current profile if one exists
 		if (TDDTThread.getInstance() != null){
 			TDDTLogManager.getInstance().logMessage("Saving current profile");
-			TDDTThread.getInstance().getUserProfile().saveProfileToFile();
+			if(TDDTThread.getInstance().getUserProfile()!=null)
+			{
+				TDDTThread.getInstance().getUserProfile().saveProfileToFile();
+			}
 		}
 
 		//Cleaning the log manager, this should be the last clean-up step so the others can still be logged
