@@ -29,7 +29,7 @@
          </padding>
       </Label>
       <PieChart fx:id="pieChart" layoutX="443.0" layoutY="115.0" prefHeight="412.0" prefWidth="340.0" />
-      <Button fx:id="buttonBack" layoutX="724.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Back" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0">
+      <Button fx:id="buttonBack" layoutX="724.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleButtonBack" prefHeight="25.0" prefWidth="80.0" text="Back" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0">
          <font>
             <Font size="17.0" />
          </font>
