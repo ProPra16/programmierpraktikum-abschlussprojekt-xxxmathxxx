@@ -262,7 +262,10 @@ public class TDDTThread {
 		tracker.stageGreen.stopTimeTracking();
 		tracker.stageRed.startTimeTracking();
 		state = CodeStage.TEST;
-		ed.cep.rerollChanges();
+		//ed.cep.rerollChanges();
+		ed.cep.rerollTo(tracker.stageRed.codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+		//System.out.println(tracker.stageRed.codeStampCollection.getLatestCodeStamp().getCompilationUnits()[0].getClassContent());
+		
 		tracker.babystepsTimer.resetTimer();
 	}
 

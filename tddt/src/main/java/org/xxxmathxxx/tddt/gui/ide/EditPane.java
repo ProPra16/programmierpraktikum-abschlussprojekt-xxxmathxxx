@@ -12,6 +12,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import vk.core.api.CompilationUnit;
 
 /**
  * @author Fabian
@@ -159,7 +160,9 @@ public abstract class EditPane extends FlowPane {
 	
 	/**
 	 * Creates backup of content.
+	 * Please dont use this.
 	 */
+	@Deprecated
 	public void createBackup() {
 		System.out.println("Saving current state as backup");
 
@@ -170,8 +173,10 @@ public abstract class EditPane extends FlowPane {
 	}
 	
 	/**
-	 * Rerolls changes to the state when createBackup() was called
+	 * Rerolls changes to the state when createBackup() was called.
+	 * Please dont use this.
 	 */
+	@Deprecated
 	public void rerollChanges()
 	{
 		for(int i=0; i<classdata.length;i++)
@@ -180,6 +185,20 @@ public abstract class EditPane extends FlowPane {
 		}
 		
 		te.setText(backupClassdata[selectedPage]);
+	}
+	
+	public void rerollTo(CompilationUnit[] compilationUnits)
+	{
+		int j=0;
+		
+		for(int i=0; i<compilationUnits.length;i++)
+		{
+			if(compilationUnits[i].getClassName().equals(classdata[j].name))
+			{
+				classdata[j].code.rawText=compilationUnits[i].getClassContent();
+			}
+		}
+		te.setText(classdata[selectedPage].code.rawText);
 	}
 	
 	EventHandler<MouseEvent> focusHelper = new EventHandler<MouseEvent>(){
