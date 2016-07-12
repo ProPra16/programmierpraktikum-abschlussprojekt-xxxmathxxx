@@ -1,7 +1,9 @@
 <exercise>
 	<name>Hack Time</name>
 	<id>0000000000001337</id>
-	<description>Write a basic hack that enables you to travel back in time and do useful stuff.</description>
+	<description>Write a basic hack that enables you to travel back in time and do useful stuff.
+Hint: This mostly requires you to have the function isTimeHacked() return true.
+</description>
 	<classes>
 		<class name="HackTime">
 public class HackTime 

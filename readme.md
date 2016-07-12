@@ -16,7 +16,10 @@ Then start the build-processs with the following commands:
 Run `./gradlew build` on Unix based systems.
 Run `gradlew build` on Windows based systems.
 
-The compiled .jar will be found in tddt/build/libs.
+You can then launch the software with the following command:
+
+Run `./gradlew run` on Unix based systems.
+Run `gradlew run` on Windows based systems.
 
 ##How to generate documentation##
 

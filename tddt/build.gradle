@@ -1,10 +1,6 @@
-apply plugin: 'java'
-jar {
-    manifest {
-        attributes("Main-Class": "org.xxxmathxxx.tddt.core.TDDT")
-    }
-}
+apply plugin: 'application'
 
+mainClassName = "org.xxxmathxxx.tddt.core.TDDT"
 
 repositories {
     jcenter()
