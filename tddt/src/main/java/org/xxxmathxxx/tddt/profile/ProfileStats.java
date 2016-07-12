@@ -2,6 +2,7 @@ package org.xxxmathxxx.tddt.profile;
 
 import java.util.HashMap;
 
+import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
 
 
@@ -63,5 +64,9 @@ public class ProfileStats implements java.io.Serializable {
 
 	public void addTrackingData(Long exerciseID, AnalyzedTrackingData dataForThisExercise) {
 		trackingData.put(exerciseID, dataForThisExercise);
+	}
+
+	public AnalyzedTrackingData getTrackingData(Exercise key) {
+		return trackingData.get(key);
 	}	
 }
