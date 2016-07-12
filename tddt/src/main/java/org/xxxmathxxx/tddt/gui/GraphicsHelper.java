@@ -1,5 +1,6 @@
 package org.xxxmathxxx.tddt.gui;
 
+import org.xxxmathxxx.tddt.core.TDDT;
 import org.xxxmathxxx.tddt.profile.MedalState;
 
 import javafx.scene.image.Image;
@@ -37,4 +38,7 @@ public final class GraphicsHelper {
 		return new Image("file:graphics/unknownProfile.png",pixelSize,pixelSize,true,true);
 	}
 	
+	public static String getResourcePath(String path){
+		  return TDDT.class.getResource(path).toExternalForm();
+	}
 }

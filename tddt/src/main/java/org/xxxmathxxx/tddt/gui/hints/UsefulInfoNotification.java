@@ -1,6 +1,9 @@
 package org.xxxmathxxx.tddt.gui.hints;
 
 import org.xxxmathxxx.tddt.gui.AlertMessenger;
+import org.xxxmathxxx.tddt.gui.GraphicsHelper;
+
+import com.sun.glass.ui.Application;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -121,7 +124,7 @@ public class UsefulInfoNotification extends Stage {
 	
 	private static Image generateRandomMathFace(){
 		int randomIndex = ((int)Math.round((Math.random()*(faceImagePaths.length-1))));
-		return new Image(faceImagePaths[randomIndex]);
+		return new Image(GraphicsHelper.getResourcePath(faceImagePaths[randomIndex]));
 	}
 	
 	private class CheckBoxTrollBot implements EventHandler<ActionEvent>{
