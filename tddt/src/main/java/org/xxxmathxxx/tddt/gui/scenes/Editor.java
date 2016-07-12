@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 
 /**The editor scene
@@ -87,10 +88,11 @@ public class Editor extends Scene {
 		cancelButton.setDisable(true);
 		
 		//Label
-		stateLabel= new Label("Teststage");
-		stateLabel.setPrefSize(100, 50);
+		stateLabel= new Label("Teststage: Write a failing test!");
+		stateLabel.setPrefSize(400, 50);
 		stateLabel.relocate(10,ySize-100);
 		pane.getChildren().add(stateLabel);
+		stateLabel.setTextFill(Color.web("#FF0000"));
 		
 		//Boolean
 		nonEditState=false;
@@ -107,18 +109,21 @@ public class Editor extends Scene {
 		switch(TDDTThread.getInstance().getState())
 		{
 		case TEST: 
-			stateLabel.setText("Teststage");
+			stateLabel.setText("Teststage: Write a failing test!");
+			stateLabel.setTextFill(Color.web("#FF0000"));
 			cancelButton.setDisable(true);
 			viewOtherside.setDisable(false);
 			break;
 			
 		case CODE: 
-			stateLabel.setText("CodeStage");
+			stateLabel.setText("Codestage: Make the code pass the test!");
+			stateLabel.setTextFill(Color.web("#008000"));
 			cancelButton.setDisable(false);
 			break;
 			
 		case REFACTOR: 
-			stateLabel.setText("refactorstage");
+			stateLabel.setText("Refactorstage: Make your code look good!");
+			stateLabel.setTextFill(Color.web("#0000FF"));
 			viewOtherside.setDisable(true);
 			cancelButton.setDisable(true);
 			break;
