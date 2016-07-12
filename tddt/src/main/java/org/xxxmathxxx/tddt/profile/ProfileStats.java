@@ -2,7 +2,6 @@ package org.xxxmathxxx.tddt.profile;
 
 import java.util.HashMap;
 
-import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
 
 

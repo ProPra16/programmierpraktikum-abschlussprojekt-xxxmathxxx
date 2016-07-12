@@ -4,11 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.xxxmathxxx.tddt.data.CodeStage;
-import org.xxxmathxxx.tddt.data.Exercise;
-import org.xxxmathxxx.tddt.gui.scenes.Editor;
 import org.xxxmathxxx.tddt.io.ExerciseReader;
 
-import javafx.scene.layout.Pane;
 
 public class TDDTThreadTest {
 
