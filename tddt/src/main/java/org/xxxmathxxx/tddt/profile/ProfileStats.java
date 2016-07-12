@@ -32,7 +32,7 @@ public class ProfileStats implements java.io.Serializable {
 	 * Instantiates a new profile stats.
 	 */
 	public ProfileStats(){
-		trackingData = new HashMap<Long,AnalyzedTrackingData>();
+		this.trackingData = new HashMap<Long,AnalyzedTrackingData>();
 		this.achievements = new HashMap<Long,MedalState>();
 	}
 	
@@ -66,7 +66,10 @@ public class ProfileStats implements java.io.Serializable {
 		trackingData.put(exerciseID, dataForThisExercise);
 	}
 
-	public AnalyzedTrackingData getTrackingData(Exercise key) {
-		return trackingData.get(key);
+	public AnalyzedTrackingData getTrackingData(Long key) {
+		if (trackingData.containsKey(key)){
+			return trackingData.get(key);
+		}
+		return null;
 	}	
 }
