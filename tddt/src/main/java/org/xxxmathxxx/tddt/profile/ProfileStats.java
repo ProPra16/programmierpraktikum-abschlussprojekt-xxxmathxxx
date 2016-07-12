@@ -23,7 +23,7 @@ public class ProfileStats implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	/** The tracking data list. */
-	private HashMap<Exercise,AnalyzedTrackingData> trackingData;
+	private HashMap<Long,AnalyzedTrackingData> trackingData;
 	
 	/** Hash-Map that encodes the MedalState the user has for Exercises with a given Long ID. */
 	private HashMap<Long,MedalState> achievements;
@@ -32,7 +32,7 @@ public class ProfileStats implements java.io.Serializable {
 	 * Instantiates a new profile stats.
 	 */
 	public ProfileStats(){
-		trackingData = new HashMap<Exercise,AnalyzedTrackingData>();
+		trackingData = new HashMap<Long,AnalyzedTrackingData>();
 		this.achievements = new HashMap<Long,MedalState>();
 	}
 	
@@ -62,7 +62,7 @@ public class ProfileStats implements java.io.Serializable {
 	}
 
 
-	public void addTrackingData(Exercise currentExercise, AnalyzedTrackingData dataForThisExercise) {
-		trackingData.put(currentExercise, dataForThisExercise);
+	public void addTrackingData(Long exerciseID, AnalyzedTrackingData dataForThisExercise) {
+		trackingData.put(exerciseID, dataForThisExercise);
 	}	
 }
