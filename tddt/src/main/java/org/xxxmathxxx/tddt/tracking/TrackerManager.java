@@ -31,7 +31,6 @@ public class TrackerManager {
 		atMap.put(CodeStage.REFACTOR, new ActivityTracker());
 		atMap.put(CodeStage.TEST, new ActivityTracker());
 
-
 	}
 
 	public ActivityTracker getActiveTracker() {

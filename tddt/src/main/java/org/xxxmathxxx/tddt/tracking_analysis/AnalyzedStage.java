@@ -19,7 +19,7 @@ public class AnalyzedStage {
 	public ErrorCounter error = new ErrorCounter();
 	
 	public AnalyzedStage(ActivityTracker tracker){
-		time = tracker.timer.getTime();
+		time = tracker.getElapsedTime();
 		keystrokes = tracker.keystrokes;
 		AnalyzeError.analyzeCodeStamps(tracker.codeStampCollection, error);
 	}
