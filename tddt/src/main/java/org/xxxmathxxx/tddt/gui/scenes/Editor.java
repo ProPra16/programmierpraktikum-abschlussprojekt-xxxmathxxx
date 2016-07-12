@@ -25,14 +25,13 @@ public class Editor extends Scene {
 	public TestEditPane tep;
 	public CodeEditPane cep;
 	
-	//Menus
-	Pane pane;
-	Button switchButton;
-	Button viewOtherside;
-	Button finalizeButton;
-	Button cancelButton;
-	Button quitButton;
-	Label stateLabel;
+	
+	private Button switchButton;
+	private Button viewOtherside;
+	private Button finalizeButton;
+	private Button cancelButton;
+	private Button quitButton;
+	private Label stateLabel;
 	
 	//Boolean 
 	Boolean nonEditState;
@@ -43,7 +42,6 @@ public class Editor extends Scene {
 	 */
 	public Editor(Pane pane) {
 		super(pane);
-		this.pane=pane;
 		
 		double xSize = pane.getPrefWidth();
 		double ySize = pane.getPrefHeight();
