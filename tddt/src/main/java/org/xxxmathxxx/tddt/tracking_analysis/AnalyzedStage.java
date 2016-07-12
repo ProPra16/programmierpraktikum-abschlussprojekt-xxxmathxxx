@@ -10,7 +10,7 @@ import org.xxxmathxxx.tddt.tracking.ActivityTracker;
 public class AnalyzedStage {
 
 	/** The time. */
-	public String time;
+	public double time;
 	
 	/** The keystrokes. */
 	public int keystrokes;
@@ -19,8 +19,8 @@ public class AnalyzedStage {
 	public ErrorCounter error = new ErrorCounter();
 	
 	public AnalyzedStage(ActivityTracker tracker){
-		time = tracker.getTime();
-		keystrokes = tracker.getKeystrokes();
+		time = tracker.timer.getTime();
+		keystrokes = tracker.keystrokes;
 		AnalyzeError.analyzeCodeStamps(tracker.codeStampCollection, error);
 	}
 }

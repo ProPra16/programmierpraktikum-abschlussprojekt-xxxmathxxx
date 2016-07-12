@@ -19,8 +19,8 @@ public class AnalyzedTrackingDataCollectionTests {
 	@Test
 	public void analyzeTrackingDataCollectionTests1(){
 		
-		Tracker tracker1 = new Tracker();
-		Tracker tracker2 = new Tracker();
+		TrackerManager tracker1 = new TrackerManager();
+		TrackerManager tracker2 = new TrackerManager();
 		CompilationUnit compUnit1 = new CompilationUnit("test", string11, false);
 		CompilationUnit compUnit2 = new CompilationUnit("TestofTest", string12, true);	
 		JavaStringCompiler compiler1 = CompilerFactory.getCompiler(compUnit1);
@@ -46,8 +46,8 @@ public class AnalyzedTrackingDataCollectionTests {
 	@Test
 	public void analyzeTrackingDataCollectionTests2(){
 		
-		Tracker tracker1 = new Tracker();
-		Tracker tracker2 = new Tracker();
+		TrackerManager tracker1 = new TrackerManager();
+		TrackerManager tracker2 = new TrackerManager();
 		CompilationUnit compUnit1 = new CompilationUnit("test", string11, false);
 		CompilationUnit compUnit2 = new CompilationUnit("TestofTest", string12, true);	
 		JavaStringCompiler compiler1 = CompilerFactory.getCompiler(compUnit1);
@@ -76,8 +76,8 @@ public class AnalyzedTrackingDataCollectionTests {
 	@Test
 	public void analyzeTrackingDataCollectionTests3(){
 		
-		Tracker tracker1 = new Tracker();
-		Tracker tracker2 = new Tracker();
+		TrackerManager tracker1 = new TrackerManager();
+		TrackerManager tracker2 = new TrackerManager();
 		CompilationUnit compUnit1 = new CompilationUnit("test", string11, false);
 		CompilationUnit compUnit2 = new CompilationUnit("TestofTest", string12, true);	
 		JavaStringCompiler compiler1 = CompilerFactory.getCompiler(compUnit1);

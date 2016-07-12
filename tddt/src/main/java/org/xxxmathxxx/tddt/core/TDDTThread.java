@@ -12,7 +12,7 @@ import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.MedalState;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.tracking.CodeStamp;
-import org.xxxmathxxx.tddt.tracking.Tracker;
+import org.xxxmathxxx.tddt.tracking.TrackerManager;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
 
 import vk.core.api.CompilationUnit;
@@ -40,7 +40,7 @@ public class TDDTThread {
 	private Exercise currentExercise;
 	
 	/** The active tracker */
-	public Tracker tracker;
+	public TrackerManager tracker;
 	
 	/** The current state of the Thread, 
 	 *  @see CodeStage 
@@ -59,7 +59,7 @@ public class TDDTThread {
 	
 	private TDDTThread(){
 		state =CodeStage.TEST;
-		tracker = new Tracker();
+		tracker = new TrackerManager();
 	}
 	
 	/**

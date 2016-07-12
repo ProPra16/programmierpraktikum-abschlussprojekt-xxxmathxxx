@@ -17,7 +17,9 @@ public class SyntaxDocument extends DefaultStyledDocument {
 
 	@Override
 	public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
-				
+		
+		TDDTThread.getInstance().tracker.getActiveTracker().keystrokes ++;
+		
 		int tabCounter = 0;
 
 		//keep indentation

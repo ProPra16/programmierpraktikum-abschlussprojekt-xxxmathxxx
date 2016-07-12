@@ -7,7 +7,7 @@
 //
 //import org.junit.Test;
 //import org.xxxmathxxx.tddt.tracking.CodeStamp;
-//import org.xxxmathxxx.tddt.tracking.Tracker;
+//import org.xxxmathxxx.tddt.tracking.TrackerManager;
 //
 //import vk.core.api.CompilationUnit;
 //import vk.core.api.CompilerFactory;
@@ -32,7 +32,7 @@
 //	@Test
 //	public void analyzeTrackingDataTests1(){
 //		
-//		Tracker tracker = new Tracker();
+//		TrackerManager tracker = new TrackerManager();
 //		CompilationUnit compUnit1 = new CompilationUnit("test", string11, false);
 //		CompilationUnit compUnit2 = new CompilationUnit("TestofTest", string12, true);	
 //		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);
@@ -48,7 +48,7 @@
 //	@Test
 //	public void analyzeTrackingDataTests2(){
 //		
-//		Tracker tracker = new Tracker();
+//		TrackerManager tracker = new TrackerManager();
 //		CompilationUnit compUnit1 = new CompilationUnit("test", string11, false);
 //		CompilationUnit compUnit2 = new CompilationUnit("TestofTest", string21, true);	
 //		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);
@@ -63,7 +63,7 @@
 //	@Test
 //	public void analyzeTrackingDataTests4(){
 //		
-//		Tracker tracker = new Tracker();
+//		TrackerManager tracker = new TrackerManager();
 //		CompilationUnit compUnit1 = new CompilationUnit("test", string41, false);
 //		CompilationUnit compUnit2 = new CompilationUnit("TestofTest", string42, true);	
 //		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);
@@ -78,7 +78,7 @@
 //	@Test
 //	public void analyzeTrackingDataTests3(){
 //		
-//		Tracker tracker = new Tracker();
+//		TrackerManager tracker = new TrackerManager();
 //		CompilationUnit compUnit1 = new CompilationUnit("test", string31, false);
 //		CompilationUnit compUnit2 = new CompilationUnit("TestofTest", string12, true);	
 //		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);

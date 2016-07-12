@@ -1,7 +1,7 @@
 
 package org.xxxmathxxx.tddt.tracking_analysis;
 
-import org.xxxmathxxx.tddt.tracking.Tracker;
+import org.xxxmathxxx.tddt.tracking.TrackerManager;
 
 /**
  * The Class AnalyzedTrackingData.
@@ -27,7 +27,7 @@ public class AnalyzedTrackingData {
 	 * @param exercise the exercise
 	 * @param profileName the profile name
 	 */
-	public AnalyzedTrackingData(Tracker tracker){
+	public AnalyzedTrackingData(TrackerManager tracker){
 		
 		analyzedStageGreen = new AnalyzedStage(tracker.stageGreen);
 		analyzedStageRed = new AnalyzedStage(tracker.stageRed);
