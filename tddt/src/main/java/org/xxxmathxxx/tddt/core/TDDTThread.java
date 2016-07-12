@@ -70,6 +70,7 @@ public class TDDTThread {
 		this.currentExercise = ex;
 		this.tracker.babystepsTimer.toggleActive();
 		this.tracker.totalTimer.toggleActive();
+		generateStartingStamp();
 	}
 	
 	/**
@@ -100,6 +101,13 @@ public class TDDTThread {
 		profile.setMedalState(currentExercise.id, newState);
 	}
 	
+	/**
+	 * generates an initial codestamp
+	 */
+	private void generateStartingStamp()
+	{
+		
+	}
 	
 	/**Requests a switch to the next state and attempts to perform it.
 	 * @param ed The editor from which the switch is called. (This is unelegant as f*** btw, we should simply pass the compilation units)
@@ -264,7 +272,6 @@ public class TDDTThread {
 		state = CodeStage.TEST;
 		//ed.cep.rerollChanges();
 		ed.cep.rerollTo(tracker.stageRed.codeStampCollection.getLatestCodeStamp().getCompilationUnits());
-		//System.out.println(tracker.stageRed.codeStampCollection.getLatestCodeStamp().getCompilationUnits()[0].getClassContent());
 		
 		tracker.babystepsTimer.resetTimer();
 	}
@@ -275,11 +282,13 @@ public class TDDTThread {
 			switch(state)
 			{
 			case TEST:
-				ed.tep.rerollChanges();
+				//ed.tep.rerollChanges();
+				ed.tep.rerollTo(tracker.stageRed.codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 				break;
 				
 			case CODE:
-				ed.cep.rerollChanges();
+				//ed.cep.rerollChanges();
+				ed.cep.rerollTo(tracker.stageRed.codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 				break;
 	
 			case REFACTOR:	

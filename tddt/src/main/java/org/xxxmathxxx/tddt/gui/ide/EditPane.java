@@ -187,18 +187,38 @@ public abstract class EditPane extends FlowPane {
 		te.setText(backupClassdata[selectedPage]);
 	}
 	
+	/**
+	 * Rerolls pane to previous state
+	 * @param compilationUnits desired state
+	 */
 	public void rerollTo(CompilationUnit[] compilationUnits)
 	{
-		int j=0;
-		
-		for(int i=0; i<compilationUnits.length;i++)
+		if(compilationUnits.length!=0)
 		{
-			if(compilationUnits[i].getClassName().equals(classdata[j].name))
+		
+			for(int i=0; i<compilationUnits.length;i++)
 			{
-				classdata[j].code.rawText=compilationUnits[i].getClassContent();
+				for(int j=0; j<classdata.length;j++)
+				{
+					if(classdata[j].name.equals(compilationUnits[i].getClassName()))
+					{
+						classdata[j].code.rawText=compilationUnits[i].getClassContent();
+					}
+				}
+			}
+			te.setText(classdata[selectedPage].code.rawText);
+		}
+		else
+		{
+			if(this instanceof TestEditPane)
+			{
+				classdata=TDDTThread.getInstance().getExercise().referencedTests;
+			}
+			else
+			{
+				classdata=TDDTThread.getInstance().getExercise().referencedClasses;
 			}
 		}
-		te.setText(classdata[selectedPage].code.rawText);
 	}
 	
 	EventHandler<MouseEvent> focusHelper = new EventHandler<MouseEvent>(){

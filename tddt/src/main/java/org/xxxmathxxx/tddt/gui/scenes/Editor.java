@@ -100,7 +100,6 @@ public class Editor extends Scene {
 		
 		//register @ TDDTTHread
 		TDDTThread.getInstance().setEditor(this);
-		
 	}
 	
 	/**
@@ -248,8 +247,8 @@ public class Editor extends Scene {
 						switchLabel();
 					}
 					updateStateLabel(TDDTThread.getInstance().getState());	
-					tep.createBackup();
-					cep.createBackup();
+					//tep.createBackup();
+				    //cep.createBackup();
 				}
 			}
 			
