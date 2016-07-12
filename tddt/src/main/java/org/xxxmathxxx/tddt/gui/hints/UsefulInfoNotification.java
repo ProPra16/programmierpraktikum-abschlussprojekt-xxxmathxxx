@@ -112,11 +112,11 @@ public class UsefulInfoNotification extends Stage {
 	 * Static reference to all the mathematicians glorious faces
 	 */
 	private static String[] faceImagePaths = new String[]{
-			"file:graphics/faces/fou.jpeg",
-			"file:graphics/faces/tsc.jpeg",
-			"file:graphics/faces/cau.jpeg",
-			"file:graphics/faces/eul.png",
-			"file:graphics/faces/kant.jpeg"
+			"graphics/faces/fou.jpeg",
+			"graphics/faces/tsc.jpeg",
+			"graphics/faces/cau.jpeg",
+			"graphics/faces/eul.png",
+			"graphics/faces/kant.jpeg"
 	};
 	
 	private static Image generateRandomMathFace(){
