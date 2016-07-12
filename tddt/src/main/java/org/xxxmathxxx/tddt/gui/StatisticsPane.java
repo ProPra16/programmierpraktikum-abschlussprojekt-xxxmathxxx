@@ -61,7 +61,7 @@ public class StatisticsPane extends Pane{
 		
 		
 		//Never ever delete some FXML stuff, it behaves different in combination with gradle
-		java.net.URL location = getClass().getResource("Stats.fxml");
+		java.net.URL location = getClass().getResource("/Stats.fxml");
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setLocation(location);
 		fxmlLoader.setController(this);
