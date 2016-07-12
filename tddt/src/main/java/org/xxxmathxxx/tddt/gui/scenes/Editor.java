@@ -162,9 +162,9 @@ public class Editor extends Scene {
 	 * Shows the other side. Non editable of course.
 	 * @param state
 	 */
-	private void showOtherside(CodeStage state)
+	private void showOtherside()
 	{
-		switch(state)
+		switch(TDDTThread.getInstance().getState())
 		{
 		case TEST: 
 			switchShowCode();
@@ -253,7 +253,7 @@ public class Editor extends Scene {
 			//Otherside Button
 			if (event.getSource()==viewOtherside)
 			{
-				showOtherside(TDDTThread.getInstance().getState());
+				showOtherside();
 			}
 			
 			//FinalizeButton
