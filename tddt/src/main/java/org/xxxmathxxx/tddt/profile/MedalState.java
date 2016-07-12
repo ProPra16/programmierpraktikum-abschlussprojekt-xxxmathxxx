@@ -24,5 +24,7 @@ public enum MedalState {
 	/**
 	 * The (hidden) author medal
 	 */
-	AUTHOR
+	AUTHOR;
+	
+	
 }

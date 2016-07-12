@@ -131,7 +131,12 @@ public class TDDTThread {
 	 * @param newState the new state
 	 */
 	private void awardMedal(MedalState newState) {
-		profile.setMedalState(currentExercise.id, newState);
+		
+		if(newState.ordinal()>profile.getMedalState(currentExercise.id).ordinal())
+		{
+			profile.setMedalState(currentExercise.id, newState);
+		}
+			
 	}
 	
 	/**
