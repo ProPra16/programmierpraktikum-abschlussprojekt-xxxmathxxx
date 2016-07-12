@@ -11,8 +11,11 @@ this project uses: java 1.8, VirtualKataLib (by Jens Bendisposto), javafx, gradl
 This project uses gradle as a build-system.
 To compile from source, first navigate to the tddt subfolder:
 `cd tddt`
-Then start the build-processs with the following command:
-`gradle build`
+Then start the build-processs with the following commands:
+
+`./gradlew build` on Unix-Systems
+`gradlew build` on Windows-Systems
+
 The compiled .jar will be found in tddt/build/libs.
 
 ##How to generate documentation##
