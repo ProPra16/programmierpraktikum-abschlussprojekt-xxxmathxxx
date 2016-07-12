@@ -98,7 +98,6 @@ public class Result {
 
 	public int getNumberOfFailedTests() {
 		if (testResult == null){ //WHY THE FUCK WOULD THIS EVER HAPPEN???
-			System.out.println("HI");
 			return 0;
 		}
 		else{

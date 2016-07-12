@@ -1,5 +1,6 @@
 package org.xxxmathxxx.tddt.data;
 
+import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.MedalState;
 
 /**
@@ -42,36 +43,36 @@ public class Exercise {
 	 */
 	public void print()
 	{
-		System.out.println("___Exerciseprint___");
-		System.out.println( "name: "+name+
+		TDDTLogManager.getInstance().logMessage("___Exerciseprint___");
+		TDDTLogManager.getInstance().logMessage( "name: "+name+
 							"\ndesc: "+description+
 							"\nid: "+id);
 		
-		System.out.println("\nReferencedClasses:");
+		TDDTLogManager.getInstance().logMessage("\nReferencedClasses:");
 		
 		for(int i=0; i<referencedClasses.length; i++)
 		{
-			System.out.println("name: "+referencedClasses[i].name);
-			System.out.println("code:\n "+referencedClasses[i].code.rawText);
+			TDDTLogManager.getInstance().logMessage("name: "+referencedClasses[i].name);
+			TDDTLogManager.getInstance().logMessage("code:\n "+referencedClasses[i].code.rawText);
 		}
 		
-		System.out.println("\nReferencedTests:");
+		TDDTLogManager.getInstance().logMessage("\nReferencedTests:");
 		
 		for(int i=0; i<referencedTests.length; i++)
 		{
-			System.out.println("name: "+referencedTests[i].name);
-			System.out.println("code:\n "+referencedTests[i].code.rawText);
+			TDDTLogManager.getInstance().logMessage("name: "+referencedTests[i].name);
+			TDDTLogManager.getInstance().logMessage("code:\n "+referencedTests[i].code.rawText);
 		}
 		
 		
-		System.out.println("\nConfig:");
-		System.out.println("Babysteps:\n"
+		TDDTLogManager.getInstance().logMessage("\nConfig:");
+		TDDTLogManager.getInstance().logMessage("Babysteps:\n"
 							+config.babystepsEnabeled+" "+
 							+config.babystepsTime+"\n");
 		
-		System.out.println("Timetracking:\n"+config.timetrackingEnabled+"\n");
+		TDDTLogManager.getInstance().logMessage("Timetracking:\n"+config.timetrackingEnabled+"\n");
 		
-		System.out.println(this.config.medalTimes.toString());
+		TDDTLogManager.getInstance().logMessage(this.config.medalTimes.toString());
 		
 	}
 

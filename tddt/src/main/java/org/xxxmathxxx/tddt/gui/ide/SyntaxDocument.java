@@ -38,7 +38,6 @@ public class SyntaxDocument extends DefaultStyledDocument {
 				}
 				start--;
 			}
-			//System.out.println(tabCounter);
 			String modString = str;
 			for (int i=0;i<tabCounter;i++){
 				modString = modString + "\t";

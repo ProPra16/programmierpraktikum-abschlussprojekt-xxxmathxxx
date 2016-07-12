@@ -308,7 +308,6 @@ public class ImageCropperTool extends Stage {
              	mouseClickX = event.getSceneX()-selectionMarker.getLayoutX();
              	mouseClickY = event.getSceneY()-selectionMarker.getLayoutY();	
              	
-             	//System.out.println("MOUSECLICK:"+mouseClickX+"/"+mouseClickY);
              	
             	 if (isOnBottomRightCorner(event)&& event.getButton() == MouseButton.PRIMARY){
                 	 //note the click location for later 
@@ -348,7 +347,6 @@ public class ImageCropperTool extends Stage {
 				else if (mode == OperationMode.MOVING_SELECTION){
 					double diffX = (event.getSceneX() - (selectionMarker.getLayoutX()+mouseClickX));
 					double diffY = (event.getSceneY() - (selectionMarker.getLayoutY()+mouseClickY));
-					System.out.println(diffX+"/"+diffY);
 		        	selectionMarker.relocate(selectionMarker.getLayoutX()+diffX, selectionMarker.getLayoutY()+diffY);
 				}
          }
