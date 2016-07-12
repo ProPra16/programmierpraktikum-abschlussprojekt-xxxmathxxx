@@ -3,18 +3,40 @@ package org.xxxmathxxx.tddt.data;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.MedalState;
 
-/**
- * @author Fabian
- * Class to save all information about exercises
+/** Class that contains all informations about a given exercise
+ * @author xxxMathxxx 2016
+ * 
  */
 public class Exercise {
+	/**The name of the exercise as String
+	 * 
+	 */
 	public String name;
+	/**The description of the exercise as String
+	 * (This is the assignment)
+	 * 
+	 */
 	public String description;
+	/**The ID of the exercise as Long, this should be unique for each exercise
+	 * 
+	 */
 	public long id;
+	/**Those are the classes contained in the exercise
+	 * 
+	 */
 	public ExerciseClass[] referencedClasses; 
+	/**The tests contained in the exercise
+	 * 
+	 */
 	public ExerciseTest[] referencedTests; 
+	/**The hidden finish test that checks if the exercise is completed
+	 * 
+	 */
 	public ExerciseTest referencedFinishTest;
 
+	/**The ExerciseConfig that stores additional data regarding the Exercise
+	 * @see ExerciseConfig
+	 */
 	public ExerciseConfig config;
 
 	/**
@@ -76,6 +98,10 @@ public class Exercise {
 		
 	}
 
+	/**This returns the appropriate MedalState corresponding to the given time
+	 * @param time The time for which the MedalState should be calculated
+	 * @return The MedalState, representing the Medal that was earned
+	 */
 	public MedalState checkMedalForTime(double time) {
 		if (time <this.config.medalTimes.author*60){
 			return MedalState.AUTHOR;
