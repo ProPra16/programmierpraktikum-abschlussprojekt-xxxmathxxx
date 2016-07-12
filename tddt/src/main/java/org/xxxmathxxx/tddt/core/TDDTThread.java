@@ -246,7 +246,7 @@ public class TDDTThread {
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
 		jsc.compileAndRunTests();
 		
-		if(jsc.getTestResult().getNumberOfFailedTests() != 0 || jsc.getCompilerResult().hasCompileErrors())
+		if(jsc.getCompilerResult()==null ||jsc.getTestResult()==null || jsc.getTestResult().getNumberOfFailedTests() != 0 || jsc.getCompilerResult().hasCompileErrors())
 		{
 			AlertMessenger.showErrorMessage("Failure","You haven't finished this task yet!");
 			return;
