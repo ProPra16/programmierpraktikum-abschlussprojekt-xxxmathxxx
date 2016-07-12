@@ -2,7 +2,7 @@ package org.xxxmathxxx.tddt.tracking_analysis;
 
 //TODO: Add more markers for more detailed analysis
 
-public enum ErrorType {
+public enum ErrorType implements java.io.Serializable{
 	ANY,
 	SEMANTIC,
 	SYNTAX,

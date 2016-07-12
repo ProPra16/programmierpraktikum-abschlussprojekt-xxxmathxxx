@@ -13,8 +13,12 @@ import org.xxxmathxxx.tddt.logging.TDDTLogManager;
  *
  * @author Tschebyscheff, 05.07.16
  */
-public class ErrorCounter {
+public class ErrorCounter implements java.io.Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 10L;
 	private HashMap<ErrorType,Integer> errors;
 	
 	public ErrorCounter(){
