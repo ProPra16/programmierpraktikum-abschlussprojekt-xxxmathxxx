@@ -100,35 +100,11 @@ public class Editor extends Scene {
 	}
 	
 	/**
-	 * Switches state between Test and Code Editor.
-	 */
-	public void switchLabel()
-	{
-		if(tep.isActive())
-		{
-			tep.switchActive();
-			cep.switchActive();
-			tep.setVisible(false);
-			cep.setVisible(true);
-			cep.fixWindowsGraphicsBugs();
-
-		}
-		else if(cep.isActive())
-		{
-			tep.switchActive();
-			cep.switchActive();
-			cep.setVisible(false);
-			tep.setVisible(true);
-			tep.fixWindowsGraphicsBugs();
-		}
-	}
-	
-	/**
 	 * Updates StateLabel to currentState, also updates othersidebutton now
 	 */
-	private void updateStateLabel(CodeStage state)
+	private void updateStateLabel()
 	{
-		switch(state)
+		switch(TDDTThread.getInstance().getState())
 		{
 		case TEST: 
 			stateLabel.setText("Teststage");
@@ -150,7 +126,40 @@ public class Editor extends Scene {
 	}
 	
 	/**
-	 * Shows the other side. Non editable of course
+	 * Updates Edit panes so they are displayed correctly
+	 */
+	public void updateEditPanes()
+	{
+		switch(TDDTThread.getInstance().getState())
+		{
+		case TEST:
+			tep.setActive(true);
+			cep.setActive(false);
+			tep.setVisible(true);
+			cep.setVisible(false);
+			cep.fixWindowsGraphicsBugs();
+			break;
+		case CODE:
+			tep.setActive(false);
+			cep.setActive(true);
+			tep.setVisible(false);
+			cep.setVisible(true);
+			cep.fixWindowsGraphicsBugs();
+			break;
+			
+		case REFACTOR:
+			tep.setActive(false);
+			cep.setActive(true);
+			tep.setVisible(false);
+			cep.setVisible(true);
+			cep.fixWindowsGraphicsBugs();
+			break;
+		}
+		
+	}
+	
+	/**
+	 * Shows the other side. Non editable of course.
 	 * @param state
 	 */
 	private void showOtherside(CodeStage state)
@@ -237,7 +246,7 @@ public class Editor extends Scene {
 				
 				TDDTThread.getInstance().requestSwitch();
 				updateEditPanes();
-				updateStateLabel(TDDTThread.getInstance().getState());	
+				updateStateLabel();	
 				
 			}
 			
@@ -258,38 +267,8 @@ public class Editor extends Scene {
 			{
 				TDDTThread.getInstance().cancelRequested();
 				updateEditPanes();
-				updateStateLabel(TDDTThread.getInstance().getState());	
+				updateStateLabel();	
 			}
 		}
-	}
-
-	public void updateEditPanes()
-	{
-		switch(TDDTThread.getInstance().getState())
-		{
-		case TEST:
-			tep.setActive(true);
-			cep.setActive(false);
-			tep.setVisible(true);
-			cep.setVisible(false);
-			cep.fixWindowsGraphicsBugs();
-			break;
-		case CODE:
-			tep.setActive(false);
-			cep.setActive(true);
-			tep.setVisible(false);
-			cep.setVisible(true);
-			cep.fixWindowsGraphicsBugs();
-			break;
-			
-		case REFACTOR:
-			tep.setActive(false);
-			cep.setActive(true);
-			tep.setVisible(false);
-			cep.setVisible(true);
-			cep.fixWindowsGraphicsBugs();
-			break;
-		}
-		
 	}
 }
