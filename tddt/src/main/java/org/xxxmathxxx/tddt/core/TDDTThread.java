@@ -254,6 +254,7 @@ public class TDDTThread {
 		if(jsc.getCompilerResult()==null ||jsc.getTestResult()==null || jsc.getTestResult().getNumberOfFailedTests() != 0 || jsc.getCompilerResult().hasCompileErrors())
 		{
 			AlertMessenger.showErrorMessage("Failure","You haven't finished this task yet!");
+			trackerManager.atMap.get(CodeStage.REFACTOR).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
 			return;
 		}
 		
