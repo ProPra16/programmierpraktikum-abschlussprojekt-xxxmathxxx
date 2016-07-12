@@ -3,7 +3,6 @@ package org.xxxmathxxx.tddt.core;
 import org.xxxmathxxx.tddt.data.CodeStage;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.gui.AlertMessenger;
-import org.xxxmathxxx.tddt.gui.QuestionMessenger;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.gui.WindowManager.MenuType;
 import org.xxxmathxxx.tddt.gui.ide.CodeEditPane;
@@ -223,16 +222,18 @@ public class TDDTThread {
 	
 	public void finalizeExercise()
 	{
+		ed.tep.save();
 		//Step 0: Check if final test is successful
 		CompilationUnit[] cuArray= getCompilationUnits(true);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		CodeStamp codeStamp = CodeStamp.generateCodeStamp(jsc,cuArray);
-
-		if(codeStamp.getResult().getNumberOfFailedTests() != 0)
+		jsc.compileAndRunTests();
+		
+		if(jsc.getTestResult().getNumberOfFailedTests() != 0 || jsc.getCompilerResult().hasCompileErrors())
 		{
 			AlertMessenger.showErrorMessage("Failure","You haven't finished this task yet!");
 			return;
 		}
+		
 		
 		babystepsTimer.setActive(false);
 		totalTimer.setActive(false);
@@ -385,11 +386,11 @@ public class TDDTThread {
 	 * Gets called by the Editor if a quit is intended
 	 */
 	public void exitRequest() {
-		if(QuestionMessenger.showErrorMessage("You are missing a lot of fun!", "Really quit?"))
+		if(AlertMessenger.showQuestionMessage("You are missing a lot of fun!", "Really quit?"))
 		{
-			if(QuestionMessenger.showErrorMessage("Oh come on, you cant be serious...", "Really???"))
+			if(AlertMessenger.showQuestionMessage("Oh come on, you cant be serious...", "Really???"))
 			{
-				if(QuestionMessenger.showErrorMessage("We worked hard on this...", "Ok"))
+				if(AlertMessenger.showQuestionMessage("We worked hard on this...", "Ok"))
 				{
 					reset();
 				}
