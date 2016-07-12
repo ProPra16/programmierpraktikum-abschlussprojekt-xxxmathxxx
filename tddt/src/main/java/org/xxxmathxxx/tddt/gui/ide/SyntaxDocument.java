@@ -9,7 +9,7 @@ import org.xxxmathxxx.tddt.core.TDDTThread;
 @SuppressWarnings("serial")
 public class SyntaxDocument extends DefaultStyledDocument {
 
-	LineNumberPane linePane;
+	private LineNumberPane linePane;
 
 	public SyntaxDocument(LineNumberPane linePane) {
 		this.linePane = linePane;

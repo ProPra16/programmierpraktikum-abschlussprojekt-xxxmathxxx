@@ -1,5 +1,7 @@
 package org.xxxmathxxx.tddt.tracking_analysis;
 
+//TODO: Add more markers for more detailed analysis
+
 public enum ErrorType {
 	ANY,
 	SEMANTIC,

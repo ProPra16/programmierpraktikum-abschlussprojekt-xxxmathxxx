@@ -57,35 +57,4 @@ public class CodeStampCollection {
 	public int size(){
 		return list.size();
 	}
-	
-	/**
-	 * Removes the code stamp.
-	 *
-	 * @param i the index
-	 */
-	public void removeCodeStamp(int i){
-		list.remove(i);
-	}
-	
-	/**
-	 * Sets the code stamp to i in list.
-	 *
-	 * @param i the index
-	 * @param codeStamp the code stamp
-	 */
-	public void setCodeStamp(int i, CodeStamp codeStamp){
-		list.set(i, codeStamp);
-	}
-	
-	/**
-	 * Index of a CodeStamp.
-	 *
-	 * @param codeStamp the code stamp
-	 * @return the index of the CodeStamp in the list
-	 */
-	public int indexOf(CodeStamp codeStamp){
-		return list.indexOf(codeStamp);
-	}
-	
-	
 }
