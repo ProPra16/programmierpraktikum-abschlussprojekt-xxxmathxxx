@@ -134,7 +134,7 @@ public class Profile {
 			return ret;
 			
 		} catch (IOException | ClassNotFoundException e) {
-			throw new TDDTIOError("Could not open the specified file:");
+			throw new TDDTIOError("Could not open the specified file: "+e.getMessage());
 		}
 	}
 	

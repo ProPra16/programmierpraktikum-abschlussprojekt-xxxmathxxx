@@ -10,7 +10,7 @@ import org.xxxmathxxx.tddt.tracking.TrackerManager;
 /**
  * @author xxxMathxxx 2016
  */
-public class AnalyzedTrackingData {
+public class AnalyzedTrackingData implements java.io.Serializable{
 	
 	public HashMap<CodeStage,AnalyzedStage> anMap;
 
