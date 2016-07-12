@@ -20,9 +20,7 @@ public class TrackerManager {
 	
 	public HashMap<CodeStage,ActivityTracker> atMap;
 	
-	public BabystepsTimer babystepsTimer;
-	
-	public BasicTimer totalTimer;
+
 	
 	/**
 	 * Instantiates a new tm.
@@ -33,11 +31,14 @@ public class TrackerManager {
 		atMap.put(CodeStage.REFACTOR, new ActivityTracker());
 		atMap.put(CodeStage.TEST, new ActivityTracker());
 
-		babystepsTimer = new BabystepsTimer();
-		totalTimer = new BasicTimer();
+
 	}
 
 	public ActivityTracker getActiveTracker() {
 		return atMap.get(TDDTThread.getInstance().getState());
+	}
+	
+	public ActivityTracker getTrackerForStage(CodeStage stage){
+		return atMap.get(stage);
 	}
 }

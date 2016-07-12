@@ -11,6 +11,8 @@ import org.xxxmathxxx.tddt.gui.scenes.Editor;
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.MedalState;
 import org.xxxmathxxx.tddt.profile.Profile;
+import org.xxxmathxxx.tddt.timer.BabystepsTimer;
+import org.xxxmathxxx.tddt.timer.BasicTimer;
 import org.xxxmathxxx.tddt.tracking.CodeStamp;
 import org.xxxmathxxx.tddt.tracking.TrackerManager;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
@@ -42,6 +44,10 @@ public class TDDTThread {
 	/** The active tm */
 	public TrackerManager tm;
 	
+	public BabystepsTimer babystepsTimer;
+	
+	public BasicTimer totalTimer;
+	
 	/** The current state of the Thread, 
 	 *  @see CodeStage 
 	 */
@@ -60,6 +66,8 @@ public class TDDTThread {
 	private TDDTThread(){
 		state =CodeStage.TEST;
 		tm = new TrackerManager();
+		babystepsTimer = new BabystepsTimer();
+		totalTimer = new BasicTimer();
 	}
 	
 	/**
@@ -69,10 +77,10 @@ public class TDDTThread {
 	 */
 	public void beginExercise(Exercise ex){
 		this.currentExercise = ex;
-		this.tm.babystepsTimer.toggleActive();
-		this.tm.totalTimer.toggleActive();
+		this.babystepsTimer.toggleActive();
+		this.totalTimer.toggleActive();
 		generateStartingStamp();
-		TDDTThread.getInstance().tm.stageRed.startTimeTracking();
+		TDDTThread.getInstance().tm.getTrackerForStage(CodeStage.TEST).toggleTimer();
 	}
 	
 	/**
@@ -131,7 +139,7 @@ public class TDDTThread {
 	 * @return True if the change is performed, false otherwise
 	 */
 	public boolean requestSwitch() {
-		tm.babystepsTimer.toggleActive();
+		babystepsTimer.toggleActive();
 		switch(getState())
 		{
 		case TEST: //Switch to code (RED->green)

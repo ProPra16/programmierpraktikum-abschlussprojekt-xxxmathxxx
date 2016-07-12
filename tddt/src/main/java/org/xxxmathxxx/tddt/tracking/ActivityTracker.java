@@ -17,7 +17,7 @@ public class ActivityTracker{
 	public CodeStampCollection codeStampCollection = new CodeStampCollection(); //100% sure that this belongs into a time tm??????
 
 	/** This timer tracks how much time is spend in this particular stage */
-	public BasicTimer timer;
+	private BasicTimer timer;
 	
 	/** The keystrokes. */
 	public int keystrokes = 0;
@@ -27,5 +27,14 @@ public class ActivityTracker{
 	 */
 	public ActivityTracker(){
 		timer = new BasicTimer();
+	}
+
+	public void toggleTimer() {
+		this.timer.toggleActive();
+	}
+
+	
+	public void resetTimer(){
+		this.timer.resetTimer();
 	}
 }
