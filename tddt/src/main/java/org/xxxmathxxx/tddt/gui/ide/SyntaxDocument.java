@@ -4,6 +4,8 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
 
+import org.xxxmathxxx.tddt.core.TDDTThread;
+
 @SuppressWarnings("serial")
 public class SyntaxDocument extends DefaultStyledDocument {
 
@@ -15,7 +17,7 @@ public class SyntaxDocument extends DefaultStyledDocument {
 
 	@Override
 	public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
-		
+				
 		int tabCounter = 0;
 
 		//keep indentation
