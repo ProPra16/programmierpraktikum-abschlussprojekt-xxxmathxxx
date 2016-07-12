@@ -232,21 +232,13 @@ public class Editor extends Scene {
 		@Override
 		public void handle(ActionEvent event) {
 			//SwitchButton
-			if (event.getSource()==switchButton && !nonEditState){
-				tep.save();
-				cep.save();
-				boolean hasSwitched = TDDTThread.getInstance().requestSwitch();
-
-				if (hasSwitched){ //this means a change has occured!
-					
-					if(TDDTThread.getInstance().getState()!=CodeStage.REFACTOR)
-					{
-						switchLabel();
-					}
-					updateStateLabel(TDDTThread.getInstance().getState());	
-					//tep.createBackup();
-				    //cep.createBackup();
-				}
+			if (event.getSource()==switchButton && !nonEditState)
+			{
+				
+				TDDTThread.getInstance().requestSwitch();
+				updateEditPanes();
+				updateStateLabel(TDDTThread.getInstance().getState());	
+				
 			}
 			
 			//Otherside Button
@@ -265,9 +257,39 @@ public class Editor extends Scene {
 			if(event.getSource()==cancelButton&& TDDTThread.getInstance().getState()==CodeStage.CODE)
 			{
 				TDDTThread.getInstance().cancelRequested();
-				switchLabel();
+				updateEditPanes();
 				updateStateLabel(TDDTThread.getInstance().getState());	
 			}
 		}
+	}
+
+	public void updateEditPanes()
+	{
+		switch(TDDTThread.getInstance().getState())
+		{
+		case TEST:
+			tep.setActive(true);
+			cep.setActive(false);
+			tep.setVisible(true);
+			cep.setVisible(false);
+			cep.fixWindowsGraphicsBugs();
+			break;
+		case CODE:
+			tep.setActive(false);
+			cep.setActive(true);
+			tep.setVisible(false);
+			cep.setVisible(true);
+			cep.fixWindowsGraphicsBugs();
+			break;
+			
+		case REFACTOR:
+			tep.setActive(false);
+			cep.setActive(true);
+			tep.setVisible(false);
+			cep.setVisible(true);
+			cep.fixWindowsGraphicsBugs();
+			break;
+		}
+		
 	}
 }

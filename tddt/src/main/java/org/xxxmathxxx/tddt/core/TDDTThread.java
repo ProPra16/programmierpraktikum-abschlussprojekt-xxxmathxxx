@@ -138,6 +138,10 @@ public class TDDTThread {
 	 * @param ed The editor from which the switch is called. (This is unelegant as f*** btw, we should simply pass the compilation units)
 	 */
 	public void requestSwitch() {
+		//Saves all Changes
+		ed.tep.save();
+		ed.cep.save();
+		
 		disableAllTimers();
 		
 		switch(getState())
@@ -261,7 +265,7 @@ public class TDDTThread {
 		CompilationUnit[] cuArray= getCompilationUnits(false);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
 		tm.atMap.get(CodeStage.CODE).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
-		CodeStamp codeStamp = tm.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp();
+		CodeStamp codeStamp = tm.atMap.get(CodeStage.CODE).codeStampCollection.getLatestCodeStamp();
 		
 		if(codeStamp.getResult().compilerError())
 		{	
@@ -326,8 +330,8 @@ public class TDDTThread {
 	public void cancelRequested() {
 		TDDTLogManager.getInstance().logMessage("Switching to Test Stage");
 		state = CodeStage.TEST;
-		updateTimers();
-		ed.cep.rerollTo(tm.atMap.get(CodeStage.CODE).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+		babystepsTimer.resetTimer();
+		ed.cep.rerollTo(tm.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 	}
 
 	public void performBabystepRevert() {

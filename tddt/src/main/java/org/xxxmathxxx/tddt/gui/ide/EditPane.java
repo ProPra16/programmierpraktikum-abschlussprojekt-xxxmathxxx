@@ -111,6 +111,11 @@ public abstract class EditPane extends FlowPane {
 	public void switchActive() {
 		isActive = !isActive;
 	}
+	
+	public void setActive(Boolean a)
+	{
+		isActive=a;
+	}
 
 	/**
 	 * Switches to specified document
