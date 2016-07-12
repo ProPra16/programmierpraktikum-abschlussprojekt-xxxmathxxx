@@ -106,7 +106,22 @@ public class TDDTThread {
 	 */
 	private void generateStartingStamp()
 	{
+		Exercise ex=getExercise();
 		
+		CompilationUnit[] cuArray= new CompilationUnit[ex.referencedClasses.length+ex.referencedTests.length];
+		
+		for(int i=0; i<ex.referencedClasses.length;i++)
+		{
+			cuArray[i]=new CompilationUnit(ex.referencedClasses[i].name, ex.referencedClasses[i].code.rawText, false);
+		}
+		
+		for(int i=0; i<ex.referencedTests.length;i++)
+		{
+			cuArray[ex.referencedClasses.length+i]=new CompilationUnit(ex.referencedTests[i].name, ex.referencedTests[i].code.rawText, true);
+		}
+		
+		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
+		tracker.stageRed.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
 	}
 	
 	/**Requests a switch to the next state and attempts to perform it.
