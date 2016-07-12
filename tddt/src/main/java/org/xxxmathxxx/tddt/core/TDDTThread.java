@@ -139,7 +139,7 @@ public class TDDTThread {
 				tracker.stageRed.stopTimeTracking();
 				tracker.stageGreen.startTimeTracking();
 				state =CodeStage.CODE;
-				ed.cep.createBackup();
+				//ed.cep.createBackup();
 				tracker.babystepsTimer.resetTimer();
 				tracker.babystepsTimer.toggleActive();
 				return true;
