@@ -1,9 +1,12 @@
 package org.xxxmathxxx.tddt.core;
 
 
+import javax.swing.Action;
+
 import org.xxxmathxxx.tddt.data.CodeStage;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.gui.AlertMessenger;
+import org.xxxmathxxx.tddt.gui.QuestionMessenger;
 import org.xxxmathxxx.tddt.gui.WindowManager;
 import org.xxxmathxxx.tddt.gui.ide.CodeEditPane;
 import org.xxxmathxxx.tddt.gui.ide.TestEditPane;
@@ -358,8 +361,7 @@ public class TDDTThread {
 	}
 
 	public void reset() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Reset started");
 	}
 
 	/**
@@ -370,8 +372,16 @@ public class TDDTThread {
 	}
 
 	public void exitRequest() {
-		// TODO Auto-generated method stub
-		
+		if(QuestionMessenger.showErrorMessage("You are missing a lot of fun!", "Really quit?"))
+		{
+			if(QuestionMessenger.showErrorMessage("Oh come on, you cant be serious...", "Really???"))
+			{
+				if(QuestionMessenger.showErrorMessage("We worked hard on this...", "Ok"))
+				{
+					reset();
+				}
+			}
+		}
 	}
 
 	
