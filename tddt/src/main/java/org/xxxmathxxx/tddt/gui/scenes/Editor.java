@@ -88,11 +88,12 @@ public class Editor extends Scene {
 		cancelButton.setDisable(true);
 		
 		//Label
-		stateLabel= new Label("Teststage: Write a failing test!");
+		stateLabel= new Label();
+		stateLabel.setText("Teststage: Write a failing test!");
+		stateLabel.setTextFill(Color.web("#FF0000"));
 		stateLabel.setPrefSize(400, 50);
 		stateLabel.relocate(10,ySize-100);
 		pane.getChildren().add(stateLabel);
-		stateLabel.setTextFill(Color.web("#FF0000"));
 		
 		//Boolean
 		nonEditState=false;
@@ -104,7 +105,7 @@ public class Editor extends Scene {
 	/**
 	 * Updates StateLabel to currentState, also updates othersidebutton now
 	 */
-	private void updateStateLabel()
+	public void updateStateLabel()
 	{
 		switch(TDDTThread.getInstance().getState())
 		{
