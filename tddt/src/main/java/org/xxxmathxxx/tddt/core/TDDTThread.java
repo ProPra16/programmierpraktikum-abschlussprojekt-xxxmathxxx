@@ -195,7 +195,7 @@ public class TDDTThread {
 			totalTimer.setActive(true);
 			
 			tm.atMap.get(CodeStage.CODE).setTimerActive(true);
-			tm.atMap.get(CodeStage.TEST).setTimerActive(true);
+			tm.atMap.get(CodeStage.TEST).setTimerActive(false);
 			tm.atMap.get(CodeStage.REFACTOR).setTimerActive(false);
 			break;
 		case REFACTOR: //Switch to test (refactor->red)
@@ -203,7 +203,7 @@ public class TDDTThread {
 			totalTimer.setActive(true);
 			
 			tm.atMap.get(CodeStage.CODE).setTimerActive(false);
-			tm.atMap.get(CodeStage.TEST).setTimerActive(true);
+			tm.atMap.get(CodeStage.TEST).setTimerActive(false);
 			tm.atMap.get(CodeStage.REFACTOR).setTimerActive(true);
 			break;
 		}	
@@ -251,6 +251,9 @@ public class TDDTThread {
 		AnalyzedTrackingData dataForThisExercise = new AnalyzedTrackingData(tm);
 		profile.profileStats.addTrackingData(currentExercise.id, dataForThisExercise);
 		dataForThisExercise.log();
+		
+		//STEP 3: Quit the shit out of it
+		reset();
 	}
 	
 	/**Attempts to switch to code state
