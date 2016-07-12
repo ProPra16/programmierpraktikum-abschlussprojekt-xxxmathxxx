@@ -13,8 +13,8 @@ To compile from source, first navigate to the tddt subfolder:
 `cd tddt`
 Then start the build-processs with the following commands:
 
-`./gradlew build` on Unix-Systems
-`gradlew build` on Windows-Systems
+Run `./gradlew build` on Unix based systems.
+Run `gradlew build` on Windows based systems.
 
 The compiled .jar will be found in tddt/build/libs.
 
