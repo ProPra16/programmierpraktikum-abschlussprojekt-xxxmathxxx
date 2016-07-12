@@ -32,6 +32,8 @@ public class ExercisePicker extends Scene {
 	
 	private Button start;	
 	
+	private Button back;
+	
 	private ComboBox<Exercise> cb;
 	
 	private ExerciseCollection ec;
@@ -56,9 +58,15 @@ public class ExercisePicker extends Scene {
 		
 		start= new Button("Start!");
 		start.setPrefSize(150, 50);
-		start.relocate(480,55);
+		start.relocate(430,55);
 		start.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(start);
+		
+		back= new Button("Back to Menu");
+		back.setPrefSize(150, 50);
+		back.relocate(600,55);
+		back.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
+		pane.getChildren().add(back);
 		
 		descr = new Label(); //STYLE THIS WHOLE GODDAMN THING BETTER
 		descr.relocate(200, 135);
@@ -111,6 +119,9 @@ public class ExercisePicker extends Scene {
 				{
 					AlertMessenger.showErrorMessage("No selection", "Please select an exercise!");
 				}
+			}
+			if (event.getSource()==back){
+				WindowManager.getInstance().showMenu(WindowManager.MenuType.EXISTING_PROFILE);
 			}
 		}
 	}
