@@ -264,7 +264,11 @@ public class TDDTThread {
 		TDDTLogManager.getInstance().logMessage("Total time needed for this exercise: "+totalTimer.getTimeInSecondsAsString());
 		MedalState medalEarned = currentExercise.checkMedalForTime(totalTimer.getTime());
 		if (medalEarned != MedalState.NONE){
-			awardMedal(medalEarned);
+			try{
+			awardMedal(medalEarned);}
+			catch(NullPointerException e){
+				TDDTLogManager.getInstance().logMessage("No medal earned");
+			}
 			WindowManager.getInstance().createAchievementPopup(medalEarned);
 		}
 		//Step 1: Check total time
