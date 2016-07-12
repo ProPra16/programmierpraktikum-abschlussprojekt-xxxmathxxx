@@ -72,6 +72,7 @@ public class TDDTThread {
 		this.tm.babystepsTimer.toggleActive();
 		this.tm.totalTimer.toggleActive();
 		generateStartingStamp();
+		TDDTThread.getInstance().tm.stageRed.startTimeTracking();
 	}
 	
 	/**
@@ -103,7 +104,7 @@ public class TDDTThread {
 	}
 	
 	/**
-	 * generates an initial codestamp
+	 * generates an initial codestamp in refractor
 	 */
 	private void generateStartingStamp()
 	{
@@ -122,7 +123,7 @@ public class TDDTThread {
 		}
 		
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		tm.stageRed.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
+		tm.atMap.get(CodeStage.REFACTOR).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
 	}
 	
 	/**Requests a switch to the next state and attempts to perform it.
@@ -290,7 +291,7 @@ public class TDDTThread {
 		tm.stageRed.startTimeTracking();
 		state = CodeStage.TEST;
 		//ed.cep.rerollChanges();
-		ed.cep.rerollTo(tm.stageRed.codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+		ed.cep.rerollTo(tm.atMap.get(CodeStage.CODE).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 		
 		tm.babystepsTimer.resetTimer();
 	}
@@ -302,12 +303,12 @@ public class TDDTThread {
 			{
 			case TEST:
 				//ed.tep.rerollChanges();
-				ed.tep.rerollTo(tm.stageRed.codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+				ed.tep.rerollTo(tm.atMap.get(CodeStage.CODE).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 				break;
 				
 			case CODE:
 				//ed.cep.rerollChanges();
-				ed.cep.rerollTo(tm.stageRed.codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+				ed.cep.rerollTo(tm.atMap.get(CodeStage.REFACTOR).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 				break;
 	
 			case REFACTOR:	

@@ -93,7 +93,7 @@ public abstract class EditPane extends FlowPane {
 		te.requestFocus();
 		
 		backupClassdata= new String[classdata.length];
-		createBackup();
+		//createBackup();
 		
 	}
 
