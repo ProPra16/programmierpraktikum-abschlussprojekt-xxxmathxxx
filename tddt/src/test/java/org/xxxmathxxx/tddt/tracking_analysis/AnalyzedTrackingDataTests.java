@@ -32,15 +32,15 @@
 //	@Test
 //	public void analyzeTrackingDataTests1(){
 //		
-//		TrackerManager tracker = new TrackerManager();
+//		TrackerManager tm = new TrackerManager();
 //		CompilationUnit compUnit1 = new CompilationUnit("test", string11, false);
 //		CompilationUnit compUnit2 = new CompilationUnit("TestofTest", string12, true);	
 //		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);
 //		
 //		CodeStamp codeStamp = CodeStamp.generateCodeStamp(compiler);
-//		tracker.stageGreen.codeStampCollection.addCodeStamp(codeStamp);
+//		tm.stageGreen.codeStampCollection.addCodeStamp(codeStamp);
 //		
-//		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker);
+//		AnalyzedTrackingData data = new AnalyzedTrackingData(tm);
 //		
 //		assertEquals(data.analyzedStageGreen.error.testFailure, 1);
 //	}
@@ -48,14 +48,14 @@
 //	@Test
 //	public void analyzeTrackingDataTests2(){
 //		
-//		TrackerManager tracker = new TrackerManager();
+//		TrackerManager tm = new TrackerManager();
 //		CompilationUnit compUnit1 = new CompilationUnit("test", string11, false);
 //		CompilationUnit compUnit2 = new CompilationUnit("TestofTest", string21, true);	
 //		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);
 //		
 //		CodeStamp codeStamp = CodeStamp.generateCodeStamp(compiler);
-//		tracker.stageGreen.codeStampCollection.addCodeStamp(codeStamp);
-//		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker);
+//		tm.stageGreen.codeStampCollection.addCodeStamp(codeStamp);
+//		AnalyzedTrackingData data = new AnalyzedTrackingData(tm);
 //		
 //		assertEquals(data.analyzedStageGreen.error.syntaxError, 1);
 //	}
@@ -63,14 +63,14 @@
 //	@Test
 //	public void analyzeTrackingDataTests4(){
 //		
-//		TrackerManager tracker = new TrackerManager();
+//		TrackerManager tm = new TrackerManager();
 //		CompilationUnit compUnit1 = new CompilationUnit("test", string41, false);
 //		CompilationUnit compUnit2 = new CompilationUnit("TestofTest", string42, true);	
 //		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);
 //		
 //		CodeStamp codeStamp = CodeStamp.generateCodeStamp(compiler);
-//		tracker.stageRefactor.codeStampCollection.addCodeStamp(codeStamp);
-//		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker);
+//		tm.stageRefactor.codeStampCollection.addCodeStamp(codeStamp);
+//		AnalyzedTrackingData data = new AnalyzedTrackingData(tm);
 //		
 //		assertEquals(data.analyzedStageRefactor.error.syntaxError, 2);
 //	}
@@ -78,14 +78,14 @@
 //	@Test
 //	public void analyzeTrackingDataTests3(){
 //		
-//		TrackerManager tracker = new TrackerManager();
+//		TrackerManager tm = new TrackerManager();
 //		CompilationUnit compUnit1 = new CompilationUnit("test", string31, false);
 //		CompilationUnit compUnit2 = new CompilationUnit("TestofTest", string12, true);	
 //		JavaStringCompiler compiler = CompilerFactory.getCompiler(compUnit1, compUnit2);
 //		
 //		CodeStamp codeStamp = CodeStamp.generateCodeStamp(compiler);
-//		tracker.stageRefactor.codeStampCollection.addCodeStamp(codeStamp);
-//		AnalyzedTrackingData data = new AnalyzedTrackingData(tracker);
+//		tm.stageRefactor.codeStampCollection.addCodeStamp(codeStamp);
+//		AnalyzedTrackingData data = new AnalyzedTrackingData(tm);
 //		
 //		assertEquals(data.analyzedStageRefactor.error.semanticError, 1);
 //	}

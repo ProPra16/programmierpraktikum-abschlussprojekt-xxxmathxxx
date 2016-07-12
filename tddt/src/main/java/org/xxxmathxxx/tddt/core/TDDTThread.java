@@ -39,8 +39,8 @@ public class TDDTThread {
 	/** The current exercise. */
 	private Exercise currentExercise;
 	
-	/** The active tracker */
-	public TrackerManager tracker;
+	/** The active tm */
+	public TrackerManager tm;
 	
 	/** The current state of the Thread, 
 	 *  @see CodeStage 
@@ -59,7 +59,7 @@ public class TDDTThread {
 	
 	private TDDTThread(){
 		state =CodeStage.TEST;
-		tracker = new TrackerManager();
+		tm = new TrackerManager();
 	}
 	
 	/**
@@ -69,8 +69,8 @@ public class TDDTThread {
 	 */
 	public void beginExercise(Exercise ex){
 		this.currentExercise = ex;
-		this.tracker.babystepsTimer.toggleActive();
-		this.tracker.totalTimer.toggleActive();
+		this.tm.babystepsTimer.toggleActive();
+		this.tm.totalTimer.toggleActive();
 		generateStartingStamp();
 	}
 	
@@ -122,7 +122,7 @@ public class TDDTThread {
 		}
 		
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		tracker.stageRed.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
+		tm.stageRed.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
 	}
 	
 	/**Requests a switch to the next state and attempts to perform it.
@@ -130,19 +130,19 @@ public class TDDTThread {
 	 * @return True if the change is performed, false otherwise
 	 */
 	public boolean requestSwitch() {
-		tracker.babystepsTimer.toggleActive();
+		tm.babystepsTimer.toggleActive();
 		switch(getState())
 		{
 		case TEST: //Switch to code (RED->green)
 			if(switchToCode()) //Checks if exacly one Test fails/ the program does not compile
 			{
 				TDDTLogManager.getInstance().logMessage("Switching to Code Stage");
-				tracker.stageRed.stopTimeTracking();
-				tracker.stageGreen.startTimeTracking();
+				tm.stageRed.stopTimeTracking();
+				tm.stageGreen.startTimeTracking();
 				state =CodeStage.CODE;
 				//ed.cep.createBackup();
-				tracker.babystepsTimer.resetTimer();
-				tracker.babystepsTimer.toggleActive();
+				tm.babystepsTimer.resetTimer();
+				tm.babystepsTimer.toggleActive();
 				return true;
 			}
 			break;
@@ -150,22 +150,22 @@ public class TDDTThread {
 			if(switchToRefactor()) //TODO: Test if code compiles and no test are failing
 			{
 				TDDTLogManager.getInstance().logMessage("Switching to Refactor Stage");
-				tracker.stageGreen.stopTimeTracking();
-				tracker.stageRefactor.startTimeTracking();
+				tm.stageGreen.stopTimeTracking();
+				tm.stageRefactor.startTimeTracking();
 				state =CodeStage.REFACTOR;
 				return true;
 			}
 			break;
 		case REFACTOR: //Switch to test (refactor->red)
 			TDDTLogManager.getInstance().logMessage("Switching to Test Stage");
-			tracker.stageGreen.startTimeTracking();
-			tracker.stageRefactor.stopTimeTracking();
+			tm.stageGreen.startTimeTracking();
+			tm.stageRefactor.stopTimeTracking();
 			state =CodeStage.TEST;
-			tracker.babystepsTimer.resetTimer();
-			tracker.babystepsTimer.toggleActive();
+			tm.babystepsTimer.resetTimer();
+			tm.babystepsTimer.toggleActive();
 			return true;
 		}	
-		tracker.babystepsTimer.toggleActive();
+		tm.babystepsTimer.toggleActive();
 		return false;
 	}
 	
@@ -184,18 +184,18 @@ public class TDDTThread {
 			return;
 		}
 		
-		this.tracker.babystepsTimer.toggleActive();
-		TDDTLogManager.getInstance().logMessage("Total time needed for this exercise: "+this.tracker.babystepsTimer.getTimeInSecondsAsString());
-		MedalState medalEarned = currentExercise.checkMedalForTime(this.tracker.totalTimer.getTime());
+		this.tm.babystepsTimer.toggleActive();
+		TDDTLogManager.getInstance().logMessage("Total time needed for this exercise: "+this.tm.babystepsTimer.getTimeInSecondsAsString());
+		MedalState medalEarned = currentExercise.checkMedalForTime(this.tm.totalTimer.getTime());
 		if (medalEarned != MedalState.NONE){
 			awardMedal(medalEarned);
 			WindowManager.getInstance().createAchievementPopup(medalEarned);
 		}
 		//Step 1: Check total time
-		//tracker.getTotalTime(); -> Method doesn't exist
+		//tm.getTotalTime(); -> Method doesn't exist
 		
 		//STEP 2: Update stats
-		profile.profileStats.getAnalayzedTrackingData().put(currentExercise, new AnalyzedTrackingData(tracker));
+		profile.profileStats.getAnalayzedTrackingData().put(currentExercise, new AnalyzedTrackingData(tm));
 	}
 	
 	/**Attempts to switch to code state
@@ -205,8 +205,8 @@ public class TDDTThread {
 	{
 		CompilationUnit[] cuArray= getCompilationUnits(false);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		tracker.stageRed.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
-		CodeStamp codeStamp = tracker.stageRed.codeStampCollection.getLatestCodeStamp();
+		tm.stageRed.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
+		CodeStamp codeStamp = tm.stageRed.codeStampCollection.getLatestCodeStamp();
 		
 		if(codeStamp.getResult().compilerError()||codeStamp.getResult().oneFailedTest())
 		{	
@@ -221,8 +221,8 @@ public class TDDTThread {
 	{
 		CompilationUnit[] cuArray= getCompilationUnits(false);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		tracker.stageGreen.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
-		CodeStamp codeStamp = tracker.stageGreen.codeStampCollection.getLatestCodeStamp();
+		tm.stageGreen.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
+		CodeStamp codeStamp = tm.stageGreen.codeStampCollection.getLatestCodeStamp();
 		
 		if(codeStamp.getResult().compilerError())
 		{	
@@ -286,13 +286,13 @@ public class TDDTThread {
 	 */
 	public void cancelRequested() {
 		TDDTLogManager.getInstance().logMessage("Switching to Test Stage");
-		tracker.stageGreen.stopTimeTracking();
-		tracker.stageRed.startTimeTracking();
+		tm.stageGreen.stopTimeTracking();
+		tm.stageRed.startTimeTracking();
 		state = CodeStage.TEST;
 		//ed.cep.rerollChanges();
-		ed.cep.rerollTo(tracker.stageRed.codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+		ed.cep.rerollTo(tm.stageRed.codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 		
-		tracker.babystepsTimer.resetTimer();
+		tm.babystepsTimer.resetTimer();
 	}
 
 	public void performBabystepRevert() {
@@ -302,12 +302,12 @@ public class TDDTThread {
 			{
 			case TEST:
 				//ed.tep.rerollChanges();
-				ed.tep.rerollTo(tracker.stageRed.codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+				ed.tep.rerollTo(tm.stageRed.codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 				break;
 				
 			case CODE:
 				//ed.cep.rerollChanges();
-				ed.cep.rerollTo(tracker.stageRed.codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+				ed.cep.rerollTo(tm.stageRed.codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 				break;
 	
 			case REFACTOR:	

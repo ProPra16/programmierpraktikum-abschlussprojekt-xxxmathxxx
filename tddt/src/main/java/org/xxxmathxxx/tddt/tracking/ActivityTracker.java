@@ -14,7 +14,7 @@ import org.xxxmathxxx.tddt.timer.BasicTimer;
 public class ActivityTracker{
 	
 	/** The code stemp collection. */
-	public CodeStampCollection codeStampCollection = new CodeStampCollection(); //100% sure that this belongs into a time tracker??????
+	public CodeStampCollection codeStampCollection = new CodeStampCollection(); //100% sure that this belongs into a time tm??????
 
 	/** This timer tracks how much time is spend in this particular stage */
 	public BasicTimer timer;
@@ -23,7 +23,7 @@ public class ActivityTracker{
 	public int keystrokes = 0;
 	
 	/**
-	 * Instantiates a new time tracker.
+	 * Instantiates a new time tm.
 	 */
 	public ActivityTracker(){
 		timer = new BasicTimer();

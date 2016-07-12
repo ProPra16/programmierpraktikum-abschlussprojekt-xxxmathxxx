@@ -14,7 +14,7 @@ import org.xxxmathxxx.tddt.timer.BasicTimer;
  * The Class TrackerManager.
  *
  * @author Tschebyscheff, 23.06.16
- * 	main class for our tracking system, includes all different tracker-types
+ * 	main class for our tracking system, includes all different tm-types
  */
 public class TrackerManager {
 	
@@ -25,7 +25,7 @@ public class TrackerManager {
 	public BasicTimer totalTimer;
 	
 	/**
-	 * Instantiates a new tracker.
+	 * Instantiates a new tm.
 	 */
 	public TrackerManager(){
 		atMap = new HashMap<CodeStage,ActivityTracker>();

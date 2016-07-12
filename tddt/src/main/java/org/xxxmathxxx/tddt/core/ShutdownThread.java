@@ -21,7 +21,7 @@ public class ShutdownThread extends Thread {
 		}
 		//Killing timers
 		if (TDDTThread.getInstance() != null){
-			TDDTThread.getInstance().tracker.babystepsTimer.toggleActive();
+			TDDTThread.getInstance().tm.babystepsTimer.toggleActive();
 			TDDTThread.getInstance().reset();
 		}
 		//Cleaning the log manager, this should be the last clean-up step so the others can still be logged
