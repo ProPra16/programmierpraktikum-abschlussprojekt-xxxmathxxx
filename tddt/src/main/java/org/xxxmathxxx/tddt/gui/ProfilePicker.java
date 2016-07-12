@@ -158,7 +158,7 @@ public class ProfilePicker extends Pane {
 		profiles.get(index).showNameInJavaFXLabel(caption);
 	}
 	
-	EventHandler<MouseEvent> mouseControl = new EventHandler<MouseEvent>(){
+	private EventHandler<MouseEvent> mouseControl = new EventHandler<MouseEvent>(){
 		@Override
 		public void handle(MouseEvent event) {
 			if (event.getSource() == left){
@@ -171,7 +171,7 @@ public class ProfilePicker extends Pane {
 		
 	};
 	
-	EventHandler<MouseEvent> selectionHighlighter = new EventHandler<MouseEvent>(){
+	private EventHandler<MouseEvent> selectionHighlighter = new EventHandler<MouseEvent>(){
 		@Override
 		public void handle(MouseEvent event) {
 			if (event.getEventType() == MouseEvent.MOUSE_ENTERED){

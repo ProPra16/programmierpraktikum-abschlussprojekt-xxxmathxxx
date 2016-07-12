@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.xxxmathxxx.tddt.core.TDDTThread;
-import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.io.ExerciseReader;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedStage;
@@ -11,8 +10,6 @@ import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingDataCollection;
 import org.xxxmathxxx.tddt.tracking_analysis.ErrorType;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.BarChart;
@@ -24,7 +21,6 @@ import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -88,7 +84,6 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 	private void initialize(){
 		profileLabel = new Label();
 		profile.showNameInJavaFXLabel(profileLabel);
-		MenuItem[] menuItem = new MenuItem[analyzedTrackingDataCollection.size()];
 
 		
 		ArrayList<PieChart.Data> pieChartData = new ArrayList<PieChart.Data>();

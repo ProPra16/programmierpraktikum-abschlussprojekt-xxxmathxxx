@@ -33,7 +33,6 @@ public abstract class EditPane extends FlowPane {
 	private ToggleButton[] navigator;
 	
 	public ClassData[] classdata;
-	private String[] backupClassdata;
 
 	/**
 	 * Used by Editor.java in package gui
@@ -85,22 +84,13 @@ public abstract class EditPane extends FlowPane {
 		
 		te.setText(classdata[0].code.rawText);
 		te.requestFocus();
-		
-		backupClassdata= new String[classdata.length];
-		
+				
 		//Adds clocks
 		getChildren().add(babyClock);
 		getChildren().add(totalClock);
 		
 	}
 
-	/**
-	 * Returns is Pane is active
-	 * @return activeness
-	 */
-	public Boolean isActive() {
-		return isActive;
-	}
 
 	/**
 	 * Inverts activeness
@@ -160,34 +150,6 @@ public abstract class EditPane extends FlowPane {
 		classdata[selectedPage].code.rawText=te.getText();
 	}
 	
-	/**
-	 * Creates backup of content.
-	 * Please dont use this.
-	 */
-	@Deprecated
-	public void createBackup() {
-		System.out.println("Saving current state as backup");
-
-		for(int i=0; i<classdata.length;i++)
-		{
-			backupClassdata[i]=classdata[i].code.rawText;
-		}
-	}
-	
-	/**
-	 * Rerolls changes to the state when createBackup() was called.
-	 * Please dont use this.
-	 */
-	@Deprecated
-	public void rerollChanges()
-	{
-		for(int i=0; i<classdata.length;i++)
-		{
-			classdata[i].code.rawText=backupClassdata[i];
-		}
-		
-		te.setText(backupClassdata[selectedPage]);
-	}
 	
 	/**
 	 * Rerolls pane to previous state

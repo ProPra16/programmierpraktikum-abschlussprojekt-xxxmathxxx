@@ -94,16 +94,7 @@ public class Result {
 	public CompilerResult getCompilerResult(){
 		return compilerResult;
 	}
-	
-	
-	/**
-	 * Resett results.
-	 */
-	public void resetResults(){
-		compilerResult = null;
-		testResult = null;
-		
-	}
+
 
 	public int getNumberOfFailedTests() {
 		if (testResult == null){ //WHY THE FUCK WOULD THIS EVER HAPPEN???

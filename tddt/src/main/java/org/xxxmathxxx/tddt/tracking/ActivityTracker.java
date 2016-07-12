@@ -33,11 +33,6 @@ public class ActivityTracker{
 		this.timer.setActive(state);
 	}
 
-	
-	public void resetTimer(){
-		this.timer.resetTimer();
-	}
-
 	public double getElapsedTime() {
 		return this.timer.getTime();
 	}

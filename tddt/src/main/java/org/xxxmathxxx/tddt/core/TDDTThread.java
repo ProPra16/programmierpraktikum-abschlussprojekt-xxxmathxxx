@@ -110,7 +110,7 @@ public class TDDTThread {
 	 *
 	 * @param newState the new state
 	 */
-	public void awardMedal(MedalState newState) {
+	private void awardMedal(MedalState newState) {
 		profile.setMedalState(currentExercise.id, newState);
 	}
 	
@@ -174,7 +174,7 @@ public class TDDTThread {
 	/**
 	 * Updates Timers after a Statechange happened
 	 */
-	public void updateTimers()
+	private void updateTimers()
 	{
 		switch(getState())
 		{
@@ -205,7 +205,7 @@ public class TDDTThread {
 		}	
 	}
 	
-	public void disableAllTimers()
+	private void disableAllTimers()
 	{
 		babystepsTimer.setActive(false);
 		totalTimer.setActive(false);
