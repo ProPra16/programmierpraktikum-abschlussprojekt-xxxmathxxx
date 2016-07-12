@@ -30,7 +30,7 @@ public class BasicTimerTests {
 	
 	@Test public void clockRunningTest() {
 		BasicTimer testTimer = new BasicTimer();
-		testTimer.toggleActive();
+		testTimer.setActive(true);
 		try {
 			Thread.sleep(1000);
 			assertNotEquals(testTimer.getTime(),0.0,0);
