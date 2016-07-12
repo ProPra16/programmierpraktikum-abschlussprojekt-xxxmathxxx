@@ -54,6 +54,6 @@ public class FinalUltimateTest
 	<config>
 		<babysteps value="True" time="3.22" />
 		<timetracking value="True" />
-		<medals bronze="13.37" silver="6.65" gold="1.00" author="0.001"/>
+		<medals bronze="13.37" silver="6.65" gold="1.00" author="0.5"/>
 	</config>
 </exercise>
