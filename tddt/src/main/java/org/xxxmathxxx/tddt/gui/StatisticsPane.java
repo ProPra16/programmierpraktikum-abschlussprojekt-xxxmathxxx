@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.xxxmathxxx.tddt.core.TDDTThread;
+import org.xxxmathxxx.tddt.data.CodeStage;
 import org.xxxmathxxx.tddt.io.ExerciseReader;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedStage;
@@ -16,7 +17,6 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -87,9 +87,15 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 
 		series1 = new Series<String, Integer>();
 		series1.setName("totalError");
-		for (AnalyzedStage as : analyzedTrackingData.anMap.values()){
-			series1.getData().add(new Data<String, Integer>("Stage Red",as.error.getErrorCount(ErrorType.ANY)));
-			pieChartData.add(new PieChart.Data("StageRed", as.time));
+		
+		for ( CodeStage stage : analyzedTrackingData.anMap.keySet()){
+			AnalyzedStage data = analyzedTrackingData.anMap.get(stage);
+			for (ErrorType type : ErrorType.values()){ // loop over error types
+				//barChart.getData().add(	
+						//new Data<String, Integer>(stage.toString(),data.error.getErrorCount(type))
+				//		);
+			}
+			pieChartData.add(new PieChart.Data(stage.toString(),data.time));
 		}
 		xAxis.setLabel("Error");
 		yAxis.setLabel("Number");
