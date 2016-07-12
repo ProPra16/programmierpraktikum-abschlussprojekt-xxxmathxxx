@@ -77,10 +77,10 @@ public class TDDTThread {
 	 */
 	public void beginExercise(Exercise ex){
 		this.currentExercise = ex;
-		this.babystepsTimer.toggleActive();
-		this.totalTimer.toggleActive();
+		this.babystepsTimer.setActive(true);
+		this.totalTimer.setActive(true);
 		generateStartingStamp();
-		TDDTThread.getInstance().tm.getTrackerForStage(CodeStage.TEST).toggleTimer();
+		TDDTThread.getInstance().tm.getTrackerForStage(CodeStage.TEST).setTimerActive(true);
 	}
 	
 	/**
@@ -136,48 +136,77 @@ public class TDDTThread {
 	
 	/**Requests a switch to the next state and attempts to perform it.
 	 * @param ed The editor from which the switch is called. (This is unelegant as f*** btw, we should simply pass the compilation units)
-	 * @return True if the change is performed, false otherwise
 	 */
-	public boolean requestSwitch() {
-		babystepsTimer.toggleActive();
+	public void requestSwitch() {
+		disableAllTimers();
+		
 		switch(getState())
 		{
 		case TEST: //Switch to code (RED->green)
 			if(switchToCode()) //Checks if exacly one Test fails/ the program does not compile
 			{
 				TDDTLogManager.getInstance().logMessage("Switching to Code Stage");
-				tm.stageRed.stopTimeTracking();
-				tm.stageGreen.startTimeTracking();
 				state =CodeStage.CODE;
-				//ed.cep.createBackup();
-				tm.babystepsTimer.resetTimer();
-				tm.babystepsTimer.toggleActive();
-				return true;
 			}
 			break;
 		case CODE: //Switch to refactor (GREEN->Refactor)
 			if(switchToRefactor()) //TODO: Test if code compiles and no test are failing
 			{
 				TDDTLogManager.getInstance().logMessage("Switching to Refactor Stage");
-				tm.stageGreen.stopTimeTracking();
-				tm.stageRefactor.startTimeTracking();
 				state =CodeStage.REFACTOR;
-				return true;
 			}
 			break;
 		case REFACTOR: //Switch to test (refactor->red)
 			TDDTLogManager.getInstance().logMessage("Switching to Test Stage");
-			tm.stageGreen.startTimeTracking();
-			tm.stageRefactor.stopTimeTracking();
 			state =CodeStage.TEST;
-			tm.babystepsTimer.resetTimer();
-			tm.babystepsTimer.toggleActive();
-			return true;
 		}	
-		tm.babystepsTimer.toggleActive();
-		return false;
+		
+		updateTimers();
 	}
 	
+	/**
+	 * Updates Timers after a Statechange happened
+	 */
+	public void updateTimers()
+	{
+		switch(getState())
+		{
+		case TEST: //Switch to code (RED->green)
+			babystepsTimer.setActive(true);
+			totalTimer.setActive(true);
+			
+			tm.atMap.get(CodeStage.CODE).setTimerActive(false);
+			tm.atMap.get(CodeStage.TEST).setTimerActive(true);
+			tm.atMap.get(CodeStage.REFACTOR).setTimerActive(false);
+			break;
+		case CODE: //Switch to refactor (GREEN->Refactor)
+			babystepsTimer.setActive(true);
+			totalTimer.setActive(true);
+			
+			tm.atMap.get(CodeStage.CODE).setTimerActive(true);
+			tm.atMap.get(CodeStage.TEST).setTimerActive(true);
+			tm.atMap.get(CodeStage.REFACTOR).setTimerActive(false);
+			break;
+		case REFACTOR: //Switch to test (refactor->red)
+			babystepsTimer.setActive(true);
+			totalTimer.setActive(true);
+			
+			tm.atMap.get(CodeStage.CODE).setTimerActive(false);
+			tm.atMap.get(CodeStage.TEST).setTimerActive(true);
+			tm.atMap.get(CodeStage.REFACTOR).setTimerActive(true);
+			break;
+		}	
+	}
+	
+	public void disableAllTimers()
+	{
+		babystepsTimer.setActive(false);
+		totalTimer.setActive(false);
+		
+		tm.atMap.get(CodeStage.CODE).setTimerActive(false);
+		tm.atMap.get(CodeStage.TEST).setTimerActive(false);
+		tm.atMap.get(CodeStage.REFACTOR).setTimerActive(false);
+	}
 	
 	
 	public void finalizeExercise()
@@ -193,9 +222,10 @@ public class TDDTThread {
 			return;
 		}
 		
-		this.tm.babystepsTimer.toggleActive();
-		TDDTLogManager.getInstance().logMessage("Total time needed for this exercise: "+this.tm.babystepsTimer.getTimeInSecondsAsString());
-		MedalState medalEarned = currentExercise.checkMedalForTime(this.tm.totalTimer.getTime());
+		babystepsTimer.setActive(false);
+		totalTimer.setActive(false);
+		TDDTLogManager.getInstance().logMessage("Total time needed for this exercise: "+babystepsTimer.getTimeInSecondsAsString());
+		MedalState medalEarned = currentExercise.checkMedalForTime(totalTimer.getTime());
 		if (medalEarned != MedalState.NONE){
 			awardMedal(medalEarned);
 			WindowManager.getInstance().createAchievementPopup(medalEarned);
@@ -214,8 +244,8 @@ public class TDDTThread {
 	{
 		CompilationUnit[] cuArray= getCompilationUnits(false);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		tm.stageRed.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
-		CodeStamp codeStamp = tm.stageRed.codeStampCollection.getLatestCodeStamp();
+		tm.atMap.get(CodeStage.TEST).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
+		CodeStamp codeStamp = tm.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp();
 		
 		if(codeStamp.getResult().compilerError()||codeStamp.getResult().oneFailedTest())
 		{	
@@ -230,8 +260,8 @@ public class TDDTThread {
 	{
 		CompilationUnit[] cuArray= getCompilationUnits(false);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		tm.stageGreen.codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
-		CodeStamp codeStamp = tm.stageGreen.codeStampCollection.getLatestCodeStamp();
+		tm.atMap.get(CodeStage.CODE).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
+		CodeStamp codeStamp = tm.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp();
 		
 		if(codeStamp.getResult().compilerError())
 		{	
@@ -295,13 +325,9 @@ public class TDDTThread {
 	 */
 	public void cancelRequested() {
 		TDDTLogManager.getInstance().logMessage("Switching to Test Stage");
-		tm.stageGreen.stopTimeTracking();
-		tm.stageRed.startTimeTracking();
 		state = CodeStage.TEST;
-		//ed.cep.rerollChanges();
+		updateTimers();
 		ed.cep.rerollTo(tm.atMap.get(CodeStage.CODE).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
-		
-		tm.babystepsTimer.resetTimer();
 	}
 
 	public void performBabystepRevert() {
