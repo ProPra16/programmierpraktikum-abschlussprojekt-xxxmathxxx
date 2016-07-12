@@ -17,6 +17,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -34,14 +35,8 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 	
 	
 	AnalyzedTrackingData analyzedTrackingData;
-	
-	private  XYChart.Series<String, Integer> series1;
-	private  XYChart.Series<String, Integer> series2;
-	private  XYChart.Series<String, Integer> series3;
-	private  XYChart.Series<String, Integer> series4;
-	private  XYChart.Series<String, Integer> series5;
-	private  XYChart.Series<String, Integer> series6;
-	private  XYChart.Series<String, Integer> series7;
+	private  ArrayList<  XYChart.Series<String,Integer > > seriesList; 
+
 	@FXML
 	private BarChart<String, Integer> barChart;
 	@FXML
@@ -76,7 +71,6 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 	
 	
 	
-	@SuppressWarnings("unchecked")
 	@FXML
 	private void initialize(){
 		profileLabel = new Label();
@@ -85,21 +79,19 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 		
 		ArrayList<PieChart.Data> pieChartData = new ArrayList<PieChart.Data>();
 
-		series1 = new Series<String, Integer>();
-		series1.setName("totalError");
 		
 		for ( CodeStage stage : analyzedTrackingData.anMap.keySet()){
 			AnalyzedStage data = analyzedTrackingData.anMap.get(stage);
 			for (ErrorType type : ErrorType.values()){ // loop over error types
-				//barChart.getData().add(	
-						//new Data<String, Integer>(stage.toString(),data.error.getErrorCount(type))
-				//		);
+				Series<String,Integer> tmpSeries = new Series<String, Integer>();
+				tmpSeries.getData().add(new Data<String, Integer>(stage.toString(),data.error.getErrorCount(type)));
+				seriesList.add(tmpSeries);
 			}
 			pieChartData.add(new PieChart.Data(stage.toString(),data.time));
 		}
 		xAxis.setLabel("Error");
 		yAxis.setLabel("Number");
-		barChart.getData().addAll(series1, series2, series3, series4, series5, series6, series7);
+		barChart.getData().addAll(seriesList);
 	
 		pieChart.getData().addAll(pieChartData);
 		pieChart.setTitle("Time");
