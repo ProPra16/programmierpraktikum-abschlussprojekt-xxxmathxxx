@@ -18,7 +18,7 @@ public class SyntaxDocument extends DefaultStyledDocument {
 	@Override
 	public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
 		
-		TDDTThread.getInstance().tm.getActiveTracker().keystrokes ++;
+		TDDTThread.getInstance().trackerManager.getActiveTracker().keystrokes ++;
 		
 		int tabCounter = 0;
 

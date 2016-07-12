@@ -9,8 +9,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**The main class, this is a JavaFX application
- * @author philipp
- *
+ * @author xxxMathxxx 2016
  */
 public class TDDT extends Application{
 

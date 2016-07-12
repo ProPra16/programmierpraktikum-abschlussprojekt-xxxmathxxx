@@ -12,7 +12,7 @@ import org.xxxmathxxx.tddt.data.CodeStage;
  * The Class TrackerManager.
  *
  * @author Tschebyscheff, 23.06.16
- * 	main class for our tracking system, includes all different tm-types
+ * 	main class for our tracking system, includes all different trackerManager-types
  */
 public class TrackerManager {
 	
@@ -21,7 +21,7 @@ public class TrackerManager {
 
 	
 	/**
-	 * Instantiates a new tm.
+	 * Instantiates a new trackerManager.
 	 */
 	public TrackerManager(){
 		atMap = new HashMap<CodeStage,ActivityTracker>();

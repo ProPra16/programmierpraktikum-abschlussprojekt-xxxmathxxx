@@ -2,10 +2,9 @@ package org.xxxmathxxx.tddt.core;
 
 import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 
-/**
- * @author xxxMathxxx 2016
- * Simple class that describes a thread which is invoked upon termination
+/**Simple class that describes a thread which is invoked upon termination
  * Thus any clean-up operations may find their home here
+ * @author xxxMathxxx 2016
  */
 public class ShutdownThread extends Thread {
 	/* (non-Javadoc)

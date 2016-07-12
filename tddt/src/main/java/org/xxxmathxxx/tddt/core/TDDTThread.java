@@ -21,13 +21,19 @@ import vk.core.api.CompilationUnit;
 import vk.core.api.CompilerFactory;
 import vk.core.api.JavaStringCompiler;
 
-/**
- * The Class TDDTThread.
+/**This class describes the running program and its state. That means it includes information about the current profile, the exercise and the trackers.
+ * @author xxxMathxxx 2016
  */
 public class TDDTThread {
 	
+	/**
+	 * This is the only instance ever existing. It is only accessed internally.
+	 */
 	private static TDDTThread instance;
 	
+	/**This is your way from outside this class to access the running Thread
+	 * @return The active TDDTThread, if none exists one is created upon invocation.
+	 */
 	public static TDDTThread getInstance(){
 		if (instance == null){
 			instance = new TDDTThread();
@@ -35,14 +41,16 @@ public class TDDTThread {
 		return instance;
 	}
 	
-	/** The profile. */
+	/** The active profile. */
 	private Profile profile;
 	
 	/** The current exercise. */
 	private Exercise currentExercise;
-	
-	/** The active tm */
-	public TrackerManager tm;
+
+	/**The active TrackerManager
+	 * @see TrackerManager
+	 */
+	public TrackerManager trackerManager;
 	
 	public BabystepsTimer babystepsTimer;
 	
@@ -71,7 +79,7 @@ public class TDDTThread {
 	public void initialize()
 	{
 		state =CodeStage.TEST;
-		tm = new TrackerManager();
+		trackerManager = new TrackerManager();
 		babystepsTimer = new BabystepsTimer();
 		totalTimer = new BasicTimer();
 	}
@@ -86,7 +94,7 @@ public class TDDTThread {
 		this.babystepsTimer.setActive(true);
 		this.totalTimer.setActive(true);
 		generateStartingStamp();
-		TDDTThread.getInstance().tm.getTrackerForStage(CodeStage.TEST).setTimerActive(true);
+		TDDTThread.getInstance().trackerManager.getTrackerForStage(CodeStage.TEST).setTimerActive(true);
 	}
 	
 	/**
@@ -137,7 +145,7 @@ public class TDDTThread {
 		}
 		
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		tm.atMap.get(CodeStage.REFACTOR).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
+		trackerManager.atMap.get(CodeStage.REFACTOR).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
 	}
 	
 	/**Requests a switch to the next state and attempts to perform it.
@@ -186,25 +194,25 @@ public class TDDTThread {
 			babystepsTimer.setActive(true);
 			totalTimer.setActive(true);
 			
-			tm.atMap.get(CodeStage.CODE).setTimerActive(false);
-			tm.atMap.get(CodeStage.TEST).setTimerActive(true);
-			tm.atMap.get(CodeStage.REFACTOR).setTimerActive(false);
+			trackerManager.atMap.get(CodeStage.CODE).setTimerActive(false);
+			trackerManager.atMap.get(CodeStage.TEST).setTimerActive(true);
+			trackerManager.atMap.get(CodeStage.REFACTOR).setTimerActive(false);
 			break;
 		case CODE: //Switch to refactor (GREEN->Refactor)
 			babystepsTimer.setActive(true);
 			totalTimer.setActive(true);
 			
-			tm.atMap.get(CodeStage.CODE).setTimerActive(true);
-			tm.atMap.get(CodeStage.TEST).setTimerActive(false);
-			tm.atMap.get(CodeStage.REFACTOR).setTimerActive(false);
+			trackerManager.atMap.get(CodeStage.CODE).setTimerActive(true);
+			trackerManager.atMap.get(CodeStage.TEST).setTimerActive(false);
+			trackerManager.atMap.get(CodeStage.REFACTOR).setTimerActive(false);
 			break;
 		case REFACTOR: //Switch to test (refactor->red)
 			babystepsTimer.setActive(true);
 			totalTimer.setActive(true);
 			
-			tm.atMap.get(CodeStage.CODE).setTimerActive(false);
-			tm.atMap.get(CodeStage.TEST).setTimerActive(false);
-			tm.atMap.get(CodeStage.REFACTOR).setTimerActive(true);
+			trackerManager.atMap.get(CodeStage.CODE).setTimerActive(false);
+			trackerManager.atMap.get(CodeStage.TEST).setTimerActive(false);
+			trackerManager.atMap.get(CodeStage.REFACTOR).setTimerActive(true);
 			break;
 		}	
 	}
@@ -214,9 +222,9 @@ public class TDDTThread {
 		babystepsTimer.setActive(false);
 		totalTimer.setActive(false);
 		
-		tm.atMap.get(CodeStage.CODE).setTimerActive(false);
-		tm.atMap.get(CodeStage.TEST).setTimerActive(false);
-		tm.atMap.get(CodeStage.REFACTOR).setTimerActive(false);
+		trackerManager.atMap.get(CodeStage.CODE).setTimerActive(false);
+		trackerManager.atMap.get(CodeStage.TEST).setTimerActive(false);
+		trackerManager.atMap.get(CodeStage.REFACTOR).setTimerActive(false);
 	}
 	
 	
@@ -245,10 +253,10 @@ public class TDDTThread {
 			WindowManager.getInstance().createAchievementPopup(medalEarned);
 		}
 		//Step 1: Check total time
-		//tm.getTotalTime(); -> Method doesn't exist
+		//trackerManager.getTotalTime(); -> Method doesn't exist
 		
 		//STEP 2: Update stats
-		AnalyzedTrackingData dataForThisExercise = new AnalyzedTrackingData(tm);
+		AnalyzedTrackingData dataForThisExercise = new AnalyzedTrackingData(trackerManager);
 		profile.profileStats.addTrackingData(currentExercise.id, dataForThisExercise);
 		dataForThisExercise.log();
 		
@@ -263,8 +271,8 @@ public class TDDTThread {
 	{
 		CompilationUnit[] cuArray= getCompilationUnits(false);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		tm.atMap.get(CodeStage.TEST).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
-		CodeStamp codeStamp = tm.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp();
+		trackerManager.atMap.get(CodeStage.TEST).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
+		CodeStamp codeStamp = trackerManager.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp();
 		
 		if(codeStamp.getResult().compilerError()||codeStamp.getResult().oneFailedTest())
 		{	
@@ -279,8 +287,8 @@ public class TDDTThread {
 	{
 		CompilationUnit[] cuArray= getCompilationUnits(false);
 		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		tm.atMap.get(CodeStage.CODE).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
-		CodeStamp codeStamp = tm.atMap.get(CodeStage.CODE).codeStampCollection.getLatestCodeStamp();
+		trackerManager.atMap.get(CodeStage.CODE).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
+		CodeStamp codeStamp = trackerManager.atMap.get(CodeStage.CODE).codeStampCollection.getLatestCodeStamp();
 		
 		if(codeStamp.getResult().compilerError())
 		{	
@@ -346,7 +354,7 @@ public class TDDTThread {
 		TDDTLogManager.getInstance().logMessage("Switching to Test Stage");
 		state = CodeStage.TEST;
 		babystepsTimer.resetTimer();
-		ed.cep.rerollTo(tm.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+		ed.cep.rerollTo(trackerManager.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 	}
 
 	public void performBabystepRevert() {
@@ -356,12 +364,12 @@ public class TDDTThread {
 			{
 			case TEST:
 				//ed.tep.rerollChanges();
-				ed.tep.rerollTo(tm.atMap.get(CodeStage.REFACTOR).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+				ed.tep.rerollTo(trackerManager.atMap.get(CodeStage.REFACTOR).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 				break;
 				
 			case CODE:
 				//ed.cep.rerollChanges();
-				ed.cep.rerollTo(tm.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+				ed.cep.rerollTo(trackerManager.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 				break;
 	
 			case REFACTOR:	
