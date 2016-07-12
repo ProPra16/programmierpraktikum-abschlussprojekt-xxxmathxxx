@@ -247,7 +247,7 @@ public class TDDTThread {
 		
 		//STEP 2: Update stats
 		AnalyzedTrackingData dataForThisExercise = new AnalyzedTrackingData(tm);
-		profile.profileStats.getAnalayzedTrackingData().put(currentExercise, dataForThisExercise);
+		profile.profileStats.addTrackingData(currentExercise, dataForThisExercise);
 		dataForThisExercise.log();
 	}
 	

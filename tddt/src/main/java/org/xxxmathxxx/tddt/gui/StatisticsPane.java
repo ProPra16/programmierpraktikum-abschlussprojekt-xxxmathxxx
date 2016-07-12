@@ -7,7 +7,6 @@ import org.xxxmathxxx.tddt.io.ExerciseReader;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedStage;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
-import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingDataCollection;
 import org.xxxmathxxx.tddt.tracking_analysis.ErrorType;
 
 import javafx.fxml.FXML;
@@ -33,7 +32,6 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 
 	private Profile profile;
 	
-	private AnalyzedTrackingDataCollection analyzedTrackingDataCollection;
 	
 	AnalyzedTrackingData analyzedTrackingData;
 	
@@ -63,7 +61,6 @@ public class StatisticsPane extends Pane{ //suggestion: move this to gui package
 	public StatisticsPane(){
 		this.profile = TDDTThread.getInstance().getUserProfile();
 				
-		analyzedTrackingDataCollection = TDDTThread.getInstance().getUserProfile().profileStats.getAnalayzedTrackingData();	//WHY ARE WE PASSING AN ENTIRE COLLECTION HERE??? AND WHY IS THE METHOD NAME WRONG?
 		
 		try {
 			AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("Stats.fxml"));

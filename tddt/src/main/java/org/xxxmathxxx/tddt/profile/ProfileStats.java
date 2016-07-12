@@ -2,7 +2,8 @@ package org.xxxmathxxx.tddt.profile;
 
 import java.util.HashMap;
 
-import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingDataCollection;
+import org.xxxmathxxx.tddt.data.Exercise;
+import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
 
 
 
@@ -22,7 +23,7 @@ public class ProfileStats implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	/** The tracking data list. */
-	private AnalyzedTrackingDataCollection trackingDataList;
+	private HashMap<Exercise,AnalyzedTrackingData> trackingData;
 	
 	/** Hash-Map that encodes the MedalState the user has for Exercises with a given Long ID. */
 	private HashMap<Long,MedalState> achievements;
@@ -31,21 +32,9 @@ public class ProfileStats implements java.io.Serializable {
 	 * Instantiates a new profile stats.
 	 */
 	public ProfileStats(){
-		trackingDataList = new AnalyzedTrackingDataCollection();
+		trackingData = new HashMap<Exercise,AnalyzedTrackingData>();
 		this.achievements = new HashMap<Long,MedalState>();
 	}
-	
-	
-	/**
-	 * Gets the analayzed tracking data.
-	 *
-	 * @return the analayzed tracking data
-	 */
-	public AnalyzedTrackingDataCollection getAnalayzedTrackingData(){
-		return trackingDataList;
-	}
-	
-	
 	
 	/**
 	 * Setter that stores a given MedalState for an exercise with a given ID.
@@ -70,5 +59,10 @@ public class ProfileStats implements java.io.Serializable {
 			return achievements.get(exerciseID);
 		}
 		return null;
+	}
+
+
+	public void addTrackingData(Exercise currentExercise, AnalyzedTrackingData dataForThisExercise) {
+		trackingData.put(currentExercise, dataForThisExercise);
 	}	
 }
