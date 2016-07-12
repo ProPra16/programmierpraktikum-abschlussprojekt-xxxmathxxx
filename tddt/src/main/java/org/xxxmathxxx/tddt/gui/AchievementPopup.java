@@ -58,14 +58,14 @@ public class AchievementPopup extends Popup {
 		background = new Label();
 		background.setPrefSize(width, height);
 		background.setId("achievement_bg");
-		background.getStylesheets().add(this.getClass().getResource("NotificationStyle.css").toExternalForm());
+		background.getStylesheets().add(GraphicsHelper.getResourcePath("/NotificationStyle.css"));
 		this.getContent().add(background);
 		
 		text = new Label("Congratulations, you just won a medal on this exercise!");
 		text.setPrefSize(width-128-2*border, height-2*border);
 		text.setTextFill(Color.WHITE);
 		text.setWrapText(true);
-		text.getStylesheets().add(this.getClass().getResource("NotificationStyle.css").toExternalForm());
+		text.getStylesheets().add(GraphicsHelper.getResourcePath("/NotificationStyle.css"));
 		text.setId("achievement_text");
 		text.relocate(128+border, border);
 		this.getContent().add(text);

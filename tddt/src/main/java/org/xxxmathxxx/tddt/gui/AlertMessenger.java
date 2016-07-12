@@ -21,7 +21,7 @@ public class AlertMessenger {
 		Alert noTextDialog = new Alert(AlertType.ERROR);
 		noTextDialog.setTitle("Info");
 		noTextDialog.setHeaderText(header);
-		noTextDialog.getDialogPane().getStylesheets().add("org/xxxmathxxx/tddt/gui/MenuStyle.css");
+		noTextDialog.getDialogPane().getStylesheets().add(GraphicsHelper.getResourcePath("/MenuStyle.css"));
 		String s = text;
 		noTextDialog.setContentText(s);
 		noTextDialog.getDialogPane().getChildren().stream().filter(node -> node instanceof Label).forEach(node -> ((Label)node).setMinHeight(Region.USE_PREF_SIZE));
@@ -30,7 +30,7 @@ public class AlertMessenger {
 	
 	public static Boolean showQuestionMessage(String header, String text){
 		Alert noTextDialog = new Alert(AlertType.CONFIRMATION);
-		noTextDialog.getDialogPane().getStylesheets().add("org/xxxmathxxx/tddt/gui/MenuStyle.css");
+		noTextDialog.getDialogPane().getStylesheets().add(GraphicsHelper.getResourcePath("/MenuStyle.css"));
 		noTextDialog.setTitle("Info");
 		noTextDialog.setHeaderText(header);
 		String s = text;
