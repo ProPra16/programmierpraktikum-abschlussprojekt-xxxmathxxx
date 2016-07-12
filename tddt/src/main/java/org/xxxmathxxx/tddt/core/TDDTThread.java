@@ -64,7 +64,13 @@ public class TDDTThread {
 		this.ed = e;
 	}
 	
-	private TDDTThread(){
+	private TDDTThread(){}
+	
+	/**
+	 * Initalizes values
+	 */
+	public void initialize()
+	{
 		state =CodeStage.TEST;
 		tm = new TrackerManager();
 		babystepsTimer = new BabystepsTimer();
