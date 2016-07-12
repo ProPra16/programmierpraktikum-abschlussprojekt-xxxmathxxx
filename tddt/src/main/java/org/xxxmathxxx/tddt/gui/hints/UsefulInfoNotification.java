@@ -3,8 +3,6 @@ package org.xxxmathxxx.tddt.gui.hints;
 import org.xxxmathxxx.tddt.gui.AlertMessenger;
 import org.xxxmathxxx.tddt.gui.GraphicsHelper;
 
-import com.sun.glass.ui.Application;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;

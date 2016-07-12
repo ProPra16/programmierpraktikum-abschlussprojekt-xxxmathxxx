@@ -159,7 +159,7 @@ public class ImageCropperTool extends Stage {
 		
 		//javafx is intuitive and ... makes a lot of sense ... all the time
 		pane = new Pane();
-		pane.getStylesheets().add("org/xxxmathxxx/tddt/gui/MenuStyle.css");
+		pane.getStylesheets().add(GraphicsHelper.getResourcePath("/MenuStyle.css"));
 		pane.setPrefSize(originalImage.getWidth(), originalImage.getHeight()+50);
 		
 		Group imageLayer = new Group();
@@ -216,7 +216,7 @@ public class ImageCropperTool extends Stage {
 
         try {
             ImageIO.write(bufImageRGB, "png", file); 
-            imagePath = file.getAbsolutePath();
+            imagePath = "file:"+file.getPath();
             TDDTLogManager.getInstance().logMessage("A cropped image has been stored @ " + file.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();

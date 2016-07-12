@@ -76,7 +76,7 @@ public class Profile {
 		//initialize/load picture if necessary
 		if (this.profilePic == null){
 			try{
-				this.profilePic = new Image("file:"+profilePicPath);
+				this.profilePic = new Image(profilePicPath);
 			}
 			catch(NullPointerException | IllegalArgumentException e){
 				TDDTLogManager.getInstance().logMessage("Error loading the profile picture:");
