@@ -356,12 +356,12 @@ public class TDDTThread {
 			{
 			case TEST:
 				//ed.tep.rerollChanges();
-				ed.tep.rerollTo(tm.atMap.get(CodeStage.CODE).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+				ed.tep.rerollTo(tm.atMap.get(CodeStage.REFACTOR).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 				break;
 				
 			case CODE:
 				//ed.cep.rerollChanges();
-				ed.cep.rerollTo(tm.atMap.get(CodeStage.REFACTOR).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+				ed.cep.rerollTo(tm.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 				break;
 	
 			case REFACTOR:	
