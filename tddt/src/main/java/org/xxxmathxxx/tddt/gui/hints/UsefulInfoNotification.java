@@ -91,7 +91,7 @@ public class UsefulInfoNotification extends Stage {
 		
 		dialogScene = new Scene(pane);
 		
-		dialogScene.getStylesheets().add("org/xxxmathxxx/tddt/gui/NotificationStyle.css");
+		dialogScene.getStylesheets().add(this.getClass().getResource("/NotificationStyle.css").toExternalForm());
 		
 		this.setScene(dialogScene);
 		this.initStyle(StageStyle.UNDECORATED);
@@ -112,11 +112,11 @@ public class UsefulInfoNotification extends Stage {
 	 * Static reference to all the mathematicians glorious faces
 	 */
 	private static String[] faceImagePaths = new String[]{
-			"graphics/faces/fou.jpeg",
-			"graphics/faces/tsc.jpeg",
-			"graphics/faces/cau.jpeg",
-			"graphics/faces/eul.png",
-			"graphics/faces/kant.jpeg"
+			"/graphics/faces/fou.jpeg",
+			"/graphics/faces/tsc.jpeg",
+			"/graphics/faces/cau.jpeg",
+			"/graphics/faces/eul.png",
+			"/graphics/faces/kant.jpeg"
 	};
 	
 	private static Image generateRandomMathFace(){
