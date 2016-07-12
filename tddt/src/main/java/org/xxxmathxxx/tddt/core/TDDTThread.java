@@ -13,6 +13,7 @@ import org.xxxmathxxx.tddt.profile.MedalState;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.tracking.CodeStamp;
 import org.xxxmathxxx.tddt.tracking.Tracker;
+import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
 
 import vk.core.api.CompilationUnit;
 import vk.core.api.CompilerFactory;
@@ -192,6 +193,9 @@ public class TDDTThread {
 		}
 		//Step 1: Check total time
 		//tracker.getTotalTime(); -> Method doesn't exist
+		
+		//STEP 2: Update stats
+		profile.profileStats.getAnalayzedTrackingData().put(currentExercise, new AnalyzedTrackingData(tracker));
 	}
 	
 	/**Attempts to switch to code state
