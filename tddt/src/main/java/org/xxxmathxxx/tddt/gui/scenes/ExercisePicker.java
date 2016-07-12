@@ -101,9 +101,9 @@ public class ExercisePicker extends Scene {
 				Exercise selectedExercise=cb.getValue();
 				
 				if(selectedExercise!=null)
-				{
-					TDDTThread.getInstance().beginExercise(selectedExercise);
+				{	
 					WindowManager.getInstance().showMenu(WindowManager.MenuType.EDITOR);
+					TDDTThread.getInstance().beginExercise(selectedExercise);
 				}
 				else
 				{

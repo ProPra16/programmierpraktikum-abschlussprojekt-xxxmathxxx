@@ -1,13 +1,11 @@
 package org.xxxmathxxx.tddt.core;
 
-
-import javax.swing.Action;
-
 import org.xxxmathxxx.tddt.data.CodeStage;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.gui.AlertMessenger;
 import org.xxxmathxxx.tddt.gui.QuestionMessenger;
 import org.xxxmathxxx.tddt.gui.WindowManager;
+import org.xxxmathxxx.tddt.gui.WindowManager.MenuType;
 import org.xxxmathxxx.tddt.gui.ide.CodeEditPane;
 import org.xxxmathxxx.tddt.gui.ide.TestEditPane;
 import org.xxxmathxxx.tddt.gui.scenes.Editor;
@@ -141,6 +139,7 @@ public class TDDTThread {
 	 * @param ed The editor from which the switch is called. (This is unelegant as f*** btw, we should simply pass the compilation units)
 	 */
 	public void requestSwitch() {
+		TDDTLogManager.getInstance().logMessage("Stateswitch requested");
 		//Saves all Changes
 		ed.tep.save();
 		ed.cep.save();
@@ -360,8 +359,13 @@ public class TDDTThread {
 		}		
 	}
 
+	/**
+	 * Resets everything.
+	 */
 	public void reset() {
-		System.out.println("Reset started");
+		TDDTLogManager.getInstance().logMessage("Editor gets resetted.");
+		WindowManager.getInstance().showMenu(MenuType.EXERCISEPICKER);
+		state =CodeStage.TEST;
 	}
 
 	/**
@@ -371,6 +375,9 @@ public class TDDTThread {
 		return state;
 	}
 
+	/**
+	 * Gets called by the Editor if a quit is intended
+	 */
 	public void exitRequest() {
 		if(QuestionMessenger.showErrorMessage("You are missing a lot of fun!", "Really quit?"))
 		{
