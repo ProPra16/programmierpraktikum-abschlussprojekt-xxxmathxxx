@@ -1,4 +1,10 @@
 apply plugin: 'java'
+jar {
+    manifest {
+        attributes("Main-Class": "org.xxxmathxxx.tddt.core.TDDT")
+    }
+}
+
 
 repositories {
     jcenter()
