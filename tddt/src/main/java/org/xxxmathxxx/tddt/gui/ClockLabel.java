@@ -34,7 +34,7 @@ public class ClockLabel extends Label{
 			@Override
 			public void run() {
 				try{
-					setText(""+Math.round(time));
+					setText("Total time: "+Math.round(time));
 				}
 				catch(Exception e){
 					//TODO:

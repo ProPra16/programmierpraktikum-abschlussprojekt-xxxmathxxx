@@ -11,7 +11,8 @@ import javafx.event.EventHandler;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
 import vk.core.api.CompilationUnit;
 
 /**
@@ -46,15 +47,11 @@ public abstract class EditPane extends FlowPane {
 		if(TDDTThread.getInstance().getExercise().config.babystepsEnabeled)
 		{
 			this.babyClock = new ReversedClockLabel(TDDTThread.getInstance().babystepsTimer); //TODO: Add exercise babysteps time
-			this.babyClock.setPrefSize(32, 32);
-			this.babyClock.relocate(128, 8);
-			getChildren().add(babyClock);
+			this.babyClock.setPrefSize(100, 32);
 		}
 		
 		this.totalClock = new ClockLabel(TDDTThread.getInstance().totalTimer); //TODO: Add exercise babysteps time
-		this.totalClock.setPrefSize(32, 32);
-		this.totalClock.relocate(128+16+32, 8);
-		getChildren().add(totalClock);
+		this.totalClock.setPrefSize(100, 32);
 		//Creating Navigator
 		
 		navigator = new ToggleButton[classdata.length];
@@ -77,15 +74,13 @@ public abstract class EditPane extends FlowPane {
 		//Editor
 		te = new TextEditor();
 		te.setLocation(10, 50);
-		te.setSize(500, 450);
+		te.setSize(580, 450);
 		
 		te.addEventHandler(MouseEvent.MOUSE_CLICKED, focusHelper);
 		getChildren().add(te);
 		this.classdata=classdata;
 		
-		
-		
-		
+		//navigator
 		selectedPage = 0;
 		navigator[0].setSelected(true);
 		
@@ -93,7 +88,10 @@ public abstract class EditPane extends FlowPane {
 		te.requestFocus();
 		
 		backupClassdata= new String[classdata.length];
-		//createBackup();
+		
+		//Adds clocks
+		getChildren().add(babyClock);
+		getChildren().add(totalClock);
 		
 	}
 

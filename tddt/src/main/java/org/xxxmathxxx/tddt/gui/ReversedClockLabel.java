@@ -35,7 +35,7 @@ public class ReversedClockLabel extends Label {
 			@Override
 			public void run() {
 				try{
-					setText(""+String.valueOf(Math.round(bsTime-time)));
+					setText("Babysteps: "+String.valueOf(Math.round(bsTime-time)));
 				}
 				catch(Exception e){
 					//TODO:
