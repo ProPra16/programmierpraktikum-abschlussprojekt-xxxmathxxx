@@ -63,8 +63,8 @@ public class MechgameTest
 	</finishtests>
 		
 	<config>
-		<babysteps value="True" time="2.00" />
-		<timetracking value="True" />
+		<babysteps value="false" time="2.00" />
+		<timetracking value="false" />
 		<medals bronze="2.00" silver="1.50" gold="1.00" author="0.50"/>
 	</config>
 </exercise>

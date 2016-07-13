@@ -451,11 +451,11 @@ public class TDDTThread {
 	 * Gets called by the Editor if a quit is intended
 	 */
 	public void exitRequest() {
-		if(AlertMessenger.showQuestionMessage("You are missing a lot of fun!", "Really quit?"))
+		if(AlertMessenger.showQuestionMessage("Really quit?", "You're missing a lot of fun!"))
 		{
-			if(AlertMessenger.showQuestionMessage("Oh come on, you cant be serious...", "Really???"))
+			if(AlertMessenger.showQuestionMessage("Are you serious???", "Oh come on man, you can't be serious!"))
 			{
-				if(AlertMessenger.showQuestionMessage("We worked hard on this...", "Ok"))
+				if(!AlertMessenger.showQuestionMessage("Ok...", "We've worked hard on this. Do you really not want to quit?"))
 				{
 					reset();
 				}
