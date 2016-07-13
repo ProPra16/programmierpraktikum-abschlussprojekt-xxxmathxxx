@@ -298,7 +298,11 @@ public class TDDTThread {
 		
 		//STEP 2: Update stats
 		AnalyzedTrackingData dataForThisExercise = new AnalyzedTrackingData(trackerManager);
-		profile.profileStats.addTrackingData(currentExercise.id, dataForThisExercise);
+		
+		if(getExercise().config.timetrackingEnabled)
+		{
+			profile.profileStats.addTrackingData(currentExercise.id, dataForThisExercise);
+		}
 		dataForThisExercise.log();
 		
 		//STEP 3: Quit the shit out of it
