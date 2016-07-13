@@ -11,6 +11,7 @@ import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import vk.core.api.CompilationUnit;
 import vk.core.api.CompileError;
 import vk.core.api.CompilerResult;
+import vk.core.api.TestFailure;
 import vk.core.api.TestResult;
 
 
@@ -102,5 +103,17 @@ public class Result {
 		else{
 			return testResult.getNumberOfFailedTests();
 		}
+	}
+
+	/**Generates a String representing the test failures
+	 * @return The failed tests as String
+	 */
+	public String getFailedTestMessages() {
+		String ret = "";
+		for (TestFailure f: testResult.getTestFailures()){
+			ret = ret +f.getTestClassName() +":";
+			ret = ret + f.getMessage();
+		}
+		return ret;
 	}	
 }

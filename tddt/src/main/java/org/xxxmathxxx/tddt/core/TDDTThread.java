@@ -286,7 +286,7 @@ public class TDDTThread {
 		profile.saveProfileToFile();
 		
 		//STEP 3: Quit the shit out of it
-		reset();
+		leave();
 	}
 	
 	/**
@@ -333,7 +333,7 @@ public class TDDTThread {
 			}
 			else
 			{
-				AlertMessenger.showErrorMessage("Test Failed!", "There are failed tests.");
+				AlertMessenger.showErrorMessage("Test Failed!", codeStamp.getResult().getFailedTestMessages());
 			}
 		}
 		return false;
@@ -415,12 +415,11 @@ public class TDDTThread {
 	}
 
 	/**
-	 * Resets everything.
+	 * Leaves the current exercise
 	 */
-	private void reset() {
+	private void leave() {
 		TDDTLogManager.getInstance().logMessage("Editor gets resetted.");
 		WindowManager.getInstance().showMenu(MenuType.EXERCISEPICKER);
-		state =CodeStage.TEST;
 	}
 
 	/**
@@ -441,7 +440,7 @@ public class TDDTThread {
 			{
 				if(!AlertMessenger.showQuestionMessage("Ok...", "We've worked hard on this. Do you really not want to quit?"))
 				{
-					reset();
+					leave();
 				}
 			}
 		}
