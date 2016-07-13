@@ -28,8 +28,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
+
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeLineCap;
@@ -48,7 +49,7 @@ public class ImageCropperTool extends Stage {
 	
 	private Rectangle selectionMarker;
 	private ImageView iv;
-	private Pane pane;
+	private VBox pane;
 	private Scene scene;
 	
 	private Button confirmButton;
@@ -63,9 +64,14 @@ public class ImageCropperTool extends Stage {
 	private double oldWidth;
 	private double oldHeight;
 	
+	private double scaleFactor = 1.0;
+
+	
 	//statics
 	private static int profilePicSizeX = 128; //adjust as required
 	private static int profilePicSizeY = 128;
+	
+	private static int buttonHeight = 16;
 	
 	private enum OperationMode{
 			SCALING_SELECTION,MOVING_SELECTION,NONE
@@ -131,10 +137,40 @@ public class ImageCropperTool extends Stage {
 		
 		this.setTitle("Image Cropping Tool");
 		
+		pane = new VBox();
+		pane.getStylesheets().add(GraphicsHelper.getResourcePath("/MenuStyle.css"));
+		pane.setPrefSize(800, 600);		
 
-		
 		originalImage = new Image("file:"+filePath);
 		iv = new ImageView(originalImage);
+		
+		//Scale image to fit view if necessary
+		double imageWidth = originalImage.getWidth();
+		double imageHeight = originalImage.getHeight();
+		if (imageHeight > 600-buttonHeight || imageWidth>800){
+			//Image would be bigger than the 800x600 window
+			TDDTLogManager.getInstance().logMessage("Image view needs to be scaled!");
+			//We now determine which orientation the image has
+			boolean potrait = false;
+			if (imageWidth < imageHeight){
+				potrait = true;
+			}
+			
+			//Next we need to calculate the scaling factor
+			
+			if (potrait){
+				scaleFactor = (600-buttonHeight)/imageHeight;
+			}
+			else{
+				scaleFactor = (800)/imageWidth;
+			}
+			TDDTLogManager.getInstance().logMessage("Changed ImageView scaling to :"+scaleFactor);
+			int newWidth = (int)(imageWidth * scaleFactor);
+			int newHeight = (int)(imageHeight * scaleFactor);
+			iv.setFitWidth(newWidth);
+			iv.setFitHeight(newHeight);
+
+		}
 		
 		selectionMarker = new Rectangle(0,0,profilePicSizeX,profilePicSizeY);
 		
@@ -144,9 +180,8 @@ public class ImageCropperTool extends Stage {
         selectionMarker.setFill(Color.LIGHTBLUE.deriveColor(0, 1, 1, 0.4));
         
 		confirmButton = new Button("Confirm profile picture!");
-		confirmButton.setPrefSize(180, 40);
-		confirmButton.relocate(originalImage.getWidth()/2-90, originalImage.getHeight()+5);
 		confirmButton.addEventHandler(ActionEvent.ANY,confButtonHandler);
+		confirmButton.setPrefSize(800, buttonHeight);
 		
 		this.addEventHandler(MouseEvent.MOUSE_PRESSED, MousePressedHandler);
 		this.addEventHandler(MouseEvent.MOUSE_DRAGGED, MouseDraggedHandler);
@@ -156,18 +191,12 @@ public class ImageCropperTool extends Stage {
 		this.initOwner(owner);
 		this.initModality(Modality.WINDOW_MODAL);
 		
-		
-		//javafx is intuitive and ... makes a lot of sense ... all the time
-		pane = new Pane();
-		pane.getStylesheets().add(GraphicsHelper.getResourcePath("/MenuStyle.css"));
-		pane.setPrefSize(originalImage.getWidth(), originalImage.getHeight()+50);
-		
 		Group imageLayer = new Group();
 		imageLayer.getChildren().add(iv);
 		imageLayer.getChildren().add(selectionMarker);
 		
-		pane.getChildren().add(confirmButton);
 		pane.getChildren().add(imageLayer);
+		pane.getChildren().add(confirmButton);
 		
 		
 		scene = new Scene(pane);	
