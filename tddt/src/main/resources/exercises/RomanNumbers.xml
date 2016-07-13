@@ -15,28 +15,25 @@ public class RomanNumberConverter
 	</classes>
 		
 	<tests>
-		<test name="RomanNumberConverterTest">
-import static org.junit.Assert.*;
+		<test name="RomanNumberConverterTest">import static org.junit.Assert.*;
 import org.junit.Test;
 public class RomanNumberConverterTest 
 {
 	@Test
-	public static void testSomething() 
+	public void testSomething() 
 	{
 		assertEquals(RomanNumberConverter.convert(1), "I");
 	}
-}
-		</test>
+}</test>
 	</tests>
 		
 	<finishtests>
-		<finishtest name="FinalTestRomanNumbers">
-import static org.junit.Assert.*;
+		<finishtest name="FinalTestRomanNumbers">import static org.junit.Assert.*;
 import org.junit.Test;
 public class FinalTestRomanNumbers
 {
 	@Test
-	public static void test1() 
+	public void test1() 
 	{
 		assertEquals(RomanNumberConverter.convert(1), "I");
 		assertEquals(RomanNumberConverter.convert(2), "II");
@@ -52,8 +49,7 @@ public class FinalTestRomanNumbers
 		assertEquals(RomanNumberConverter.convert(50), "L");
 	}
 	
-}		
-		</finishtest>
+}</finishtest>
 	</finishtests>
 		
 	<config>
