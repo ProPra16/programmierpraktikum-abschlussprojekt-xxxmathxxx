@@ -21,7 +21,6 @@ import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,7 +28,6 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -103,8 +101,6 @@ public class ImageCropperTool extends Stage {
 			noTextDialog.setHeaderText("Image too large!");
 			String s ="You can only use images < 50 MB for your profile picture!";
 			noTextDialog.setContentText(s);
-			//the following line is pure BS but javafx is still buggy
-			noTextDialog.getDialogPane().getChildren().stream().filter(node -> node instanceof Label).forEach(node -> ((Label)node).setMinHeight(Region.USE_PREF_SIZE));
 			noTextDialog.showAndWait();
         	return null;
         }
@@ -118,8 +114,6 @@ public class ImageCropperTool extends Stage {
 			noTextDialog.setHeaderText("Image too small!");
 			String s ="Your profile picture needs to have at least 128x128 pixels!";
 			noTextDialog.setContentText(s);
-			//the following line is pure BS but javafx is still buggy
-			noTextDialog.getDialogPane().getChildren().stream().filter(node -> node instanceof Label).forEach(node -> ((Label)node).setMinHeight(Region.USE_PREF_SIZE));
 			noTextDialog.showAndWait();
         	return null;
 		}

@@ -122,6 +122,7 @@ public class Profile {
 			}
 			
 			ret = new Profile(tmpName,tmpImg);
+			TDDTLogManager.getInstance().logMessage("Using stat file: "+tmpStats);
 			ret.statsPath = tmpStats;
 
 			in.close();
@@ -130,7 +131,7 @@ public class Profile {
 			ObjectInput objectIn = new ObjectInputStream(new FileInputStream(tmpStats));
 			ret.profileStats = (ProfileStats) objectIn.readObject();
 			objectIn.close();
-			
+
 			return ret;
 			
 		} catch (IOException | ClassNotFoundException e) {
