@@ -39,22 +39,12 @@ public class CodeStamp {
 		this.result = result;
 		this.cUnits = cUnits;
 	}
-
-	
-	/**
-	 * Gets the compilation units.
-	 *
-	 * @return the compilation units
-	 */
-	public CompilationUnit[] getCompilationUnits(){
-		return cUnits;
-	}
-	
 	/**
 	 * Generates a CodeStamp.
 	 *
-	 * @param compiler the compiler
-	 * @param cuArray 
+	 * @param compiler The JavaStringCompiler used
+	 * @see JavaStringCompiler
+	 * @param cUnits the Compilation Units from which the stamp should be generated
 	 * @return the code stamp
 	 */
 	public static CodeStamp generateCodeStamp(JavaStringCompiler compiler, CompilationUnit[] cUnits){	
@@ -81,9 +71,21 @@ public class CodeStamp {
 		return codeStamp;
 	}
 	
+	/**Basic getter for the result of this CodeStamp
+	 * @return
+	 */
 	public Result getResult(){
 		//getter because it should not be modified from outside
 		return result;
 	}
+	
+	/**
+	 * Gets the compilation units.
+	 * @return the compilation units
+	 */
+	public CompilationUnit[] getCompilationUnits(){
+		return cUnits;
+	}
+	
 
 }
