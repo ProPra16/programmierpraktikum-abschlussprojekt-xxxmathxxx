@@ -80,7 +80,6 @@ public class StatisticsPane extends Pane{
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	@FXML
 	private void initialize(){
 
@@ -99,47 +98,17 @@ public class StatisticsPane extends Pane{
 			pieChart.getData().addAll(pieChartData);
 			pieChart.setTitle("Time");
 			
-			XYChart.Series<String, Integer> series1 = new Series<String, Integer>();
-			XYChart.Series<String, Integer> series2 = new Series<String, Integer>();
-			XYChart.Series<String, Integer> series3 = new Series<String, Integer>();
-			XYChart.Series<String, Integer> series4 = new Series<String, Integer>();
-			XYChart.Series<String, Integer> series5 = new Series<String, Integer>();
-			XYChart.Series<String, Integer> series6 = new Series<String, Integer>();
-			
-			series1.setName("notInitializedError");
-			series3.setName("cannotFindError");
-			series4.setName("returnTypeError");
-			series5.setName("expectedError");
-			series6.setName("semanticError");
-			series2.setName("syntaxError");
-			
-			series1.getData().add(new Data<String, Integer>("Stage Red", stage1.error.getErrorCount(ErrorType.NOT_INITIALIZED)));
-			series1.getData().add(new Data<String, Integer>("Stage Green", stage2.error.getErrorCount(ErrorType.NOT_INITIALIZED)));
-			series1.getData().add(new Data<String, Integer>("Stage Refactor", stage3.error.getErrorCount(ErrorType.NOT_INITIALIZED)));
-
-			series2.getData().add(new Data<String, Integer>("Stage Red", stage1.error.getErrorCount(ErrorType.SYNTAX)));
-			series2.getData().add(new Data<String, Integer>("Stage Green", stage2.error.getErrorCount(ErrorType.SYNTAX)));
-			series2.getData().add(new Data<String, Integer>("Stage Refactor", stage3.error.getErrorCount(ErrorType.SYNTAX)));
-			
-			series3.getData().add(new Data<String, Integer>("Stage Red", stage1.error.getErrorCount(ErrorType.CANNOT_FIND)));
-			series3.getData().add(new Data<String, Integer>("Stage Green", stage2.error.getErrorCount(ErrorType.CANNOT_FIND)));
-			series3.getData().add(new Data<String, Integer>("Stage Refactor", stage3.error.getErrorCount(ErrorType.CANNOT_FIND)));
-			
-			series4.getData().add(new Data<String, Integer>("Stage Red", stage1.error.getErrorCount(ErrorType.RETURN_TYPE)));
-			series4.getData().add(new Data<String, Integer>("Stage Green", stage2.error.getErrorCount(ErrorType.RETURN_TYPE)));
-			series4.getData().add(new Data<String, Integer>("Stage Refactor", stage3.error.getErrorCount(ErrorType.RETURN_TYPE)));
-			
-			series5.getData().add(new Data<String, Integer>("Stage Red", stage1.error.getErrorCount(ErrorType.EXPECTED_WRONG_TYPE)));
-			series5.getData().add(new Data<String, Integer>("Stage Green", stage2.error.getErrorCount(ErrorType.EXPECTED_WRONG_TYPE)));
-			series5.getData().add(new Data<String, Integer>("Stage Refactor", stage3.error.getErrorCount(ErrorType.EXPECTED_WRONG_TYPE)));
-			
-			series6.getData().add(new Data<String, Integer>("Stage Red", stage1.error.getErrorCount(ErrorType.SEMANTIC)));
-			series6.getData().add(new Data<String, Integer>("Stage Green", stage2.error.getErrorCount(ErrorType.SEMANTIC)));
-			series6.getData().add(new Data<String, Integer>("Stage Refactor", stage3.error.getErrorCount(ErrorType.SEMANTIC)));
-			
-			
-			barChart.getData().addAll(series1, series2, series3, series4, series5, series6);
-			xAxis.setLabel("Error");
+			for (ErrorType e : ErrorType.values()){
+				XYChart.Series<String, Integer> curSeries = new Series<String, Integer>();
+				curSeries.setName(e.toString());
+				curSeries.getData().add(new Data<String, Integer>("Stage Red (Test)", stage1.error.getErrorCount(e)));
+				curSeries.getData().add(new Data<String, Integer>("Stage Green (Code)", stage2.error.getErrorCount(e)));
+				curSeries.getData().add(new Data<String, Integer>("Stage Refactor", stage3.error.getErrorCount(e)));
+				barChart.getData().add(curSeries);
+			}
+			barChart.setCategoryGap(24);
+			barChart.setAnimated(false);//Retarded JavaFX, so after being desperate about this I finally found out that this is a known bug in JavaFX and disabling the animation is the only fix
+			xAxis.setLabel("ErrorType");
 			yAxis.setLabel("Number");
 		}
 	}
