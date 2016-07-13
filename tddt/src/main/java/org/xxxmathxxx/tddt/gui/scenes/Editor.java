@@ -88,7 +88,7 @@ public class Editor extends Scene {
 		
 		quitButton= new Button("I am tired of this!");
 		quitButton.setPrefSize(150, 25);
-		quitButton.relocate(xSize-200,ySize-70);
+		quitButton.relocate(xSize-475,ySize-90);
 		quitButton.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(quitButton);
 		

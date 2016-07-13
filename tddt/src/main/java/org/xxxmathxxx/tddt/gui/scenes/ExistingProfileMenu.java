@@ -42,7 +42,7 @@ public class ExistingProfileMenu extends Scene {
 		
 		infoText = new Label("You are almost ready to go!");
 		infoText.setPrefSize(240, 32);
-		infoText.relocate((xSize/2)+10,100);
+		infoText.relocate((xSize/2)+40,100);
 		infoText.setFont(new Font("Times New Roman", 20));
 		infoText.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(infoText);
@@ -53,37 +53,37 @@ public class ExistingProfileMenu extends Scene {
 		
 		TDDTThread.getInstance().getUserProfile().showImageInJavaFXImageView(profilePic);
 
-		profilePic.relocate((xSize/2)-280,146);
+		profilePic.relocate(xSize-603,146);
 		pane.getChildren().add(profilePic);
 		
 		loggedInAs = new Label("Logged in as:");
 		loggedInAs.setPrefSize(280, 32);
-		loggedInAs.relocate((xSize/2)-280,100);
+		loggedInAs.relocate(xSize-603,100);
 		loggedInAs.setFont(new Font("Times New Roman", 18));
 		pane.getChildren().add(loggedInAs);
 		
 		profileName = new Label();
 		TDDTThread.getInstance().getUserProfile().showNameInJavaFXLabel(profileName);
 		profileName.setPrefSize(280, 32);
-		profileName.relocate((xSize/2)-280,290);
+		profileName.relocate(xSize-603,290);
 		profileName.setFont(new Font("Times New Roman", 18));
 		pane.getChildren().add(profileName);
 		
 		newTask = new Button("Start a new Exercise!");
 		newTask.setPrefSize(150, 50);
-		newTask.relocate(xSize/2+45,146);
+		newTask.relocate(xSize/2+75,146);
 		newTask.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(newTask);
 		
 		notYou = new Button("Back");
 		notYou.setPrefSize(150, 25);
-		notYou.relocate(xSize-200,ySize-70);
+		notYou.relocate(xSize-475,ySize-90);
 		notYou.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(notYou);
 		
 		statistics = new Button("Statistics");
 		statistics.setPrefSize(150, 50);
-		statistics.relocate(xSize/2+45,224);
+		statistics.relocate(xSize/2+75,224);
 		statistics.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(statistics);
 				

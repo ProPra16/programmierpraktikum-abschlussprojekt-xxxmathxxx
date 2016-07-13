@@ -51,38 +51,38 @@ public class NewProfileMenu extends Scene {
 		
 		newProfile = new Label("Create a new Profile!");
 		newProfile.setPrefSize(175, 32);
-		newProfile.relocate((xSize/2)-74,30);
+		newProfile.relocate(xSize-486,30);
 		newProfile.setFont(new Font("Times New Roman", 20));
 		newProfile.setTextAlignment(TextAlignment.LEFT);
 		pane.getChildren().add(newProfile);
 		
 		back = new Button("Back");
 		back.setPrefSize(150, 25);
-		back.relocate(xSize-200,ySize-70);
+		back.relocate(xSize-475,ySize-90);
 		back.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(back);
 		
 		create = new Button("Confirm");
 		create.setPrefSize(150, 32);
-		create.relocate(xSize/2-64,ySize - 200);
+		create.relocate(xSize-475,ySize - 200);
 		create.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(create);
 		
 		picture = new Button("Change picture");
 		picture.setPrefSize(150, 32);
-		picture.relocate(xSize/2-64,ySize - 250);
+		picture.relocate(xSize-475,ySize - 250);
 		picture.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(picture);
 		
 		textField = new RestrictedTextField();
-		textField.relocate((xSize/2)-64,80);
+		textField.relocate(xSize-475,80);
 		textField.setPromptText("Enter a name");
 		pane.getChildren().add(textField);
 		
 
 		
 		profilePic = new ImageView(GraphicsHelper.defaultProfilePicture(128));
-		profilePic.relocate(347, 170);
+		profilePic.relocate(336, 170);
 		profilePic.setFitWidth(128);
 		profilePic.setFitHeight(128);
 		pane.getChildren().add(profilePic);

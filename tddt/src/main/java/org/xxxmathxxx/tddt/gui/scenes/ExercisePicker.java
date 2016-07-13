@@ -61,13 +61,13 @@ public class ExercisePicker extends Scene {
 		
 		start= new Button("Start!");
 		start.setPrefSize(150, 50);
-		start.relocate(460,58);
+		start.relocate(xSize-325,58);
 		start.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(start);
 		
 		back = new Button("Back");
 		back.setPrefSize(150, 25);
-		back.relocate(xSize-200,ySize-70);
+		back.relocate(xSize-475,ySize-90);
 		back.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(back);
 		
