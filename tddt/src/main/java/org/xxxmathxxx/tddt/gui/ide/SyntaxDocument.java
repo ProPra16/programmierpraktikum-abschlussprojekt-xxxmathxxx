@@ -60,7 +60,7 @@ public class SyntaxDocument extends DefaultStyledDocument {
 		updateDocument();
 	}
 
-	void updateDocument() {
+	private void updateDocument() {
 		SyntaxHighlighting.getInstance().checkHighlighting(this);
 		if (linePane != null) {
 			linePane.updateNumbers();

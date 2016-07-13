@@ -126,7 +126,7 @@ public abstract class EditPane extends FlowPane {
 	 * Loads Document and saves old one
 	 * @param index
 	 */
-	protected void loadPage(int index) {
+	private void loadPage(int index) {
 		
 		classdata[selectedPage].code.rawText=te.getText();
 		te.setText(classdata[index].code.rawText);
@@ -188,7 +188,7 @@ public abstract class EditPane extends FlowPane {
 		}
 	}
 	
-	EventHandler<MouseEvent> focusHelper = new EventHandler<MouseEvent>(){
+	private EventHandler<MouseEvent> focusHelper = new EventHandler<MouseEvent>(){
 
 		@Override
 		public void handle(MouseEvent event) {

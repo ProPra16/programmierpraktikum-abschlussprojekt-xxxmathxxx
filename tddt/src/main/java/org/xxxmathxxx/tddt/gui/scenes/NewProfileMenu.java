@@ -1,8 +1,6 @@
 package org.xxxmathxxx.tddt.gui.scenes;
 
 import java.io.File;
-import java.util.function.UnaryOperator;
-import java.util.regex.Pattern;
 
 import org.xxxmathxxx.tddt.gui.GraphicsHelper;
 import org.xxxmathxxx.tddt.gui.RestrictedTextField;
@@ -17,8 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
-import javafx.scene.control.TextFormatter.Change;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;

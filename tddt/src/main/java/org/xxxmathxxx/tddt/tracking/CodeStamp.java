@@ -32,10 +32,8 @@ public class CodeStamp {
 	
 	/**
 	 * Instantiates a new code stamp.
-	 *
 	 * @param result the result of compiling and executing
-	 * @param list the CompilationUnit list
-	 * @param date the date
+	 * @param cUnits the CompilationUnits
 	 */
 	public CodeStamp(Result result, CompilationUnit[] cUnits){
 		this.result = result;

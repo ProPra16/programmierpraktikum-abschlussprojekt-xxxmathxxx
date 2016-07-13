@@ -36,7 +36,7 @@ public class TDDT extends Application{
 	/**This function initializes the file-system by creating all necessary folders and files.
 	 * 
 	 */
-	public void initializeFileSystem(){
+	private void initializeFileSystem(){
 		//TODO: move elsewhere
 		File stats = new File("profiles/stats");
 		stats.mkdirs();

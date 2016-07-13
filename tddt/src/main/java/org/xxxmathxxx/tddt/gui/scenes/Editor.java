@@ -34,7 +34,7 @@ public class Editor extends Scene {
 	private Label stateLabel;
 	
 	//Boolean 
-	Boolean nonEditState;
+	private Boolean nonEditState;
 	
 	/**
 	 * Constructor
