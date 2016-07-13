@@ -76,7 +76,7 @@ public class WindowManager {
 	};
 	
 	/**
-	 * 
+	 * Generates a new main pane with the default Stylesheet
 	 */
 	private void generateNewMainPane(){
 		mainPane = new Pane();
@@ -88,12 +88,12 @@ public class WindowManager {
 	}
 	
 	/**
-	 * 
+	 * Internal reference to the only instance ever existing
 	 */
 	private static WindowManager instance;
 	
-	/**
-	 * @return
+	/**This allows you to get the only running instance of WM from the outside and generate it if necessary
+	 * @return The WindowManager instance
 	 */
 	public static WindowManager getInstance(){
 		if (instance == null){
@@ -103,8 +103,9 @@ public class WindowManager {
 	}
 	
 
-	/**
-	 * @param scene
+	/**Shows the given Menu. You can call this from the outside to access a given menu without worrying about anything else.
+	 * @param scene The scene that should be dislayed in the main Stage encoded as MenuType.
+	 * @see MenuType
 	 */
 	public void showMenu(MenuType scene){
 		
@@ -131,21 +132,22 @@ public class WindowManager {
 	}
 
 	/**
-	 * 
+	 * This is essential to our software as it shows the helpful hints on startup
 	 */
 	public void showStartupInfo() {
 		HintCollection.createStartupInfo(mainStage).show();
 	}
 	
-	/**
-	 * @param medal
+	/**This is almost as essential as it calls the nice Achievement animation popup thingy
+	 * @param medal The medal(achievement) that should be awarded
+	 * @see MedalState
 	 */
 	public void createAchievementPopup(MedalState medal){
 		new AchievementPopup(medal).show(mainStage);
 	}
 
-	/**
-	 * @return
+	/**This starts the ImageCropperTool
+	 * @return null if no Image was cropped succesfully otherwise the path to the cropped Image as String
 	 */
 	public String startImageCropper() {
 		String ret = ImageCropperTool.showImageCropper(mainStage);
@@ -153,7 +155,7 @@ public class WindowManager {
 	}
 	
 	/**
-	 * 
+	 * Simple close handler that ensures cleanup routines are run before termination
 	 */
 	private EventHandler<WindowEvent> windowCloseEvent = new EventHandler<WindowEvent>(){
 
