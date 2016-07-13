@@ -72,14 +72,25 @@ public class TDDTThread {
 	 */
 	private Editor editor;
 	
+	/**
+	 * Sets an selected profile
+	 * @param p New Profile
+	 */
 	public void setProfile(Profile p){
 		instance.profile = p;
 	}
 	
+	/**
+	 * Sets an Editor Scene for a started Exercise
+	 * @param e New Editor
+	 */
 	public void setEditor(Editor e){
 		this.editor = e;
 	}
 	
+	/**
+	 * Private constructor so it can't be constructed from elsewhere.
+	 */
 	private TDDTThread(){}
 	
 	/**
@@ -166,7 +177,8 @@ public class TDDTThread {
 		trackerManager.atMap.get(CodeStage.REFACTOR).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
 	}
 	
-	/**Requests a switch to the next state and attempts to perform it.
+	/**
+	 * Requests a switch to the next state and attempts to perform it.
 	 */
 	public void requestSwitch() {
 		TDDTLogManager.getInstance().logMessage("Stateswitch requested");
@@ -228,7 +240,7 @@ public class TDDTThread {
 			trackerManager.atMap.get(CodeStage.REFACTOR).setTimerActive(false);
 			break;
 		case REFACTOR: //Switch to test (refactor->red)
-			babystepsTimer.setActive(true);
+			babystepsTimer.setActive(false);
 			totalTimer.setActive(true);
 			
 			trackerManager.atMap.get(CodeStage.CODE).setTimerActive(false);
@@ -238,6 +250,9 @@ public class TDDTThread {
 		}	
 	}
 	
+	/**
+	 * Disables all timers. Don't forget to activate them afterwards.
+	 */
 	private void disableAllTimers()
 	{
 		babystepsTimer.setActive(false);
@@ -249,6 +264,9 @@ public class TDDTThread {
 	}
 	
 	
+	/**
+	 * Checks if an exercise passes the finishTests. If so it will close the Editor and save stats to the selected profile.
+	 */
 	public void finalizeExercise()
 	{
 		editor.tep.save();
@@ -287,8 +305,9 @@ public class TDDTThread {
 		reset();
 	}
 	
-	/**Attempts to switch to code state
-	 * @return True if change is succesful, false otherwise
+	/**
+	 * Checks if you can switch to codestage
+	 * @return True if change is possible, false otherwise
 	 */
 	private Boolean switchToCode()
 	{
@@ -306,6 +325,10 @@ public class TDDTThread {
 		return false;
 	}
 	
+	/**
+	 * Checks if you can switch to refactorstage
+	 * @return True if change is possible, false otherwise
+	 */
 	private Boolean switchToRefactor()
 	{
 		CompilationUnit[] cuArray= getCompilationUnits(false);
@@ -379,6 +402,9 @@ public class TDDTThread {
 		editor.cep.rerollTo(trackerManager.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
 	}
 
+	/**
+	 * Reverts code to last Stamp.
+	 */
 	public void performBabystepRevert() {
 		if(getExercise().config.babystepsEnabeled)
 		{

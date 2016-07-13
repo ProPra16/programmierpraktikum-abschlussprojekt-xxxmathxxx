@@ -86,7 +86,7 @@ public class Editor extends Scene {
 		pane.getChildren().add(cancelButton);
 		cancelButton.setDisable(true);
 		
-		quitButton= new Button("I am tired of this shit");
+		quitButton= new Button("I am tired of this!");
 		quitButton.setPrefSize(150, 25);
 		quitButton.relocate(xSize-200,ySize-70);
 		quitButton.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
@@ -280,7 +280,7 @@ public class Editor extends Scene {
 				updateEditPanes();
 				updateStateLabel();	
 			}
-			
+			//Quit Button
 			if(event.getSource()==quitButton)
 			{
 				TDDTThread.getInstance().exitRequest();
