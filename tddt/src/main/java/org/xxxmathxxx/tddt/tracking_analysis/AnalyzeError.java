@@ -42,7 +42,7 @@ public class AnalyzeError {
 			}
 			catch(NullPointerException e){}
 			
-			if(result.compilerError()){
+			if(result.hasNoCompilerErrors()){
 				cUnits = codeStamp.getCompilationUnits();
 				error = AnalyzeError.handleCompileError(cUnits, result, error);
 			}	

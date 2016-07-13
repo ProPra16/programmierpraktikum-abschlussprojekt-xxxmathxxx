@@ -320,7 +320,7 @@ public class TDDTThread {
 		trackerManager.atMap.get(CodeStage.TEST).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
 		CodeStamp codeStamp = trackerManager.atMap.get(CodeStage.TEST).codeStampCollection.getLatestCodeStamp();
 		
-		if(codeStamp.getResult().compilerError()||codeStamp.getResult().oneFailedTest())
+		if(codeStamp.getResult().hasNoCompilerErrors()||codeStamp.getResult().oneFailedTest())
 		{	
 			return true;
 		}
@@ -340,7 +340,7 @@ public class TDDTThread {
 		trackerManager.atMap.get(CodeStage.CODE).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
 		CodeStamp codeStamp = trackerManager.atMap.get(CodeStage.CODE).codeStampCollection.getLatestCodeStamp();
 		
-		if(codeStamp.getResult().compilerError())
+		if(codeStamp.getResult().hasNoCompilerErrors())
 		{	
 			AlertMessenger.showErrorMessage("Test Failed!", codeStamp.getResult().getCompilerErrors(cuArray));
 			return false;

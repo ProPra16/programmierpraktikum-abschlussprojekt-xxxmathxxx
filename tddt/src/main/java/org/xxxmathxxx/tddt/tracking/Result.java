@@ -6,6 +6,8 @@ package org.xxxmathxxx.tddt.tracking;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.xxxmathxxx.tddt.logging.TDDTLogManager;
+
 import vk.core.api.CompilationUnit;
 import vk.core.api.CompileError;
 import vk.core.api.CompilerResult;
@@ -13,10 +15,9 @@ import vk.core.api.TestResult;
 
 
 /**
- * The Class Result. ??? WHAT DOES IT EVEN DO?
- *
- * @author Tschebyscheff, 24.06.16
- * class saves Compile and Test Results
+ * This class stores the result of a given build
+ * It saves the results of code/test compilation.
+ * @author xxxMathxxx 2016
  */
 public class Result {
 
@@ -27,25 +28,28 @@ public class Result {
 	private CompilerResult compilerResult;
 	
 	
+	/**Default construcot, creates a new result
+	 * @param testResult The TestResult
+	 * @param compilerResult The CompilerResult
+	 */
 	public Result(TestResult testResult, CompilerResult compilerResult){
 		this.testResult = testResult;
 		this.compilerResult = compilerResult;
 	}
 	
 	/**
-	 * Compiler error.
-	 * @return true, if successful
+	 * Compiler error, this is simply piped through
+	 * @return true, if no compiler errors are present, false otherwise
 	 */
-	public boolean compilerError(){
+	public boolean hasNoCompilerErrors(){
 		if(compilerResult.hasCompileErrors())
 			return true;
 		return false;
 	}
 	
 	/**
-	 * One failed test.
-	 *
-	 * @return true, if Number of FailedTests == 1
+	 * This function returns true if exactly one test failed (requirement for TDD)
+	 * @return true, if Number of FailedTests == 1, false otherwise
 	 */
 	public boolean oneFailedTest(){
 		if(testResult.getNumberOfFailedTests() == 1)
@@ -54,10 +58,10 @@ public class Result {
 	}
 	
 	/**
-	 * Gets the compiler errors. //AREN't those functions all available by default???
+	 * Gets the compiler errors for a given set of compilation units
 	 *
-	 * @param list the compilation units
-	 * @return the compiler errors
+	 * @param cUnits the compilation units
+	 * @return the compiler errors as raw String
 	 */
 	public String getCompilerErrors(CompilationUnit[] cUnits){
 		String ret = "CompileErrors found: \n";
@@ -76,28 +80,23 @@ public class Result {
 	}
 	
 	/**
-	 * Gets the compiler errors.
+	 * Gets the compiler errors for single CompilationUnit
 	 *
 	 * @param compUnit the compilation unit
-	 * @return the compiler errors
+	 * @return the compiler errors as a CompileError collection
 	 */
 	public Collection<CompileError> getCompilerErrors(CompilationUnit compUnit){
 		return compilerResult.getCompilerErrorsForCompilationUnit(compUnit);
 	}
 	
 	
-	/**
-	 * Gets the compiler result.
-	 *
-	 * @return the compiler result
+
+	/**This function returns the number of failed tests in the build
+	 * @return the number as Integer
 	 */
-	public CompilerResult getCompilerResult(){
-		return compilerResult;
-	}
-
-
 	public int getNumberOfFailedTests() {
-		if (testResult == null){ //WHY THE FUCK WOULD THIS EVER HAPPEN???
+		if (testResult == null){
+			TDDTLogManager.getInstance().logMessage("An error occured while resolving the number of failed tests!");
 			return 0;
 		}
 		else{
