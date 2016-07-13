@@ -39,73 +39,19 @@ public class FinalTestRomanNumbers
 	public static void test1() 
 	{
 		assertEquals(RomanNumberConverter.convert(1), "I");
+		assertEquals(RomanNumberConverter.convert(2), "II");
+		assertEquals(RomanNumberConverter.convert(3), "III");
+		assertEquals(RomanNumberConverter.convert(4), "IV");
+		assertEquals(RomanNumberConverter.convert(5), "V");
+		assertEquals(RomanNumberConverter.convert(9), "IX");
+		assertEquals(RomanNumberConverter.convert(10), "X");
+		assertEquals(RomanNumberConverter.convert(15), "XV");
+		assertEquals(RomanNumberConverter.convert(20), "XX");
+		assertEquals(RomanNumberConverter.convert(40), "XL");
+		assertEquals(RomanNumberConverter.convert(45), "XLV");
+		assertEquals(RomanNumberConverter.convert(50), "L");
 	}
 	
-	@Test
-	public static void test2() 
-	{
-		assertEquals(RomanNumberConverter.convert(1), "II");
-	}
-	
-	@Test
-	public static void test3() 
-	{
-		assertEquals(RomanNumberConverter.convert(1), "III");
-	}
-	
-	@Test
-	public static void test4() 
-	{
-		assertEquals(RomanNumberConverter.convert(1), "IV");
-	}
-	
-	@Test
-	public static void test5() 
-	{
-		assertEquals(RomanNumberConverter.convert(1), "V");
-	}
-	
-	@Test
-	public static void test9() 
-	{
-		assertEquals(RomanNumberConverter.convert(1), "IX");
-	}
-	
-	@Test
-	public static void test10() 
-	{
-		assertEquals(RomanNumberConverter.convert(1), "X");
-	}
-	
-	@Test
-	public static void test15() 
-	{
-		assertEquals(RomanNumberConverter.convert(1), "XV");
-	}
-	
-	@Test
-	public static void test20() 
-	{
-		assertEquals(RomanNumberConverter.convert(1), "XX");
-	}
-	
-	@Test
-	public static void test40() 
-	{
-		assertEquals(RomanNumberConverter.convert(1), "XL");
-	}
-	
-	@Test
-	public static void test45() 
-	{
-		assertEquals(RomanNumberConverter.convert(1), "XLV");
-	}
-	
-	@Test
-	public static void test50() 
-	{
-		assertEquals(RomanNumberConverter.convert(1), "L");
-	}
 }		
 		</finishtest>
 	</finishtests>
