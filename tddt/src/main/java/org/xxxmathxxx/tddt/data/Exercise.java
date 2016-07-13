@@ -14,7 +14,6 @@ public class Exercise {
 	public String name;
 	/**The description of the exercise as String
 	 * (This is the assignment)
-	 * 
 	 */
 	public String description;
 	/**The ID of the exercise as Long, this should be unique for each exercise
@@ -46,7 +45,7 @@ public class Exercise {
 	 * @param description The description of the exercise as String
 	 * @param referencedClasses The classes the exercise uses
 	 * @param referencedTests The tests the exercises uses
-	 * @param referencedFinishTests The (hidden) tests that check for completion
+	 * @param referencedFinishTest The (hidden) tests that check for completion
 	 * @param config The ExerciseConfig containing additional data
 	 */
 	public Exercise(String name, Long id, String description, ExerciseClass[] referencedClasses,
