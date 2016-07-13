@@ -305,6 +305,9 @@ public class TDDTThread {
 		}
 		dataForThisExercise.log();
 		
+		//STEP 2.5 Might be sane to save those juicy stats and achievements
+		profile.saveProfileToFile();
+		
 		//STEP 3: Quit the shit out of it
 		reset();
 	}
