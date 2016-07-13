@@ -44,6 +44,33 @@ Also, as soon as you start your exercise, a timer starts ticking, so you got to 
 The following section is for teachers and tutors only, as it describes how to write more exercises for the program, as well as how the implement them.
 \subsection{How to add your own exercises to the software}
 To add your own exercise to the program, you have to create a proper xml-file and simply add it to the exercise folder. It will then be added into the list of exercises automatically.
+\subsubsection{How to create an proper xml-file}
+First you've got to define your XML-file as exercise by setting surrounding tags like this: 
+\texttt{<exercise></exercise>}. Everything you write will have to be inside this tags.
+\subsubsection{Name}
+You'll have to create a name for your exercise. Define this by adding \texttt{<name></name>}. Don't forget to add a name inside the tag!
+\subsubsection{ID}
+You'll have to create a name for your exercise. Define this by adding \texttt{<id></id>}. Don't forget to add a name inside the tag! Never change the id  after the exercise was used. Also don't create two exercises with the same id.
+\subsubsection{Description}
+To add a description define it with the tags \texttt{<description></description>}. This description will be displayed when the user selects an assignment.
+\subsubsection{Classes}
+Now youll have to create classes in which one can program. First create the classes-segment by adding the tags \texttt{<classes></classes>}. \newline
+Then you can define as many classes as you want by adding them by this scheme: \newline
+\texttt{<class name="Name">Code</class>} Now you'll have to replace Name with the desired classname (Without ".class" in the end) and Code with the desired starting code.
+\subsubsection{Tests}
+You can add tests by the same scheme as classes. Just replace \texttt{<classes></classes>} by \texttt{<tests></tests>} and for each test \texttt{<class name="Name">Code</class>} by \texttt{<test name="Name">Code</test>}.
+\subsubsection{Finishtests}
+You also have to define a finishtest. This test is used to check if an assignment has been fully completed. Simply add a new segment \texttt{<finishtests></finishtests>} like you did for the classes. Then you can add your test like you did with the normal ones: \texttt{<finishtest name="Name">Code</finishtest>}. Also don't forget to replace Name and Code like above described.
+\subsubsection{Config}
+For the last step you'll have to define the configuration. Do this by adding a new tag  \texttt{<config></config>}. \newline
+Now you can define the parameters for babysteps, timetracking and medals: \newline\newline
+\texttt{<babysteps value="True" time="3.22" />} This will enable babysteps and set their timer to 3.22 minutes. \newline\newline
+\texttt{<timetracking value="True" />} This will enable timetracking. \newline\newline
+\texttt{<medals bronze="13.37" silver="6.65" gold="1.00" author="0.5"/>} This will define the time (in minutes) needed to get a medal awarded. 
+
+\subsubsection{It's not working!}
+If you've got more problems with this, check a premade exercise file in the exercises directory.
+
 \subsection{Extensions}
 Two extensions are implemented into the program: Babysteps and tracking.
 \subsubsection{Babysteps}
