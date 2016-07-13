@@ -9,5 +9,6 @@ repositories {
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile files('external/virtual-kata-lib-1.0.0.jar')
+    compile 'junit:junit:4.12'
     testCompile 'junit:junit:4.12'
 }
