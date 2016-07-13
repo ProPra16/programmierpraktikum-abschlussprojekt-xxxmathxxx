@@ -113,7 +113,7 @@ public class TDDTThread {
 		this.currentExercise = ex;
 		this.babystepsTimer.setActive(true);
 		this.totalTimer.setActive(true);
-		generateStartingStamp();
+		//generateStartingStamp(); -> Initial state is Test not Refactor
 		TDDTThread.getInstance().trackerManager.getTrackerForStage(CodeStage.TEST).setTimerActive(true);
 	}
 	
@@ -154,28 +154,28 @@ public class TDDTThread {
 			
 	}
 	
-	/**
-	 * generates an initial codestamp in refractor
-	 */
-	private void generateStartingStamp()
-	{
-		Exercise ex=getExercise();
-		
-		CompilationUnit[] cuArray= new CompilationUnit[ex.referencedClasses.length+ex.referencedTests.length];
-		
-		for(int i=0; i<ex.referencedClasses.length;i++)
-		{
-			cuArray[i]=new CompilationUnit(ex.referencedClasses[i].name, ex.referencedClasses[i].code.rawText, false);
-		}
-		
-		for(int i=0; i<ex.referencedTests.length;i++)
-		{
-			cuArray[ex.referencedClasses.length+i]=new CompilationUnit(ex.referencedTests[i].name, ex.referencedTests[i].code.rawText, true);
-		}
-		
-		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-		trackerManager.atMap.get(CodeStage.REFACTOR).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
-	}
+//	/**
+//	 * generates an initial codestamp in refactor stage
+//	 */
+//	private void generateStartingStamp()
+//	{
+//		Exercise ex=getExercise();
+//		
+//		CompilationUnit[] cuArray= new CompilationUnit[ex.referencedClasses.length+ex.referencedTests.length];
+//		
+//		for(int i=0; i<ex.referencedClasses.length;i++)
+//		{
+//			cuArray[i]=new CompilationUnit(ex.referencedClasses[i].name, ex.referencedClasses[i].code.rawText, false);
+//		}
+//		
+//		for(int i=0; i<ex.referencedTests.length;i++)
+//		{
+//			cuArray[ex.referencedClasses.length+i]=new CompilationUnit(ex.referencedTests[i].name, ex.referencedTests[i].code.rawText, true);
+//		}
+//		
+//		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
+//		trackerManager.atMap.get(CodeStage.REFACTOR).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
+//	}
 	
 	/**
 	 * Requests a switch to the next state and attempts to perform it.
