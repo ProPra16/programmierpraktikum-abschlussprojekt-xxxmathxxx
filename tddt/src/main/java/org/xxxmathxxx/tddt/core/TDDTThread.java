@@ -154,29 +154,6 @@ public class TDDTThread {
 			
 	}
 	
-//	/**
-//	 * generates an initial codestamp in refactor stage
-//	 */
-//	private void generateStartingStamp()
-//	{
-//		Exercise ex=getExercise();
-//		
-//		CompilationUnit[] cuArray= new CompilationUnit[ex.referencedClasses.length+ex.referencedTests.length];
-//		
-//		for(int i=0; i<ex.referencedClasses.length;i++)
-//		{
-//			cuArray[i]=new CompilationUnit(ex.referencedClasses[i].name, ex.referencedClasses[i].code.rawText, false);
-//		}
-//		
-//		for(int i=0; i<ex.referencedTests.length;i++)
-//		{
-//			cuArray[ex.referencedClasses.length+i]=new CompilationUnit(ex.referencedTests[i].name, ex.referencedTests[i].code.rawText, true);
-//		}
-//		
-//		JavaStringCompiler jsc= CompilerFactory.getCompiler(cuArray);
-//		trackerManager.atMap.get(CodeStage.REFACTOR).codeStampCollection.addCodeStamp(CodeStamp.generateCodeStamp(jsc,cuArray));
-//	}
-	
 	/**
 	 * Requests a switch to the next state and attempts to perform it.
 	 */
@@ -418,8 +395,12 @@ public class TDDTThread {
 			switch(state)
 			{
 			case TEST:
-				//editor.tep.rerollChanges();
-				editor.tep.rerollTo(trackerManager.atMap.get(CodeStage.REFACTOR).codeStampCollection.getLatestCodeStamp().getCompilationUnits());
+				//It is possible that you took forever to write the first test, in this case there is nowhere to roll back to
+				if (trackerManager.atMap.get(CodeStage.REFACTOR).codeStampCollection.getLatestCodeStamp() != null){
+					CompilationUnit[] rollBackCUnits = trackerManager.atMap.get(CodeStage.REFACTOR).codeStampCollection.getLatestCodeStamp().getCompilationUnits();
+					editor.tep.rerollTo(rollBackCUnits);
+				}
+				TDDTLogManager.getInstance().logMessage("Babysteps time is up but there is no CodeStamp to go back to yet!");
 				break;
 				
 			case CODE:
