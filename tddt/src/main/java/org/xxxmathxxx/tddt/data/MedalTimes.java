@@ -11,6 +11,13 @@ public class MedalTimes {
 	public double silver;
 	public double bronze;
 	
+	/**
+	 * Saves times to award medals.
+	 * @param author authortime
+	 * @param gold goldtime
+	 * @param silver silvertime
+	 * @param bronze bronzetime
+	 */
 	public MedalTimes(double author, double gold, double silver, double bronze){
 		this.author = author;
 		this.gold = gold;

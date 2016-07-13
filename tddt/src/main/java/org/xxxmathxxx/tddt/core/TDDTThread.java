@@ -436,6 +436,7 @@ public class TDDTThread {
 	}
 
 	/**
+	 * Gives you current state as CodeStage
 	 * @return the state
 	 */
 	public CodeStage getState() {

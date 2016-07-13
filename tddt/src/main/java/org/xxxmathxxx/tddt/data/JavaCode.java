@@ -1,7 +1,7 @@
 package org.xxxmathxxx.tddt.data;
 
 /**
- * @author Fabian
+ * @author xxxMathxxx
  * Wrapping for Javacode
  */
 public class JavaCode {

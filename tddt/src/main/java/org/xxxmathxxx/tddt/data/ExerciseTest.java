@@ -1,7 +1,7 @@
 package org.xxxmathxxx.tddt.data;
 
 /**
- * @author Fabian
+ * @author xxxMathxxx
  *	Dependency of Exercise
  */
 public class ExerciseTest extends ClassData{

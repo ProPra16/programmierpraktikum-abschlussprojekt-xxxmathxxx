@@ -1,7 +1,7 @@
 package org.xxxmathxxx.tddt.data;
 
 /**
- * @author Fabian
+ * @author xxxMathxxx
  * Abstract class to interact with ExerciseTest and ExerciseClass
  */
 public abstract class ClassData 

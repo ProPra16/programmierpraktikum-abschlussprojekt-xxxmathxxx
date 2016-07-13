@@ -5,13 +5,17 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 /**
- * @author Fabian
+ * @author xxxMathxxx
  * Exercise wrapping
  */
 @SuppressWarnings("serial")
 public class ExerciseCollection extends ArrayList<Exercise>
 {
 
+	/**
+	 * Collection of Exercises
+	 * @param list Exercises
+	 */
 	public ExerciseCollection(ArrayList<Exercise> list){
 		super();
 		this.addAll(list);
@@ -28,6 +32,10 @@ public class ExerciseCollection extends ArrayList<Exercise>
 		return get(rnd);
 	}
 
+	/**
+	 * Returns the collection as observaleList
+	 * @return observableList
+	 */
 	public ObservableList<Exercise> asObservableList() {
 		ObservableList<Exercise> ret = FXCollections.observableArrayList();
 		for(Exercise e: this){

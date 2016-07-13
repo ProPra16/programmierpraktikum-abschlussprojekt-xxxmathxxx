@@ -1,17 +1,30 @@
 package org.xxxmathxxx.tddt.data;
 
 /**
- * @author Fabian
+ * @author xxxMathxxx
  * This class saves the Config of an exercise
  */
 public class ExerciseConfig 
 {
+	/**
+	 * Determines if babysteps are enabled.
+	 */
 	public Boolean babystepsEnabeled;
-	public double babystepsTime; //In seks
 	
+	/**
+	 * Saves time you can use for babysteps.
+	 */
+	public double babystepsTime; 
+	
+	/**
+	 * Determines if timetracking is enabled.
+	 */
 	public Boolean timetrackingEnabled;
 	
-	public MedalTimes medalTimes; //as seconds
+	/**
+	 * Saves times you need for Medals.
+	 */
+	public MedalTimes medalTimes; 
 	
 	/**
 	 * @param babystepsEnabled Boolean
