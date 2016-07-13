@@ -71,19 +71,19 @@ public class ExistingProfileMenu extends Scene {
 		
 		newTask = new Button("Start a new Exercise!");
 		newTask.setPrefSize(150, 50);
-		newTask.relocate(xSize/2+45,ySize - 430);
+		newTask.relocate(xSize/2+45,146);
 		newTask.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(newTask);
 		
-		notYou = new Button("Not you?");
-		notYou.setPrefSize(130, 30);
-		notYou.relocate(xSize/2-282,ySize - 255);
+		notYou = new Button("Back");
+		notYou.setPrefSize(150, 25);
+		notYou.relocate(xSize-200,ySize-70);
 		notYou.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(notYou);
 		
 		statistics = new Button("Statistics");
 		statistics.setPrefSize(150, 50);
-		statistics.relocate(xSize/2+45,ySize - 360);
+		statistics.relocate(xSize/2+45,224);
 		statistics.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(statistics);
 				

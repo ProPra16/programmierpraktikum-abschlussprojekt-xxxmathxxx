@@ -50,6 +50,9 @@ public class ExercisePicker extends Scene {
 
 		super(pane);
 		
+		double xSize = pane.getPrefWidth();
+		double ySize = pane.getPrefHeight();
+		
 		infoText= new Label("Pick an exercise!");
 		infoText.relocate(20,45);
 		infoText.setFont(new Font("Times New Roman", 20));
@@ -62,9 +65,9 @@ public class ExercisePicker extends Scene {
 		start.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(start);
 		
-		back= new Button("Back to Menu");
-		back.setPrefSize(150, 50);
-		back.relocate(630,58);
+		back = new Button("Back");
+		back.setPrefSize(150, 25);
+		back.relocate(xSize-200,ySize-70);
 		back.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(back);
 		
