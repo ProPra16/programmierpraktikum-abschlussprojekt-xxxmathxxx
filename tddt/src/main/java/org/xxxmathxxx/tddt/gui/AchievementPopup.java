@@ -14,9 +14,9 @@ import javafx.stage.Popup;
 import javafx.stage.Screen;
 import javafx.util.Duration;
 
-/**This class creates an achievement-notification popup, used for awarding medals.
+/**
+ * This class creates an achievement-notification popup, used for awarding medals.
  * @author xxxMathxxx 2016
- * 
  */
 public class AchievementPopup extends Popup {
 	
@@ -69,7 +69,8 @@ public class AchievementPopup extends Popup {
 	 */
 	private PopupAnimation animation;
 		
-	/**Default constructor, creates a new achievement notification
+	/**
+	 * Default constructor, creates a new achievement notification
 	 * @param medal The medal that was awarded
 	 */
 	public AchievementPopup(MedalState medal){
@@ -114,6 +115,10 @@ public class AchievementPopup extends Popup {
 		
 	}
 	
+	/**
+	 * @author xxxMathxxx
+	 * Private class of AchievmentPopup
+	 */
 	private class PopupAnimation extends Transition{
 		/**
 		 * The percentage of running time at which the Achievement is fully visible on screen
@@ -147,9 +152,9 @@ public class AchievementPopup extends Popup {
 		
 	}
 	
-	/**The event that is called when the animation is finished. Simply closes this popup.
+	/**
+	 * The event that is called when the animation is finished. Simply closes this popup.
 	 * @author xxxMathxxx 2016
-	 *
 	 */
 	private final class VanishEvent implements EventHandler<ActionEvent>{
 

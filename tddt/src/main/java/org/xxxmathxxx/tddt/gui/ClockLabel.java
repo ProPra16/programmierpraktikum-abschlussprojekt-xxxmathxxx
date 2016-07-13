@@ -14,14 +14,25 @@ import javafx.scene.control.Label;
  */
 public class ClockLabel extends Label{
 	
+	/**
+	 * Timer which is synchronized.
+	 */
 	BasicTimer syncedTimer;
 	
+	/**
+	 * Used to Construct a new ClockLabel
+	 * @param syncedTimer timer to synchronize
+	 */
 	public ClockLabel(BasicTimer syncedTimer){
 		this.syncedTimer = syncedTimer;
 		new Timer().scheduleAtFixedRate(new TimeUpdateTask(),0 , 50);
 	}
 	
 	
+	/**
+	 * @author xxxMathxxx
+	 * Private class of ClockLabel
+	 */
 	private class TimeUpdateTask extends TimerTask{
 		@Override
 		public void run() {
@@ -29,6 +40,10 @@ public class ClockLabel extends Label{
 		}
 	}
 	
+	/**
+	 * Updates time on Label
+	 * @param time actual time
+	 */
 	public void syncTime(double time){
 		Platform.runLater(new Runnable(){
 			@Override

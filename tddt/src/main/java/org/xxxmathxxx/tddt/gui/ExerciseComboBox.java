@@ -8,8 +8,16 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
 
+/**
+ * @author xxxMathxxx
+ * ComboBox to chose an exercise
+ */
 public class ExerciseComboBox extends ComboBox<Exercise> {
 
+	/**
+	 * Used to construct the object.
+	 * @param list Selectable Exercises
+	 */
 	public ExerciseComboBox(ObservableList<Exercise> list) {
 		super(list);
 		setPromptText("Select an exercise");
