@@ -5,9 +5,9 @@ import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.Profile;
 
 
-/**
+/**Class that handles the creation of profiles for the NewProfileMenu
  * @author xxxMathxxx 2016
- * Class that handles the creation of profiles for the NewProfileMenu
+ * 
  */
 public class ProfileCreator {
 
@@ -22,7 +22,8 @@ public class ProfileCreator {
 	
 	/**
 	 * Saves the new profile to the hard drive and gives a confirmation message.
-	 * @param A profile which has to be created.
+	 * @param newProfile The profile that should be created
+	 * @param name The name of the profile
 	 */
 	public static void createProfile(Profile newProfile, String name){
 		TDDTLogManager.getInstance().logMessage("Welcome " + name + "!");

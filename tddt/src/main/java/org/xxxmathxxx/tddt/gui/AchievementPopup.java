@@ -14,26 +14,59 @@ import javafx.stage.Popup;
 import javafx.stage.Screen;
 import javafx.util.Duration;
 
-/**
+/**This class creates an achievement-notification popup, used for awarding medals.
  * @author xxxMathxxx 2016
- * This class creates the achievement Popup.
+ * 
  */
 public class AchievementPopup extends Popup {
 	
+	/**
+	 * The text that is presented
+	 */
 	private Label text;
-	private Label background;
-	private ImageView image;
 	
+	/**
+	 * The background (this is just filled for styling purpose)
+	 */
+	private Label background;
+	
+	/**
+	 * The ImageView showing the earned medal
+	 */
+	private ImageView medalImage;
+	
+	/**
+	 * The duration for the entire popup-animation
+	 */
 	private static int duration = 5;
 		
+	/**
+	 * Internal reference to the users screenWidth
+	 */
 	private double screenWidth;
+	
+	/**
+	 * Internal reference to the users screenHeight
+	 */
 	private double screenHeight;
 	
+	/**
+	 * The width in pixel, used for styling
+	 */
 	private static double width = 256+128;
+	/**
+	 * The height in pixel, used for styling
+	 */
 	private static double height = 128;
 	
+	/**
+	 * The border-size in pixel, used for styling
+	 */
 	private static double border = 8;
 	
+	/**
+	 * The animation that controls the movement
+	 */
 	private PopupAnimation animation;
 		
 	/**Default constructor, creates a new achievement notification
@@ -71,9 +104,9 @@ public class AchievementPopup extends Popup {
 		this.getContent().add(text);
 		
 		if (medal != null){
-			image = new ImageView(GraphicsHelper.medalIconScaled(medal, height-border*2));
-			image.relocate(border, border);
-			this.getContent().add(image);
+			medalImage = new ImageView(GraphicsHelper.medalIconScaled(medal, height-border*2));
+			medalImage.relocate(border, border);
+			this.getContent().add(medalImage);
 		}
 		
 		animation = new PopupAnimation();
@@ -82,18 +115,26 @@ public class AchievementPopup extends Popup {
 	}
 	
 	private class PopupAnimation extends Transition{
-		/*
-		 * 1/5 of the time move up, 3/5 show, 1/5 move down
+		/**
+		 * The percentage of running time at which the Achievement is fully visible on screen
 		 */
+		private static final double marker1 = 1d/5d;
+		/**
+		 * The percentage of running time at which the Achievement begins its descent into the depths
+		 */
+		private static final double marker2 = 4d/5d;
 		
-		private double marker1 = 1d/5d;
-		private double marker2 = 4d/5d;
-		
+		/**
+		 * Creates a new PopupAnimation, basic Constructor
+		 */
 		private PopupAnimation(){
 			this.setCycleDuration(Duration.seconds(duration));
 			this.setOnFinished(new VanishEvent());
 		}
 		
+		/* (non-Javadoc)
+		 * @see javafx.animation.Transition#interpolate(double)
+		 */
 		@Override
 		protected void interpolate(double frac) {
 			if (frac < marker1){
@@ -106,6 +147,10 @@ public class AchievementPopup extends Popup {
 		
 	}
 	
+	/**The event that is called when the animation is finished. Simply closes this popup.
+	 * @author xxxMathxxx 2016
+	 *
+	 */
 	private final class VanishEvent implements EventHandler<ActionEvent>{
 
 		@Override

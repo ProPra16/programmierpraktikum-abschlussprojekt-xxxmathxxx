@@ -6,6 +6,8 @@ A simple TDDT-application using JavaFX (Project for CS @ hhu-duesseldorf)
 
 this project uses: java 1.8, VirtualKataLib (by Jens Bendisposto), javafx, gradle, travis ci, pdfTeX, TikZ, Heretikz
 
+This tool can be useful for cs beginners that want to learn the technique of test-driven development. Basic JUnit and Java knowledge is recommended to profit from this tool as the exercises require you to write Java code and corresponding JUnit tests.
+
 ##How to compile from source##
 
 This project uses gradle as a build-system.

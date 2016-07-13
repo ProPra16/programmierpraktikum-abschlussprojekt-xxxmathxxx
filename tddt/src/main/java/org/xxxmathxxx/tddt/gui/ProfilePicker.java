@@ -31,7 +31,7 @@ public class ProfilePicker extends Pane {
 	
 	/**
 	 * Constructor for the ProfilePicker
-	 * @param ArrayList List of the profiles saved in the profile folder
+	 * @param profiles List of profiles from which the Picker should allow selection
 	 */
 	public ProfilePicker(ArrayList<Profile> profiles){
 		//Stylize / make more pretty
