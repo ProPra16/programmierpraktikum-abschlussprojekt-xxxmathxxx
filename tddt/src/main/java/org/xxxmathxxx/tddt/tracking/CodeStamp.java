@@ -72,7 +72,8 @@ public class CodeStamp {
 	}
 	
 	/**Basic getter for the result of this CodeStamp
-	 * @return
+	 * @return The result of this CodeStamps build as a Result
+	 * @see Result
 	 */
 	public Result getResult(){
 		//getter because it should not be modified from outside
