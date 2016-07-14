@@ -11,8 +11,6 @@ import javafx.scene.image.Image;
  */
 public final class GraphicsHelper {
 	
-	private GraphicsHelper(){};
-	
 	/**
 	 * Generates a medal image scaled to the given size (always a perfect square)
 	 * @param medal The medal as MedalState
