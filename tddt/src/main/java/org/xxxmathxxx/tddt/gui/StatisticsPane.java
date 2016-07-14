@@ -170,14 +170,13 @@ public class StatisticsPane extends Pane{
 		@Override
 		public void changed(ObservableValue<? extends Exercise> observable, Exercise oldValue, Exercise newValue) {
 			if (newValue != null) {
-				try{
 				analyzedTrackingData = profile.profileStats.getTrackingData(newValue.id);
+				if (analyzedTrackingData == null){
+					AlertMessenger.showErrorMessage("No data recorded!", "We couldn't find any data for this exercise. Maybe you haven't completed it yet?");
+				}
+				
 				medalViewer.setMedals(newValue, TDDTThread.getInstance().getUserProfile());
 				initialize();
-				}
-				catch(NullPointerException e){
-					TDDTLogManager.getInstance().logMessage("No Statistics available for " + newValue.name);
-				}
 			}
 		}
 	};
