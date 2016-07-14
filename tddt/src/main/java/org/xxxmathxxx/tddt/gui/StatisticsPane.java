@@ -5,7 +5,6 @@ import org.xxxmathxxx.tddt.core.TDDTThread;
 import org.xxxmathxxx.tddt.data.CodeStage;
 import org.xxxmathxxx.tddt.data.Exercise;
 import org.xxxmathxxx.tddt.io.ExerciseReader;
-import org.xxxmathxxx.tddt.logging.TDDTLogManager;
 import org.xxxmathxxx.tddt.profile.Profile;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedStage;
 import org.xxxmathxxx.tddt.tracking_analysis.AnalyzedTrackingData;
@@ -33,7 +32,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
-/**
+/**This class describes a StatisticPane showing various stats in a graphical way. It can be embedded into any scene.
  * @author xxxMath2016xxx
  *
  */

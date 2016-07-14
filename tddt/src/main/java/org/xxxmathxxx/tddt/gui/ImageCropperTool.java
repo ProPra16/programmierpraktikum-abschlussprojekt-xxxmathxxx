@@ -38,7 +38,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**A JavaFX Stage that enables loading/saving of an image and cropping-functionality
- * @author Philipp Spohr, Jul 9, 2016
+ * @author xxxMathxxx 2016
  *
  */
 public class ImageCropperTool extends Stage {
@@ -82,7 +82,7 @@ public class ImageCropperTool extends Stage {
 	/**
 	 * Shows the image cropper
 	 * @param owner Where it should be displayed
-	 * @return ImagePath
+	 * @return ImagePath as String
 	 */
 	public static String showImageCropper(Stage owner){
 		
@@ -205,9 +205,6 @@ public class ImageCropperTool extends Stage {
 	
 	
 	private void cropAndExport() {
-		//TODO: Feel free to replace the fileChooser with a predefined save location for all user profiles,
-		//maybe encoded by UserID/ProfileID
-
         File profileImagesDir = new File("profiles/pics");
         
         //create if necessary
@@ -252,7 +249,6 @@ public class ImageCropperTool extends Stage {
 
         graphics.dispose();
         close();
-        //TODO: return some information about where the profile pic is stored to someone else
 
     }
 	
