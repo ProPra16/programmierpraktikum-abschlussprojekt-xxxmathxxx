@@ -1,18 +1,31 @@
 package org.xxxmathxxx.tddt.data;
 
-/**Simple data class to make handling times easier and clean-up constructors
- * @author Philipp Spohr, Jul 9, 2016
+/**This stores a set of medal times as double (times that are required to receive an achievement)
+ * Simple data class to make handling times easier and clean-up constructors.
+ * @author xxxMathxxx 2016
  *
  */
 public class MedalTimes {
 	
+	/**
+	 * The time that is required to get the (hidden) author medal
+	 */
 	public double author;
+	/**
+	 * The time that is required to get the gold medal
+	 */
 	public double gold;
+	/**
+	 * The time that is required to get the silver medal
+	 */
 	public double silver;
+	/**
+	 * The time that is required to get the bronze medal
+	 */
 	public double bronze;
 	
-	/**
-	 * Saves times to award medals.
+	/**Default constructor, creates a new object, that
+	 * saves times to award medals.
 	 * @param author authortime
 	 * @param gold goldtime
 	 * @param silver silvertime

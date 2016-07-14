@@ -1,12 +1,17 @@
 package org.xxxmathxxx.tddt.data;
 
-/**
+/**Abstract class to interact with ExerciseTest and ExerciseClass
  * @author xxxMathxxx
- * Abstract class to interact with ExerciseTest and ExerciseClass
  */
 public abstract class ClassData 
 {
+	/**
+	 * The name of the class as String
+	 */
 	public String name;
+	/**
+	 * The code (class body) as JavaCode
+	 */
 	public JavaCode code;
 	
 	/**
