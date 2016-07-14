@@ -36,7 +36,7 @@ public class AnalyzedStage implements java.io.Serializable{
 	
 	public AnalyzedStage(ActivityTracker tracker){
 		time = tracker.getElapsedTime();
-		keystrokes = tracker.keystrokes;
+		keystrokes = tracker.getKeystrokes();
 		AnalyzeError.analyzeCodeStamps(tracker.codeStampCollection, error);
 	}
 
