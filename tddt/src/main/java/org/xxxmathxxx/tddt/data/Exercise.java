@@ -91,7 +91,7 @@ public class Exercise {
 							+config.babystepsEnabeled+" "+
 							+config.babystepsTime+"\n");
 		
-		TDDTLogManager.getInstance().logMessage("Timetracking:\n"+config.timetrackingEnabled+"\n");
+		TDDTLogManager.getInstance().logMessage("Timetracking:\n"+config.trackingEnabled+"\n");
 		
 		TDDTLogManager.getInstance().logMessage(this.config.medalTimes.toString());
 		

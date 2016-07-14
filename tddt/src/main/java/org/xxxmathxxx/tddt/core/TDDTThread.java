@@ -270,19 +270,22 @@ public class TDDTThread {
 
 			WindowManager.getInstance().createAchievementPopup(medalEarned);
 		}
-		//Step 1: Check total time
-		//trackerManager.getTotalTime(); -> Method doesn't exist
-		
-		//STEP 2: Update stats
+		//STEP 1: Update stats
 		AnalyzedTrackingData dataForThisExercise = new AnalyzedTrackingData(trackerManager);
 		
-		if(getExercise().config.timetrackingEnabled)
+		if(getExercise().config.trackingEnabled)
 		{
-			profile.profileStats.addTrackingData(currentExercise.id, dataForThisExercise);
+			boolean saveStats = true;
+			if (profile.profileStats.getTrackingData(currentExercise.id) != null){
+				saveStats = AlertMessenger.showQuestionMessage("Overwrite stats?", "It seems that you already completed this exercise earlier. Do you want to override the old data?");
+			}
+			if (saveStats){
+				profile.profileStats.addTrackingData(currentExercise.id, dataForThisExercise);
+			}
 		}
 		dataForThisExercise.log();
 		
-		//STEP 2.5 Might be sane to save those juicy stats and achievements
+		//STEP 1 Might be sane to save those juicy stats and achievements
 		profile.saveProfileToFile();
 		
 		//STEP 3: Quit the shit out of it

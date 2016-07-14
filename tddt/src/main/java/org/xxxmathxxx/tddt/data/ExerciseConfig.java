@@ -17,9 +17,9 @@ public class ExerciseConfig
 	public double babystepsTime; 
 	
 	/**
-	 * Determines if timetracking is enabled.
+	 * Determines if the tracking extension is enabled.
 	 */
-	public Boolean timetrackingEnabled;
+	public Boolean trackingEnabled;
 	
 	/**
 	 * Saves times you need for Medals.
@@ -37,7 +37,7 @@ public class ExerciseConfig
 		this.babystepsEnabeled=babystepsEnabled;
 		this.babystepsTime= babystepstime;
 		
-		this.timetrackingEnabled=timetrackingEnabled;
+		this.trackingEnabled=timetrackingEnabled;
 		
 		this.medalTimes=medalTimes;
 		

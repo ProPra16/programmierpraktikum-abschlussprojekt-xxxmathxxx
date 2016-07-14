@@ -85,7 +85,7 @@ public abstract class EditPane extends FlowPane {
 			getChildren().add(babyClock);
 		}
 		
-		if(TDDTThread.getInstance().getExercise().config.timetrackingEnabled)
+		if(TDDTThread.getInstance().getExercise().config.trackingEnabled)
 		{
 			this.totalClock = new ClockLabel(TDDTThread.getInstance().totalTimer); 
 			this.totalClock.setPrefSize(300, 16);
