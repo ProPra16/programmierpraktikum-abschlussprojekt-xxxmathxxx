@@ -14,6 +14,10 @@ import org.xxxmathxxx.tddt.profile.Profile;
  */
 public class ProfileReader {
 
+	/**
+	 * Reads all profiles
+	 * @return List of profiles
+	 */
 	public static ArrayList<Profile> getAllProfiles(){
 		TDDTLogManager.getInstance().logMessage("Loading profiles from disk ...");
 		File profileDir = new File("profiles");

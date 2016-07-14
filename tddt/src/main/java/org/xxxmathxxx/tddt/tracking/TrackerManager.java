@@ -16,6 +16,9 @@ import org.xxxmathxxx.tddt.data.CodeStage;
  */
 public class TrackerManager {
 	
+	/**
+	 * Map of Stage and trackers
+	 */
 	public HashMap<CodeStage,ActivityTracker> atMap;
 	
 
@@ -31,10 +34,19 @@ public class TrackerManager {
 
 	}
 
+	/**
+	 * Returns active tracker
+	 * @return active Tracker
+	 */
 	public ActivityTracker getActiveTracker() {
 		return atMap.get(TDDTThread.getInstance().getState());
 	}
 	
+	/**
+	 * Returns tracker by stage
+	 * @param stage
+	 * @return Tracker for specified stage
+	 */
 	public ActivityTracker getTrackerForStage(CodeStage stage){
 		return atMap.get(stage);
 	}

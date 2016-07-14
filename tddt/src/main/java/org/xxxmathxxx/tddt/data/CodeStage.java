@@ -1,5 +1,7 @@
 package org.xxxmathxxx.tddt.data;
 
+import org.xxxmathxxx.tddt.core.TDDTThread;
+
 /**Enum to determine CodeStage of running thread
  * @author xxxMathxxx 2016
  * 

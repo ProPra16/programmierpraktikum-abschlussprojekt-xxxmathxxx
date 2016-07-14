@@ -9,12 +9,23 @@ import org.xxxmathxxx.tddt.timer.BasicTimer;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
+/**
+ * @author xxxMathxxx
+ * Countdown label
+ */
 public class ReversedClockLabel extends Label {
 
+	/**
+	 * Switchin time
+	 */
 	public double babystepsTime;
 	
 	BasicTimer syncedTimerr;
 	
+	/**
+	 * Initialises the label
+	 * @param syncedTimer timer to be synced
+	 */
 	public ReversedClockLabel(BasicTimer syncedTimer) {
 		this.syncedTimerr = syncedTimer;
 		new Timer().scheduleAtFixedRate(new TimeUpdateTask(),0 , 50);

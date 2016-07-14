@@ -46,11 +46,29 @@ public class WindowManager {
 	 *
 	 */
 	public enum MenuType{
+		/**
+		 * Startup
+		 */
 		STARTUP_MENU,
+		/**
+		 * Create new profile
+		 */
 		NEW_PROFILE,
+		/**
+		 * Chose an existing profile
+		 */
 		EXISTING_PROFILE,
+		/**
+		 * Statistics
+		 */
 		STATISTICS,
+		/**
+		 * Editor
+		 */
 		EDITOR,
+		/**
+		 * Exercisepicker
+		 */
 		EXERCISEPICKER
 	}
 	

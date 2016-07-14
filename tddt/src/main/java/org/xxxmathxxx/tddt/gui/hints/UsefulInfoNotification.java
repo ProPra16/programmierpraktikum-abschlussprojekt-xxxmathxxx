@@ -23,6 +23,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * @author xxxMathxxx
+ * An info popup
+ */
 public class UsefulInfoNotification extends Stage {
 	
 	private Pane pane;

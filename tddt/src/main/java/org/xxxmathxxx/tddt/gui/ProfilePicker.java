@@ -116,6 +116,10 @@ public class ProfilePicker extends Pane {
 		setImages();
 	}
 
+	/**
+	 * Returns the profile selected by the user
+	 * @return profile
+	 */
 	public Profile getSelection(){
 		if (profiles.isEmpty()){
 			return null;

@@ -2,6 +2,10 @@ package org.xxxmathxxx.tddt.timer;
 
 import org.xxxmathxxx.tddt.core.TDDTThread;
 
+/**
+ * @author xxxMathxxx
+ * BabystepsTimer to track time until reverting changes
+ */
 public class BabystepsTimer extends BasicTimer{
 
 	@Override

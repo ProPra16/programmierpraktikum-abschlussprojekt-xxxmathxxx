@@ -22,7 +22,13 @@ public class Editor extends Scene {
 	
 
 	//Editor Panes
+	/**
+	 * EditPane for Test stage
+	 */
 	public TestEditPane tep;
+	/**
+	 * EditPane for Code stage
+	 */
 	public CodeEditPane cep;
 	
 	

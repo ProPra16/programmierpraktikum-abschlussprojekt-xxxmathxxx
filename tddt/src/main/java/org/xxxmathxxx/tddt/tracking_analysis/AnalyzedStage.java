@@ -14,7 +14,7 @@ import org.xxxmathxxx.tddt.tracking.ActivityTracker;
 public class AnalyzedStage implements java.io.Serializable{
 
 	/**
-	 * 
+	 * Saves serialVersion
 	 */
 	private static final long serialVersionUID = 3L;
 
@@ -34,12 +34,19 @@ public class AnalyzedStage implements java.io.Serializable{
 	/** The error. */
 	public ErrorCounter error = new ErrorCounter();
 	
+	/**
+	 * Creates new analyzed Stage
+	 * @param tracker
+	 */
 	public AnalyzedStage(ActivityTracker tracker){
 		time = tracker.getElapsedTime();
 		keystrokes = tracker.getKeystrokes();
 		AnalyzeError.analyzeCodeStamps(tracker.codeStampCollection, error);
 	}
 
+	/**
+	 * Logs infos
+	 */
 	public void log() {
 		TDDTLogManager.getInstance().logMessage("You used "+keystrokes+" keystrokes!");
 		TDDTLogManager.getInstance().logMessage("You spent "+new BigDecimal(time).setScale(2, RoundingMode.HALF_UP)+" seconds in this phase!");

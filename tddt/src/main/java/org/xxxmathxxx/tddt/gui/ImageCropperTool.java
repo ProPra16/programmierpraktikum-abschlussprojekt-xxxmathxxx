@@ -79,6 +79,11 @@ public class ImageCropperTool extends Stage {
 	
 	private String imagePath;
 	
+	/**
+	 * Shows the image cropper
+	 * @param owner Where it should be displayed
+	 * @return ImagePath
+	 */
 	public static String showImageCropper(Stage owner){
 		
         FileChooser fileChooser = new FileChooser();

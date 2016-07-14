@@ -13,12 +13,19 @@ import org.xxxmathxxx.tddt.tracking.TrackerManager;
 public class AnalyzedTrackingData implements java.io.Serializable{
 	
 	/**
-	 * 
+	 * versionSerial
 	 */
 	private static final long serialVersionUID = 2L;
 	
+	/**
+	 * Map
+	 */
 	public HashMap<CodeStage,AnalyzedStage> anMap;
 
+	/**
+	 * Creates new AnalyzedTrackingData
+	 * @param tm
+	 */
 	public AnalyzedTrackingData(TrackerManager tm){
 		anMap = new HashMap<CodeStage,AnalyzedStage>();
 		for (CodeStage stage: tm.atMap.keySet()){
@@ -26,6 +33,9 @@ public class AnalyzedTrackingData implements java.io.Serializable{
 		}
 	}
 
+	/**
+	 * Logs infos to file
+	 */
 	public void log() {
 		TDDTLogManager.getInstance().logMessage("Your stats for this exercise:");
 		for (CodeStage stage: anMap.keySet()){

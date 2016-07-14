@@ -61,10 +61,20 @@ public class ProfileStats implements java.io.Serializable {
 	}
 
 
+	/**
+	 * Adds tracking data to profile
+	 * @param exerciseID Id of exercise
+	 * @param dataForThisExercise ExerciseData
+	 */
 	public void addTrackingData(Long exerciseID, AnalyzedTrackingData dataForThisExercise) {
 		trackingData.put(exerciseID, dataForThisExercise);
 	}
 
+	/**
+	 * Analyzes tracking data
+	 * @param key
+	 * @return Analyzed data
+	 */
 	public AnalyzedTrackingData getTrackingData(Long key) {
 		if (trackingData.containsKey(key)){
 			return trackingData.get(key);

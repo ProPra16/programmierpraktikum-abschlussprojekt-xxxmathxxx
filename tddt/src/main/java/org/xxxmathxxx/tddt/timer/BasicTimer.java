@@ -59,6 +59,10 @@ public class BasicTimer {
 	public  void onTick(){};
 
 	
+	/**
+	 * Sets active or not
+	 * @param state 
+	 */
 	public void setActive(boolean state){
 		active = state;
 	}
@@ -70,10 +74,17 @@ public class BasicTimer {
 		return ""+elapsedTime;
 	}
 
+	/**
+	 * Returns time in passed minutes
+	 * @return Time in minutes
+	 */
 	public double getTime() {
 		return elapsedTime;
 	}
 	
+	/**
+	 * Resets elapsed time to 0
+	 */
 	public void resetTimer()
 	{
 		elapsedTime=0;

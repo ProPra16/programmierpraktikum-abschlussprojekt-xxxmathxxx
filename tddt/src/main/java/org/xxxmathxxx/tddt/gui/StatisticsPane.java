@@ -68,6 +68,9 @@ public class StatisticsPane extends Pane{
 	private MedalViewer medalViewer;
 	private Button back;
     
+	/**
+	 * Pane to show stats
+	 */
 	public StatisticsPane(){
 		
 		this.profile = TDDTThread.getInstance().getUserProfile();
