@@ -40,8 +40,8 @@ This is the main part of the program. Your goal now is it, to write a program us
 At first you edit the tests until you have exactly one failing test or the code does not compile. If this is the case, you might switch to the next step.
 Now you may only edit the code, not the tests anymore. You might also swap back to editing the tests, but this deletes all the code you have written up until this point. If you get all tests to work and the program compiles without an error, you may switch to the last stage, the refactoring. Now you can improve your code until you decide you are done and go back to writing more tests. You repeat this cycle until your program is finished.
 Also, as soon as you start your exercise, a timer starts ticking, so you got to hurry up if you want to get a highscore!
-\subsection{Final Tests}
-As soon as you think your program has everything it needs, you may click on finalize. Your code runs through the final tests now. If you manage to pass every single one, you are done with this exercise!
+\subsection{Final Test}
+As soon as you think your program has everything it needs, you may click on finalize. Your code runs through the final test now. This is one hidden test predefined in the exercise that tests if your software meets the requirements of the assignment. As soon as this test passes you are finished!
 \section{For teachers/tutors}
 The following section is for teachers and tutors only, as it describes how to write more exercises for the program, as well as how the implement them.
 \subsection{How to add your own exercises to the software}
@@ -62,12 +62,12 @@ Then you can define as many classes as you want by adding them by this scheme: \
 \subsubsection{Tests}
 You can add tests by the same scheme as classes. Just replace \texttt{<classes></classes>} by \texttt{<tests></tests>} and for each test \texttt{<class name="Name">Code</class>} by \texttt{<test name="Name">Code</test>}.
 \subsubsection{Finishtests}
-You also have to define a finishtest. This test is used to check if an assignment has been fully completed. Simply add a new segment \texttt{<finishtests></finishtests>} like you did for the classes. Then you can add your test like you did with the normal ones: \texttt{<finishtest name="Name">Code</finishtest>}. Also don't forget to replace Name and Code like described above.
+You also have to define a finishtest. This test is used to check if an assignment has been fully completed. Simply add a new segment \texttt{<finishtests></finishtests>} like you did for the classes. Then you can add your test like you did with the normal ones: \texttt{<finishtest name="Name">Code</finishtest>}. Also don't forget to replace Name and Code like described above. Note that you should only use one test (You are not developing so there is no need to have more tests).
 \subsubsection{Config}
 For the last step you will have to define the configuration. Do this by adding a new tag  \texttt{<config></config>}. \newline
 Now you can define the parameters for babysteps, timetracking and medals: \newline\newline
 \texttt{<babysteps value="True" time="3.22" />} This will enable babysteps and set their timer to 3.22 minutes. \newline\newline
-\texttt{<timetracking value="True" />} This will enable timetracking. \newline\newline
+\texttt{<timetracking value="True" />} This will enable tracking of statistics. \newline\newline
 \texttt{<medals bronze="13.37" silver="6.65" gold="1.00" author="0.5"/>} This will define the time (in minutes) needed to get a medal awarded. 
 
 \subsubsection{It's not working!}
