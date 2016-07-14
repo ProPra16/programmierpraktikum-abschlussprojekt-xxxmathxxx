@@ -137,7 +137,7 @@ public class StatisticsPane extends Pane{
 			pieChart.setTitle("Time");
 			
 			int totalKeystrokes = stage1.getKeystrokes()+stage2.getKeystrokes()+stage3.getKeystrokes();
-			totalTimeLabel.setText("Total time elapsed: "+totalKeystrokes);
+			totalKeystrokesLabel.setText("Total keystrokes: "+totalKeystrokes);
 			
 			pieChartKeystrokes.getData().clear();
 			pieChartData =
