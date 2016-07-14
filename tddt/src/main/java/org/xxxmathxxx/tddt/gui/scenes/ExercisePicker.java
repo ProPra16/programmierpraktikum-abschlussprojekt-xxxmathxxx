@@ -71,13 +71,12 @@ public class ExercisePicker extends Scene {
 		back.addEventHandler(ActionEvent.ANY, new menuButtonHandler());
 		pane.getChildren().add(back);
 		
-		descr = new Label(); //STYLE THIS WHOLE GODDAMN THING BETTER
+		descr = new Label();
 		descr.relocate(200, 135);
 		pane.getChildren().add(descr);
 		
 		ec=ExerciseReader.readAllExercises();
 		
-		//exercises.add("Random"); make a seperate button for random stuff that gives you 200 TDDT-Coins
 		cb = new ExerciseComboBox(ec.asObservableList());
 		cb.relocate(20, 85);
 		cb.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Exercise>() {
@@ -95,7 +94,7 @@ public class ExercisePicker extends Scene {
 		pane.getChildren().add(cb);
 		
 		mv = new MedalViewer();
-		mv.relocate(200, 50); //TODO: KRis design and stuff
+		mv.relocate(200, 50);
 		pane.getChildren().add(mv);
 		
 	}

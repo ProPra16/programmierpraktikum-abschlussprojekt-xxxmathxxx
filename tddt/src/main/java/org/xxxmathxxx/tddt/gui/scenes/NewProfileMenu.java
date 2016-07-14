@@ -38,6 +38,7 @@ public class NewProfileMenu extends Scene {
 	//stuff
 	private String customImagePath = null;
 	private String name = null;
+	private String filePath = "profiles/";
 	
 	/**
 	 * Constructor for this Menu
@@ -79,8 +80,6 @@ public class NewProfileMenu extends Scene {
 		textField.setPromptText("Enter a name");
 		pane.getChildren().add(textField);
 		
-
-		
 		profilePic = new ImageView(GraphicsHelper.defaultProfilePicture(128));
 		profilePic.relocate(336, 170);
 		profilePic.setFitWidth(128);
@@ -111,13 +110,13 @@ public class NewProfileMenu extends Scene {
 			else if (event.getSource() == create){
 				if ((textField.getText().isEmpty() || textField.getText() == null)) {
 					ProfileCreator.profileCreationError();
-		        } 
-					else
+		        }
+				else if(new File(filePath + textField.getText()).isFile()) {
+					ProfileCreator.nameTakenError();
+				}
+				else
 		        {
 					name = textField.getText();
-		            //TODO Check if a profile with this name already exists to prevent overwriting!
-		            //TODO Check profile name for sanity / weird symbols etc.
-					//TODO Check that profile name is max 14 characters.
 		            if(customImagePath == null){
 		            	customImagePath = GraphicsHelper.getResourcePath("/graphics/unknownProfile.png");
 		            }

@@ -16,7 +16,16 @@ public class ProfileCreator {
 	 */
 	public static void profileCreationError(){	
 		String header = "You haven't entered a name yet!";
-		String text = "In order to proceed you need to enter a name for your profile!";
+		String text = "In order to proceed, you need to enter a name for your profile!";
+		AlertMessenger.showErrorMessage(header, text);
+	}
+	
+	/**
+	 * Shows an error message to the User if he enters a name which is already in use.
+	 */
+	public static void nameTakenError(){
+		String header = "This name is already taken!";
+		String text = "You must not use a name, which another profile already uses!";
 		AlertMessenger.showErrorMessage(header, text);
 	}
 	
