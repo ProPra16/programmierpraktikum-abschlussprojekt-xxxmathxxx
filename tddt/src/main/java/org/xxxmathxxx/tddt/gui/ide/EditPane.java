@@ -81,14 +81,14 @@ public abstract class EditPane extends FlowPane {
 		if(TDDTThread.getInstance().getExercise().config.babystepsEnabeled)
 		{
 			this.babyClock = new ReversedClockLabel(TDDTThread.getInstance().babystepsTimer); 
-			this.babyClock.setPrefSize(300, 16);
+			this.babyClock.setPrefSize(250, 16);
 			getChildren().add(babyClock);
 		}
 		
 		if(TDDTThread.getInstance().getExercise().config.trackingEnabled)
 		{
 			this.totalClock = new ClockLabel(TDDTThread.getInstance().totalTimer); 
-			this.totalClock.setPrefSize(300, 16);
+			this.totalClock.setPrefSize(250, 16);
 			getChildren().add(totalClock);
 		}
 		

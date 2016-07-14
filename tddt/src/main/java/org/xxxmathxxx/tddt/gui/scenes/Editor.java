@@ -102,7 +102,7 @@ public class Editor extends Scene {
 		stateLabel= new Label();
 		stateLabel.setText("Teststage: Write a failing test!");
 		stateLabel.setTextFill(Color.web("#FF0000"));
-		stateLabel.setPrefSize(400, 50);
+		stateLabel.setPrefSize(200, 50);
 		stateLabel.relocate(10,ySize-100);
 		pane.getChildren().add(stateLabel);
 		
